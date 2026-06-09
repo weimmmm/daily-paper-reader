@@ -1,0 +1,338 @@
+Title: EvoMemNav: Efficient Self-Evolving Fine-Grained Memory for Zero-Shot Embodied Navigation
+
+URL Source: https://arxiv.org/pdf/2606.03509v1
+
+Published Time: Wed, 03 Jun 2026 01:17:59 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+# EvoMemNav: Efficient Self-Evolving Fine-Grained Memory for Zero-Shot Embodied Navigation 
+
+Zuhao Ge 1,2 , Xiaosong Jia 1,2, Q, Chao Wu 1,2 , Yuchen Zhou 1,2 , Zuxuan Wu 1,2 , Yu-Gang Jiang 1,2 
+
+> 1
+
+Institute of Trustworthy Embodied AI (TEAI), Fudan University ,
+
+> 2
+
+Shanghai Key Laboratory of Multimodal Embodied AI 
+
+# Abstract 
+
+Building memory is essential for long-horizon planning in zero-shot embodied navigation. Detector-centric scene graphs often compress observations into sparse nodes, discarding fine-grained visual evidence and accumulating noise, while 3D reconstruction-based methods remain computationally prohibitive. We present EvoMemNav, an efficient, self-evolving, fine-grained memory framework for zero-shot embodied navigation. EvoMemNav constructs a Visual-Semantic Memory Graph (VSMGraph) that keeps raw views as first-class memory and organizes them with lightweight semantic cues and topological relations into a room-view-object hierarchy, preserving fine-grained details for disambiguation and Stop verification. To scale to growing memory, we introduce a budgeted coarse-to-fine policy: a coarse stage compresses the search space into promising regions, and a fine stage invokes a VLM only for targeted verification and decision. Beyond static memories, EvoMemNav performs reflection-driven write-back after each subtask, updating graph-attached priors that encode accumulated environmental knowledge to refine future decisions without retraining. Experiments on GOAT-Bench and HM3D across object, text-description, and image-goal modalities show consistent gains in SR/SPL, with better multi-instance disambiguation, fewer premature stops, and stronger zero-shot generalization. 
+
+# 1 Introduction 
+
+In real-world applications, such as home assistants and service robots, mobile agents are expected to understand user instructions, perceive environments, and navigate to target objects [ 41 ]. Recent progress in Large Language Models (LLMs) and Vision-Language Models (VLMs) has spurred zero-shot embodied navigation methods [ 56 ]. A key module in these methods is the memory system, which enables long-term reasoning rather than relying solely on short-term, view-by-view responses. To construct memory, a prominent way is to build scene graphs, whose nodes are detected objects/rooms and edges are their geometric relationships, sometimes combined with open-vocabulary retrieval [ 14 , 19 , 25 , 30 , 40 ]. However, object-centric scene graph memory (i) compresses observations into sparse symbols and discards fine-grained cues such as textures and spatial layouts; (ii) is sensitive to detection noise that accumulates through downstream reasoning; and (iii) prevents powerful VLMs from directly reasoning over multi-view    
+
+> QCorresponding author. Code: github.com/caicaiya123/EvoMemNav
+
+1   
+
+> arXiv:2606.03509v1 [cs.CV] 2 Jun 2026 Figure 1 Overview of EvoMemNav. (A) VSMGraph organizes memory into a room-view-object graph with first-class view nodes and lightweight object/room cues for retrieval. (B) A budgeted coarse-to-fine policy compresses candidates (bucketing + Top-K) and invokes a VLM only on the shortlist for multi-view Stop verification. (C) Reflection-driven write-back updates graph-attached priors (Episode-STM/Scene-LTM) for continual self-evolving improvement.
+
+images. Alternatively, 3D-reconstruction-based memory [33] is proposed, yet it incurs high computational overhead at runtime and lacks native compatibility with VLMs. In contrast, image-based memory retains rich evidence by storing views as nodes and connecting them through topological adjacency [ 8, 9, 17 , 46 ]. Nevertheless, existing methods have two practical limitations: (i) Images are loosely organized in a cache , lacking structured representations for rooms, frontiers, or reachability; consequently, premature termination frequently occurs on same-category objects, and region-level decisions are difficult to articulate. (ii) The memory component lacks evolution : successes and failures are not fed back into reusable states, leading to repeated errors. EvoMemNav builds a Visual-Semantic Memory Graph (VSMGraph) that keeps raw views as first-class memory and organizes them with lightweight semantic cues and topological relations into a structured 
+
+room-view-object hierarchy. We instantiate two types of view nodes: anchor views that store object-rich raw evidence regions for verification and frontier views that represent reachable boundaries for exploration. Importantly, object cues (optionally from a lightweight instance cache) are used only as soft tags for candidate bucketing and Stop verification; high-level decisions remain grounded in multi-view image evidence on the VSMGraph, avoiding reliance on heavy 3D reconstruction. In other words, we still maintain object hypotheses as graph nodes for indexing, but we do not compress memory into them: view nodes preserve raw evidence, and all Stop decisions are verified by multi-view images. To scale to growing memory and reduce expensive VLM reasoning, we propose a budgeted coarse-to-fine navigation policy operating on the VSMGraph. The coarse stage ( Explore ) compresses the search space into a small set of promising anchors/frontiers via structured bucketing and ranking, while the fine stage (Search + Verify ) invokes a VLM only for targeted shortlist selection and multi-view Stop verification. When 2Figure 2 Framework of EvoMemNav. EvoMemNav maintains an image-grounded VSMGraph , a room-view-object memory graph where view nodes store raw image evidence. A budgeted coarse-to-fine controller shortlists candidates and queries a VLM only on the shortlist for targeted decision and multi-view image Stop verification. Reflection-driven write-back updates graph-attached priors (Episode-STM/Scene-LTM) after each subtask, enabling self-evolving navigation without retraining. 
+
+the decision is uncertain, the policy prioritizes further exploration to avoid hard guessing in multi-instance settings. Beyond static memories, EvoMemNav performs reflection-driven write-back after each subtask, updating 
+
+graph-attached priors that encode accumulated environmental knowledge (e.g., room support, frontier utility vs. dead-end risk, and anchor-view stop reliability). These priors are attached to room/view/frontier nodes and directly influence future candidate ranking and local verification, enabling continuous improvement without retraining. Experiments on GOAT-Bench and HM3D across object, description, and image-goal modalities show consistent gains in SR/SPL, with better multi-instance disambiguation, fewer premature stops, and stronger zero-shot generalization. 
+
+# 2 Related Work 
+
+2.1 Visual Navigation 
+
+Classical visual navigation methods are typically categorized as either end-to-end learning [ 4, 47 ] or modular pipelines [ 6, 7, 21 , 32 , 34 ]. End-to-end approaches require extensive training and often exhibit limited generalization, while modular pipelines reduce the training burden but continue to depend on task-specific policies. Recent studies have incorporated Large Language Models (LLMs) [ 1, 37 ] and Vision-Language Models (VLMs) [45, 60] to facilitate zero-shot navigation [3, 5, 10, 13, 24, 26, 35, 42, 46, 52, 58]. 32.2 Scene Representations in Visual Navigation 
+
+Embodied navigation utilizes a variety of representational frameworks. (1) Metric or 3D maps with semantic information enhance geometric point clouds by incorporating open-vocabulary features [ 22 , 38 , 59 ]. (2) Detector-driven scene graphs represent objects and rooms as nodes connected by textual relations [ 14 , 23 ,35 , 39 , 42 , 44 , 48 , 49 ]. (3) Image-based topological graphs represent visual observations as nodes, which are connected based on spatial adjacency [ 9, 11 ]. MapGPT [ 8 ] employs map-guided prompts, while 3D-Mem [ 46 ]maintains multi-view snapshots and records glimpses of unexplored regions. 
+
+2.3 Memory in Visual Navigation 
+
+Zero-shot LLM/VLM navigation agents typically store information using explicit maps. Empirical evidence from lifelong navigation indicates that the content of memory significantly influences performance on subsequent tasks [ 20 ]. Attempts to persist memory include storing multi-view snapshots/frontiers [ 17 , 46 ] or designing long-short memory systems [ 15 , 53 ]. However, these methods do not incorporate mechanisms to distill trajectories into reusable experiences, resulting in memory accumulation without corresponding improvement. Reflection mechanisms in LLM agents, ranging from verbal feedback buffers [ 36 ] to strategy-level reviews [ 55 ], demonstrate potential but remain underexplored in the context of embodied navigation with topological memory. 
+
+# 3 Methodology 
+
+3.1 Problem Formulation 
+
+Lifelong embodied navigation [ 20 ] in an unseen scene S is a task where an agent must solve a sequence of subtasks with multi-modal goals gk (object label, reference image, or text description). The agent starts from a random pose and receives posed RGB-D observations It = ⟨Irgb  
+
+> t
+
+, I depth  
+
+> t
+
+, p t⟩, where pt = xt, y t, θ t. A subtask terminates when the agent issues stop or reaches the step budget; it is successful if stop is issued within 
+
+1.0 m of a goal-matching instance. 
+
+3.2 Overview 
+
+As shown in Fig. 2, EvoMemNav takes a multi-modal goal g (object label, text, or image) and a stream of posed RGB-D observations It as inputs. It maintains an image-grounded Visual-Semantic Memory Graph (VSMGraph) Gt with a room-view-object hierarchy: view nodes store raw observations and poses as first-class 
+
+image evidence , object nodes store lightweight instance hypotheses, and they are connected by navigability and visibility relations. View nodes are partitioned into anchor views (object-rich evidence regions) and frontier views (reachable exploration boundaries). Each view is additionally annotated with lightweight semantic cues (e.g., room tags and object visibility tags) that serve as retrieval signals; final decisions are grounded in multi-view image evidence on the VSMGraph rather than detector outputs or dense 3D reconstruction. On top of Gt, we employ a budgeted coarse-to-fine navigation policy that limits expensive VLM reasoning to a small shortlisted set. The coarse stage (Explore ) compresses the candidate space and routes the agent either to a frontier view (exploration) or to an anchor view (evidence), while the fine stage (Search + Verify ) queries the VLM only on this shortlist to select the next view and to perform structured multi-view Stop verification. A lightweight Recover fallback is triggered only when repeated reselect or cooldown indicates a deadlock, temporarily enforcing frontier-only exploration. Finally, we introduce reflection-driven continual memory adaptation (RDCMA) , a training-free mechanism that writes back subtask outcomes as goal-conditioned, graph-attached priors to enable self-evolving navigation; details are deferred to Sec. 3.5. 
+
+3.3 Visual-Semantic Memory Graph Construction 
+
+4Figure 3 VSMGraph construction and attributes. Left: as the agent explores on an occupancy grid, we add view nodes along the trajectory and frontier view nodes at reachable boundary regions; object instances are maintained in an object-centric map Omap and linked to views via visibility relations. Right: the resulting VSMGraph organizes  
+
+> room-view-object hierarchy. Each view node stores raw image evidence and pose, and is annotated with a discrete CLIP room-type label used for room-aware bucketing (candidate compression). Solid edges denote navigability and dashed edges denote visibility.
+
+3.3.1 VSMGraph Representation 
+
+As shown in Fig. 3, we maintain a Visual-Semantic Memory Graph (VSMGraph) Gt = Rt, Vt, Ot, Et with a room-view-object hierarchy. Room nodes Rt index views and objects within the same region, enabling region-level retrieval. View nodes 
+
+Vt store image evidence and poses, while object nodes Ot store instance hypotheses (category and 3D localization). Edges Et include (i) navigability edges between successive collision-free viewpoints and (ii) visibility edges linking a view to the object nodes observed from it. We update Gt online. At each visited pose, we add a view node and connect it to the previous view node by a navigability edge. An occupancy grid serves as the metric scaffold: shortest paths are computed on the grid and executed as walks along view-to-view edges, while high-level reasoning and retrieval operate on 
+
+Gt. To support efficient candidate compression in our budgeted coarse-to-fine policy (Sec. 3.4), each view is annotated with a discrete room-type label ρv ∈ T room computed by CLIP arg max matching between the view image and a set of common room types, which serves as a lightweight, threshold-free contextual tag for room-aware bucketing. Besides, VSMGraph exposes room/view/frontier identifiers and attributes (e.g., ρv and visibility-derived object-hit tags), and RDCMA attaches lightweight priors to these elements (Sec. 3.5). 
+
+3.3.2 Anchor Views 
+
+We partition view nodes into anchor and frontier views, i.e., Vt = VA,t ∪ V F,t . An anchor view captures an object-rich explored observation: 
+
+vAt = ⟨Irgb  
+
+> t
+
+, p t, Ovis  
+
+> t
+
+, ρ room  
+
+> t
+
+⟩,
+
+5where ρroom  
+
+> t
+
+is the CLIP room label and Ovis  
+
+> t
+
+is the set of visible object hypotheses/tags associated with this view. In practice, we maintain an object-centric cache Omap of detected instances to derive view-level visibility tags 
+
+Ovis  
+
+> t
+
+. This cache does not define the VSMGraph: it only annotates view nodes with lightweight cues for retrieval, while final decisions are verified by multi-view image evidence. Suppressing these tags therefore degrades candidate ordering and exploration efficiency rather than breaking the closed-loop controller, since Stop verification remains grounded in raw multi-view images. 
+
+3.3.3 Frontier Views 
+
+We adopt frontier-based exploration on a top-down occupancy grid Mt. A frontier cell is a free cell adjacent to at least one unknown cell; frontier cells are clustered into frontier regions. For each region f , we choose a reachable entry pose pf and capture a frontier-facing image Ifront  
+
+> f
+
+, defining a frontier view as 
+
+Ff = ⟨rf , p f , I front  
+
+> f
+
+, ρ room  
+
+> f
+
+⟩,
+
+where rf denotes the frontier region on the grid and ρroom  
+
+> f
+
+is the CLIP room label. Each frontier view is connected to the closest explored view (and its room node), so unexplored areas appear as boundary nodes at the periphery of Gt.
+
+3.4 Coarse-to-Fine Navigation Policy 
+
+We cast navigation as traversal on the VSMGraph Gt: at time t, the agent at view node vt selects the next target node to navigate to. A common zero-shot pipeline filters anchor views by target cues, queries a VLM over a large and growing candidate pool, and often stops immediately once an anchor view is selected. This design (i) scales poorly with memory size, (ii) provides limited structure for comparing exploration frontiers, and (iii) is prone to same-class wrong-instance and premature-stop failures. To address these issues, we adopt a 
+
+budgeted coarse-to-fine framework that separates candidate compression from fine-grained VLM reasoning ,so that expensive VLM calls are reserved for a small set of candidates and for Stop verification. 
+
+Budgeted coarse-to-fine. We use coarse-to-fine to denote a budgeted two-stage decision process: the coarse stage (Explore ) compresses the candidate space and routes the agent to either a frontier view (exploration) or an anchor view (evidence), while the fine stage (Search + Verify ) performs small-set selection and structured 
+
+Stop verification. 
+
+3.4.1 Coarse stage (Explore): candidate compression and routing 
+
+Given goal g and graph Gt, we construct compact candidate sets CAt ⊂ V A,t (anchor views) and CFt ⊂ V F,t 
+
+(frontiers), with budgets |C At | ≤ KA and |C Ft | ≤ KF . Candidates are compressed via room-aware bucketing under soft constraints, using the discrete room label ρ· and lightweight object-hit tags derived from Ovis .Optionally, a single text-only query to the same VLM provides coarse focus hints that are used only as soft cues during bucketing. If the compressed anchor set is empty ( CAt = ), we directly route to a frontier without querying the VLM. 
+
+3.4.2 Fine stage (Search + Verify): small-set selection and Stop verification 
+
+In the Search step, we query the VLM only over the compact set Ct = CAt ∪ C Ft :
+
+at, σ t = VLM g, Ct, σt ∈ { certain , uncertain , unknown }. (1) If an anchor view is selected but the decision is low-confidence ( σt ∈ { uncertain , unknown }), we gate back to exploration and route to a frontier instead, reducing same-class wrong-instance errors. In the Verify step, upon reaching a selected anchor view, we do not stop immediately; instead, we invoke structured Stop 
+
+6Figure 4 Reflection-Driven Continual Memory Adaptation (RDCMA). A training-free, graph-attached prior mechanism for the VSMGraph: trajectory events and Stop outcomes ( STOP /RESELECT ) update compact priors under sg , stored as Episode-STM (reset) and Scene-LTM (persistent) with decay/top-K/conflict. Goal-conditioned lookup applies priors as    
+
+> Explore tie-breakers and a Verify stop hint, with no parameter updates.
+
+verification that returns STOP or RESELECT . A RESELECT verdict triggers anchor-view cooldown and re-enters the coarse stage, forming a robust closed loop for handling premature-stop and wrong-instance cases. 
+
+3.5 Reflection-Driven Continual Memory Adaptation 
+
+The lifelong multi-subtask setting enables an agent to reuse evidence accumulated earlier in the same scene. Beyond the online-growing VSMGraph structure, we introduce Reflection-Driven Continual Memory Adaptation (RDCMA) , a training-free mechanism that writes back interaction outcomes as goal-conditioned priors attached to VSMGraph elements. RDCMA maintains priors at two time scales: Episode-STM captures short-term suppressions and loop-avoidance cues within the current episode, while Scene-LTM persists per scene to support continual reuse across subtasks/episodes. Both memories are indexed by a goal signature sg (e.g., modality and/or target class), and support a coarse-to-fine fallback to avoid overly sparse keys. Priors are graph-attached : they are associated with room nodes, anchor views, and frontier views, and stored as compact statistics (e.g., support counts and reliability/risk estimates). Importantly, RDCMA does not update any model parameters; instead, it continuously updates these lightweight statistics, turning the memory graph into a gradually adapting decision substrate that interfaces cleanly with the coarse-to-fine policy. 
+
+3.5.1 Experience memory via reflection 
+
+RDCMA derives supervision signals directly from the navigation loop. Concretely, reflection is invoked during Stop verification (to decide STOP vs. RESELECT ) and the resulting outcomes are aggregated and written back after each subtask. After each subtask, we summarize interaction outcomes using (i) trajectory events on the VSMGraph (e.g., visited rooms, selected frontiers/anchor views, revisits, and dead-end/loop indicators) and (ii) structured Stop -verification outcomes ( STOP vs. RESELECT ) produced by the fine stage. These signals are then written back as updates to the attached priors under the current goal signature sg . Episode-STM is updated online and reset at episode end; Scene-LTM is updated conservatively and persisted per scene. 
+
+3.5.2 Experience retrieval and usage 
+
+RDCMA influences decision-making through two coupled channels. 7Exploration Ordering Priors During Explore (Sec. 3.4), priors act as conservative tie-breakers within the bucketed candidate set. They bias frontier selection toward regions with higher historical utility and lower dead-end risk, and bias anchor views selection toward views that have provided reliable evidence under similar goals. These priors do not override coarse bucketing constraints; they only refine ordering within the bounded candidate set, which improves stability under noisy online feedback. 
+
+Stop Calibration Priors During Verify (Sec. 3.4), priors calibrate structured Stop decisions. For each candidate anchor view, we maintain lightweight Stop reliability statistics under sg and inject a compact stop-memory hint into the verification prompt. This channel directly targets premature-stop and wrong-instance failures by providing prior evidence about whether an anchor view has been a reliable stopping region for similar goals. 
+
+3.5.3 Maintenance: decay, conflict suppression, and persistence 
+
+To bound memory growth and mitigate contradictory feedback, RDCMA applies simple maintenance: exponential decay for stale priors, a small per-signature cap (retain top-K most useful entries), and conservative suppression of repeatedly contradicted priors. These operations only affect the attached statistics and do not introduce new decision thresholds or override the coarse-to-fine policy. 
+
+# 4 Experiments 
+
+4.1 Experimental Setup 
+
+4.1.1 Datasets 
+
+We evaluate methods in Habitat simulator[29] on large-scale datasets: 1) GOAT-Bench[ 20 ] is a multimodal lifelong navigation benchmark where an agent navigates to objects in unknown scenes, described by a category name, language description, or image. It comprises 36 scenes, each with 10 episodes, containing 5-10 subtasks. Target modalities are uniformly sampled, with targets across all categories on a single floor per episode, in an open-vocabulary setting. 2) The HM3D dataset is a large-scale 3D indoor benchmark for embodied navigation. We follow the standard setup on HM3Dv1 [ 31 ] (20 scenes, 2000 episodes) and HM3Dv2 [ 43 ] (36 scenes, 1000 episodes), both with 6 object-goal categories. 
+
+4.1.2 Metrics 
+
+We report Success Rate (SR) and Success weighted by inverse Path Length (SPL) for all methods, following the mainstream settings. A navigation task is deemed successful if the agent stops within 1 m of the navigation goal. SPL is the success score weighted by exploration distances. Higher SR and SPL indicate superior performance. 
+
+4.1.3 Implementation Details 
+
+We use Habitat-Lab [ 29 ] for simulation and implement all components in PyTorch. YOLOv8-World and SAM provide instance hypotheses and visibility-derived tags, which are used as soft cues for candidate bucketing and Stop verification; the core memory remains image-grounded view evidence. We use Qwen3-VL-8B [ 45 ]as the VLM in both the selection and verification stages. For efficiency, ablations and runtime profiling use a fixed subset covering all scenes ( episode index=1 for each of the 36 scenes); main results follow the full GOAT-Bench protocol. 
+
+4.2 Quantitative Experiments 
+
+GOAT-Bench. Tab. 1 reports results on GOAT-Bench VAL-UNSEEN. EvoMemNav achieves 59.6 SR and 
+
+38.9 SPL, outperforming prior training-free baselines and demonstrating strong generalization across the 8Table 1 Comparison on the “Val Unseen” split of GOAT-Bench. “†” denotes the results we reproduced. Best in bold, second best underlined. 
+
+Method Training-free SR ↑ SPL ↑
+
+SenseAct-NN Monolithic [20] × 12.3 6.8 Modular CLIP on Wheels [20] ✓ 16.1 10.4 Modular GOAT [20] ✓ 24.9 17.2 SenseAct-NN Skill Chain [20] × 29.5 11.3 VLMnav [12] ✓ 20.1 9.6 DyNaVLM [18] ✓ 25.5 10.2 TANGO [28] ✓ 32.1 16.5 3D-Mem † [46] ✓ 42.6 22.8 MTU3D [61] × 47.2 27.7 MSGNav [17] ✓ 52.0 29.6 
+
+EvoMemNav (Ours) ✓ 59.6 38.9 
+
+multi-modal lifelong setting. Notably, our gains are obtained without task-specific training and with an open-source VLM backbone, indicating that the improvements come from the proposed memory organization and budgeted decision policy. 
+
+HM3D ObjectGoal. To evaluate generalization beyond GOAT-Bench, we further test on HM3D object-goal navigation (Tab. 2). EvoMemNav achieves 59.2/33.6 (SR/SPL) on HM3Dv1 and 63.8/39.4 on HM3Dv2, setting a strong training-free performance and confirming that our method transfers to large-scale object-goal benchmarks. 
+
+4.3 Ablation Analysis 
+
+4.3.1 Effect of Each Component 
+
+Table 3 details the ablation study on four components ( VSMGraph , Coarse , Fine , RDCMA ) with a fixed VLM backbone. To ensure fair comparison, disabling Coarse falls back to a top-K heuristic under the same budgets, and disabling Fine causes the agent to stop immediately upon reaching the selected view. Starting from a baseline of 39.9/22.0 (SR/SPL), integrating VSMGraph yields an initial gain (47.1/30.1), validating the benefit of structured visual-semantic memory. Enabling Coarse (Explore ) provides the most substantial improvement (58.7/39.7), identifying budgeted candidate compression as the primary performance driver. Adding Fine (Search + Verify ) further refines this to 60.8/40.8, notably improving image goals by mitigating premature stops. Finally, RDCMA achieves peak performance (64.8/43.1 Overall SR/SPL), with consistent gains on Object (75.8 SR) and Image (63.6 SR) tasks, demonstrating effective training-free adaptation that complements the coarse-to-fine policy. We further verify robustness against candidate budgets KA, K F
+
+and VLM backbones in the Supplementary Material, confirming stable performance across configurations. 
+
+4.3.2 Runtime and Budget Analysis 
+
+To evaluate efficiency, we profile per-subtask costs on GOAT-Bench VAL-UNSEEN (36 scenes), decomposing runtime into VLM latency (calls/tokens) and graph maintenance (Tab. 4). Compared to 3D-Mem, VSMGraph+C2F reduces VLM calls by 41% (10.7 →6.3) and graph maintenance by 
+
+58% (88.2 →37.3 s), cutting total proxy runtime by 39% (102.2 →62.8 s) while improving SR by +11.2 (49.6 →60.8). 
+
+EvoMemNav further boosts SR to 64.8 and lowers runtime to 58.7 s with marginal overhead, demonstrating 9Table 2 Comparison on the HM3D object-goal navigation benchmark. Best in bold, second best underlined. 
+
+Method Training-free HM3Dv1 HM3Dv2 SR ↑ SPL ↑ SR ↑ SPL ↑
+
+ZSON [26] × 25.5 12.6 – –PixNav [2] × 37.9 20.5 – –SPNet [57] × 31.2 10.1 – –VLFM [50] × 52.5 30.4 63.6 32.5 SGM [54] × 60.2 30.8 – –ESC [58] ✓ 39.2 22.3 – –L3MVN [51] ✓ 50.4 23.1 36.3 15.7 InstructNav [24] ✓ – – 58.0 20.9 VLFM* [50] ✓ 50.9 23.6 56.9 27.5 GAMap [16] ✓ 53.1 26.0 – –SG-Nav [48] ✓ 54.0 24.9 49.6 25.5 UniGoal [49] ✓ 54.5 25.1 – –WMNav [27] ✓ 58.1 31.2 – –TriHelper [52] ✓ 56.5 25.3 – –
+
+EvoMemNav (Ours) ✓ 59.2 33.6 63.8 39.4 
+
+that RDCMA yields gains at negligible cost. Although structured verification slightly increases token usage, overall efficiency improves due to fewer VLM calls and lighter graph operations. The moderate step increase reflects the policy’s verification-driven reselection, which effectively avoids premature termination (see Supplementary Material for detailed profiling). 
+
+4.3.3 Effect of RDCMA across Subtasks 
+
+GOAT-Bench’s lifelong protocol enables in-scene feedback propagation across subtasks. We evaluate continual adaptation by comparing: (i) baseline, (ii) VSMGraph+C2F (w/o RDCMA), and (iii) EvoMemNav (w/ RDCMA). As shown in Fig. 5, VSMGraph+C2F consistently outperforms the baseline, validating the topology-aware budgeted policy.         
+
+> Table 3 Ablation on GOAT-Bench VAL-UNSEEN (episode index=1 per scene; 36 scenes). All rows share the same perception modules and VLM backbone. Disabling Coarse falls back to a naive top-Kheuristic under the same budgets; disabling Fine causes the agent to stop immediately upon reaching the selected view. Best overall in bold.
+
+Settings Object Language Image Overall VSMGraph Coarse Fine RDCMA SR SPL SR SPL SR SPL SR SPL 
+
+– – – – 49.5 27.5 34.1 18.4 35.2 19.5 39.9 22.0 
+
+✓ – – – 53.5 31.3 42.9 26.7 44.3 32.2 47.1 30.1 
+
+✓ ✓ – – 70.7 46.0 54.2 34.3 49.7 38.3 58.7 39.7 
+
+✓ – ✓ – 66.7 34.2 53.9 31.8 50.0 38.4 57.2 34.7 
+
+✓ ✓ ✓ – 72.7 48.3 48.4 30.4 60.2 43.3 60.8 40.8 
+
+✓ ✓ ✓ ✓ 75.8 49.5 53.9 33.2 63.6 46.2 64.8 43.1 
+
+10 Table 4 Performance–efficiency on GOAT-Bench VAL-UNSEEN (episode index=1 per scene; 36 scenes). All metrics report mean (std) per subtask . Graph includes scene-graph memory maintenance. Total ≈ VLM + Graph time. Best per column in bold. 
+
+Method SR ↑ VLM Steps Time (s) ↓
+
+Calls ↓ Tokens ↓ VLM Graph Total 3D-Mem [46] 49.6 10.7 (15.3) 14.5k (18.3k) 7.0 (7.7) 14.0 (18.5) 88.2 (81.1) 102.2 VSMGraph+C2F 60.8 6.3 (1.9) 18.9k (6.3k) 12.4 (6.4) 25.5 (7.4) 37.3 (21.6) 62.8 
+
+EvoMemNav (Ours) 64.8 6.5 (2.3) 19.4k (7.1k) 13.3 (7.6) 21.1 (6.3) 37.6 (19.9) 58.7 a) Subtask-wise SR b) Subtask-wise SPL  
+
+> Figure 5 Impact of reflection-driven experience memory. Subtask-wise SR/SPL on GOAT-Bench VAL-UNSEEN. The shaded region (subtasks 3–5) highlights where in-episode experience accumulation yields maximal gains.
+
+Enabling RDCMA yields progressive gains that correlate with accumulated experience, peaking on mid subtasks (3–5) where Stop -verification and exploration feedback have sufficiently updated graph-attached priors. Notably, improvements on early subtasks indicate effective reuse of scene-level priors when available. Overall, RDCMA provides complementary, training-free self-improvement that enhances VSMGraph+C2F without additional optimization. 
+
+4.4 Qualitative Study 
+
+Qualitative examples illustrate how EvoMemNav’s budgeted coarse-to-fine policy and structured verification improve robustness. As shown in Fig. 6, we compare EvoMemNav with the baseline across text, image, and object goals. Leveraging VSMGraph retrieval and topological planning, our method avoids the wrong-instance selection and target missing prevalent in baselines with unstructured memory. 
+
+# 5 Conclusion 
+
+We presented EvoMemNav, a training-free zero-shot navigation framework that (i) maintains a room-view-object VSMGraph with first-class raw RGB view evidence , (ii) uses a budgeted coarse-to-fine policy—with coarse = Explore and fine = Search + Verify —for structured multi-view Stop verification, and (iii) performs reflection-driven write-back (RDCMA) to update graph-attached priors without retraining. Experiments on GOAT-Bench and HM3D demonstrate consistent SR/SPL gains across object, text, and image goals, with improved multi-instance disambiguation and fewer premature stops under favorable performance-efficiency trade-offs. 11 Multi Modality Visual Navigation 
+
+refrigerator in 
+
+the kitchen. it is 
+
+located next to 
+
+the kitchen 
+
+cabinet and the 
+
+worktop 
+
+# Window 
+
+# Glass 
+
+# (Object) 
+
+# Baseline Visualization 
+
+# Our Visualization Figure 6 Qualitative comparison with the baseline on GOAT-Bench. From left to right: text, image, and object goal subtasks. EvoMemNav retrieves compact candidates from the VSMGraph, plans on the top-down map, and verifies Stop 
+
+decisions, reducing wrong-instance and premature-stop failures. 
+
+12 References 
+
+[1] Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et al. Gpt-4 technical report. arXiv preprint arXiv:2303.08774 ,2023. [2] Wenzhe Cai, Siyuan Huang, Guangran Cheng, Yuxing Long, Peng Gao, Changyin Sun, and Hao Dong. Bridging zero-shot object navigation and foundation models through pixel-guided navigation skill. In 2024 IEEE International Conference on Robotics and Automation (ICRA) , pages 5228–5234. IEEE, 2024. [3] Yuxin Cai, Xiangkun He, Maonan Wang, Hongliang Guo, Wei-Yun Yau, and Chen Lv. Cl-cotnav: Closed-loop hierarchical chain-of-thought for zero-shot object-goal navigation with vision-language models. arXiv preprint arXiv:2504.09000 , 2025. [4] Tommaso Campari, Paolo Eccher, Luciano Serafini, and Lamberto Ballan. Exploiting scene-specific features for object goal navigation. In European Conference on Computer Vision , pages 406–421. Springer, 2020. [5] Yihan Cao, Jiazhao Zhang, Zhinan Yu, Shuzhen Liu, Zheng Qin, Qin Zou, Bo Du, and Kai Xu. Cognav: Cognitive process modeling for object goal navigation with llms. In Proceedings of the IEEE/CVF International Conference on Computer Vision , pages 9550–9560, 2025. [6] Devendra Singh Chaplot, Dhiraj Gandhi, Abhinav Gupta, and Ruslan Salakhutdinov. Object goal navigation using goal-oriented semantic exploration. In Proceedings of the 34th International Conference on Neural Information Processing Systems , pages 4247–4258, 2020. [7] Devendra Singh Chaplot, Ruslan Salakhutdinov, Abhinav Gupta, and Saurabh Gupta. Neural topological slam for visual navigation. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , pages 12875–12884, 2020. [8] Jiaqi Chen, Bingqian Lin, Ran Xu, Zhenhua Chai, Xiaodan Liang, and Kwan-Yee K Wong. Mapgpt: Map-guided prompting for unified vision-and-language navigation. CoRR , 2024. [9] Hao-Tien Lewis Chiang, Zhuo Xu, Zipeng Fu, Mithun George Jacob, Tingnan Zhang, Tsang-Wei Edward Lee, Wenhao Yu, Connor Schenck, David Rendleman, Dhruv Shah, et al. Mobility vla: Multimodal instruction navigation with long-context vlms and topological graphs. CoRR , 2024. [10] Samir Yitzhak Gadre, Mitchell Wortsman, Gabriel Ilharco, Ludwig Schmidt, and Shuran Song. Cows on pasture: Baselines and benchmarks for language-driven zero-shot object navigation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , pages 23171–23181, 2023. [11] Sourav Garg, Krishan Rana, Mehdi Hosseinzadeh, Lachlan Mares, Niko Sünderhauf, Feras Dayoub, and Ian Reid. Robohop: Segment-based topological map representation for open-world visual navigation. In 2024 IEEE International Conference on Robotics and Automation (ICRA) , pages 4090–4097. IEEE, 2024. [12] Dylan Goetting, Himanshu Gaurav Singh, and Antonio Loquercio. End-to-end navigation with vision language models: Transforming spatial reasoning into question-answering. arXiv preprint arXiv:2411.05755 , 2024. [13] Zeying Gong, Rong Li, Tianshuai Hu, Ronghe Qiu, Lingdong Kong, Lingfeng Zhang, Yiyi Ding, Leying Zhang, and Junwei Liang. Stairway to success: Zero-shot floor-aware object-goal navigation via llm-driven coarse-to-fine exploration. arXiv preprint arXiv:2505.23019 , 2025. [14] Qiao Gu, Ali Kuwajerwala, Sacha Morin, Krishna Murthy Jatavallabhula, Bipasha Sen, Aditya Agarwal, Corban Rivera, William Paul, Kirsty Ellis, Rama Chellappa, et al. Conceptgraphs: Open-vocabulary 3d scene graphs for perception and planning. In 2024 IEEE International Conference on Robotics and Automation (ICRA) , pages 5021–5028. IEEE, 2024. [15] Lixuan He, Haoyu Dong, Zhenxing Chen, Yangcheng Yu, Jie Feng, and Yong Li. Mem4nav: Boosting vision-and-language navigation in urban environments with a hierarchical spatial-cognition long-short memory system. arXiv preprint arXiv:2506.19433 , 2025. [16] Hao Huang, Yu Hao, Congcong Wen, Anthony Tzes, Yi Fang, et al. Gamap: Zero-shot object goal navigation with multi-scale geometric-affordance guidance. Advances in Neural Information Processing Systems , 37:39386–39408, 2024. 
+
+13 [17] Xun Huang, Shĳia Zhao, Yunxiang Wang, Xin Lu, Wanfa Zhang, Rongsheng Qu, Weixin Li, Yunhong Wang, and Chenglu Wen. Msgnav: Unleashing the power of multi-modal 3d scene graph for zero-shot embodied navigation. 
+
+arXiv preprint arXiv:2511.10376 , 2025. [18] Zihe Ji, Huangxuan Lin, and Yue Gao. Dynavlm: Zero-shot vision-language navigation system with dynamic viewpoints and self-refining graph memory. arXiv preprint arXiv:2506.15096 , 2025. [19] Hanxiao Jiang, Binghao Huang, Ruihai Wu, Zhuoran Li, Shubham Garg, Hooshang Nayyeri, Shenlong Wang, and Yunzhu Li. Roboexp: Action-conditioned scene graph via interactive exploration for robotic manipulation. In 
+
+Conference on Robot Learning , pages 3027–3052. PMLR, 2025. [20] Mukul Khanna, Ram Ramrakhya, Gunjan Chhablani, Sriram Yenamandra, Theophile Gervet, Matthew Chang, Zsolt Kira, Devendra Singh Chaplot, Dhruv Batra, and Roozbeh Mottaghi. Goat-bench: A benchmark for multi-modal lifelong navigation. In 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 16373–16383. IEEE Computer Society, 2024. [21] Jacob Krantz, Theophile Gervet, Karmesh Yadav, Austin Wang, Chris Paxton, Roozbeh Mottaghi, Dhruv Batra, Jitendra Malik, Stefan Lee, and Devendra Singh Chaplot. Navigating to objects specified by images. In Proceedings of the IEEE/CVF International Conference on Computer Vision , pages 10916–10925, 2023. [22] Peiqi Liu, Yaswanth Orru, Jay Vakil, Chris Paxton, Nur Shafiullah, and Lerrel Pinto. Demonstrating ok-robot: What really matters in integrating open-knowledge models for robotics. Robotics: Science and Systems XX , 2024. [23] Rui Liu, Xiaohan Wang, Wenguan Wang, and Yi Yang. Bird’s-eye-view scene graph for vision-language navigation. In Proceedings of the IEEE/CVF International Conference on Computer Vision , pages 10968–10980, 2023. [24] Yuxing Long, Wenzhe Cai, Hongcheng Wang, Guanqi Zhan, and Hao Dong. Instructnav: Zero-shot system for generic instruction navigation in unexplored environment. CoRR , 2024. [25] Dominic Maggio, Yun Chang, Nathan Hughes, Matthew Trang, Dan Griffith, Carlyn Dougherty, Eric Cristofalo, Lukas Schmid, and Luca Carlone. Clio: Real-time task-driven open-set 3d scene graphs. IEEE Robotics and Automation Letters , 2024. [26] Arjun Majumdar, Gunjan Aggarwal, Bhavika Devnani, Judy Hoffman, and Dhruv Batra. Zson: Zero-shot object-goal navigation using multimodal goal embeddings. Advances in Neural Information Processing Systems , 35:32340–32352, 2022. [27] Dujun Nie, Xianda Guo, Yiqun Duan, Ruĳun Zhang, and Long Chen. Wmnav: Integrating vision-language models into world models for object goal navigation. arXiv preprint arXiv:2503.02247 , 2025. [28] Stefan Podgorski, Sourav Garg, Mehdi Hosseinzadeh, Lachlan Mares, Feras Dayoub, and Ian Reid. Tango: Traversability-aware navigation with local metric control for topological goals. In 2025 IEEE International Conference on Robotics and Automation (ICRA) , pages 2399–2406. IEEE, 2025. [29] Xavier Puig, Eric Undersander, Andrew Szot, Mikael Dallaire Cote, Tsung-Yen Yang, Ruslan Partsey, Ruta Desai, Alexander Clegg, Michal Hlavac, So Yeon Min, et al. Habitat 3.0: A co-habitat for humans, avatars, and robots. In 
+
+The Twelfth International Conference on Learning Representations .[30] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, et al. Learning transferable visual models from natural language supervision. In International conference on machine learning , pages 8748–8763. PmLR, 2021. [31] Santhosh Kumar Ramakrishnan, Aaron Gokaslan, Erik Wĳmans, Oleksandr Maksymets, Alexander Clegg, John M Turner, Eric Undersander, Wojciech Galuba, Andrew Westbury, Angel X Chang, et al. Habitat-matterport 3d dataset (hm3d): 1000 large-scale 3d environments for embodied ai. In Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 2) .[32] Santhosh Kumar Ramakrishnan, Devendra Singh Chaplot, Ziad Al-Halah, Jitendra Malik, and Kristen Grauman. Poni: Potential functions for objectgoal navigation with interaction-free learning. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , pages 18890–18900, 2022. [33] Sonia Raychaudhuri and Angel X Chang. Semantic mapping in indoor embodied ai–a survey on advances, challenges, and future directions. arXiv , 2025. 
+
+14 [34] Sonia Raychaudhuri, Tommaso Campari, Unnat Jain, Manolis Savva, and Angel X Chang. Mopa: Modular object navigation with pointgoal agents. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision ,pages 5763–5773, 2024. [35] Zhixuan Shen, Haonan Luo, Kexun Chen, Fengmao Lv, and Tianrui Li. Enhancing multi-robot semantic navigation through multimodal chain-of-thought score collaboration. In Proceedings of the AAAI Conference on Artificial Intelligence ,volume 39, pages 14664–14672, 2025. [36] Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao. Reflexion: language agents with verbal reinforcement learning. In Proceedings of the 37th International Conference on Neural Information Processing Systems , pages 8634–8652, 2023. [37] Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, et al. Llama: Open and efficient foundation language models. 
+
+arXiv preprint arXiv:2302.13971 , 2023. [38] Shuhuan Wen, Ziyuan Zhang, Yuxiang Sun, and Zhiwen Wang. Ovl-map: An online visual language map approach for vision-and-language navigation in continuous environments. IEEE Robotics and Automation Letters , 2025. [39] Abdelrhman Werby, Chenguang Huang, Martin Büchner, Abhinav Valada, and Wolfram Burgard. Hierarchical open-vocabulary 3d scene graphs for language-grounded robot navigation. In First Workshop on Vision-Language Models for Navigation and Manipulation at ICRA 2024 , 2024. [40] Abdelrhman Werby, Chenguang Huang, Martin Büchner, Abhinav Valada, and Wolfram Burgard. Hierarchical open-vocabulary 3d scene graphs for language-grounded robot navigation. In First Workshop on Vision-Language Models for Navigation and Manipulation at ICRA 2024 , 2024. [41] Lik Hang Kenny Wong, Xueyang Kang, Kaixin Bai, and Jianwei Zhang. A survey of robotic navigation and manipulation with physics simulators in the era of embodied ai. arXiv preprint arXiv:2505.01458 , 2025. [42] Pengying Wu, Yao Mu, Bingxian Wu, Yi Hou, Ji Ma, Shanghang Zhang, and Chang Liu. Voronav: voronoi-based zero-shot object navigation with large language model. In Proceedings of the 41st International Conference on Machine Learning , pages 53737–53775, 2024. [43] Karmesh Yadav, Ram Ramrakhya, Santhosh Kumar Ramakrishnan, Theo Gervet, John Turner, Aaron Gokaslan, Noah Maestre, Angel Xuan Chang, Dhruv Batra, Manolis Savva, et al. Habitat-matterport 3d semantics dataset. In 
+
+Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , pages 4927–4936, 2023. [44] Zhĳie Yan, Shufei Li, Zuoxu Wang, Lixiu Wu, Han Wang, Jun Zhu, Lĳiang Chen, and Jihong Liu. Dynamic open-vocabulary 3d scene graphs for long-term language-guided mobile manipulation. IEEE Robotics and Automation Letters , 2025. [45] An Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chang Gao, Chengen Huang, Chenxu Lv, et al. Qwen3 technical report. arXiv preprint arXiv:2505.09388 , 2025. [46] Yuncong Yang, Han Yang, Jiachen Zhou, Peihao Chen, Hongxin Zhang, Yilun Du, and Chuang Gan. 3d-mem: 3d scene memory for embodied exploration and reasoning. In Proceedings of the Computer Vision and Pattern Recognition Conference , pages 17294–17303, 2025. [47] Xin Ye and Yezhou Yang. Efficient robotic object search via hiem: Hierarchical policy learning with intrinsic-extrinsic modeling. IEEE robotics and automation letters , 6(3):4425–4432, 2021. [48] Hang Yin, Xiuwei Xu, Zhenyu Wu, Jie Zhou, and Jiwen Lu. Sg-nav: Online 3d scene graph prompting for llm-based zero-shot object navigation. Advances in neural information processing systems , 37:5285–5307, 2024. [49] Hang Yin, Xiuwei Xu, Linqing Zhao, Ziwei Wang, Jie Zhou, and Jiwen Lu. Unigoal: Towards universal zero-shot goal-oriented navigation. In Proceedings of the Computer Vision and Pattern Recognition Conference , pages 19057–19066, 2025. [50] Naoki Yokoyama, Sehoon Ha, Dhruv Batra, Jiuguang Wang, and Bernadette Bucher. Vlfm: Vision-language frontier maps for zero-shot semantic navigation. In 2024 IEEE International Conference on Robotics and Automation (ICRA) ,pages 42–48. IEEE, 2024. 
+
+15 [51] Bangguo Yu, Hamidreza Kasaei, and Ming Cao. L3mvn: Leveraging large language models for visual target navigation. In 2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , pages 3554–3560. IEEE, 2023. [52] Lingfeng Zhang, Qiang Zhang, Hao Wang, Erjia Xiao, Zixuan Jiang, Honglei Chen, and Renjing Xu. Trihelper: Zero-shot object navigation with dynamic assistance. In 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , pages 10035–10042. IEEE, 2024. [53] Mingjie Zhang, Yuheng Du, Chengkai Wu, Jinni Zhou, Zhenchao Qi, Jun Ma, and Boyu Zhou. Apexnav: An adaptive exploration strategy for zero-shot object navigation with target-centric semantic fusion. arXiv preprint arXiv:2504.14478 , 2025. [54] Sixian Zhang, Xinyao Yu, Xinhang Song, Xiaohan Wang, and Shuqiang Jiang. Imagine before go: Self-supervised generative map for object goal navigation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , pages 16414–16425, 2024. [55] Wenqi Zhang, Ke Tang, Hai Wu, Mengna Wang, Yongliang Shen, Guiyang Hou, Zeqi Tan, Peng Li, Yueting Zhuang, and Weiming Lu. Agent-pro: Learning to evolve via policy-level reflection and optimization. In ICLR 2024 Workshop on Large Language Model (LLM) Agents .[56] Yue Zhang, Ziqiao Ma, Jialu Li, Yanyuan Qiao, Zun Wang, Joyce Chai, Qi Wu, Mohit Bansal, and Parisa Kordjamshidi. Vision-and-language navigation today and tomorrow: A survey in the era of foundation models. CoRR , 2024. [57] Qianfan Zhao, Lu Zhang, Bin He, and Zhiyong Liu. Semantic policy network for zero-shot object goal visual navigation. IEEE Robotics and Automation Letters , 8(11):7655–7662, 2023. [58] Kaiwen Zhou, Kaizhi Zheng, Connor Pryor, Yilin Shen, Hongxia Jin, Lise Getoor, and Xin Eric Wang. Esc: Exploration with soft commonsense constraints for zero-shot object navigation. In International Conference on Machine Learning ,pages 42829–42842. PMLR, 2023. [59] Zibo Zhou, Yue Hu, Lingkai Zhang, Zonglin Li, and Siheng Chen. Beliefmapnav: 3d voxel-based belief map for zero-shot object navigation. arXiv preprint arXiv:2506.06487 , 2025. [60] Jinguo Zhu, Weiyun Wang, Zhe Chen, Zhaoyang Liu, Shenglong Ye, Lixin Gu, Hao Tian, Yuchen Duan, Weĳie Su, Jie Shao, et al. Internvl3: Exploring advanced training and test-time recipes for open-source multimodal models. 
+
+arXiv preprint arXiv:2504.10479 , 2025. [61] Ziyu Zhu, Xilin Wang, Yixuan Li, Zhuofan Zhang, Xiaojian Ma, Yixin Chen, Baoxiong Jia, Wei Liang, Qian Yu, Zhidong Deng, et al. Move to understand a 3d scene: Bridging visual grounding and exploration for efficient and versatile embodied navigation. In Proceedings of the IEEE/CVF International Conference on Computer Vision , pages 8120–8132, 2025. 
+
+16

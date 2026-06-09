@@ -1,0 +1,419 @@
+Title: ImagineUAV: Aerial Vision-Language Navigation via World-Action Modeling and Kinodynamic Planning
+
+URL Source: https://arxiv.org/pdf/2606.01205v2
+
+Published Time: Tue, 09 Jun 2026 01:36:42 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+> 1
+
+# ImagineUAV: Aerial Vision-Language Navigation via World-Action Modeling and Kinodynamic Planning 
+
+Xuchen Liu, Jiawei Huang, Shihao Xia, Bingxi Liu, Jinqiang Cui and Jiankun Yang 
+
+Abstract —Vision-language navigation (VLN) for UAVs de-mands grounding free-form instructions into 6-DoF flight under partial observability. While Vision-Language-Action (VLA) mod-els excel at semantic reasoning, they suffer from brittleness due to geometric inconsistency and dynamics mismatch. To address this, we propose ImagineUAV, an imagination-driven framework leveraging cascaded world-action modeling. Instead of direct regression, ImagineUAV employs a latent video diffusion model to generate instruction-conditioned future observations—explicitly “imagining” environmental evolution—from which 6-DoF mo-tions are inferred via an action extractor. A kinodynamic planner then refines these estimates into collision-free trajec-tories. Additionally, a step-distilled inference pipeline ensures real-time execution. With only 1.3B parameters, ImagineUAV outperforms prior VLN and VLA baselines on benchmarks and real-world flights, validating the practicality of imagination-driven aerial navigation. Video demo: https://www.youtube.com/ watch?v=Ng1alP0yhc0. 
+
+Index Terms —vision-language navigation, world model, un-manned aerial vehicle, embodied AI 
+
+I. I NTRODUCTION 
+
+# VISION-language navigation (VLN) investigates how an embodied agent executes free-form natural-language instructions in unseen environments. Unlike conventional autonomous navigation, VLN is fundamentally instruction-centric and perception-driven: the agent must continuously align linguistic intent with streaming egocentric observations and infer actions under partial observability [1]. In aerial settings, the difficulty is further amplified by six-degree-of-freedom (6-DoF) motion, rapid viewpoint variation, payload-constrained sensing, and strict safety margins in cluttered 3D spaces. Small grounding or geometric estimation errors can escalate quickly into unstable or unsafe flight behavior, especially when operators issue high-level commands (e.g., “fly through the corridor and rise above the shelf”) instead of dense waypoint trajectories. With the rapid rise of language-based foundation models, especially large language models (LLMs) and vision-language models (VLMs), an increasing number of VLN methods have adopted them as high-level planners, yielding notable gains in instruction understanding, semantic grounding, and                             
+
+> Xuchen Liu, Jinqiang Cui and Jiankun Yang are with Pengcheng Laboratory, Shenzhen, Guangdong, China (e-mail:
+> {liuxch,cuijq,jiankun }@pcl.ac.cn). Jiawei Huang is with the School of Computer Science and Cyber En-gineering, Guangzhou University, Guangzhou, Guangdong, China (e-mail: 2112506155@e.gzhu.edu.cn). Shihao Xia and Bingxi Liu are with Southern University of Science and Technology, Shenzhen, Guangdong, China (e-mail: 12543041@mail.sustech.edu.cn, binuxliu@gmail.com).
+
+subgoal decomposition. However, this planning strength fails to transfer to low-level UAV control: 6-DoF flight demands geometric consistency and dynamics awareness that transcend semantic reasoning. VLA models [2] attempt to bridge this by introducing action tokens into the transformer backbone. How-ever, the LLM/VLM backbone remains optimized for semantic prediction rather than embodied dynamics, making learned action heads brittle under out-of-domain shifts [3]. Hence, a core challenge persists: how to produce executable low-level commands from language-level intent while maintaining geometric consistency under real-world UAV dynamics. In parallel, video-generation-based world models have pro-gressed rapidly, showing a strong ability to predict tempo-rally coherent future observations conditioned on context or action [4]. These advances motivate a different route: instead of forcing language models to output controls directly, one can ask a world model to imagine what the agent would see if it follows the instruction [5]. If imagination is sufficiently realistic and instruction-aligned, the generated video implicitly contains a future route, obstacle interaction cues, and motion scale. A geometric backend can then extract executable trajec-tories from this visual future. Based on this insight, we propose ImagineUAV , an imagination-driven UAV vision-language navigation frame-work composed of three tightly coupled modules: (i) an instruction-conditioned world model that predicts future ego-centric observations over a planning horizon; (ii) a geometry-aware action module implemented through learning-based visual odometry that extracts relative 6-DoF poses from imag-ined frames; and (iii) a kinodynamic planner that converts the extracted poses into collision-free, dynamically feasi-ble trajectories. Specifically, through instruction-conditioned training, we enable the video generation model to accept VLN instructions and produce embodied future observation sequences covering diverse 6-DoF aerial motion patterns, which serve as a bridge between semantics and geometry. Language contributes task intent, and the world model materi-alizes intent into controllable pixel-level futures. Unlike videos induced by real physical motion, imagined videos can exhibit spatio-temporal inconsistencies (e.g., object drifting and local temporal jitter); therefore, we carefully design a learning-based visual-odometry action extractor that is robust to such artifacts and still recovers reliable pose series at execution time. Since the raw poses may violate dynamical constraints and lack explicit collision checking, a kinodynamic planner refines them into smooth, collision-free, dynamically feasible trajectories for reliable flight execution. Finally, we deploy the system on a real UAV platform, where step-distilled inference                     
+
+> arXiv:2606.01205v2 [cs.RO] 8 Jun 2026 2Instruction: Land in front of that tree ahead.
+> UAV -Flow: Real
+> Action
+> Instruction: Climb to an altitude of 9.0 meters with a 65 -degree ascent angle .
+> UAV -Flow: Sim
+> Instruction: Pass around the first street light from the right side, and then the second street light from left side.
+> Real UAV System
+> Frame 0 Frame 16 Frame 32 Frame 48 Frame 64 Frame 80
+> Frame 0 Frame 16 Frame 32 Frame 48 Frame 64 Frame 80
+> Frame 0 Frame 16 Frame 32 Frame 48 Frame 64 Frame 80
+> Fig. 1. Imagination-guided UAV navigation across diverse environments. Each row illustrates the instruction-conditioned generated observations alongside the corresponding flight execution results. The top and middle rows present UAV-Flow [6] cases, while the bottom row shows a real UAV system case.
+
+provides practical planning latency and the onboard flight stack executes the generated waypoint references. Experiments validate the feasibility of our method, as illustrated in Fig. 1. The contributions of this paper are summarized as follows:  
+
+> •
+
+We propose an instruction-conditioned latent video diffu-sion world model for 6-DoF aerial VLN, which explicitly imagines future egocentric observations conditioned on language instructions and grounds motion intent through masked camera-control training.  
+
+> •
+
+We design a spatio-temporal action extractor that ro-bustly infers executable relative motions from imagined videos. A downstream kinodynamic planner further con-verts these estimates into collision-free and dynamically feasible trajectories, mitigating the brittleness of direct action execution.  
+
+> •
+
+We integrate the proposed modules into a UAV naviga-tion system with step-distilled inference for low-latency world-model generation. Extensive simulation experi-ments on the UAV-Flow benchmark [6] demonstrate state-of-the-art performance (70.9% success rate), while real-world flight tests consistently validate the effectiveness and practicality of the proposed framework. II. R ELATED WORK 
+
+A. Vision-Language Navigation and Action Learning 
+
+VLN has progressed from discrete graph-based bench-marks [7] to continuous-control settings [8] that require agents to execute low-level motion commands under noisy egocentric perception, better reflecting real-world robotic constraints. More recently, foundation-model-based approaches treat VLN as a high-level planning problem [9], leveraging LLMs and VLMs for instruction decomposition while delegating low-level control to separate modules. A popular paradigm, VLA models [10]–[12], unifies perception, reasoning, and control by co-fine-tuning multimodal foundation models on large-scale robotic trajectories [3], predicting end-to-end action tokens directly from visual and linguistic inputs. In aerial settings, VLA frameworks [6], [13] have been proposed to regress 6-DoF control commands from raw pixels. However, direct action regression remains fundamentally limited by the lack of explicit future-state reasoning: without anticipating how the scene evolves, VLA backbones—optimized primarily for semantic prediction—struggle with geometric inconsistency, dynamics mismatch, and compounding errors over long hori-zons. This motivates an alternative paradigm that reasons over imagined future observations before committing to executable actions. 
+
+B. World Action Models 
+
+Recent advances in generative video modeling have en-abled powerful predictive models of future observations. By combining these advances with the objective of modeling environment dynamics for planning and control [14], World Action Models (WAMs) [15] jointly model future observations and actions within a unified generative framework. These approaches have diverged along three complementary routes. Latent-space methods [16] predict compressed future states in a learned embedding and decode actions directly, offering computationally efficient planning but without explicit visual output. Pixel-level methods [5], [17] generate full future visual observations, preserving scene structure and motion scale for human-interpretable inspection. Hybrid approaches such as MoWM [18] combine both paradigms, reporting that latent representations better capture dynamics while pixel features preserve geometric details necessary for precise action de-coding. Despite this progress, existing WAM research has primarily focused on manipulation, policy learning, and direct action decoding in limited action spaces. The integration of instruction-conditioned visual imagination with executable 3Action Extration 
+
+Instruction 
+
+Text 
+
+Encoder 
+
+xy
+
+z1ta +2ta +3ta +t Ta +
+
+Kinodynamic 
+
+Plann ing lta
+
+Step Distillation 
+
+xy
+
+z1ta +2ta +3ta +t Ta +ta
+
+Execution 
+
+World Model 
+
+> ...
+> ...
+
+## ˆtV1
+
+## ˆtV +2
+
+## ˆtV +3
+
+## ˆtV +ˆt TV +to
+
+Imagination Module                       
+
+> Fig. 2. Framework Overview: The pipeline is composed of three primary stages: (i) the Instruction-Conditioned Imagination Module , where a Text Encoder processes the VLN instruction lto guide a Diffusion Transformer in predicting afuture egocentric video rollout {ˆVt:t+T}based on the current context observation ot; (ii) the Action Extraction Module , which employs a learned visual-odometry action extractor to infer executable relative motions {at:t+T}directly from the imagined visual frames; and (iii) the
+> Kinodynamic Planner , which refines motions into smooth, collision-free, dynamically feasible trajectories via gradient-based optimization. Notably, the Imagination Module is further accelerated via a step distillation strategy to preserve generation fidelity while reducing inference steps.
+
+action generation and motion planning remains largely unex-plored for aerial vision-language navigation. Moreover, exist-ing approaches [19] often rely on large external generative models and incur substantial inference costs without domain-specific adaptation. III. M ETHOD 
+
+A. Problem Formulation 
+
+We consider the VLN task as a partially observable problem. Given a natural-language instruction l and initial state s0, the UAV must navigate to a goal region g using only egocentric observations ot, without access to a global map. At each time step t, the agent observes the environment and must produce a control action that drives it toward the goal while adhering to the given instruction. 
+
+B. System Overview 
+
+ImagineUAV decomposes the VLN task into three cascaded stages (Fig. 2): an imagination module W, a visual-odometry extractor Dψ , and a kinodynamic planner K. Given observa-tion ot and instruction l, the pipeline proceeds as: 
+
+ˆVt:t+T = W(ot, l ), (1) 
+
+at:t+T = Dψ ( ˆVt:t+T ), (2) 
+
+τ ∗ = K({at+k}, O), (3) where at:t+T = {at+k}Tk=1 is the sequence of predicted relative motions, each at+k = (∆ˆ pt+k, ∆ˆ rt+k) being a rel-ative translation–rotation pair. O denotes the local obstacle map. The kinodynamic planner K ensures that τ ∗ is smooth, collision-free, and dynamically feasible. 
+
+C. Imagination Module based on World Model 1) Backbone and Conditioning: Our imagination module instantiates an instruction-conditioned video diffusion trans-former, designed to model the conditional transition distribu-tion of egocentric aerial observations over a finite horizon. Given the current observation ot and language instruction l,the model generates a future clip ˆVt:t+T = {ˆot+1 , . . . , ˆot+T }
+
+through iterative denoising in a compact latent space: 
+
+ˆVt:t+T ∼ pθ (V | ot, l ). (4) Concretely, instruction tokens are embedded by a language encoder, while the current observation and temporal context are mapped into visual latent tokens by a video tokenizer. Multi-layer cross-attention and adaptive normalization are then used to inject linguistic intent into spatio-temporal generation at different scales. This design enables semantic controllabil-ity at the instruction level while preserving local geometric continuity required by UAV motion. 
+
+2) Objectives: The imagination module is trained to gener-ate instruction-consistent and temporally coherent future ego-centric observations that are suitable for downstream geomet-ric extraction. Since the module serves as a semantic-to-visual bridge rather than a control policy, its objectives focus on three key properties: (i) fidelity to the observed visual dynamics, (ii) alignment with language-specified motion intent, and (iii) temporal smoothness that supports robust action extraction. Let x0 denote the ground-truth future-video latent sampled from paired instruction–video sequences, and let τ denote the diffusion timestep. We adopt a standard forward diffusion process 
+
+q(xτ | x0) = N  √¯ατ x0, (1 − ¯ατ )I , (5) which progressively corrupts the clean latent with Gaussian noise. The imagination backbone is trained to invert this process by predicting the injected noise conditioned on the current observation and the instruction. Following denoising diffusion probabilistic models, the pri-mary training objective is a conditional noise-prediction loss: 
+
+Ldiff = Ex0,ϵ,τ,o t,l 
+
+h
+
+∥ϵ − ϵθ (xτ , τ, o t, l )∥22
+
+i
+
+, (6) where ϵ ∼ N (0 , I ) and xτ = √¯ατ x0 + √1 − ¯ατ ϵ. Condi-tioning on (ot, l ) encourages the model to generate futures that are semantically consistent with the instruction, such as forward motion, altitude changes, or turning behaviors, while remaining grounded in the visual context of the current observation. However, the diffusion objective implicitly emphasizes tem-poral consistency across frames: abrupt appearance changes, inconsistent camera motion, or unrealistic viewpoint jumps are penalized during training because they increase reconstruction difficulty across diffusion steps. This property is critical for downstream action extraction, which assumes smooth inter-frame motion to recover relative pose reliably. In practice, the objective is optimized over large-scale instruction-video data collected from both simulated and real UAV platforms. By training on long-horizon egocentric sequences with diverse motion patterns, the model learns 4
+
+a distribution over feasible future observations under aerial dynamics. As a result, the imagination module produces visually plausible and instruction-aligned rollouts that, while not perfectly physically accurate at the pixel level, preserve sufficient spatio-temporal structure for robust trajectory ex-traction subsequently. 
+
+D. Action Extraction and Kinodynamic Planning 
+
+A learning-based action extractor Dψ maps the imagined video clip ˆVt:t+T = {ˆot+1 , . . . , ˆot+T } to the relative motion sequence at:t+T (defined in Section III-B). To better match the output distribution of the world model, which may differ from real camera videos due to local texture drift and temporal artifacts, we design a learning-based extractor under a Transformer framework. It tokenizes short monocular clips into spatio-temporal visual tokens, uses self-attention to aggregate appearance and motion cues across frames, and regresses relative translation and rotation through lightweight prediction heads. The extractor Dψ is trained from scratch on video–trajectory pairs {(V (i), P (i))}Ni=1 , where P (i) = {a∗(i)
+
+> t+1
+
+, . . . , a ∗(i) 
+
+> t+T
+
+} de-notes the ground-truth relative trajectory, and optimized with supervised pose regression: 
+
+Lact =
+
+> T
+
+X
+
+> k=1
+
+  ∆ˆ pt+k − ∆p∗  
+
+> t+k1
+
++ λr ∆ˆ rt+k − ∆r∗ 
+
+> t+k1
+
+ ,
+
+(7) where a∗ 
+
+> t+k
+
+= (∆ p∗
+
+> t+k
+
+, ∆r∗
+
+> t+k
+
+) is the supervised relative motion label. The predicted motions at:t+T output by Dψ are cumula-tively summed into a world-frame reference trajectory, which encodes obstacle-aware semantics from the imagined video but may violate dynamic constraints or encounter unforeseen obstacles. A kinodynamic planner refines this reference into a smooth, collision-free, dynamically feasible trajectory. Kinodynamic planning is formulated as a gradient-based trajectory optimization [20]. The trajectory is parameterized as a uniform B-spline with control points {qi}Np
+
+> i=0
+
+, and the composite objective is 
+
+J = Csmooth + Cobs + Cfeas + Cref (8) 
+
+Csmooth = P 
+
+> i
+
+∥qi+1 − 2qi + qi−1∥2
+
+Cobs = P 
+
+> i
+
+max  0, d min − ds(qi)2
+
+Cfeas = P
+
+> i
+
+ max(0 , ∥vi∥ − vmax )2
+
++ max(0 , ∥ai∥ − amax )2
+
+Cref = P 
+
+> i
+
+d(qi)2
+
+where Csmooth penalizes the elastic-band energy of consecu-tive control points, Cobs repels control points from obstacles via a Euclidean signed distance field ( ds), and Cfeas penalizes velocity and acceleration violations ( vi, ai from B-spline derivatives). The reference-deviation cost Cref anchors the trajectory to the imagined path, with d(qi) being the minimum distance from qi to the polyline integrated from {at+k}. The gradient of each cost is integrated into the L-BFGS optimizer. A reference-guided local goal is selected along the polyline at arc length s∗ + Lahead from the UAV’s nearest projection, where s∗ denotes the projected arc-length coordinate, anchor-ing each receding-horizon replan to the imagined route. 
+
+E. Step-Distilled Deployment 
+
+The generative world model is too computationally demand-ing for the UAV to execute with acceptable latency. Therefore, our deployment design focuses on accelerating the imagination module through step distillation. We adopt step distillation as the core acceleration strat-egy. Following Distribution Matching Distillation (DMD), we formulate distillation as a conditional distribution matching problem. Let x denote a clean future-video latent and c =(ot, l ) the conditioning context. A sparse-step student genera-tor Gθstu (η, c ) maps an initial Gaussian latent to a generated clean latent, and is optimized to minimize the KL divergence 
+
+DKL (pstu ∥ptea ) between the student and teacher distributions. Since both densities are intractable, DMD uses the gradient of this divergence, estimated by the difference between a fixed teacher score model stea (x, c ) = ∇x log ptea (x|c) and an auxiliary fake-score model sstu (x, c ) = ∇x log pstu (x|c) that tracks the current student distribution: 
+
+∇θstu DKL = Eη,c 
+
+
+
+− (stea (x, c ) − sstu (x, c )) ∂G θstu (η, c )
+
+∂θ stu 
+
+
+
+,
+
+(9) so that the student’s few-step outputs move toward the teacher distribution under the same observation–instruction condition. The student generator uses an m-step denoising schedule, reducing the original 40–50 denoising evaluations to ten DiT evaluations. We further distill classifier-free guidance into the student by using the guided teacher noise prediction: 
+
+ϵcfg tea (xτ , τ, o t, l ) = ϵθtea (xτ , τ, o t, ∅)+ w
+
+
+
+ϵθtea (xτ , τ, o t, l ) − ϵθtea (xτ , τ, o t, ∅)
+
+
+
+,
+
+(10) where ∅ denotes the dropped language condition while the current observation ot is retained, and w is the guidance scale. Consequently, inference requires only ten conditional DiT evaluations and disables CFG, substantially reducing planning latency for navigation. IV. E XPERIMENTS 
+
+A. Experimental Setup 
+
+Dataset. We conduct our experiments using the UAV-Flow [6] dataset, which focuses on the Flow paradigm—characterized by short-range, fine-grained, and dynamically realistic execution—to intuitively validate the spatial understanding and predictive consistency of our world model in VLN. The dataset comprises 30k real-world trajectories and 10k simulation trajectories across 10 major motion types, primarily within a 20-meter range. We utilize all available real and simulation sequences for joint training and validation, while systematic evaluation is performed on the official simulation test set. 
+
+Imagination Module. The backbone of our imagination module is Wan2.1-Fun-V1.1-1.3B-Control-Camera [21]. Com-pared to the vanilla Wan-1.3B model [4], this version supports 5Safe Trajectory              
+
+> BLiDAR-based Perception
+> CKinodynamic Plann ing
+> Fast-LIO2
+> DWorld Action Model
+> Mapping
+> AQuadrotor Platform
+> Livox Mid 360
+> Action
+> Extra ction
+> Orin NX
+> PX4
+> Global Shutter
+> Camera with
+> Gamble
+> Weight: 10 49 g
+> Dimensions: 210 ×210 ×110 mm
+> Endurance: 12 min
+> Point Cloud
+> (20 Hz)
+> Odom
+> (20 Hz)
+> Action Optimization
+> •obstacle-avoidance
+> •dynamic-feasibility
+> •smoothness
+> Controller
+> World
+> Model
+> Point
+> Cloud
+> Images Optimized Trajectory
+> (50 Hz)
+> Attitude
+> Command
+> (200Hz)
+> Optimized Trajectory
+> Imagined Trajectory
+> 5.4s video
+> (15fps ）Imagined
+> Trajectory
+
+Fig. 3. Real-world deployment: (A) The quadrotor platform integrates an onboard camera, LiDAR, PX4 flight controller, and Orin NX computer for fully onboard perception and control. (B) LiDAR-based perception employs FAST-LIO2 for real-time odometry estimation and mapping. (C) A kinody-namic planner optimizes imagined trajectories into dynamically feasible and collision-free flight paths. (D) The proposed World Action Model generates future observations and extracts executable 6-DoF motions for downstream planning. 
+
+image-conditioning, allowing the model to take the current observation ot as a structural prior. To prevent the model from relying on predefined camera trajectories and force it to ground motion solely on language instructions, we mask the camera-control latents during training and testing. Training is conducted on 8 × NVIDIA PRO 6000 (96GB) GPUs. We use the AdamW optimizer with a learning rate of 1 × 10 −5 and a weight decay of 0.01 . The model is trained for 2 epochs and the video resolution is set to 256 ×256 . In the step distillation, 
+
+m is set to 10. 
+
+Action Extraction. We train the neural action extractor 
+
+Dψ from scratch using paired monocular UAV videos and ground-truth relative trajectories collected from both UE5-based simulation environments and real-world flights equipped with external positioning systems. The extractor takes short egocentric clips as input and predicts relative 6-DoF motions with confidence scores. During testing, it processes imagined rollouts in a sliding-window manner, composes the predicted relative motions, and smooths low-confidence segments before sending waypoint references to the low-level controller. 
+
+Real-world deployment. We deploy on a custom 3.5-inch FPV quadrotor 1. integrating an onboard Orin NX computer, LiDAR, monocular camera, and PX4 flight stack (Fig. 3A). FAST-LIO2 provides real-time odometry and mapping on-board (Fig. 3B), while the kinodynamic planner runs on Orin NX (Fig. 3C). An external edge unit with an NVIDIA RTX PRO 6000 GPU executes the world model to generate 5.4s
+
+imagined rollouts (Fig. 3D). 
+
+B. Quantitative Results 
+
+Fig. 4 reports the success rates of different approaches on the UAV-Flow-Sim benchmark across ten motion categories. ImagineUAV achieves the highest average success rate, 70.9% (fixed 71.19% and open-vocabulary 70.65%), outperforming both traditional VLN methods and recent VLA-based base-lines. 
+
+> 1
+
+Hardware Detials: https://qgduan.github.io/Spikive-Astro/ 
+
+Comparison with Baseline Paradigms. Traditional VLN models such as Seq2Seq-UAV and CMA-UAV perform poorly in the continuous Flow setting, with average success rates be-low 15%. Their discrete-action formulations and limited geo-metric reasoning result in severe trajectory drift and inaccurate termination. VLA-based approaches, including OpenVLA-UAV and Pi-0-UAV , substantially improve overall perfor-mance by unifying perception and action, achieving average success rates in the mid-60% range. In contrast, ImagineUAV further improves the average success rate by explicitly decou-pling semantic foresight from geometric execution, yielding more stable and instruction-faithful trajectories. 
+
+Model Scale Advantage. The size comparison in Fig. 4(a) further highlights the efficiency of ImagineUAV. While recent VLA baselines rely on large foundation backbones, typically at the 3B–7B scale, ImagineUAV achieves stronger naviga-tion performance with a compact 1.3B-scale parameterization. This indicates that, for UAV navigation, explicitly modeling visual imagination and extracting geometry-aware actions can provide a more favorable performance–scale trade-off than directly scaling end-to-end VLA policies. Such compactness is beneficial to practical UAV deployment. 
+
+Geometric Foresight and Kinodynamic Planning. The benefits of imagination-driven planning are most evident in tasks that require accurate anticipation of spatial extent and motion scale. ImagineUAV achieves strong performance in Ap-proach , Move , Shift , and vertical A/D tasks, reaching 84.31%, 74.57%, 85.71%, and 90.02% under fixed instructions, re-spectively. These results suggest that the imagined visual future provides meaningful geometric foresight, while the kin-odynamic planner bridges high-level intention prediction and executable flight control, particularly benefiting interaction-sensitive tasks such as Pass and Land .
+
+Limitations and Failure Analysis. Despite the overall su-periority, ImagineUAV remains less effective in yaw-dominant and orbit-style maneuvers. For example, it underperforms OpenVLA-UAV on Surround (48.30% vs. 100.00% under fixed instructions) and also shows a gap on Turn compared with the strongest VLA baseline. We attribute this limitation to the need for sustained lateral or yaw motion while maintaining visual lock on a central object. The imagination module may gradually drift away from the desired orbital path, causing the generated target to leave the field of view and making downstream motion extraction unstable. Overall, these quantitative results demonstrate that predic-tive world modeling provides a robust and geometry-aware planning mechanism for embodied aerial navigation, particu-larly in scenarios requiring accurate spatial foresight and stable long-horizon execution. 
+
+C. Qualitative Results 1) Imagination Quality: We analyze the imagination qual-ity of ImagineUAV through two representative cases in Fig. 5, comparing it with existing video generation backbones under the same initial observation and language instruction. The goal is to evaluate whether the generated future views preserve the task-directed camera motion and scene geometry required for downstream action decoding. 6
+
+Fig. 4. Success rates (%) on the UAV-Flow-Sim test set. Fixed and Open denote fixed-template and open-vocabulary command sets, respectively. Tasks include: Approach (target proximity), Retreat (moving away), Pass (obstacle traversal), Land (precision landing), Turn (heading toward target), Move/Shift 
+
+(metric/geometric translation), Rotate (in-place angular adjustment), Surround (orbital flight), and A/D (Ascend/Descend, vertical altitude control). Instruction: Proceed to the speed limit sign on the left side.       
+
+> Instruction: Land in front of the tree ahead.
+> UAV -Flow: Real
+> UAV -Flow: Sim
+> Frame 0 Frame 16 Frame 32 Frame 48 Frame 64 Frame 80
+> CogVideoX
+> ImagineUAV
+> Ground Truth
+> Hunyuan
+> ImagineUAV
+> Ground Truth
+
+Fig. 5. Qualitative comparison of instruction-conditioned visual imagination. Given the same initial observation and language instruction, ImagineUAV is compared with existing video generation backbones on UAV-Flow real and simulated cases, showing that our model generates future egocentric views that better preserve task-directed motion and scene structure. 
+
+In the real UAV-Flow case, the instruction asks the agent to proceed toward the speed-limit sign from the left side. CogVideoX [22] generates visually plausible frames, but the viewpoint changes only weakly and the sign remains largely static relative to the camera, indicating insufficient motion grounding. In contrast, ImagineUAV produces a clear forward-left viewpoint transition in which the sign moves consistently across the field of view, closely matching the ground-truth rollout and better reflecting the intended navigation behavior. In the simulated UAV-Flow case, the instruction requires landing in front of the tree. HunyuanVideo-1.5 [23] generates future frames with noticeable viewpoint drift and weaker preservation of the target tree geometry. ImagineUAV main-tains the tree as the dominant target, preserves the surround-ing courtyard structure, and produces a smooth approach sequence that is more consistent with the ground truth. These comparisons show that, compared with generic video gen-eration models, ImagineUAV better converts language intent into temporally coherent egocentric visual futures suitable for geometric action decoding. 
+
+2) Real-world Experiment: Fig. 6 presents two real-world deployment cases evaluating the generalization of Imag-ineUAV in unseen outdoor environments. In the first case, the instruction “progress through the tree from the left side” requires obstacle-aware navigation around vegetation. The imagined rollout captures the left-side passing intention, while the action extractor and kinodynamic planner convert it into a smooth and dynamically feasible trajectory for safe execution. In the second case, the instruction “fly over the pond ahead and stop in front of the tree” requires long-range motion and precise stopping behavior. ImagineUAV successfully imagines the viewpoint transition toward the target region, and the kinodynamic planner further refines the extracted trajectory to ensure obstacle clearance and stable flight near the target. These results demonstrate that the proposed imagination-action-planning framework generalizes robustly across differ-ent scene layouts, obstacle configurations, and language goals. 
+
+D. Ablation Study 
+
+Table I reports success rate and inference latency under different module combinations. 
+
+Effect of the Imagination Module. When the imagination module is replaced by the base world model without instruc-tion conditioning and the other modules are kept unchanged, removing instruction-conditioned imagination reduces the suc-cess rate from 70 .9% to 40 .2% . This large degradation indi-cates that the original world model cannot reliably translate language intent into executable 6-DoF egocentric visual roll-outs, confirming the importance of motion-aware post-training. 7Instruction:  Progress through the tree from the left side. 
+
+Imagination 
+
+Third -Person View 
+
+Planning 
+
+Imagination 
+
+Third -Person View 
+
+Planning 
+
+Instruction:  Fly over the pond ahead and stop in front of the tree. 
+
+First -Person View 
+
+First -Person View 
+
+Fig. 6. Real-world UAV deployment cases. For each case, the instruction-conditioned world model generates future first-person observations, while the learned action extractor converts the imagined rollout into a planned trajectory executed by the UAV. TABLE I ABLATION STUDY ON UAV -FLOW -SIM AND REAL FLIGHT .
+
+(a) (b) (c) (d) (e) (f) (g) Imagination Module × ✓ ✓ ✓ ✓ ✓ ✓
+
+Action Extractor ✓ × ✓ ✓ ✓ ✓ ✓
+
+Kinodynamic Planner ✓ ✓ × ✓ ✓ ✓ ×
+
+10-Step Distillation × × × × ✓ ✓ ✓
+
+Success Rate 40.2% 64.5% 68.7% 70.9% 68.9% 13/20 9/20 Inference Time 14.7s 11.7s 14.7s 14.7s 6.2s 6.2s 6.2s 
+
+> (a)–(e): UAV-Flow-Sim evaluation. (f)–(g): real-world flight experiments with 10 navigation tasks and 2 trials per task.
+
+Robustness of the Action Extraction. Replacing the action extractor with a frame-pair VO baseline decreases the success rate from 70 .9% to 64 .5% , showing that multi-frame motion reasoning is critical for decoding generated videos with tem-poral artifacts and pixel jitter. Quantitative results in Table II further demonstrate that the learned action extraction module 
+
+TABLE II ACTION EXTRACTION ACCURACY .
+
+ATE (m) RPE-t (m) RPE-r ( ◦)Simulation 0.098 0.142 0.715 Real-world 0.120 0.167 0.826 
+
+> Simulation in Unreal Engine; real-world in a motion capture system.
+
+TABLE III COMPUTATIONAL COST OF THE WORLD -ACTION PIPELINE .
+
+Metric PRO 6000 AGX Thor Imagination Module Inference time 3.2 s 11.7 s Video duration 5.4 s @ 15 FPS 5.4 s @ 15 FPS VRAM 18.0 GB 18.2 GB Action Extractor Extraction time 3.0 s 9.0 s VRAM 4.7 GB 4.8 GB 
+
+The imagination module (10-step distilled) generates 256 ×256 videos. 
+
+accurately recovers 6-DoF motion on both simulated and real-world sequences, providing reliable geometric guidance for trajectory generation. 
+
+Effect of the Kinodynamic Planner. Removing the kinody-8
+
+namic planner and directly executing extracted waypoints re-duces the success rate from 70 .9% to 68 .7% in simulation, but from 13 /20 to 9/20 in real-world experiments. This indicates that the planner plays a limited role in idealized simulation but is important for bridging the sim-to-real gap by improving robustness against control noise, environmental uncertainty, and dynamically infeasible motions during deployment. 
+
+Real-world Failure Analysis. The full pipeline achieves 13/20 success (Table I(f)), with the failures primarily con-centrated in yaw-dominant and orbit-style maneuvers—the same difficulty observed in simulation. Specifically, under these instructions the extracted trajectory tends to pass through out-of-view obstacles, and the kinodynamic planner, while ensuring safety, forces the executed motion to deviate from the language instruction. When the kinodynamic planner is disabled (Table I(g), 9/20), two primary failure modes emerge: (i) the UAV collides with obstacles mispredicted by the world model, often caused by viewpoint occlusion during sampling or spatiotemporal inconsistency in fine-grained obstacle syn-thesis; and (ii) the physical response of the UAV cannot track the dynamically unconstrained reference trajectory, leading to instruction deviation or collision. 
+
+Efficiency of the Step Distillation. With all above modules enabled, step-distilled inference reduces the planning time from 14 .7s to 6.2s, closely approaching the temporal horizon of the generated future observations (5.4s). The distilled model maintains a comparable success rate ( 68 .9% vs. 70 .9% ), demonstrating a favorable trade-off between inference effi-ciency and navigation performance. 
+
+E. Discussion 
+
+The results suggest that ImagineUAV’s effectiveness mainly comes from generating geometrically meaningful visual fore-sight rather than photorealistic prediction, providing reliable motion direction and spatial extent cues even with local artifacts. The modular pipeline combining semantic foresight, geometric motion recovery, and kinodynamic planning enables reliable trajectory generation under complex UAV dynamics and obstacle-constrained environments. Computational cost results (Table III) further suggest the potential for practical onboard deployment, as the current Jetson AGX Thor imple-mentation already approaches the temporal horizon of the gen-erated future observations even without TensorRT acceleration or pipeline parallelism. V. C ONCLUSION 
+
+We proposed ImagineUAV, an imagination-driven frame-work for vision-language navigation for UAVs that bridges high-level language intent and executable flight through pre-dictive visual world modeling. By generating instruction-conditioned future egocentric observations and converting them into executable trajectories via a learning-based action extractor and a kinodynamic planner, ImagineUAV avoids brittle direct action execution and enables stable navigation adhering to the instruction. Extensive simulation and real-world experiments demonstrate state-of-the-art performance on the open-source benchmark and validate real-UAV deploy-ment with step-distilled inference, highlighting the promise of world-model-based predictive planning for embodied aerial navigation. Building on this foundation, our next steps involve migrating the pipeline to onboard hardware to improve real-time performance and incorporating closed-loop feedback for robust long-range navigation. REFERENCES [1] W. Wu, T. Chang, X. Li, Q. Yin, and Y. Hu, “Vision-language navigation: a survey and taxonomy,” Neural Computing and Applications , vol. 36, no. 7, pp. 3291–3316, 2024. [2] J. Zhang, K. Wang, R. Xu et al. , “Navid: Video-based vlm plans the next step for vision-and-language navigation,” arXiv preprint arXiv:2402.15852 , 2024. [3] M. J. Kim, K. Pertsch, S. Karamcheti et al. , “Openvla: An open-source vision-language-action model,” arXiv preprint arXiv:2406.09246 , 2024. [4] T. Wan, A. Wang, B. Ai et al. , “Wan: Open and advanced large-scale video generative models,” arXiv preprint arXiv:2503.20314 , 2025. [5] B. Zhao, R. Tang, M. Jia et al. , “Airscape: An aerial generative world model with motion controllability,” in Proceedings of the 33rd ACM International Conference on Multimedia , 2025, pp. 12 519–12 528. [6] X. Wang, D. Yang, Y. Liao, W. Zheng, w. wu, B. Dai, H. Li, and S. Liu, “Uav-flow colosseo: A real-world benchmark for flying-on-a-word uav imitation learning,” in Advances in Neural Information Processing Systems , vol. 38. Curran Associates, Inc., 2025. [7] P. Anderson, Q. Wu, D. Teney et al. , “Vision-and-language navigation: Interpreting visually-grounded navigation instructions in real environ-ments,” in Proceedings of the IEEE conference on computer vision and pattern recognition , 2018, pp. 3674–3683. [8] J. Krantz, E. Wijmans, A. Majumdar, D. Batra, and S. Lee, “Beyond the nav-graph: Vision-and-language navigation in continuous environments,” in European Conference on Computer Vision . Springer, 2020, pp. 104– 120. [9] M. Ahn, A. Brohan, N. Brown et al. , “Do as i can, not as i say: Ground-ing language in robotic affordances,” arXiv preprint arXiv:2204.01691 ,2022. [10] A. Brohan, N. Brown, J. Carbajal et al. , “Rt-1: Robotics transformer for real-world control at scale,” in Proceedings of Robotics: Science and Systems (RSS) , 2023. [11] B. Zitkovich, T. Yu, S. Xu et al. , “Rt-2: Vision-language-action models transfer web knowledge to robotic control,” in Conference on Robot Learning . PMLR, 2023, pp. 2165–2183. [12] R. Sapkota, Y. Cao, K. I. Roumeliotis, and M. Karkee, “Vision-language-action models: Concepts, progress, applications and challenges,” arXiv preprint arXiv:2505.04769 , 2025. [13] Y. Gao, C. Li, Z. You et al. , “Openfly: A comprehensive platform for aerial vision-language navigation,” arXiv preprint arXiv:2502.18041 ,2025. [14] D. Hafner, J. Pasukonis, J. Ba, and T. Lillicrap, “Mastering diverse control tasks through world models,” Nature , vol. 640, no. 8059, pp. 647–653, 2025. [15] F. Zhang et al. , “World action models: The next frontier in embodied AI,” arXiv preprint arXiv:2605.12090 , 2025. [16] S. Ye, Y. Ge, K. Zheng et al. , “World action models are zero-shot policies,” arXiv preprint arXiv:2602.15922 , 2026. [17] A. Bar, G. Zhou, D. Tran, T. Darrell, and Y. LeCun, “Navigation world models,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , 2025. [18] Y. Yu, X. Jin, Y. Shang et al. , “Mowm: Mixture-of-world-models for embodied planning via latent-to-pixel feature modulation,” arXiv preprint arXiv:2509.21797 , 2025. [19] X. Huang, W. Gai, T. Wu et al. , “Navdreamer: Video models as zero-shot 3d navigators,” arXiv preprint arXiv:2602.09765 , 2026. [20] B. Zhou, F. Gao, J. Pan, and S. Shen, “Robust real-time uav replanning using guided gradient-based optimization and topological paths,” in 2020 IEEE International Conference on Robotics and Automation (ICRA) .IEEE, 2020, pp. 1842–1848. [21] H. He, Y. Xu, Y. Guo, G. Wetzstein, B. Dai, H. Li, and C. Yang, “Cameractrl: Enabling camera control for text-to-video generation,” 
+
+arXiv preprint arXiv:2404.02101 , 2024. [22] Z. Yang, J. Teng, W. Zheng et al. , “Cogvideox: Text-to-video diffusion models with an expert transformer,” in International Conference on Learning Representations , vol. 2025, 2025, pp. 83 048–83 077. [23] B. Wu, C. Zou, C. Li et al. , “Hunyuanvideo 1.5 technical report,” arXiv preprint arXiv:2511.18870 , 2025.

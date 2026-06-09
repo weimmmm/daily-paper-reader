@@ -1,0 +1,502 @@
+Title: Dexterity-BEV: Aligning 3D World and Actions for Generalizable Robot Policies Learning
+
+URL Source: https://arxiv.org/pdf/2606.02274v2
+
+Published Time: Tue, 09 Jun 2026 00:35:57 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+# Dexterity-BEV: Aligning 3D World and Actions for Generalizable Robot Policies Learning 
+
+Huayi Zhou ∗ 1,2 Wei Gao ∗ 1 Dekun Lu 1 Ruiji Liu 1 Zhanqi Zhang 1
+
+Ziyang Zhang 1 Jian Chen 1 Wenlve Zhou 1 Sheng Xu 2 Shumin Li 1
+
+Kangyi Guo 1 Shichen Xu 1 Zixin Huang 1 Yongyi Su 1 Kui Jia ‡ 1,21DexForce Technology 2The Chinese University of Hong Kong, Shenzhen 
+
+> ∗
+
+Equal Contribution ‡Corresponding Author 
+
+Abstract: End-to-end manipulation policies, combined with web-scale pretrained Vision-Language Models (VLMs), show the promise for generalizable and dex-terous robotic manipulation. However, they inherit two key limitations from 2D foundation models: 1) the reliance on 2D RGB inputs that ignores the intrinsically 3D nature of manipulation; and 2) the lack of spatial 3D alignment between input-output spaces as well as across diverse robot embodiments, camera setups, and tra-jectory datasets. In this paper, we present a series of contributions to address these issues. First, we introduce aligned vertex map and vertex spectrum — a pixel-wise 3D representation that elevates 2D visual inputs to 3D, using camera calibration and optional depth. This novel input representation marries 3D awareness with the generalization of 2D large VLMs. Then, we propose to align the inputs and outputs of manipulation policies by expressing per-pixel 3D information of each camera view and robot actions to a shared coordinate. Based on this, we designate a canonical Bird’s-Eye-View (BEV) alignment frame and innovatively propose to construct BEV images, producing a view-invariant representation robust to camera pose variations. To enable training and evaluation at scale, we develop a compre-hensive data processing pipeline to perform such alignments; we also introduce a novel temporal alignment scheme for trajectories across diverse robots, human operators, and datasets. These contributions collectively mitigate input and output spatial-temporal misalignments, improving the consistency and generalization for real-world manipulation. Pretrained checkpoint, source code and data processing pipeline are available in https://hnuzhy.github.io/projects/Dex-BEV .
+
+Keywords: End-to-end Manipulation, VLAs, Spatial-Temporal Alignment, BEV 
+
+## 1 Introduction 
+
+End-to-end manipulation policies [1, 2, 3] offer significant potential for enabling embodied agents to understand and interact with the world. The success of Large Language Models (LLMs) [4, 5, 6], Vision-Language Models (VLMs) [7, 8, 9] and (video) World-Models [10, 11, 12] has injected new inspiration into manipulation research. Benefits from web-scale pretraining, these foundation models demonstrate promising zero-shot generalization. Consequently, researchers aim to imbue robots with similar generalization capability to build robotics foundation models. With this motivation, researchers are increasingly exploring Vision-Language-Action (VLAs) [13, 14, 15, 16, 17, 18]. Some contributions augment VLAs with future video stream prediction, thus leading to World-Action Models (WAMs) [19, 20, 21, 22]. These models are usually derived from pretrained 2D VLMs and further trained on manipulation datasets, typically consisting of corre-sponded RGB frames, robot/human action trajectories and task instructions. Many dexterous ma-nipulation behaviors challenging for traditional modular perception-planning-action pipelines, auto-matically emerge from these models [1, 13, 14]. These VLAs/WAMs inherit strong capability from VLMs in terms of visual perception and textual understanding. However, VLMs are typically trained on two-dimensional (2D) RGB image and 
+
+> arXiv:2606.02274v2 [cs.RO] 6 Jun 2026
+
+Datasets Aligned Spatially & Temporally                    
+
+> RoboTwin ·LIBERO ·RoboCasa ·Robomind ·Droid ·Agibot ·Egocentric ·Internal
+> A1-FoldCloth
+> W1-HandoverBook
+> W1-ScoopPopcorn
+> Agilex-FoldCloth
+> Agilex-FoldMailerBox
+> Action Alignment
+> Dexterous
+> Hand
+> Parallel
+> Gripper
+> Human
+> Hand
+> Uniform action convention
+> Shared frame with 3D inpu t
+> Temporal Alignment
+> Cross-Embodiment Alignment
+> DexForce W1 G1 DexForce A1 PIPER Emika
+> Aligning 3D World and Actions for Generalizable Robot Policies Learning
+> Dexterity-BEV
+> Multi-View
+> Observations
+> View 1
+> View 2
+> View 3
+> Synthesized
+> BEV View
+> Aligned 3D Space
+> Original
+> Processed ①
+> ②
+> ①
+> ②
+> Uniform action chunk length
+> Evenly distributed knots
+> Included in Aligned Datasets
+
+Figure 1: We introduce Dexterity-BEV (Dex-BEV), a series of technical and systematic contribu-tions for manipulation policy learning that generalizes among different embodiments, camera views and datasets. In particular, we introduce 3D input representations that easily integrated with pre-trained 2D VLMs; spatial alignment between multi-view cameras & robot actions; and temporal alignment between trajectories from different robots and/or tele-operators. These concepts lead to a comprehensive data processing pipeline and trajectory datasets aligned spatially and temporally. video inputs, depite robotic manipulation is intrinsically three-dimensional (3D). As a result, most existing endeavors [13, 14, 15, 16, 17, 18] lack explicit 3D information from camera input, such as camera calibration results (intrinsic and extrinsic matrices) and depth images. Consequently, several other contributions [23, 24, 25, 26, 27] have explored alternative 3D inputs, such as point clouds and voxels. However, datasets with these 3D representations are not yet comparable to the 2D counterparts in terms of scale and diversity, which limits the generalization of pretrained 3D VLMs/encoders, and consequently the capability of derived manipulation polices. Moreover, the output space of existing VLAs/WAMs is typically not aligned in terms of: 1) mis-alignment with (2D) input observations; and 2) misalignment across different embodiments (robots), datasets and manipulation scenarios. In particular, existing VLAs usually produce joint angles or end-effector (EE) poses as output. Joint angles depend on robot types, thus joint trajectories to ac-complish the same manipulation task can be vastly different for two types of robots. On the other hand, the EE pose values depend on robot types, frame conventions and designations of the “world” frame (in which EE poses are expressed). For instance, the “world” frame depends on the table setup in the LIBERO [28] dataset; many bi-arm manipulators (e.g., CobotMagic) express left/right EE poses in the base frames of left/right sub-arms, thus these EE pose values cannot reflect the base offset between two sub-arms. These spatial misalignment in joint or EE space causes additional (sometimes unnecessary) variations on action trajectory distribution that end-to-end models must overcome. In addition to 3D spatial misalignment, robot trajectory instances for a task might take different amounts of time, due to the variations in robot hardware setup and human tele-operation. This temporal misalignment imply that the policy must address different geometric “length” of ac-tion chunks (explained in Subsec. 3.1 and Subsec. 3.4). All these misalignments challenge the expressiveness and generalization of policy learning. In this paper, we make a series of technical and system contributions to mitigate these limitations. In particular, 1) we introduce aligned vertex map and vertex spectrum formation, previously used in other fields such as 3D reconstruction [29, 30] and autonomous driving [31, 32], into VLAs as input space. This formulation elevates 2D-centric model inputs to 3D by providing per-pixel 3D information, exploiting camera calibrations and optional depth images. Thus, we aim to combine 2the benefit of 3D input space with the generalization of vision and language foundation models, pretrained on web-scale 2D datasets. Moreover, 2) we propose to align multi-view observations and output actions, by expressing per-pixel 3D information of each camera view, robot proprioceptive measurements and actions to a shared coordinate, thanks to camera extrinsic parameters. Base on these formulations, 3) we propose to designate BEV frames (refer to Sub. 3.3 for more details) as the alignment frame, and innovatively construct BEV images that are less-variant to different camera setups and change in camera view points, inspired by contributions in autonomous driving [31, 32]. To facilitate the training, evaluation and deployment of our models, we devise a comprehensive data processing pipeline with the following distinctions. Systematically, 4) we implement 3D spatial alignment for both internal and public datasets, by combining manual operations (assisted by a customized GUI application), rule-based algorithms and vision foundation models. In addition to spatial alignment, 5) we propose to align different trajectories temporally among different robots, tele-operators and datasets. These contributions constitute the unified Dexterity-BEV (Dex-BEV) architecture and training receipt. While these contributions above are generally applicable to both VLAs and WAMs, in this paper we focus on VLAs as the instantiated ones and defer WAMs, or the prediction of explicit future (3D) state, to a later study. Simulated and real-world experiments show that Dexterity-BEV achieves significant performance improvements given variations of camera views, robot base poses, and/or manipulation scenarios. We will make the code and data pipeline publicly available. 
+
+## 2 Related Works 
+
+VLAs and WAMs. The scaling of diverse robotic demonstrations pre-training has rapidly advanced VLA models. Pioneering works such as [16, 17, 13] validated the efficacy of VLA models derived from 2D VLMs. Efficient teleoperation systems like ALOHA [33, 34] enabled large-scale dataset collection and spurred various VLA datasets [35, 36, 37]. Many contributions [38, 39, 14, 40] explore VLA models with different architectures, learning algorithms and auxiliary tasks. One prominent example is future video generation in WAMs [19, 41, 21, 20, 22, 10]. However, these models rely predominantly on 2D image backbones. The lack of 3D input might lead to performance degradation in terms of precision and robustness to unseen camera view points. 
+
+3D Representations in VLAs/WAMs. Consequently, many contributions [42, 43, 24, 44] attempt to incorporate various form of 3D input into VLAs/WAMs. It is straightforward to use point cloud, voxel grid, and 3D Gaussian Splatting [45, 25, 46, 24] as input. However, these pure 3D represen-tations cannot benefit from VLM backbones pretrained on web-scale 2D image and video datasets. Another branch of contributions [44, 43, 42] fuse 3D information into 2D VLM backbones, and our method falls into this category. Existing methods, based on depth image [43], stereo [44] or camera-frame vertex map [47], typically process each camera view independently; therefore, corre-lation information between multiple camera views (e.g., head and wrist cameras) is not provided directly to the models. Instead, we propose to provide this information by expressing all ver-tex maps/spectrums in a shared BEV frame. This idea is extended to achieve alignment between multi-view observations, robot proprioception, and action trajectories. The proposed BEV image is inspired by BridgeVLA [48] and autonomous driving contributions [49, 50, 31, 51]. Compared with [48], we further augment the RGB BEV image with a pixel-aligned vertex map. Then, an al-ternative network architecture and training receipt are used with emphasis on reactive manipulation tasks (e.g, cloth folding), which might be challenging for the classical motion planner in [48]. 
+
+## 3 Methodology 
+
+Dex-BEV elevates 2D-centric models into a spatially aligned 3D-aware representation for both ob-servations and actions. This section is organized as follows: Subsec. 3.1 provides preliminaries about VLM and VLA. Subsec. 3.2 details our Aligned Vertex Map Formulation for projecting pixel features into a shared 3D frame. Subsec. 3.3 extends our formulation with BEV Frame, BEV Image Construction and Vertex Spectrum . Finally, Subsec. 3.4 presents the Data Processing Pipeline for 3D spatial standardization and temporal trajectory alignment. 33.1 Preliminary 
+
+Most VLAs are derived from pretrained VLMs, which extract visual-textual representations from 2D images and instructions. Given an RGB image It,i ∈ RH×W ×3 from the i-th camera at step 
+
+t and an instruction L, the VLM extracts visual tokens Ft,i = Enc vis (It,i ) and language tokens 
+
+Elang = Enc lang (L). Multi-view visual tokens are aggregated into ˜Ft, which is further fused into contextual embedding ct = Fθ ( ˜Ft, Elang ).VLAs predict robot actions from multimodal state Xt = {{ (Ot,i , Ki, Tt,i )}Ni=1 , L, st} at each step 
+
+t. Ot,i contains an RGB image It,i and an optional, pixel-aligned depth map Dt,i ∈ RH×W , where 
+
+N is the number of cameras. The matrices Ki ∈ R3×3 and Tt,i ∈ SE (3) denote camera intrinsics and extrinsics, respectively. Given the input Xt, the VLA policy predicts a chunk of M future actions {At+m}Mm=1 . Recent VLA models condition an action decoder on the VLM embedding ct
+
+using Flow Matching (FM) [52, 14, 40] to model precise action distributions. FM trains a vector field vθ (aσ , σ, ct) along a probability path ψσ (a) = σa1 + (1 − σ)a0 between Gaussian noise 
+
+a0 ∼ N (0 , I) and ground-truth actions a1 by minimizing: 
+
+LF M = Eσ∼U [0 ,1] ,a1∼pdata ,a0∼p0
+
+∥vθ (σa1 + (1 − σ)a0, σ, ct) − (a1 − a0)∥2 . (1) During inference, the action sequence is sampled via an ODE solver: a1 = a0 +R 10 vθ (aσ , σ, ct)dσ .
+
+3.2 Aligned Vertex Map Formulation 
+
+Following Subsec. 3.1, the observation at step t is defined as Xt = {{ (Ot,i , Ki, Tt,i )}Ni=1 , L, st}.In this subsection, we assume all cameras are calibrated and depth images are available, thus the observation becomes Ot,i = ( It,i , Dt,i ). This assumption is relaxed in Sec. 3.3 to address setups without depth images on one or more camera views. Given depth map Dt,i and intrinsics Ki, the pixel (u, v ) is back-projected to obtain a 3D vertex in the i-th camera frame: 
+
+Pcamera i (u, v ) = K−1 
+
+> i
+
+[u, v, 1] T Dt,i (u, v ), (2) where Pcamera i is a vertex map, and the time subscript t is omitted for clarity. The 2D pixel structure of Pcamera i enables easy integration into 2D VLMs. Prior methods like SpatialVLA [42] directly leverage this local map to formulate 3D positional embeddings for visual features: 
+
+Fcombined i = Fimg i + F3d i = Enc vis (It,i ) + Enc 3d(Pcamera i ). (3) However, local vertex maps Pcamera i lack geometric correlation across distinct viewpoints. Asingle physical 3D point observed across multiple views will yield highly divergent values due to differing camera extrinsics Tt,i and Tt,j . Inspired by contributions [29, 30] in 3D reconstruction, we propose to transform all camera-frame vertex maps into a shared reference frame Talign t :
+
+F3d i = Enc 3d(Paligned i ) = Enc 3d(T−1
+
+> align t
+
+Tt,iPcamera i ). (4) This step ensures that Paligned i maintains global spatial consistency in 3D while remaining pixel-aligned with RGB image It,i . Crucially, the robot proprioception st,i and target actions At are also represented as SE (3) poses expressed in this shared Talign t frame. Combined with unified 3D frame conventions (detailed in Subsec. 3.4), the entire perception-action loop is tightly integrated within an embodiment-agnostic 3D workspace. 
+
+The Talign t is typically the first camera view in 3D reconstruction. In this paper, we instantiate 
+
+Talign t as a canonical Bird’s-Eye View ( BEV ) frame and construct additional BEV images, as detailed in Subsec. 3.3. 
+
+3.3 Several Extensions and Network Architecture BEV Frame and BEV Image Construction. To minimize input variations caused by heterogeneous robotic embodiments and diverse camera setups, we formalize the shared alignment frame Talign t 
+
+as a canonical Bird’s-Eye View (BEV) reference frame. Following the conventions in autonomous 4Figure 2: (a) We propose to construct BEV images and associated vertex maps towards invariance to different camera view points. Note that the synthesized BEV images for two vastly different camera poses are very similar to each other, and objects are located at almost identical pixel locations in BEV images. (b) An overview of Dex-BEV architecture. Please refer Sec. 3.3 for a detailed explanation. driving [31, 32] (“lidar frame”) and BridgeVLA [48], we instantiate Talign t as either: 1) the robot base frame; or 2) the bottom-center of a 3D cubic region-of-interest (RoI) surrounding the table-top workspace, if the scenario is a table-top manipulation. For the designated BEV frame, we construct a synthetic BEV image inspired by contributions [49, 50, 31, 51] in autonomous driving. This BEV image is constructed by a top-down orthographic projection of the aggregated colored point clouds from all cameras. Alongside this projection, we compute a corresponding pixel-wise 3D vertex map for the BEV image. An illustration is shown in Fig. 2 (a), the BEV images provide a viewpoint-invariant geometric input space for policy learning. 
+
+Vertex Spectrum to Address Optional Depth Observation. Inspired by PETR in autonomous driving [31, 32], we propose generating a vertex spectrum for RGB-only views, in order to accom-modate platforms without depth sensors. For a pixel p = [ u, v, 1] T in the i-th camera view, we sample M discrete depth hypotheses dj using a linear-increasing discretization (LID) [50]: 
+
+dj = dmin + ( dmax − dmin ) · j(j + 1) 
+
+M (M + 1) , (5) where [dmin , d max ] represents the operational depth range. Each pixel-depth pair is back-projected and transformed via the extrinsic matrix Tt,i into the aligned BEV frame, yielding a volumetric coordinate grid Gu,v ∈ RM ×3. This grid is then processed by a lightweight encoder to formulate a 2D positional embedding that is element-wise added to the corresponding RGB features. 
+
+Overall Architecture. As illustrated in Fig. 2 (b), the overall architecture ingests these fused multi-view tokens, the synthetic BEV features, 3D vertex maps & vertex spectrum, and the language instruction into a VLM backbone. The extracted multi-modal representations are then processed by a flow-matching action expert [14, 40] to model the target action distribution. Crucially, both pro-prioceptive measurement and output action for robots are parameterized as SE (3) poses expressed within the unified BEV frame. Thus, the multi-view input and action output are aligned in 3D space, and unified convention can be applied across different embodiments and datasets. 
+
+3.4 Data Alignment Processing Pipeline 
+
+To facilitate robust training, evaluation, and cross-platform deployment, we implement a compre-hensive pipeline for 3D spatial and temporal alignments across heterogeneous datasets. 
+
+3D Spatial Alignment. As shown in Fig. 3, for each dataset, camera intrinsics and extrinsics are uni-fied into standard OpenCV formats by combining manual 3D GUI matching, iterative closest point (ICP) registration, and data-driven estimators like DepthAnything V3 [30]. For trajectories lacking active depth measurements, missing channels are re-generated by replaying actions in simulation; 5(a) (b) (c) (d) (e) (f) Figure 3: 3D spatial alignment in our data processing pipeline. (a) We develop a customized GUI application for 3D alignment and visualization, as explained in Subsec. 3.4. In (a-f), we show the 3D alignment of representative public and internal datasets, including (a) LIBERO [28], (b) Agibot-Alpha/Beta [54], (c) RoboTwin 2.0 [55], (d) RoboMind 2.0 [37] and our internal datasets (e-f). We also apply an unified TCP frame convention, as shown in these figures. for some real-world dataset (e.g., Droid), depth images can be synthesized using vision foundation models such as FoundationStereo [53]. Finally, high-quality robot URDF models are registered to the shared 3D observation space. We enforce a unified tool center point (TCP) convention across disparate embodiments, consistently anchoring parallel-jaw gripper frames at the tip of the jaws and multi-finger configurations at the wrist. These standardized kinematic chains allow us to compute unified absolute SE (3) poses across all platforms using forward kinematics. 
+
+Cross-Trajectory Temporal Alignment. The speed of a trajectory can depend on the robot platform and human teleoperation, which creates additional variations on robot trajectories that VLAs must overcome. On the other hand, most manipulation tasks can be regarded as quasi-static : a slowed or accelerated (within an extent) trajectory can still accomplish the given manipulation task. Although this is not true for all manipulations (e.g., throwing a ball), nearly all tasks in current VLA datasets are quasi-static. With this observation, we propose normalizing the end-effector speed to a standard value across multiple robots and VLA datasets. In other words, we re-compute the physical time for knots of robot trajectories for temporal alignment. The detailed procedure is in Appendix. 
+
+## 4 Experiments 
+
+Our evaluation aims to demonstrate that Dex-BEV provides a superior and more interpretable frame-work for dexterous robotic manipulation compared to existing 2D and 3D VLA paradigms. We systematically test its efficacy across diverse simulated benchmarks [28, 55, 56] and real-world plat-forms, focusing on its spatial reasoning capabilities and cross-embodiment generalization. 
+
+4.1 Evaluation on Simulation Benchmarks 
+
+We perform quantitative comparisons on the LIBERO [28] and RoboTwin-2.0 [55, 56] benchmarks. Our method is compared with two competitive VLA baselines: the π0 [14] and X-VLA [39] 1.Moreover, we conduct a 2D ablation study of the proposed method that 1) removes all 3D inputs; and 2) disables 3D alignment by expressing all SE(3) poses following the conventions of X-VLA [39]. As detailed below, we use the official and modified setups to evaluate the generalization of our method with respect to different embodiments, camera viewpoints and robot/scene base poses. We first evaluate our method on the official setup of LIBERO [28] and RoboTwin-2.0 [56]. These benchmarks are based on different robot platforms, the single-arm 7-DoF franka for LIBERO [28] and dual-arm 12-DoF agile-x for RoboTwin-[56]. The results are shown in Tab. 1. To highlight the generalization to different embodiments, we use one checkpoint (network weight) for both evalua-tion. The results for baselines are the higher one from our rollout of released checkpoints and the reported results in [39]. Compared with these SOTA baselines, our method achieves roughly the same results on LIBERO [28] and higher success rate on RoboTwin [55] in Tab. 1, despite deploy-ing on vastly different robot platforms. Moreover, the 2D ablation, which use the same input/output as X-VLA [39], suffers major performance drop. This highlights the effectiveness of proposed 3D inputs and alignments. 
+
+> 1We emphasize that given the complementary nature of our proposed Dex-BEV, similar quality results would be obtained if comparing with other representative VLAs [15, 40, 13].
+
+6Table 1: Simulation benchmark results and generalization to different embodiments. We present the success rate for each compared method across task suites in LIBERO [28] and RoboTwin 2.0 [55]. Our method achieves roughly the same results on LIBERO and higher success rate on RoboTwin compared to strong baselines, despite deploying on vastly different robot platforms. In comparison with 2D ablation, the proposed 3D inputs and alignments lead to major improvement. Method Cross Embodiments LIBERO (Official) RoboTwin 2.0 Spatial Object Goal Long Average Clean Randomized 
+
+π0 [14] False 96.8 98.8 95.8 85.2 94.2 46.4 16.4 X-VLA [39] False 98.2 98.6 97.8 97.6 98.1 70.0 39.0 2D Ablation True 93.2 95.0 92.8 90.2 92.8 64.8 35.2 Dex-BEV True 98.2 98.0 97.8 97.0 97.8 76.0 42.0 Table 2: Modified LIBERO benchmark to evaluate general-ization to camera view points and robot/scene base poses. The proposed method achieves reasonable success rate despite signif-icant variations on camera viewpoints and base poses of robot & scene (everything except the robot, such as the table and objects).                     
+
+> Method Modified LIBERO (Mutated Camera & Scene Layout) Spatial Object Goal Long Average X-VLA (official ckpt) <10 <10 <10 <10 <10 2D Ablation <10 <10 <10 <10 <10 Dex-BEV 92.8 89.4 91.0 86.2 89.9
+
+Figure 4: Training loss compar-ison. This corresponds to Tab. 2. We further conduct simulated experiments to exanimate the generalization to different camera view points and environment layouts. To achieve this, we modify the setup on the LIBERO [28] datasets and platforms. In particular, for each trajectory we randomly modify the third-view camera pose by placing it at different distance and rotating it relative to the world-z axis, the optical axis and the tilting angle. Moreover, we apply local 6-DoF random perturbation to the base pose of the robot and scene (everything except the robot, such as the table and objects) for each trajectory. During the re-generation of LIBERO demonstration trajectory, we first move the robot end-effector to compensate the movement of robot and scene base pose. The simulation results are presented in Tab. 2. The official X-VLA [39] checkpoint and 2D ablation cannot address strong perturbation of camera poses and scene layouts above. On the other hand, our method achieves a reasonable success rate in this evaluation, benefiting from the representation and alignment of the 3D input. Fig. 4 compares the training dynamics of our method and 2D ablation. The 2D baseline cannot adequately adsorb the pose variations in the training data. 
+
+4.2 Evaluation on Real-World Platforms 
+
+To validate the practical utility, robustness, and physical precision of Dex-BEV, we deploy our framework across four distinct dual-arm hardware setups: an Agilex bimanual platform, two Dex-Force wheeled-humanoid robots equipped with two dexterous hands (W1*) or parallel grippers (W1), and a DexForce A1 semi-humanoid robot. Our real-world evaluation comprises five long-horizon tasks that involve intricate bimanual coordination and interactions with deformable, articu-lated, or granular objects: (1) Fold Mailer Box and (2) Fold Cloth on the Agilex platform; (3) 
+
+Scoop Popcorn and (4) Handover Book on the W1 humanoid; and (5) Fold Cloth on the A1 semi-humanoid with . For these different robotic embodiments and corresponding task rollout exam-ples, please refer Fig. 1 right and Fig. 5 for more details. These scenarios present high-dimensional joint synchronization, and multi-contact dynamics, making them inherently challenging for 2D-aware policies. We baseline our framework against strong competitors, including π0 [14] and X-VLA [39]. As quantitatively shown in Tab. 3, Dex-BEV demonstrates a stable execution profile and commands a significant success rate advantage over all baselines, establishing a new state-of-the-art for physical dual-arm dexterity. 7Table 3: Quantitative compari-son results of real-robot exper-iments (reporting average suc-cess rates across 30 trails).                            
+
+> Task 1 (Agilex) Fold Mailer Box
+> π0[14] 13/30 (43.3%) X-VLA [39] 17/30 (56.7%) Dex-BEV 23/30 (76.7%)
+> Task 2 (Agilex) Fold Cloth
+> π0[14] 20/30 (66.7%) X-VLA [39] 24/30 (80.0%) Dex-BEV 28/30 (93.3%)
+> Task 3 (W1*) Scoop Popcorn
+> π0[14] 18/30 (60.0%) X-VLA [39] 21/30 (70.0%) Dex-BEV 26/30 (86.7%)
+> Task 4 (W1) Handover Book
+> π0[14] 12/30 (40.0%) X-VLA [39] 21/30 (70.0%) Dex-BEV 28/30 (93.3%)
+> Task 5 (A1) Fold Cloth
+> π0[14] 19/30 (63.3%) X-VLA [39] 23/30 (76.7%) Dex-BEV 29/30 (96.7%) A1 : Fold Cloth Agilex : Fold Mailer Box Agilex : Fold Cloth W1 : Handover Book W1 *: Scoop Popcorn
+> ②
+> ③
+> ④
+> ①
+> ②
+> ③
+> ④
+> ①
+> ②
+> ③
+> ④
+> ①
+> ②
+> ③
+> ④
+> ①
+> ②
+> ③
+> ④
+> ①
+
+Figure 5: Qualitative real-world rollouts across different long-horizon complex tasks. Distinct keyframes demonstrate success-ful autonomous executions on diverse bimanual robotic platforms involving articulated, deformable, and granular objects (from left to right): Fold Mailer Box and Fold Cloth on Agilex, Scoop Popcorn and Handover Book on the DexForce W1 humanoid, and Fold Cloth on the DexForce A1 semi-humanoid. Qualitative rollout sequences, displayed in Fig. 5, highlight the model’s remarkable closed-loop re-activity to environmental alterations and its OOD generalization. Specifically, for the folding tasks (Fold Mailer Box and Fold Cloth ), although the training demonstrations were limited to a fixed set of canonical items (e.g., white T-shirts), Dex-BEV achieves successful zero-shot adaptation to completely unseen colors, sizes, and rigidities. The Scoop Popcorn task demands fine-grained control over granular materials where the model must dynamically correct its trajectory despite unexpected manual displacements of the target cup. For the Handover Book task, Dex-BEV ef-fortlessly handles dynamic human-in-the-loop interactions, accurately tracking a human partner’s moving hand and submitting the object despite hand occlusions and unpredictable timing. To sum up, the resilience to dynamic workspace disturbances and large geometric shifts confirms that our framework models the underlying 3D spatial mechanics of a task rather than memorizing superficial 2D visual patterns. Due to page constraints, complete details regarding data collection protocols, teleoperation setups, and additional hardware specifications are expanded in the Appendix , with full dynamic executions provided in the Supplementary Videos .
+
+## 5 Conclusion 
+
+This paper introduces Dexterity-BEV (Dex-BEV), a framework that establishes a unified input-output 3D alignment for generalizable and dexterous robotic manipulation. We bring in both vertex map and vertex spectrum as input representation for these end-to-end manipulation policies. Then, we designate the BEV frame and propose to construct BEV images, as steps towards spatial trans-parency and viewpoint invariance. We further propose to align trajectories temporally to mitigate the variance among different robots, tele-operators and datasets. Systematically, we implement a data processing pipeline that combines GUI-assisted manual operations, rule-based algorithms, and vision foundation models for spatial and temporal alignment. Extensive experiments in simulation and real-world demonstrate the efficacy and superiority of our method. 
+
+Limitations: Despite these results, Dex-BEV currently relies on camera calibration, which may limit its immediate deployment in unstructured environments where extrinsic parameters are un-known. Future research might explore calibration-free BEV lifting through end-to-end geometric prior learning. Alternatively, advances in foundation models for 3D reconstruction [29, 30, 57] can be used to obtain camera parameters, although our experience in data processing indicates these models might need more effort towards universally reliable for online, reactive robotic manipula-tion applications. Scaling this architecture to more heterogeneous datasets will further solidify BEV representations as a universal and scalable interface for embodied intelligence. 8Acknowledgments 
+
+This work was funded by the Key-Area Research and Development Program of Guangdong Province, China under Grant 2024B0101040004, and the Shenzhen Science and Technology Pro-gram under Grant KJZD20240903104008012 and ZDCY20250901113000001. Beyond that, this work was supported by the major leadership and directional guidance of Kui Jia. We sincerely thank all the contributors for their dedication: co-first authors Huayi Zhou and Wei Gao conceptualized the framework and drafted the manuscript, with Huayi Zhou conducting Agilex real-world experiments, and Wei Gao leading the simulation benchmarks, real-world deployment, and core data infrastructure; Dekun Lu and Jian Chen assisted with the data infrastructure and hardware testing; Ruiji Liu, Zhanqi Zhang, and Ziyang Zhang managed the real-robot evaluations on the A1 semi-humanoid and W1 humanoid configurations; Wenlve Zhou, Sheng Xu, and Yongyi Su contributed to text polishing and technical discussions; and Shumin Li, Kangyi Guo, Shichen Xu, and Zixin Huang supported the large-scale real-world teleoperation data collection. 
+
+## References 
+
+[1] C. Chi, Z. Xu, S. Feng, E. Cousineau, Y. Du, B. Burchfiel, R. Tedrake, and S. Song. Diffusion policy: Visuomotor policy learning via action diffusion. The International Journal of Robotics Research (IJRR) ,44(10-11):1684–1704, 2025. [2] S. Levine, C. Finn, T. Darrell, and P. Abbeel. End-to-end training of deep visuomotor policies. The Journal of Machine Learning Research , 17(1):1334–1373, 2016. [3] Y. Zhu, Z. Wang, J. Merel, A. Rusu, T. Erez, S. Cabi, S. Tunyasuvunakool, J. Kram´ ar, R. Hadsell, N. de Freitas, et al. Reinforcement and imitation learning for diverse visuomotor skills. arXiv preprint ,2018. [4] J. Achiam, S. Adler, S. Agarwal, L. Ahmad, I. Akkaya, F. L. Aleman, D. Almeida, J. Altenschmidt, S. Altman, S. Anadkat, et al. Gpt-4 technical report. arXiv preprint arXiv:2303.08774 , 2023. [5] J. Bai, S. Bai, Y. Chu, Z. Cui, K. Dang, X. Deng, Y. Fan, W. Ge, Y. Han, F. Huang, et al. Qwen technical report. arXiv preprint arXiv:2309.16609 , 2023. [6] H. Touvron, T. Lavril, G. Izacard, X. Martinet, M.-A. Lachaux, T. Lacroix, B. Rozi` ere, N. Goyal, E. Hambro, F. Azhar, et al. Llama: Open and efficient foundation language models. arXiv preprint arXiv:2302.13971 , 2023. [7] P. Wang, S. Bai, S. Tan, S. Wang, Z. Fan, J. Bai, K. Chen, X. Liu, J. Wang, W. Ge, et al. Qwen2-vl: Enhancing vision-language model’s perception of the world at any resolution. arXiv preprint arXiv:2409.12191 , 2024. [8] H. Liu, C. Li, Q. Wu, and Y. J. Lee. Visual instruction tuning. Advances in Neural Information Processing Systems (NeurIPS) , 36:34892–34916, 2023. [9] H. Liu, C. Li, Y. Li, and Y. J. Lee. Improved baselines with visual instruction tuning. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 26296–26306, 2024. [10] L. Maes, Q. L. Lidec, D. Scieur, Y. LeCun, and R. Balestriero. Leworldmodel: Stable end-to-end joint-embedding predictive architecture from pixels. arXiv preprint arXiv:2603.19312 , 2026. [11] Y. Gao, H. Guo, T. Hoang, W. Huang, L. Jiang, F. Kong, H. Li, J. Li, L. Li, X. Li, et al. Seedance 1.0: Exploring the boundaries of video generation models. arXiv preprint arXiv:2506.09113 , 2025. [12] K. Team, J. Chen, Y. Ci, X. Du, Z. Feng, K. Gai, S. Guo, F. Han, J. He, K. He, et al. Kling-omni technical report. arXiv preprint arXiv:2512.16776 , 2025. [13] M. J. Kim, K. Pertsch, S. Karamcheti, T. Xiao, A. Balakrishna, S. Nair, R. Rafailov, E. P. Foster, P. R. Sanketi, Q. Vuong, et al. Openvla: An open-source vision-language-action model. In Conference on Robot Learning (CoRL) , pages 2679–2713. PMLR, 2025. [14] K. Black, N. Brown, D. Driess, A. Esmail, M. Equi, C. Finn, N. Fusai, L. Groom, K. Hausman, B. Ichter, et al. π0: A vision-language-action flow model for general robot control. In Proceedings of Robotics: Science and Systems (RSS) , LosAngeles, CA, USA, June 2025. doi:10.15607/RSS.2025.XX.010. 
+
+9[15] S. Liu, L. Wu, B. Li, H. Tan, H. Chen, Z. Wang, K. Xu, H. Su, and J. Zhu. Rdt-1b: a diffusion foundation model for bimanual manipulation. In The Thirteenth International Conference on Learning Representa-tions (ICLR) , volume 2025, pages 29982–30009, 2025. [16] A. Brohan, N. Brown, J. Carbajal, Y. Chebotar, J. Dabis, C. Finn, K. Gopalakrishnan, K. Hausman, A. Herzog, J. Hsu, J. Ibarz, B. Ichter, A. Irpan, T. Jackson, S. Jesmonth, N. Joshi, R. Julian, D. Kalash-nikov, Y. Kuang, I. Leal, K.-H. Lee, S. Levine, Y. Lu, U. Malla, D. Manjunath, I. Mordatch, O. Nachum, C. Parada, J. Peralta, E. Perez, K. Pertsch, J. Quiambao, K. Rao, M. S. Ryoo, G. Salazar, P. R. Sanketi, K. Sayed, J. Singh, S. Sontakke, A. Stone, C. Tan, H. Tran, V. Vanhoucke, S. Vega, Q. H. Vuong, F. Xia, T. Xiao, P. Xu, S. Xu, T. Yu, and B. Zitkovich. Rt-1: Robotics transformer for real-world control at scale. In Proceedings of Robotics: Science and Systems (RSS) , Daegu, Republic of Korea, July 2023. doi:10.15607/RSS.2023.XIX.025. [17] B. Zitkovich, T. Yu, S. Xu, P. Xu, T. Xiao, F. Xia, J. Wu, P. Wohlhart, S. Welker, A. Wahid, et al. Rt-2: Vision-language-action models transfer web knowledge to robotic control. In Conference on Robot Learning (CoRL) , pages 2165–2183. PMLR, 2023. [18] S. Belkhale, T. Ding, T. Xiao, P. Sermanet, Q. Vuong, J. Tompson, Y. Chebotar, D. Dwibedi, and D. Sadigh. Rt-h: Action hierarchies using language. In Proceedings of Robotics: Science and Systems (RSS) , Delft, Netherlands, July 2024. doi:10.15607/RSS.2024.XX.049. [19] A. Ali, J. Bai, M. Bala, Y. Balaji, A. Blakeman, T. Cai, J. Cao, T. Cao, E. Cha, Y.-W. Chao, et al. World simulation with video foundation models for physical ai. arXiv preprint arXiv:2511.00062 , 2025. [20] L. Li, Q. Zhang, Y. Luo, S. Yang, R. Wang, F. Han, M. Yu, Z. Gao, N. Xue, X. Zhu, et al. Causal world modeling for robot control. arXiv preprint arXiv:2601.21998 , 2026. [21] S. Gao, W. Liang, K. Zheng, A. Malik, S. Ye, S. Yu, W.-C. Tseng, Y. Dong, K. Mo, C.-H. Lin, et al. Dreamdojo: A generalist robot world model from large-scale human videos. arXiv preprint arXiv:2602.06949 , 2026. [22] G. Team, B. Wang, B. Li, C. Ni, G. Huang, G. Zhao, H. Li, J. Li, J. Lv, J. Liu, et al. Gigabrain-0.5 m*: a vla that learns from world model-based reinforcement learning. arXiv preprint arXiv:2602.12099 , 2026. [23] H. Zhen, X. Qiu, P. Chen, J. Yang, X. Yan, Y. Du, Y. Hong, and C. Gan. 3d-vla: A 3d vision-language-action generative world model. In International Conference on Machine Learning (ICML) , pages 61229– 61245. PMLR, 2024. [24] X. Li, L. Heng, J. Liu, Y. Shen, C. Gu, Z. Liu, H. Chen, N. Han, R. Zhang, H. Tang, et al. 3ds-vla: A 3d spatial-aware vision language action model for robust multi-task manipulation. In Conference on Robot Learning (CoRL) , pages 2344–2359. PMLR, 2025. [25] L. Sun, B. Xie, Y. Liu, H. Shi, T. Wang, and J. Cao. Geovla: Empowering 3d representations in vision-language-action models. arXiv preprint arXiv:2508.09071 , 2025. [26] Z. Zhang, H. Li, Y. Dai, Z. Zhu, L. Zhou, C. Liu, D. Wang, F. E. H. Tay, S. Chen, Z. Liu, Y. Liu, X. Li, and P. Zhou. From spatial to actions: Grounding vision-language-action model in spatial foundation priors. In The Fourteenth International Conference on Learning Representations (ICLR) , 2026. URL 
+
+https://openreview.net/forum?id=fzmittHfq3 .[27] X. Fan, S. Deng, X. Wu, Y. Lu, Z. Li, M. Yan, Y. Zhang, Z. Zhang, H. Wang, and H. Zhao. Any3d-vla: Enhancing vla robustness via diverse point clouds. arXiv preprint arXiv:2602.00807 , 2026. [28] B. Liu, Y. Zhu, C. Gao, Y. Feng, Q. Liu, Y. Zhu, and P. Stone. Libero: Benchmarking knowledge transfer for lifelong robot learning. Advances in Neural Information Processing Systems (NeurIPS) , 36:44776– 44791, 2023. [29] J. Wang, M. Chen, N. Karaev, A. Vedaldi, C. Rupprecht, and D. Novotny. Vggt: Visual geometry grounded transformer. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 5294–5306, 2025. [30] H. Lin, S. Chen, J. H. Liew, D. Y. Chen, Z. Li, Y. Zhao, S. Peng, H. Guo, X. Zhou, G. Shi, J. Feng, and B. Kang. Depth anything 3: Recovering the visual space from any views. In The Fourteenth International Conference on Learning Representations (ICLR) , 2026. URL https://openreview.net/forum?id= yirunib8l8 .[31] Y. Liu, T. Wang, X. Zhang, and J. Sun. Petr: Position embedding transformation for multi-view 3d object detection. In European Conference on Computer Vision (ECCV) , pages 531–548. Springer, 2022. 
+
+10 [32] Y. Liu, J. Yan, F. Jia, S. Li, A. Gao, T. Wang, and X. Zhang. Petrv2: A unified framework for 3d perception from multi-camera images. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV) , pages 3262–3272, 2023. [33] T. Z. Zhao, V. Kumar, S. Levine, and C. Finn. Learning fine-grained bimanual manipulation with low-cost hardware. In Proceedings of Robotics: Science and Systems (RSS) , Daegu, Republic of Korea, July 2023. doi:10.15607/RSS.2023.XIX.016. [34] Z. Fu, T. Z. Zhao, and C. Finn. Mobile aloha: Learning bimanual mobile manipulation using low-cost whole-body teleoperation. In Conference on Robot Learning (CoRL) , pages 4066–4083. PMLR, 2025. [35] A. O’Neill, A. Rehman, A. Maddukuri, A. Gupta, A. Padalkar, A. Lee, A. Pooley, A. Gupta, A. Man-dlekar, A. Jain, et al. Open x-embodiment: Robotic learning datasets and rt-x models. In IEEE Interna-tional Conference on Robotics and Automation (ICRA) , pages 6892–6903. IEEE, 2024. [36] A. Khazatsky, K. Pertsch, S. Nair, A. Balakrishna, S. Dasari, S. Karamcheti, S. Nasiriany, M. K. Srirama, L. Y. Chen, K. Ellis, et al. Droid: A large-scale in-the-wild robot manipulation dataset. In Proceedings of Robotics: Science and Systems (RSS) , Delft, Netherlands, July 2024. doi:10.15607/RSS.2024.XX.120. [37] K. Wu, C. Hou, J. Liu, Z. Che, X. Ju, Z. Yang, M. Li, Y. Zhao, Z. Xu, G. Yang, S. Fan, X. Wang, F. Liao, Z. Zhao, G. Li, Z. Jin, L. Wang, J. Mao, N. Liu, P. Ren, Q. Zhang, Y. Lyu, M. Liu, H. Jingyang, Y. Luo, Z. Gao, C. Li, C. Gu, Y. Fu, D. Wu, X. Wang, S. Chen, Z. Wang, P. An, S. Qian, S. Zhang, and J. Tang. Robomind: Benchmark on multi-embodiment intelligence normative data for robot manipulation. In 
+
+Proceedings of Robotics: Science and Systems (RSS) , LosAngeles, CA, USA, June 2025. doi:10.15607/ RSS.2025.XXI.152. [38] O. M. Team, D. Ghosh, H. Walke, K. Pertsch, K. Black, O. Mees, S. Dasari, J. Hejna, T. Kreiman, C. Xu, et al. Octo: An open-source generalist robot policy. In Proceedings of Robotics: Science and Systems (RSS) , Delft, Netherlands, July 2024. doi:10.15607/RSS.2024.XX.090. [39] J. Zheng, J. Li, Z. Wang, D. Liu, X. Kang, Y. Feng, Y. Zheng, J. Zou, Y. Chen, J. Zeng, T. Wang, Y.-Q. Zhang, J. Liu, and X. Zhan. X-vla: Soft-prompted transformer as scalable cross-embodiment vision-language-action model. In The Fourteenth International Conference on Learning Representations (ICLR) ,2026. URL https://openreview.net/forum?id=kt51kZH4aG .[40] K. Black, N. Brown, J. Darpinian, K. Dhabalia, D. Driess, A. Esmail, M. R. Equi, C. Finn, N. Fusai, M. Y. Galliker, et al. π0.5: a vision-language-action model with open-world generalization. In Conference on Robot Learning (CoRL) , pages 17–40. PMLR, 2025. [41] S. Ye, Y. Ge, K. Zheng, S. Gao, S. Yu, G. Kurian, S. Indupuru, Y. L. Tan, C. Zhu, J. Xiang, et al. World action models are zero-shot policies. arXiv preprint arXiv:2602.15922 , 2026. [42] D. Qu, H. Song, Q. Chen, Y. Yao, X. Ye, J. Gu, Z. Wang, Y. Ding, B. Zhao, D. Wang, and X. Li. Spatialvla: Exploring spatial representations for visual-language-action models. In Proceedings of Robotics: Science and Systems (RSS) , LosAngeles, CA, USA, June 2025. doi:10.15607/RSS.2025.XX.011. [43] T. Yuan, Y. Liu, C. Lu, Z. Chen, T. Jiang, and H. Zhao. Depthvla: Enhancing vision-language-action models with depth-aware spatial reasoning. arXiv preprint arXiv:2510.13375 , 2025. [44] S. Deng, M. Yan, Y. Zheng, J. Su, W. Zhang, X. Zhao, H. Cui, Z. Zhang, and H. Wang. Stereovla: Enhancing vision-language-action models with stereo vision. arXiv preprint arXiv:2512.21970 , 2025. [45] C. Li, J. Wen, Y. Peng, Y. Peng, and Y. Zhu. Pointvla: Injecting the 3d world into vision-language-action models. IEEE Robotics and Automation Letters (RAL) , 11(3):2506–2513, 2026. [46] Q. Yu, X. Yuan, Y. Jiang, J. Chen, D. Zheng, C. Hao, Y. You, Y. Chen, Y. Mu, L. Liu, et al. Artgs: 3d gaussian splatting for interactive visual-physical modeling and manipulation of articulated objects. In 
+
+2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , pages 13170–13177. IEEE, 2025. [47] F. Li, W. Song, H. Zhao, J. Wang, P. Ding, D. Wang, L. ZENG, and H. Li. Spatial forcing: Implicit spatial representation alignment for vision-language-action model. In The Fourteenth International Conference on Learning Representations (ICLR) , 2026. URL https://openreview.net/forum?id=euMVC1DO4k .[48] P. Li, Y. Chen, H. Wu, X. Ma, X. Wu, Y. Huang, L. Wang, T. Kong, and T. Tan. Bridgevla: Input-output alignment for efficient 3d manipulation learning with vision-language models. In The Thirty-ninth Annual Conference on Neural Information Processing Systems (NeurIPS) , 2025. URL https: //openreview.net/forum?id=ffBF6hYuQv .
+
+11 [49] Y. Chen, S. Liu, X. Shen, and J. Jia. Dsgn: Deep stereo geometry network for 3d object detection. In 
+
+Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 12536–12545, 2020. [50] C. Reading, A. Harakeh, J. Chae, and S. L. Waslander. Categorical depth distribution network for monoc-ular 3d object detection. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 8555–8564, 2021. [51] Z. Li, W. Wang, H. Li, E. Xie, C. Sima, T. Lu, Y. Qiao, and J. Dai. Bevformer: Learning bird’s-eye-view representation from multi-camera images via spatiotemporal transformers. In European Conference on Computer Vision (ECCV) , pages 1–18. Springer, 2022. [52] Y. Lipman, R. T. Q. Chen, H. Ben-Hamu, M. Nickel, and M. Le. Flow matching for generative modeling. In The Eleventh International Conference on Learning Representations (ICLR) , 2023. URL https: //openreview.net/forum?id=PqvMRDCJT9t .[53] B. Wen, M. Trepte, J. Aribido, J. Kautz, O. Gallo, and S. Birchfield. Foundationstereo: Zero-shot stereo matching. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 5249–5260, 2025. [54] Q. Bu, J. Cai, L. Chen, X. Cui, Y. Ding, S. Feng, S. Gao, X. He, X. Hu, X. Huang, et al. Agibot world colosseo: A large-scale manipulation platform for scalable and intelligent embodied systems. arXiv preprint arXiv:2503.06669 , 2025. [55] Y. Mu, T. Chen, Z. Chen, S. Peng, Z. Lan, Z. Gao, Z. Liang, Q. Yu, Y. Zou, M. Xu, et al. Robotwin: Dual-arm robot benchmark with generative digital twins. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 27649–27660, 2025. [56] T. Chen, Z. Chen, B. Chen, Z. Cai, Y. Liu, Z. Li, Q. Liang, X. Lin, Y. Ge, Z. Gu, et al. Robotwin 2.0: A scalable data generator and benchmark with strong domain randomization for robust bimanual robotic manipulation. arXiv preprint arXiv:2506.18088 , 2025. [57] J. Wang, M. Chen, S. Zhang, N. Karaev, J. Sch¨ onberger, P. Labatut, P. Bojanowski, D. Novotny, A. Vedaldi, and C. Rupprecht. Vggt-Ω. arXiv preprint arXiv:2605.15195 , 2026. [58] M. Shi, L. Chen, J. Chen, Y. Lu, C. Liu, G. Ren, P. Luo, D. Huang, M. Yao, and H. Li. Is diversity all you need for scalable robotic manipulation? IEEE Transactions on Robotics (TRO) , 2026. [59] Y. Ze, G. Zhang, K. Zhang, C. Hu, M. Wang, and H. Xu. 3d diffusion policy: Generalizable visuomotor policy learning via simple 3d representations. In Proceedings of Robotics: Science and Systems (RSS) ,Delft, Netherlands, July 2024. doi:10.15607/RSS.2024.XX.067. [60] R. Zheng, Y. Liang, S. Huang, J. Gao, H. Daum´ e III, A. Kolobov, F. Huang, and J. Yang. Tracevla: Visual trace prompting enhances spatial-temporal awareness for generalist robotic policies. In International Conference on Learning Representations (ICLR) , volume 2025, pages 54277–54296, 2025. [61] J. Zhang, Y. Chen, Y. Xu, Z. Huang, Y. Zhou, Y.-J. Yuan, X. Cai, G. Huang, X. Quan, H. Xu, et al. 4d-vla: Spatiotemporal vision-language-action pretraining with cross-scene calibration. Advances in Neural Information Processing Systems (NeurIPS) , 38:33914–33937, 2025. [62] W. Zhang, H. Liu, Z. Qi, Y. Wang, X. Yu, J. Zhang, R. Dong, J. He, H. Wang, Z. Zhang, et al. Dreamvla: a vision-language-action model dreamed with comprehensive world knowledge. Advances in Neural Information Processing Systems (NeurIPS) , 38:24195–24228, 2025. [63] Q. Bu, Y. Yang, J. Cai, S. Gao, G. Ren, M. Yao, P. Luo, and H. Li. Learning to act anywhere with task-centric latent actions. In Proceedings of Robotics: Science and Systems (RSS) , LosAngeles, CA, USA, June 2025. doi:10.15607/RSS.2025.XXI.014. [64] J. Qian, B. Han, C. Shi, L. Xiao, L. Yang, S. Shi, and L. Jiang. Geopredict: Leveraging predictive kinematics and 3d gaussian geometry for precise vla manipulation. arXiv preprint arXiv:2512.16811 ,2025. [65] M. J. Kim, C. Finn, and P. Liang. Fine-tuning vision-language-action models: Optimizing speed and success. In Proceedings of Robotics: Science and Systems (RSS) , LosAngeles, CA, USA, June 2025. doi:10.15607/RSS.2025.XXI.017. 
+
+12 This appendix provides supplementary materials to support and expand upon the core methodolo-gies, architectural implementations, and empirical findings presented in the main text. To ensure completeness, reproducibility, and rigorous academic transparency, the remainder of this document is structured into four sequential sections: Sec. A delineates the comprehensive operational defini-tions, hardware specifications, environmental layouts, and precise data collection protocols for all five complex, long-horizon real-world dual-arm manipulation tasks. Sec. B expands upon the math-ematical formulations, structural nuances of the vertex map/spectrum encoding, and algorithmic implementations of the spatial-temporal alignment data pipeline. Sec. C presents exhaustive quan-titative performance metrics, complete baseline comparisons, extensive simulation ablations, and additional qualitative keyframe breakdowns across diverse out-of-distribution evaluation scenarios. Sec. D provides a candid, in-depth critical analysis of our framework’s boundaries, ongoing techni-cal challenges such as its reliance on explicit camera calibration, and strategic research directions for scaling BEV representation learning within embodied intelligence. 
+
+## A More Details of Manipulation Tasks and Setups 
+
+To provide maximum technical clarity, and hardware transparency, this section details the physical task definitions, robotic platforms, sensory configurations, and teleoperation data collection proto-cols for our five real-world long-horizon bimanual manipulation evaluation benchmarks. Agilex : Fold Mailer Box / Fold Cloth DexForce W1 *: Scoop Popcorn DexForce W1 : Handover Book DexForce A1 : Fold Cloth           
+
+> (a) (b) (c) (d)
+> Leader-Follower Teleoperation VR-Based Teleoperation VR-Based Teleoperation VR-Based Teleoperation
+
+Figure 6: Hardware, Platforms and Teleoperation Data Collection Interfaces. From left to right: (a) the Agilex dual-arm robot platform using grippers, (b) the W1 humanoid robot platform using dexterous hands, (c) the W1 humanoid robot platform using grippers, and (d) the A1 semi-humanoid robot platform using grippers. 
+
+A.1 Agilex Bimanual Setup: Fold Mailer Box & Fold Cloth 
+
+Hardware and Sensory Configuration: Following the standard hardware parameters specified in X-VLA [39], the platform comprises two 6-DoF PiPER mechanical arms equipped with dual parallel-jaw grippers (Fig. 6(a)). The vision system consists of one table-mounted central head camera and two arm-mounted wrist cameras, all instantiated via Orbbec DaBai binocular depth sensors. Although the native sensors support active depth channels, all data logging and policy inference operations utilize only the RGB streams operating at 30 FPS to ensure systemic throughput and computation efficiency. Hand-eye calibration is explicitly performed across all three views relative to the tabletop workspace boundary to facilitate the fast geometric synthesis of the Bird’s-Eye-View (BEV) input frame for supporting the Dex-BEV’s finetuning and deployment. 
+
+Task Fold Mailer Box : This task requires the dual-arm system to construct a structural 3D con-tainer out of an initially disassembled mailer box. Given the extreme structural complexity of folding a rigid-articulated item from scratch, the initial state is systematically simplified to prevent complete planar adherence to the workspace surface (non-prehensile grasping failure). All critical joints of 13 the box are pre-creased, and the box is placed inside-up. No horizontal orientation constraints are enforced during deployment, which means the initial position and yaw angles are randomly mu-tated across the active workspace area during data collection to enrich spatial data distribution and guarantee model convergence. To counteract the out-of-distribution (OOD) structural traits of this task relative to general internet-scale pre-training datasets, we collect 1,500 teleoperated demon-stration trajectories. The duration per rollout scales non-uniformly from 30 to 45 seconds due to variation in the pre-manipulation re-orientation steps and occasional correction maneuvers. 
+
+Task Fold Cloth : To evaluate the model’s policy robustness when interacting with highly de-formable objects, this task presents an unconstrained cloth folding assignment. Rather than initiating from an extreme knot condition, the initial garment state alternates between a randomized crumpled configuration or a pre-flattened placement. The goal-conditioned policy must decouple this task into two primitive capacities: active flattening followed by geometric folding. Since primitive garment manipulation layouts may exist within internet-scale pre-training distributions, we collect a com-pact set of 400 demonstrations for target downstream VLA fine-tuning. The execution timeframe per trajectory spans between 50 and 75 seconds , where the iterative smoothing and flattening phase introduces the highest variance into the sub-step execution duration. 
+
+A.2 DexForce W1 Humanoid Setup: Scoop Popcorn 
+
+Hardware and Sensory Configuration: This task utilizes the DexForce W1 wheeled-humanoid mobile robot platform. The end-effectors are configured with dual 6-DoF five-finger BrainCo Revo-2 dexterous anthropomorphic hands (Fig. 6(b)). Visual observation is captured by a centralized KingFisher CV1 binocular camera on the robot’s head, augmented by two RealSense D405 binocular sensors mounted rigidly to the wrist joints. To handle the heterogeneous camera profiles efficiently, data logging frequency is standardized at 30 FPS (the action execution frequency is downsampled into 10 FPS for improving efficiency). 
+
+Task Definition and Constraints: Teleoperation data collection is performed via a Meta Quest 3s interface, mapping the operator’s egocentric viewing frame directly to the robot’s KingFisher head camera observation stream. For hardware safety and structural complexity reduction, the wheeled mobile base is locked, and the vertical torso elevation is pinned to a constant parameter. During both teleoperation and autonomous rollout evaluation, only the dual-arm chains and the central rotational waist joint remain active. The operational joint trajectories are continuously solved via an analytical Inverse Kinematics (IK) solver map based on end-effector poses. To guarantee continuous material handling without degradation during long-horizon evaluations, real-world granular corn kernels are substituted with standardized yellow foam balls. We collect about 1,200 highly dexterous demon-strations with trajectory lengths spanning 45 to 65 seconds . The task contains four compounded structural bottlenecks: 1) stable dexterous grasping of a highly compliant frustum-shaped paper cup, 2) picking up and orienting a rigid scooping shovel with the opposite hand, 3) executing a deep gran-ular scoop to fill the shovel cavity, and 4) executing multi-limb spatial synchronization to pour the granular materials smoothly into the target cup without spilling. 
+
+A.3 DexForce W1 Humanoid Setup: Handover Book 
+
+Hardware and Sensory Configuration: To maximize grasping rigidity for rigid-object transfer, the W1 wheeled humanoid’s end-effectors are swapped from dexterous hands to dual parallel-jaw PiPER grippers (Fig. 6(c)). The camera allocation identical to the previous setup is maintained (KingFisher CV1 head camera and dual RealSense D405 wrist cameras running at 10 FPS), though the task structure functionally employs only the right robotic appendage for book manipulation. 
+
+Task Definition and Constraints: Data collection follows the same base-locked, torso-fixed Meta Quest 3s architecture. However, to capture human-interactive parameters, the motor controlling the vertical pitch axis of the neck is unfixed. The camera pitch velocity is directly linked via an API to the vertical height offset of the primary end-effector relative to the central base coordinate frame. This programmatic pairing guarantees that during the initial tabletop search phase, the neck 14 actively pitches downward to maximize the field of view over the workspace, and subsequently pitches upward as the book is elevated to focus directly on the interacting human’s hand. This removes the necessity of modifying the action expert architecture to predict extra neck joints. We log 500 interactive demonstrations varying from 10 to 20 seconds , where the timing variations result from randomized human hand trajectories or manual repositioning during the pre-grasping. The policy must satisfy a dual mandate: robust semantic instruction compliance (e.g., isolating and grasping a target blue versus brown book) and adaptive spatial agility when handling dynamic human-in-the-loop handovers across different human partners. 
+
+A.4 DexForce A1 Semi-Humanoid Setup: Fold Cloth 
+
+Hardware and Sensory Configuration: This task is validated on the DexForce A1 fixed-base semi-humanoid robot, which omits the liftable torso joint below the waist while retaining the upper dual-arm kinematic architecture and head modules (Fig. 6(d)). To optimize edge-line fabric grasping, the robot uses parallel-jaw Pika grippers alongside the standard KingFisher CV1 head and dual RealSense D405 wrist camera suite configuration (all cameras are synchronized at 30 FPS). 
+
+Task Definition and Constraints: Operators drive the system using the Meta Quest 3s frame-work. Because the cloth manipulation space remains strictly bounded within the immediate frontal workspace, the head camera pitch angle is set to a static downward inclination during both data collection and real robot deployment phases. We accumulate a targeted dataset of 200 demon-strations . The garment is initially placed at the geometric workspace center, alternating between pre-flattened states and highly unconstrained crumpled configurations. The operational trajectory duration scales from 60 to 90 seconds . This duration is slightly longer than the corresponding Ag-ilex mobile arm setup because driving a high-DoF semi-humanoid morphology via egocentric VR interfaces introduces higher teleoperation latency and execution overhead than direct master-slave mechanical tracking. 
+
+## B More Details of Proposed Framework Dex-BEV 
+
+B.1 BEV Image Construction 
+
+As proposed in Sec. 3.3 of the main text, we propose to synthesize BEV images from multi-view raw observations after designation of BEV frames. This BEV image is constructed by a top-down 
+
+orthographic projection of the aggregated colored point clouds from all cameras, where “top-down” is defined as the z-axis of the BEV frame. We select a 2D region-of-interest of 1.5 meter centered at the origin of the BEV frame, as the region to compute top-down orthographic projection. The color point clouds are rasterized into a (RGB) image with a fixed resolution at 224 ×224. During the rasterization, we compute a height map that is pixel-wise aligned with the RGB BEV image. During network training, this height map is further converted into a vertex map (expressed in BEV frame), and feed into the policy similar to other RGB images and vertex maps (from raw camera views). 
+
+B.2 Temporal Alignment in Trajectory Processing 
+
+To eliminate the pseudo-motion noise caused by non-uniform execution speeds in human-teleoperated demonstrations [58], we apply a velocity-based temporal normalization. For a given trajectory segment At = {at}Kt=1 , we compute the translational displacement ∆Lt = ∥pt+1 − pt∥2
+
+and the rotational displacement ∆θt = 2 arccos( |⟨ qt+1 , qt⟩| ), where p ∈ R3 and q ∈ SO (3) denote the position and quaternion orientation of the end-effector. The normalized time interval ∆τt is determined by: 
+
+∆τt = max 
+
+ ∆Lt
+
+vstd 
+
+, ∆θt
+
+ωstd 
+
+
+
+, (6) where vstd and ωstd are pre-defined standard velocities for quasi-static manipulation. For more than one robot arm, the ∆τt is the maximum of two arms. For movement that are almost static, i.e. 
+
+∆τt ≈ 0, we would either use the original duration or directly drop this frame (if the static “waiting” 15 is not relevant to the manipulation task). During training, we perform cubic spline interpolation to obtain the action chunk. 
+
+## C More Details of Various Experimental Results 
+
+This section provides extended quantitative data from our simulation benchmarks and provides com-prehensive qualitative analyses, case studies, and keyframe breakdowns from our real-world evalu-ations across multiple robotic embodiments. Comprehensive full-length rollouts for all real-world tasks are provided in the Supplementary Videos .Camera 
+
+> BEV
+> Camera
+> BEV
+> Camera
+> BEV
+> Original
+> Unchanged
+> Mutate
+> Robot &
+> Scene
+> Base Pose
+> Mutate
+> Camera
+> Pose
+
+Figure 7: Examples of modified LIBERO. From top to bottom, these represent observations with no parameters modified, observations with modifications to the robot and workstation, and observa-tions with only the camera pose modified, respectively. 
+
+C.1 Simulation Benchmarks and Ablation Studies 
+
+For the LIBERO [28] and RoboTwin 2.0 [55] benchmarks, we first use the official setups regarding robots, training data and evaluation protocol. On the other hand, we modify the camera pose, robot base pose and scene pose to evaluate the robustness of our proposed method Dex-BEV with respect to these perturbations, as detailed below (some modified examples can be found in Fig. 7). For the camera pose, we apply the following randomization on translation and rotation. Given the canonical pose of the third-person view camera, we apply rotation with respect to the world z-axis, rotation to change the angle of tilt, and rotation with respect to the optical axis of the camera. We used uniform distributions of the rotation angles among each case, with ranges of 140/60/60 degrees for each axis. Moreover, we randomize the distance from the camera to the center of the scene, by uniformly sampling from an interval centered at the canonical distance. The range of the interval is 1 meter. For each trajectory rollout, the camera pose is randomly reset at the beginning and kept static. To ensure that the relevant objects have sufficient visibility, we filter the sampled camera pose using the following criterion: the number of points (computed from depth image and camera parameters) in a 3D region-of-interest (manually selected for each scene) must exceed a given threshold. 16 Table 4: Simulation benchmark results and generalization to different embodiments. We present the success rate for each compared method across task suites in LIBERO [28] and RoboTwin 2.0 [55]. This table is the complete supplementary version of Tab. 1 in the main text. Method Cross Embodiments LIBERO (Official) RoboTwin 2.0 Spatial Object Goal Long Average Clean Randomized DP3 [59] False — — — — — 55.2 5.0 RDT-1B [15] False — — — — — 34.5 13.7 TraceVLA [60] False 84.6 85.2 75.1 54.1 74.8 — —Octo [38] False 78.9 85.7 84.6 51.1 75.1 — —OpenVLA [13] False 84.7 88.4 79.2 53.7 76.5 — —SpatialVLA [42] False 88.2 89.9 78.6 55.5 78.1 — —4D-VLA [61] False 88.9 95.2 90.9 79.1 88.6 — —DreamVLA [62] False 97.5 94.0 89.5 89.5 92.6 — —
+
+π0 [14] False 96.8 98.8 95.8 85.2 94.2 46.4 16.4 DepthVLA [43] False 96.4 98.0 95.8 89.2 94.9 — —UniVLA [63] False 95.4 98.8 93.6 94.0 95.4 — —GeoPredict [64] False 98.0 98.2 95.7 94.0 96.5 — —OpenVLA-OFT [65] False 97.6 98.4 97.9 94.5 97.1 — —GeoVLA [25] False 98.4 99.0 96.6 96.6 97.7 — —X-VLA [39] False 98.2 98.6 97.8 97.6 98.1 70.0 39.0 2D Ablation True 93.2 95.0 92.8 90.2 92.8 64.8 35.2 Dex-BEV True 98.2 98.0 97.8 97.0 97.8 76.0 42.0 After permuting the camera pose, we apply a randomly permutation of the base pose of the robot and scene , where scene implies every item except the robot (usually including objects on the table). At the beginning of the trajectory rollout, we apply a translational permutation of 10 cm and a rotational permutation of 5 degrees on all x, y, and z axes. After the permutation, we move the robot end-effector pose to compensate for the offset caused by robot and scene movements. The official demonstration trajectories are re-used by applying similar compensations. We would filter out randomly sampled robot and scene base pose pair by kinematic reachability. From Tab. 2 of the main text, directly evaluating VLA trained with trajectories in official setups, such as official X-VLA checkpoints [39], leads to a nearly zero success rate. Moreover, the 2D ablation baselines, even trained with mutated setups, cannot absorb the pose variation of the training data and yield the success rate again nearly zero. In comparison, the proposed method achieves reasonable success rate with aligned 3D input & output and view-invariant BEV images. To provide a clearer view of the specific performance of various previous VLA approaches, we present a more comprehensive comparison with multiple prior methods in Tab. 4. 
+
+C.2 Agilex Bimanual Evaluations: Fold Mailer Box & Fold Cloth 
+
+In-Distribution Keyframe Rollouts: Fig. 8 illustrates the chronological keyframe sequences of autonomous in-distribution (ID) executions for tasks Fold Mailer Box and Fold Cloth on the Agilex bimanual platform. These long-horizon tasks represent some of the most intricate dexterous manipulation challenges in current literature [14, 39]. Notably, while state-of-the-art models like 
+
+π0 require approximately 1,000 hours of garment data to achieve policy convergence, and X-VLA limits this requirement to roughly 1,500 demonstrations ( ∼25 hours), Dex-BEV accomplishes a higher average success rate using only around 400 demonstrations. This reduction to less than one-third of X-VLA’s data footprint highlights our framework’s superior data efficiency and its readiness for rapid on-site deployment. Similarly, for the complex Fold Mailer Box task, the 1,500 fine-tuning demonstrations translate to only about 17 total hours of execution time—significantly lower than data requirements for comparable dexterous skills in literature [20, 22]. 
+
+Out-of-Distribution (OOD) and Error Recovery Tests: To evaluate policy resilience, we intro-duce various rigorous OOD perturbations. 17 120 cm                     
+
+> 75 cm
+> 80 cm
+> 85 cm  6-DoF
+> PiPER
+> 6-DoF
+> PiPER
+> Wrist Camera
+> Orbbec DaBai
+> Wrist Camera
+> Orbbec DaBai
+> Head Camera
+> Orbbec DaBai
+> Fold Mailer Box
+> Fold C loth
+> ⑪⑫⑬⑭⑮
+> ⑥⑦⑧⑨⑩
+> ⑤②③④①
+> ⑤②③④①
+> ⑥⑦⑧⑨⑩
+> ⑪⑫⑬⑭⑮
+
+Figure 8: Real-world bimanual platform and task execution. (Left ) Configuration of the Agilex bimanual robotic platform used for data collection and inference. ( Right ) Detailed view of target objects and sequential keyframes from autonomous rollouts of two challenging long-horizon tasks: 
+
+Fold Mailer Box (articulated) and Fold Cloth (deformable). These snapshots illustrate Dex-BEV’s capability in handling complex spatial reasoning and multi-arm coordination. 
+
+(1) Self-Recovery and Orientation Invariance: For the task Fold Mailer Box , the box is initial-ized with unseen poses and extreme yaw angles. As shown in Fig. 9, Dext-BEV utilizes closed-loop visual servoing to execute pre-manipulation re-orientation steps, aligning the box before initiating the folding sequence. This spatial awareness enables robust error self-recovery. If a box slips mid-execution, the policy autonomously recovers from the anomalous state without human intervention. New Orientation 1 
+
+New Orientation 2 
+
+New Orientation 3 
+
+Out-of-Distribution (OOD)                   
+
+> ⑥⑦⑧⑨⑩
+> ⑤②③④①
+> ⑤②③④①
+> ⑤②③④①
+> ⑥⑦⑧⑨⑩
+> ⑥⑦⑧⑨⑩
+
+Figure 9: Rollouts of Self-Recovery and Orientation Invariance. For task Fold Mailer Box ,we demonstrate the qualitative results under the OOD trails. It is best to zoom in to view the details. 
+
+(2) Continuous Operation Facility: Still for the task Fold Mailer Box , we demonstrate the pol-icy’s capacity for continuous, multi-cycle operation in the Supplementary Videos . After complet-ing a box, the right arm clears the workspace, both arms return to their home configurations, and a new box blueprint is immediately introduced. Backed by high single-cycle success rates, Dex-BEV reliably handles 3 to 5 continuous, un-interrupted folding rollouts. 
+
+(3) Zero-Shot Instance Generalization: For the task Fold Cloth , the model is trained exclusively on white XL/XXL T-shirts. In OOD trials, we evaluate the system against a small beige S-sized 18 shirt, a light green XXL shirt, and a gray XXL shirt. Fig. 10 validates that the model generalizes zero-shot across diverse colors, geometries, and scales. Out-of-Distribution 
+
+(OOD) 
+
+## Unseen 
+
+## Unseen 
+
+## Unseen ⑥ ⑦ ⑧ ⑨ ⑩              
+
+> ⑤②③④①
+> ⑤②③④①
+> ⑤②③④①
+> ⑥⑦⑧⑨⑩
+> ⑥⑦⑧⑨⑩
+
+Figure 10: Rollouts of Zero-Shot Instance Generalization. For task Fold Cloth , we demonstrate the qualitative results under the OOD trails. It is best to zoom in to view the details. 
+
+C.3 DexForce W1 Humanoid Evaluations: Scoop Popcorn 
+
+Multi-View Keyframe Breakdowns: Fig. 11 presents the chronological execution of the Scoop Popcorn task from two complementary viewing angles. This task couples tool-use, high-DoF an-thropomorphic dexterity, dense multi-object contact, granular material estimation, and wide-range trajectory tracking. While similar granular tasks have been demonstrated on humanoid hardware platforms like Tesla Optimus, technical details are omitted in public literature, and autonomous ex-ecution validity remains unverified]. In contrast, Dex-BEV handles this task autonomously with a compact post-training dataset of approximately 18 total hours, providing a highly scalable receipt for rapid deployment in new manipulation scenarios. BrainCo Revo 2               
+
+> Realsense
+> D405 ( Wrist )
+> KingFisher
+> CV1 (Head)
+> DexForce W1 Humanoid
+> 65 cm
+> 35 cm
+> 85 cm
+> 120 cm
+> 27 cm
+> ②③④①
+> ⑥⑦⑧⑨⑩
+> ⑤
+> ②③④①⑤
+> ⑥⑦⑧⑨⑩
+> VIEW 1
+> VIEW 2
+
+Figure 11: Bimanual humanoid platform and long-horizon task execution. (Left ) Detailed con-figuration of the DexForce W1 humanoid robot with two dexterous hands and its operation envi-ronment. ( Right ) Multi-view keyframes showcasing the autonomous rollout of the Scoop Popcorn 
+
+task. This complex, long-horizon sequence requires fine-grained bimanual coordination to manipu-late the paper cup while simultaneously scooping and filling it with a shovel. 19 Dynamic Adversarial Robustness: Although adversarial samples or shifting targets were entirely absent during data collection, we introduce active human intervention during the OOD testing phase. During the robot’s pre-grasping approach, multiple human operators dynamically and repeatedly shift the target paper cup’s location. As verified in Fig. 12, Dex-BEV dynamically perceives the cup’s displacement, smoothly retracts its arms, recalculates its spatial trajectory, and successfully reseals the grasp. This resistance to un-modeled workspace disturbances underscores the reactivity enabled by our unified 3D BEV observation space. ⑪ ⑫        
+
+> ⑥
+> ⑦⑧⑨
+> ⑩
+> ⑤
+> ②③
+> ④
+> ①②③
+> ④
+> ①
+> ⑥
+> ⑦⑧
+> ⑤
+> ⑪⑫
+> ⑨
+> ⑩
+> USER 1 USER 2
+
+Figure 12: Robustness to dynamic interference. Sequential snapshots from the cup-grasping phase of the popcorn scooping task on the DexForce W1 platform. The images demonstrate the model’s real-time reactivity. Despite random manual displacements of the target cup by two different users, Dex-BEV successfully recalibrates the motion trajectory to achieve a successful grasp. This high-lights the closed-loop robustness of the proposed framework against external disturbances. DexForce W1              
+
+> Humanoid
+> Realsense
+> D405 (Wrist )
+> KingFisher
+> CV1 (Head)
+> PiPER Gripper
+> 120 cm
+> 60 cm
+> 85 cm
+> ②③④①
+> ②③④①
+> ⑤⑥⑦⑧
+> Language Instruction: Pick up the brown book and hand it over to the person in front of you.
+> 25 cm
+> 60 cm
+> Language Instruction: Pick up the blue book and hand it over to the person in front of you.
+> moving
+> mov ed
+> chasing
+> chas ed
+
+Figure 13: Multi-modal interactive handover book task. (Left ) DexForce W1 humanoid platform with two grippers and its workspace setup. ( Right ) Successive keyframes of the robot executing a 
+
+Handover Book task conditioned on different language instructions. The sequences highlight Dex-BEV’s ability to interpret color-specific commands and perform precise, interactive maneuvers for handing over target objects to a human partner. 
+
+C.4 DexForce W1 Humanoid Evaluations: Handover Book 
+
+Fig. 13 details the interactive task Handover Book evaluation under diverse language instructions and dynamic workspace shifting, showing Dex-BEV’s superiority on semantic grounding and in-teractive tracking. The task also verifies the model’s semantic sensitivity. The policy isolates and tracks specific targets based on user-specified attributes (e.g., fetching a blue versus a brown book). Furthermore, during the grasping phase, an operator actively shifts and rotates the underlying book-shelf (indicated by red arrows). As shown by the tracking vectors (indicated by green arrows), the arm recalculates its relative trajectory in real-time to complete the grasp. Once the object is elevated and moved toward the user, the policy tracks the user’s hand and maintains its grasp until it senses 20 firm physical contact and a steady receipt by the human partner, at which point it opens the parallel jaws and safely returns to its home configuration. 
+
+C.5 DexForce A1 Semi-Humanoid Evaluations: Fold Cloth 
+
+Fig. 14 documents the cloth folding task executed on the A1 semi-humanoid platform, showing Dex-BEV’s capability about the distinct state segmentation and human-like rollout trajectories. The policy successfully handles two distinct structural initialization states: a flat canonical layout and an unconstrained, crumpled pile. Dex-BEV accurately segments the task phases, flattening the crum-pled garment prior to executing the folding sequence. This adaptation uses only 200 demonstration trajectories—fewer than the 400 demonstrations used on the Agilex dual-arm platform. This effi-ciency stems from a more constrained frontal workspace layout that reduces the necessary spatial sampling density. Interestingly, due to its anthropomorphic shoulder configuration and elevated workspace clearance, the A1 platform generates more human-like arm trajectories compared to the table-bound Agilex arm setup. The greater vertical range allows the A1 robot to lift, smooth, and align the fabric layers with high precision, yielding flatter, wrinkle-free folds. These qualitative dif-ferences highlight the impact of data diversity and embodiment kinematics on downstream policy behavioral traits. DexForce A1           
+
+> Humanoid
+> KingFisher
+> CV1 (Head)
+> Realsense
+> D405 (Wrist)
+> Pika Gripper
+> ⑪⑫⑬⑭⑮
+> ⑥⑦⑧⑨⑩
+> ⑤②③④①
+
+Figure 14: Bimanual garment folding on the DexForce A1 platform. (Left ) Overview of the semi-humanoid hardware configuration and experimental workspace for the task Fold Cloth . ( Right )Sequential keyframes of an autonomous rollout demonstrating long-horizon manipulation of a de-formable garment. The sequence highlights the framework’s ability to coordinate dual-arm trajecto-ries for complex fabric manipulation while the robot’s lower body remains stationary. 
+
+## D More Discussions of Limitations and Future Works 
+
+To provide a critical and transparent evaluation of the Dex-BEV framework, this section unpacks the systemic limitations of our current methodology, analyzes the corner cases and failure modes observed across our five real-world benchmarks, and outlines strategic pathways for future enhance-ments in embodied foundation models. 
+
+D.1 Methodological Limitations of Dex-BEV 
+
+While Dex-BEV successfully establishes a unified 3D coordinate system for multi-view observations and actions, it inherits a strong dependency on precise camera calibration, which is relatively easy to obtain in simulation. The structural integrity of the synthesized Bird’s-Eye-View (BEV) images and vertex maps relies heavily on the accuracy of the extrinsic matrices Tt,i . In real-world deploy-ments, subtle hardware vibrations, thermal expansion of robot links, or accidental physical contact can introduce extrinsic drift, leading to geometric distortion or pixel-to-vertex misalignment in the BEV projection. Furthermore, our current depth relaxation strategy (Vertex Spectrum) via linear-increasing discretization (LID) samples a fixed number of depth hypotheses. While computationally efficient, this deterministic quantization introduces spatial discretization errors in fine-grained dex-terous zones, occasionally rounding off the sub-centimeter geometric boundaries required for tight 21 multi-finger interactions. Lastly, the current pipeline processes historical data over a relatively short temporal window, which restricts the policy’s capacity to build abstract semantic representations of long-horizon task progress independent of immediate geometric changes. 
+
+D.2 Failure Mode Analysis of Real-World Benchmarks 
+
+Despite achieving state-of-the-art success rates across diverse dual-arm manipulation platforms, our real-world evaluations did not achieve a 100% success rate due to a combination of hardware con-straints, kinematic limits, and un-modeled environmental stochasticity: • Hardware Instability and Mechanical Fatigue: Under long-duration un-interrupted testing, me-chanical wear introduces backlash in the high-DoF anthropomorphic hands and parallel grip-pers. This physical degradation reduces joint tracking accuracy, resulting in micro-slips during the grasp phase of the Fold Mailer Box and Scoop Popcorn tasks. • Kinematic Reachability and Fixed-Base Constraints: Because the bases of the Agilex, A1 and W1 humanoids are locked during our experiments to ensure safety, the dual-arm systems occasionally encounter kinematic singularities or reachability limits. For example, if a cloth or a mailer box is randomly placed near the extreme boundary of the workspace during an out-of-distribution (OOD) trial, the optimal end-effector trajectory derived by the policy cannot be executed due to joint-space limits, causing the sub-step to fail. • Unseen Geometric and Material OOD Distributions: While the policy exhibits impressive zero-shot generalization across colors and scales, extreme variations in object material proper-ties remain a bottleneck. In the Fold Cloth task, deploying a garment with highly specular, silky fabric or extreme stiffness causes errors in both the pre-trained VLM’s feature extraction and the geometric projection, resulting in anomalous folding actions. • Perceptual Distortions from Extreme Environmental Shifts: Drastic scene-level lighting vari-ations, heavy shadows cast by human operators during the Handover Book task, or highly reflective tabletop backgrounds degrade the quality of the multi-view visual inputs. These se-vere visual perturbations propagate through the large VLM backbone, producing jittery action sequences or premature jaw releases. 
+
+D.3 Future Research Directions 
+
+To address these challenges and maximize the real-world utility of 3D-aligned policy learning, future developments will focus on two major dimensions: 
+
+(1) Algorithmic and Data Infrastructure Enhancements: 
+
+• World-Action Model (WAM) Integration: Expanding Dex-BEV into a generative 3D World-Action Model will enable the policy to predict future 3D BEV states and point cloud rollouts concurrently with action generation. This forward-prediction capability will allow the robot to perform mental rollouts and self-correct trajectories before execution. • Lightweight and Long-Horizon Memorable VLAs: We aim to compress the VLM backbone into a specialized, high-frequency edge-VLA model to lower inference latency on consumer hard-ware. Simultaneously, integrating state-space models (e.g., Mamba architectures) or advanced transformer sequence-modeling techniques will equip the VLA with long-range memory, al-lowing it to maintain abstract task context over hundreds of steps. • Leveraging 3D Vision Foundation Models for Scaling : We plan to incorporate rapidly maturing 3D vision foundation models—including advanced SLAM frameworks, multi-view geometry reconstruction pipelines, and novel view or scene synthesis models—directly into our data preparation infrastructure. By utilizing these models to pre-process large-scale robotic ma-nipulation datasets and egocentric human demonstration videos, we can automatically extract precise camera trajectories and dense spatial annotations. This paradigm will drastically lower 22 the cost of generating highly accurate, geometrically consistent, and diverse 3D-aligned pre-training data at scale, further amplifying the framework’s cross-embodiment generalization. 
+
+(2) Hardware Capabilities and Multi-Modal Grounding: 
+
+• Transition to Mobile Manipulation: Unlocking the full wheel-foot locomotion capabilities of the Agilex, W1 and A1 platforms will transition the framework from tabletop setups to uncon-strained, room-scale mobile manipulation tasks. • Multi-Agent Robotic Collaboration: Extending our unified BEV coordinate mapping to dis-tributed, multi-robot systems will allow multiple distinct embodiments to share a single canon-ical spatial observation grid, enabling zero-shot multi-agent cooperative manipulation. • Multi-Modal Sensory Fusion: To complement visual perception, we plan to ingest high-frequency force-tactile, and auditory feedback arrays into the VLA architecture. Incorporating tactile streaming will resolve the visual occlusions that occur during tight bimanual handovers, establishing a truly robust, multi-modal interface for generalizable embodied intelligence. 23
