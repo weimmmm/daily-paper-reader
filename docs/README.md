@@ -6,117 +6,87 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-05-31 ~ 2026-06-09
-- 运行时间：2026-06-09 09:17:08 UTC
+- 最新运行日期：2026-06-09
+- 运行时间：2026-06-09 21:41:55 UTC
 - 运行状态：成功
-- 本次总论文数：31
-- 精读区：20
+- 本次总论文数：21
+- 精读区：10
 - 速读区：11
 
 ### 今日简报（AI）
-今日精读20篇、速读11篇，聚焦无人机视觉-语言导航与强化学习模型不确定性两大方向。
+今日精选21篇论文，重点聚焦GPU并行多任务强化学习与VLA模型的无奖励微调。
 
-最值得关注的是《ImagineUAV》提出的空中导航新框架，以及《All Models are Wrong》对强化学习中模型不确定性价值的探讨。
+最值得关注的是两篇9.0分工作：GPU并行多任务RL结合演示引导策略优化，以及FlowPRO的流匹配VLA近端偏好优化。
 
-建议优先精读这两篇高分论文，它们分别代表了具身智能与决策理论的前沿进展。
-- 详情：[/20260531-20260609/README](/20260531-20260609/README)
+建议读者优先阅读这两篇高分论文，并利用RoboSemanticBench等语义诊断工具评估自身VLA模型的行动预测能力。
+- 详情：[/202606/09/README](/202606/09/README)
 
 ### 精读区论文标签
-1. [ImagineUAV: Aerial Vision-Language Navigation via World-Action Modeling and Kinodynamic Planning](/20260531-20260609/2606.01205v1-imagineuav-aerial-vision-language-navigation-via-world-action-modeling-and-kinodynamic-planning)  
+1. [GPU-Parallel Multi-Task Reinforcement Learning with Demonstration Guided Policy Optimization](/202606/09/2606.03335v1-gpu-parallel-multi-task-reinforcement-learning-with-demonstration-guided-policy-optimization)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：航空视觉语言导航
-2. [All Models are Wrong, Knowing Where is Useful: On Model Uncertainty in Reinforcement Learning](/20260531-20260609/2606.01363v1-all-models-are-wrong-knowing-where-is-useful-on-model-uncertainty-in-reinforcement-learning)  
+   evidence：GPU并行多任务强化学习用于机器人仿真
+2. [FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Preference Optimization](/202606/09/2606.05468v1-flowpro-reward-free-reinforced-fine-tuning-of-flow-matching-vlas-via-proximalized-preference-optimization)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：基于模型的强化学习中不确定性处理用于机器人
-3. [Hierarchical Semantic-Augmented Navigation: Optimal Transport and Graph-Driven Reasoning for Vision-Language Navigation](/20260531-20260609/2606.01565v1-hierarchical-semantic-augmented-navigation-optimal-transport-and-graph-driven-reasoning-for-vision-language-navigation)  
+   evidence：对VLA模型进行无奖励强化微调用于机器人策略
+3. [World-Language-Action Model for Unified World Modeling, Language Reasoning, and Action Synthesis](/202606/09/2606.05979v1-world-language-action-model-for-unified-world-modeling-language-reasoning-and-action-synthesis)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：视觉语言导航
-4. [Goal2Pixel: Grounding Goals to Pixels for Vision-Language Navigation](/20260531-20260609/2606.01621v1-goal2pixel-grounding-goals-to-pixels-for-vision-language-navigation)  
+   evidence：统一世界建模、语言和动作的具身基础模型
+4. [Q-VGM: Q-Guided Value-Gradient Matching for Flow-Matching VLA Policies](/202606/09/2606.08015v1-q-vgm-q-guided-value-gradient-matching-for-flow-matching-vla-policies)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：基于像素的连续环境视觉语言导航
-5. [PlatonicNav: Unveiling Semantic Correspondence in Navigation with Platonic Topological Maps](/20260531-20260609/2606.01788v1-platonicnav-unveiling-semantic-correspondence-in-navigation-with-platonic-topological-maps)  
+   evidence：面向具身智能体流匹配VLA策略的RL微调
+5. [IntentNav: Learning Spatial-Visual Object Navigation from Human Demonstrations](/202606/09/2606.08029v1-intentnav-learning-spatial-visual-object-navigation-from-human-demonstrations)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：利用拓扑地图统一视觉-语言导航和物体目标导航
-6. [Towards Precise Intent-Aligned VLA Aerial Navigation via Expert-Guided GRPO](/20260531-20260609/2606.02313v1-towards-precise-intent-aligned-vla-aerial-navigation-via-expert-guided-grpo)  
+   evidence：物体导航从人类示范学习
+6. [Mind Your Steps: A General Learning Framework for Accurate Humanoid Foothold Tracking](/202606/09/2606.08253v1-mind-your-steps-a-general-learning-framework-for-accurate-humanoid-foothold-tracking)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：VLA空中导航与强化学习微调
-7. [Ask When It Pays: Cost-Aware Open-Ended Interaction for Instance Goal Navigation](/20260531-20260609/2606.03175v2-ask-when-it-pays-cost-aware-open-ended-interaction-for-instance-goal-navigation)  
+   evidence：人形机器人导航与强化学习
+7. [Towards End to End Motion Planning and Execution for Autonomous Underwater Vehicles Using Reinforcement Learning](/202606/09/2606.08513v1-towards-end-to-end-motion-planning-and-execution-for-autonomous-underwater-vehicles-using-reinforcement-learning)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：实例目标导航结合成本感知交互
-8. [EvoMemNav: Efficient Self-Evolving Fine-Grained Memory for Zero-Shot Embodied Navigation](/20260531-20260609/2606.03509v1-evomemnav-efficient-self-evolving-fine-grained-memory-for-zero-shot-embodied-navigation)  
+   evidence：端到端深度强化学习用于AUV运动规划与执行
+8. [IR-SIM: A Lightweight Skill-Native Simulator for Navigation, Learning, and Benchmarking](/202606/09/2606.08729v1-ir-sim-a-lightweight-skill-native-simulator-for-navigation-learning-and-benchmarking)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：零样本具身导航
-9. [Post-Hoc Robustness for Model-Based Reinforcement Learning](/20260531-20260609/2606.03521v1-post-hoc-robustness-for-model-based-reinforcement-learning)  
+   evidence：轻量级导航模拟器用于机器人学习
+9. [Scaling by Diversified Experience for Vision-Language-Action Models](/202606/09/2606.09009v1-scaling-by-diversified-experience-for-vision-language-action-models)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：深度强化学习代理的后验鲁棒化
-10. [GN0: Toward a Unified Paradigm for Generation, Evaluation, and Policy Learning in Visual-Language Navigation](/20260531-20260609/2606.03682v1-gn0-toward-a-unified-paradigm-for-generation-evaluation-and-policy-learning-in-visual-language-navigation)  
+   evidence：面向VLA模型的RL管道，含意图解耦
+10. [TORL-VLA: Tactile Guided Online Reinforcement Learning for Contact-Rich Manipulation](/202606/09/2606.09337v1-torl-vla-tactile-guided-online-reinforcement-learning-for-contact-rich-manipulation)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：视觉语言导航数据生成与基准
-11. [Self-Refining Agentic Reinforcement Learning for Vision-Conditioned UAV Navigation](/20260531-20260609/2606.03963v1-self-refining-agentic-reinforcement-learning-for-vision-conditioned-uav-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：用于无人机导航的强化学习
-12. [AgenticRL: Self-Refining Agentic Reinforcement Learning for Vision-Conditioned UAV Navigation](/20260531-20260609/2606.03963v2-agenticrl-self-refining-agentic-reinforcement-learning-for-vision-conditioned-uav-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：用于视觉条件无人机导航的RL，带智能体引导奖励设计
-13. [From Ticks to Flows: Dynamics of Neural Reinforcement Learning in Continuous Environments](/20260531-20260609/2606.04275v1-from-ticks-to-flows-dynamics-of-neural-reinforcement-learning-in-continuous-environments)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：深度强化学习理论
-14. [WAM-Nav: Asymmetric Latent World-Action Modeling for Unified Visual Navigation](/20260531-20260609/2606.04907v1-wam-nav-asymmetric-latent-world-action-modeling-for-unified-visual-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：具身视觉导航与世界-动作模型
-15. [Robust Scene Transfer for PointGoal Navigation via Privileged Sensor Guided Contrastive Learning](/20260531-20260609/2606.05506v1-robust-scene-transfer-for-pointgoal-navigation-via-privileged-sensor-guided-contrastive-learning)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：点目标导航结合强化学习
-16. [Beyond Waypoints: A Trajectory-Centric Waypointing Paradigm for Vision-Language Navigation](/20260531-20260609/2606.07244v1-beyond-waypoints-a-trajectory-centric-waypointing-paradigm-for-vision-language-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：面向连续环境VLN的轨迹中心航点方法
-17. [Affordance-Based Hierarchical Reinforcement Learning for Quadruped Pedipulation](/20260531-20260609/2606.07506v1-affordance-based-hierarchical-reinforcement-learning-for-quadruped-pedipulation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：分层强化学习用于四足导航和操作
-18. [Neuro-Symbolic Injection of LTLf Constraints in Autoregressive Reinforcement Learning Policies](/20260531-20260609/2606.08312v1-neuro-symbolic-injection-of-ltlf-constraints-in-autoregressive-reinforcement-learning-policies)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：强化学习与时态逻辑约束
-19. [Reinforcement Learning for Flow-Matching Policies with Density Transport](/20260531-20260609/2606.08602v1-reinforcement-learning-for-flow-matching-policies-with-density-transport)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：流匹配策略的在线强化学习
-20. [SpaceVLN: A Zero-Shot Vision-and-Language Navigation Agent with Online Spatial Cognitive Memory and Reasoning](/20260531-20260609/2606.08992v1-spacevln-a-zero-shot-vision-and-language-navigation-agent-with-online-spatial-cognitive-memory-and-reasoning)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：零样本视觉语言导航
+   evidence：触觉引导的在线强化学习用于VLA机器人操作
 
 ### 速读区论文标签
-1. [ImagineUAV: Aerial Vision-Language Navigation via World-Action Modeling and Kinodynamic Planning](/20260531-20260609/2606.01205v2-imagineuav-aerial-vision-language-navigation-via-world-action-modeling-and-kinodynamic-planning)  
+1. [Co-training with Ego-centric Video and Demonstration for Robot Navigation Task](/202606/09/2606.01951v1-co-training-with-ego-centric-video-and-demonstration-for-robot-navigation-task)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：空中视觉语言导航
-2. [OneVLA: A Unified Framework for Embodied Tasks](/20260531-20260609/2606.01241v1-onevla-a-unified-framework-for-embodied-tasks)  
+   evidence：使用自中心视频增强VLA训练进行机器人导航
+2. [RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models](/202606/09/2606.02277v1-robosemanticbench-diagnosing-semantic-grounding-in-action-prediction-for-vla-models)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：端到端统一VLA框架
-3. [OneVLA: A Unified Framework for Embodied Tasks](/20260531-20260609/2606.01241v2-onevla-a-unified-framework-for-embodied-tasks)  
+   evidence：VLA模型基准测试，端到端学习用于具身机器人动作
+3. [Dynamics Are Learned, Not Told: Semi-Supervised Discovery of Latent Dynamics Geometries For Zero-Shot Policy Adaptation](/202606/09/2606.02280v1-dynamics-are-learned-not-told-semi-supervised-discovery-of-latent-dynamics-geometries-for-zero-shot-policy-adaptation)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：统一导航与操作的VLA框架
-4. [PSG-Nav: Probabilistic Scene Graph Navigation via Multiverse Decision Making](/20260531-20260609/2606.01313v1-psg-nav-probabilistic-scene-graph-navigation-via-multiverse-decision-making)  
+   evidence：强化学习用于动力学变化下的零样本策略适应
+4. [Preference-Calibrated Human-in-the-Loop Reinforcement Learning for Robotic Manipulation](/202606/09/2606.03949v1-preference-calibrated-human-in-the-loop-reinforcement-learning-for-robotic-manipulation)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：概率场景图导航
-5. [PHASOR: Phase-Anchored Universal Action Representations for Humanoid Embodiments](/20260531-20260609/2606.01851v2-phasor-phase-anchored-universal-action-representations-for-humanoid-embodiments)  
+   evidence：人类在环强化学习用于机器人操作
+5. [SeeTraceAct: Visibility-Aware Latent Planning from Cross-Embodiment Demonstration Videos](/202606/09/2606.02745v1-seetraceact-visibility-aware-latent-planning-from-cross-embodiment-demonstration-videos)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：用于人形机器人的通用动作表示
-6. [Dexterity-BEV: Aligning 3D World and Actions for Generalizable Robot Policies Learning](/20260531-20260609/2606.02274v1-dexterity-bev-aligning-3d-world-and-actions-for-generalizable-robot-policies-learning)  
+   evidence：跨本体演示条件下的单样本VLA机器人策略
+6. [GeoAlign: Beyond Semantics with State-Guided Spatial Alignment in VLA Models](/202606/09/2606.03240v1-geoalign-beyond-semantics-with-state-guided-spatial-alignment-in-vla-models)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端操作策略结合3D对齐
-7. [Dexterity-BEV: Aligning 3D World and Actions for Generalizable Robot Policies Learning](/20260531-20260609/2606.02274v2-dexterity-bev-aligning-3d-world-and-actions-for-generalizable-robot-policies-learning)  
+   evidence：端到端VLA策略学习结合空间对齐
+7. [Revisiting Embodied Chain-of-Thought for Generalizable Robot Manipulation](/202606/09/2606.03784v2-revisiting-embodied-chain-of-thought-for-generalizable-robot-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端操作策略结合3D对齐
-8. [Active Exploring like a Pigeon: Reinforcing Spatial Reasoning via Agentic Vision-Language Models](/20260531-20260609/2606.02459v1-active-exploring-like-a-pigeon-reinforcing-spatial-reasoning-via-agentic-vision-language-models)  
+   evidence：用于机器人操作的具身思维链
+8. [PiL-World: A Chunk-Wise World Model for VLA Policy-in-the-Loop Evaluation](/202606/09/2606.05773v1-pil-world-a-chunk-wise-world-model-for-vla-policy-in-the-loop-evaluation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：使用认知地图的VLM空间导航
-9. [Learning Multi-Modal Trajectory Policies for Data-Efficient Robotic Manipulation](/20260531-20260609/2606.01047v1-learning-multi-modal-trajectory-policies-for-data-efficient-robotic-manipulation)  
+   evidence：VLA策略闭环评估
+9. [PHASOR: Phase-Anchored Universal Action Representations for Humanoid Embodiments](/202606/09/2606.01851v1-phasor-phase-anchored-universal-action-representations-for-humanoid-embodiments)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：端到端多模态轨迹策略
-10. [Lagrangian Perturbation Diffusion Steering: Latent Reinforcement Learning for Generative Policies](/20260531-20260609/2606.01151v1-lagrangian-perturbation-diffusion-steering-latent-reinforcement-learning-for-generative-policies)  
+   evidence：用于人形机器人的动作表示学习
+10. [World-Task Factorization for Robot Learning](/202606/09/2606.02027v1-world-task-factorization-for-robot-learning)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：生成策略的潜在空间强化学习
-11. [Coherent Off-Policy Improvement of Large Behavior Models with Learned Rewards](/20260531-20260609/2606.02194v1-coherent-off-policy-improvement-of-large-behavior-models-with-learned-rewards)  
+   evidence：面向具身系统的机器人学习分解
+11. [Revisiting Embodied Chain-of-Thought for Generalizable Robot Manipulation](/202606/09/2606.03784v1-revisiting-embodied-chain-of-thought-for-generalizable-robot-manipulation)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：使用逆强化学习从演示中微调大型机器人策略
+   evidence：具身链式推理用于机器人操作
 
 
 <div class="dpr-home-promo-card">
