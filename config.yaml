@@ -25,3 +25,57 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: embodied-rl
+      description: 帮我找强化学习在具身机器人上的相关论文，主要方向为导航、端到端、VLN
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: reinforcement learning
+          keyword_cn: 强化学习
+          query: reinforcement learning
+        - keyword: embodied robots
+          keyword_cn: 具身机器人
+          query: embodied robots
+        - keyword: robot navigation
+          keyword_cn: 机器人导航
+          query: robot navigation
+        - keyword: end-to-end learning
+          keyword_cn: 端到端学习
+          query: end-to-end learning
+        - keyword: vision language navigation
+          keyword_cn: 视觉语言导航
+          query: vision language navigation
+      intent_queries:
+        - query: reinforcement learning for embodied robot navigation
+          query_cn: 强化学习用于具身机器人导航
+          enabled: true
+          source: manual
+          note: ''
+        - query: end to end reinforcement learning in robotics
+          query_cn: 机器人学中的端到端强化学习
+          enabled: true
+          source: manual
+          note: ''
+        - query: vision language navigation with reinforcement learning
+          query_cn: 使用强化学习的视觉语言导航
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-09T08:49:40.348Z'
+source_backends:
+  arxiv:
+    papers_table: arxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_arxiv_papers
+    vector_rpc_exact: match_arxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_arxiv_papers_bm25
+    sync_table: arxiv_sync_status
+    sync_success_value: success
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
