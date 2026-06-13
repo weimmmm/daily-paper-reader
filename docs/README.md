@@ -6,65 +6,64 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-12
-- 运行时间：2026-06-12 21:58:38 UTC
+- 最新运行日期：2026-06-13
+- 运行时间：2026-06-13 21:16:38 UTC
 - 运行状态：成功
-- 本次总论文数：15
-- 精读区：4
+- 本次总论文数：14
+- 精读区：3
 - 速读区：11
 
 ### 今日简报（AI）
-今日聚焦机器人强化学习框架与安全策略，共收录15篇论文，精读2篇高评分工作。最值得关注的是得分9.0的《HARBOR》机器人强化学习框架，以及8.0的《Shield-Loco》预测性安全过滤方法。建议普通读者优先了解HARBOR如何统一机器人RL流程，再结合Shield-Loco理解安全在线策略的实际应用。
-- 详情：[/202606/12/README](/202606/12/README)
+今日阅读14篇论文，精读2篇聚焦具身智能与机器人策略学习，最高分9.0来自《Embodied-R1.5》。  
+最值得关注的方向是具身基础模型提升物理智能，以及基于体素动作热图的机器人策略学习。  
+建议优先阅读《Embodied-R1.5》了解具身智能前沿，再结合《ActionMap》学习高效策略表示方法。
+- 详情：[/202606/13/README](/202606/13/README)
 
 ### 精读区论文标签
-1. [HARBOR: A Harness Framework for Agentic Robot Reinforcement Learning](/202606/12/2606.08610v1-harbor-a-harness-framework-for-agentic-robot-reinforcement-learning)  
+1. [Embodied-R1.5: Evolving Physical Intelligence via Embodied Foundation Models](/202606/13/2606.11324v1-embodied-r15-evolving-physical-intelligence-via-embodied-foundation-models)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：机器人强化学习
-2. [Shield-Loco: Shielding Locomotion Policies with Predictive Safety Filtering](/202606/12/2606.07193v1-shield-loco-shielding-locomotion-policies-with-predictive-safety-filtering)  
+   evidence：统一的具身基础模型，使用多任务强化学习实现推理和规划
+2. [ActionMap: Robot Policy Learning via Voxel Action Heatmap](/202606/13/2606.06904v2-actionmap-robot-policy-learning-via-voxel-action-heatmap)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：使用强化学习进行足式运动，并提出安全过滤方法
-3. [SAFER-Nav: Enhancing Safety for Visual Robot Navigation via Segmentation-Aware Fine-Tuning](/202606/12/2606.11636v1-safer-nav-enhancing-safety-for-visual-robot-navigation-via-segmentation-aware-fine-tuning)  
+   evidence：用于VLA机器人策略的体素热图动作解码器
+3. [UniIntervene: Agentic Intervention for Efficient Real-World Reinforcement Learning](/202606/13/2606.12372v1-uniintervene-agentic-intervention-for-efficient-real-world-reinforcement-learning)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：视觉机器人导航和安全微调
-4. [TacCoRL: Integrating Tactile Feedback into VLA via Simulation](/202606/12/2606.11743v1-taccorl-integrating-tactile-feedback-into-vla-via-simulation)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：通过模拟强化学习将触觉反馈注入VLA策略
+   evidence：强化学习与自主干预用于机器人操作
 
 ### 速读区论文标签
-1. [Autonomous Aerial Manipulation via Contextual Contrastive Meta Reinforcement Learning](/202606/12/2606.08533v1-autonomous-aerial-manipulation-via-contextual-contrastive-meta-reinforcement-learning)  
+1. [ActionMap: Robot Policy Learning via Voxel Action Heatmap](/202606/13/2606.06904v1-actionmap-robot-policy-learning-via-voxel-action-heatmap)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：元强化学习用于空中操作
-2. [$ω$-EVA: Envision, Verify, and Act with Latent Interactive World Models](/202606/12/2606.09457v1--eva-envision-verify-and-act-with-latent-interactive-world-models)  
+   evidence：体素热图动作解码器用于端到端机器人策略学习
+2. [Light-WAM: Efficient World Action Models with State-Fusion Action Decoding](/202606/13/2606.08242v1-light-wam-efficient-world-action-models-with-state-fusion-action-decoding)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：用于具身动作生成的潜在交互世界模型，支持语言条件
-3. [Act on What You See: Unlocking Safe Social Navigation in Vision-Language-Action Models](/202606/12/2606.10495v1-act-on-what-you-see-unlocking-safe-social-navigation-in-vision-language-action-models)  
+   evidence：轻量级世界动作模型，用于机器人操作，结合未来预测
+3. [TORL-VLA: Tactile Guided Online Reinforcement Learning for Contact-Rich Manipulation](/202606/13/2606.09337v2-torl-vla-tactile-guided-online-reinforcement-learning-for-contact-rich-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：使用VLA模型的安全社交导航
-4. [MODIP: Efficient Model-Based Optimization for Diffusion Policies](/202606/12/2606.10825v1-modip-efficient-model-based-optimization-for-diffusion-policies)  
+   evidence：触觉反馈的在线强化学习用于基于VLA的机器人操作
+4. [Your Model Already Knows: Attention-Guided Safety Filter for Vision-Language-Action Models](/202606/13/2606.09749v1-your-model-already-knows-attention-guided-safety-filter-for-vision-language-action-models)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：扩散策略的强化学习微调用于机器人学习
-5. [World Model Self-Distillation: Training World Models to Solve General Tasks](/202606/12/2606.12072v1-world-model-self-distillation-training-world-models-to-solve-general-tasks)  
+   evidence：面向具身机器人的视觉-语言-动作模型安全滤波器
+5. [Flow Control: Steering Vision-Language-Action Models with Simple Real-Time Inputs](/202606/13/2606.10180v1-flow-control-steering-vision-language-action-models-with-simple-real-time-inputs)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：结合自蒸馏与强化学习训练世界模型解决任务,与具身智能体相关
-6. [DAM-VLA: Decoupled Asynchronous Multimodal Vision Language Action model](/202606/12/2606.12105v1-dam-vla-decoupled-asynchronous-multimodal-vision-language-action-model)  
+   evidence：使用实时输入引导VLA模型进行机器人控制
+6. [What Matters in Orchestrating Robot Policies: A Systematic Study of Hierarchical VLA Agents](/202606/13/2606.10267v1-what-matters-in-orchestrating-robot-policies-a-systematic-study-of-hierarchical-vla-agents)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端视觉语言动作模型
-7. [Coarse-to-Control: Action-Token Planning for Vision-Language-Action Models](/202606/12/2606.07107v1-coarse-to-control-action-token-planning-for-vision-language-action-models)  
+   evidence：分层VLA代理的机器人操作系统研究
+7. [Neuro-Symbolic Learning for Long-Horizon Task Planning Under Complex Logical Constraints](/202606/13/2606.06877v1-neuro-symbolic-learning-for-long-horizon-task-planning-under-complex-logical-constraints)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：在VLA模型中引入动作令牌规划以应对长时程任务
-8. [CLASP: Language-Driven Robot Skill Selection and Composition using Task-Parameterized Learning](/202606/12/2606.08169v1-clasp-language-driven-robot-skill-selection-and-composition-using-task-parameterized-learning)  
+   evidence：机器人神经符号任务规划，处理逻辑约束
+8. [Benchmarking Vision-Language-Action Models on SO-101: Failure and Recovery Analysis](/202606/13/2606.08881v1-benchmarking-vision-language-action-models-on-so-101-failure-and-recovery-analysis)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：利用VLM和动觉演示实现语言驱动的机器人技能选择
-9. [Structure-Conditioned Actor-Critic Branches for Quality-Diversity Reinforcement Learning](/202606/12/2606.08735v1-structure-conditioned-actor-critic-branches-for-quality-diversity-reinforcement-learning)  
+   evidence：在真实低成本机器人平台上基准测试视觉语言动作模型
+9. [ReGIL: Retrieval-Guided Imitation Learning from a Single Demonstration](/202606/13/2606.09381v1-regil-retrieval-guided-imitation-learning-from-a-single-demonstration)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：基于结构条件演员-评论家分支的质量多样性强化学习
-10. [SARM2: Multi-Task Stage Aware Reward Modeling for Self Improving Robotic Manipulation](/202606/12/2606.10305v1-sarm2-multi-task-stage-aware-reward-modeling-for-self-improving-robotic-manipulation)  
+   evidence：检索引导的机器人操作模仿学习
+10. [$ω$-EVA: Envision, Verify, and Act with Latent Interactive World Models](/202606/13/2606.09457v1--eva-envision-verify-and-act-with-latent-interactive-world-models)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：具身机器人操作与强化学习
-11. [Task Robustness via Re-Labelling Vision-Action Robot Data](/202606/12/2606.10918v1-task-robustness-via-re-labelling-vision-action-robot-data)  
+   evidence：用于具身动作生成的潜在交互世界模型
+11. [CT-VAM: A Cerebello-Thalamic-Inspired Vision-Action Model for Efficient Visuomotor Control](/202606/13/2606.09572v1-ct-vam-a-cerebello-thalamic-inspired-vision-action-model-for-efficient-visuomotor-control)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：使用视觉语言模型对机器人数据进行重标注以实现数据增强
+   evidence：面向高效机器人视觉运动控制的视觉-动作模型
 
 
 <div class="dpr-home-promo-card">
