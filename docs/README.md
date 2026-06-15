@@ -6,64 +6,67 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-14
-- 运行时间：2026-06-14 21:20:57 UTC
+- 最新运行日期：2026-06-15
+- 运行时间：2026-06-15 22:10:47 UTC
 - 运行状态：成功
-- 本次总论文数：14
+- 本次总论文数：15
 - 精读区：4
-- 速读区：10
+- 速读区：11
 
 ### 今日简报（AI）
-今天推荐14篇论文，精读2篇、速读3篇，聚焦导航与机器人推理方向。  
-精读推荐《Foresight》的迭代线索推理导航（9.0分）和《Goal Sets》的查询式机器人目标（8.0分），前者提升导航鲁棒性，后者改进目标表示。  
-建议优先精读《Foresight》，再结合速读中的《World Pilot》了解世界先验如何引导视觉-语言-动作模型。
-- 详情：[/202606/14/README](/202606/14/README)
+今日精选15篇论文，精读聚焦视觉语言引导的多智能体探索和长时移动操作。
+最值得关注的是AnyGoal（9分）实现无需训练的终身导航，以及SERF（8分）解决长时移动操作。
+建议优先阅读这两篇精读论文，把握前沿的视觉-语言-机器人结合方向。
+- 详情：[/202606/15/README](/202606/15/README)
 
 ### 精读区论文标签
-1. [Foresight: Iterative Reasoning About Clues that Matter for Navigation](/202606/14/2606.12550v1-foresight-iterative-reasoning-about-clues-that-matter-for-navigation)  
+1. [AnyGoal: Vision-Language Guided Multi-Agent Exploration for Training-Free Lifelong Navigation](/202606/15/2606.13878v1-anygoal-vision-language-guided-multi-agent-exploration-for-training-free-lifelong-navigation)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：基于VLM的稀疏语言指令导航推理
-2. [Goal Sets, Not Goal States: Queryable Robot Goals through Goal-Set Hindsight Relabeling](/202606/14/2606.09476v1-goal-sets-not-goal-states-queryable-robot-goals-through-goal-set-hindsight-relabeling)  
+   evidence：利用VLM和贝叶斯值图实现免训练的终身导航
+2. [SERF: Spatiotemporal Environment and Robot Feature Map for Long-Horizon Mobile Manipulation](/202606/15/2606.12956v1-serf-spatiotemporal-environment-and-robot-feature-map-for-long-horizon-mobile-manipulation)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：目标集事后重标记通过查询定义的目标集改进离线目标条件强化学习
-3. [GHOST: Hierarchical Sub-Goal Policies for Generalizing Robot Manipulation](/202606/14/2606.10025v1-ghost-hierarchical-sub-goal-policies-for-generalizing-robot-manipulation)  
+   evidence：时空特征图用于长时域移动操作导航
+3. [Hy-Embodied-0.5-VLA: From Vision-Language-Action Models to a Real-World Robot Learning Stack](/202606/15/2606.14409v1-hy-embodied-05-vla-from-vision-language-action-models-to-a-real-world-robot-learning-stack)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：层次化子目标策略提升机器人操作泛化，与强化学习和端到端学习相关
-4. [NavWAM: A Navigation World Action Model for Goal-Conditioned Visual Navigation](/202606/14/2606.13494v1-navwam-a-navigation-world-action-model-for-goal-conditioned-visual-navigation)  
+   evidence：包含RL后训练的端到端机器人学习栈
+4. [Causal Object-Centric Models for Planning with Monte Carlo Tree Search](/202606/15/2606.14418v1-causal-object-centric-models-for-planning-with-monte-carlo-tree-search)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：视觉导航世界动作模型
+   evidence：在槽结构潜空间中使用MCTS进行模型强化学习
 
 ### 速读区论文标签
-1. [SVoT: State-aware Visualization-of-Thought for Spatial Reasoning via Reinforcement Learning](/202606/14/2606.11770v1-svot-state-aware-visualization-of-thought-for-spatial-reasoning-via-reinforcement-learning)  
+1. [Benchmarking Vision-Language-Action Models on SO-101: Failure and Recovery Analysis](/202606/15/2606.08881v2-benchmarking-vision-language-action-models-on-so-101-failure-and-recovery-analysis)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：强化学习用于空间推理
-2. [World Pilot: Steering Vision-Language-Action Models with World-Action Priors](/202606/14/2606.12403v1-world-pilot-steering-vision-language-action-models-with-world-action-priors)  
+   evidence：在真实机器人上基准测试端到端VLA模型
+2. [Action-Effect Memory Pretraining for Robot Manipulation](/202606/15/2606.12499v1-action-effect-memory-pretraining-for-robot-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：带有世界动作先验的VLA操作模型
-3. [From Imitation to Alignment: Human-Preference Flow Policies for Long-Horizon Sidewalk Navigation](/202606/14/2606.12603v1-from-imitation-to-alignment-human-preference-flow-policies-for-long-horizon-sidewalk-navigation)  
+   evidence：机器人操作预训练
+3. [EmbodiSteer: Steering Embodiment-Agnostic Visuomotor Policies with Joint-Space Guidance for Zero-Shot Cross-Embodiment Deployment](/202606/15/2606.12965v1-embodisteer-steering-embodiment-agnostic-visuomotor-policies-with-joint-space-guidance-for-zero-shot-cross-embodiment-deployment)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：长距离人行道导航结合模仿学习与人类偏好
-4. [X-OP: Cross-Morphology Whole-Body Teleoperation via MPC Retargeting](/202606/14/2606.07934v1-x-op-cross-morphology-whole-body-teleoperation-via-mpc-retargeting)  
+   evidence：与具身无关的视觉运动策略实现跨具身部署
+4. [GIVE: Grounding Human Gestures in Vision-Language-Action Models](/202606/15/2606.13435v1-give-grounding-human-gestures-in-vision-language-action-models)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：通过手势理解增强VLA模型的人机交互能力
+5. [Guided Diffusion with Distilled Vision-Language Reliability for Aerial Navigation](/202606/15/2606.13883v1-guided-diffusion-with-distilled-vision-language-reliability-for-aerial-navigation)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：用于无人机导航的端到端扩散规划器，具有可靠性感知
+6. [Elastic Queries Reinforcement Learning: Self-Aware Policy Execution for VLA Models](/202606/15/2606.14375v1-elastic-queries-reinforcement-learning-self-aware-policy-execution-for-vla-models)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：VLA模型强化学习，自适应推理
+7. [Guided Discovery of New Behaviors using Diffusion Policies](/202606/15/2606.08743v1-guided-discovery-of-new-behaviors-using-diffusion-policies)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：端到端强化学习用于全身遥操作
-5. [GEAR-VLA: Learning Geometry-Aware Action Representations for Generalizable Robotic Manipulation](/202606/14/2606.08530v2-gear-vla-learning-geometry-aware-action-representations-for-generalizable-robotic-manipulation)  
+   evidence：扩散策略结合强化学习用于机器人行为发现
+8. [AHA-WAM:Asynchronous Horizon-Adaptive World-Action Modeling with Observation-Guided Context Routing](/202606/15/2606.09811v1-aha-wamasynchronous-horizon-adaptive-world-action-modeling-with-observation-guided-context-routing)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：几何感知动作表示用于机器人操作
-6. [LUCID: Learning Embodiment-Agnostic Intent Models from Unstructured Human Videos for Scalable Dexterous Robot Skill Acquisition](/202606/14/2606.11628v1-lucid-learning-embodiment-agnostic-intent-models-from-unstructured-human-videos-for-scalable-dexterous-robot-skill-acquisition)  
+   evidence：世界动作模型用于具身机器人操控
+9. [Steering Multirobot Behavior via Closed-Loop Affine Activation Editing](/202606/15/2606.11489v1-steering-multirobot-behavior-via-closed-loop-affine-activation-editing)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：从人类视频中学习具身机器人技能
-7. [When Does Language Matter? Multilingual Instructions Reveal Step-wise Language Sensitivity in Vision-Language-Action Models](/202606/14/2606.11906v1-when-does-language-matter-multilingual-instructions-reveal-step-wise-language-sensitivity-in-vision-language-action-models)  
+   evidence：多机器人行为引导
+10. [Ambient Diffusion Policy: Imitation Learning from Suboptimal Data in Robotics](/202606/15/2606.12365v1-ambient-diffusion-policy-imitation-learning-from-suboptimal-data-in-robotics)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：评估VLA多语言鲁棒性，与具身机器人和端到端学习相关
-8. [Learning What to Say to Your VLA: Mostly Harmless Vision Language Action Model Steering](/202606/14/2606.12299v1-learning-what-to-say-to-your-vla-mostly-harmless-vision-language-action-model-steering)  
+   evidence：从次优机器人数据中模仿学习
+11. [$μ_0$: A Scalable 3D Interaction-Trace World Model](/202606/15/2606.13769v1-0-a-scalable-3d-interaction-trace-world-model)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：面向机器人控制的VLA模型引导
-9. [Learning to Assist: Collaborative VLAs for Implicit Human-Robot Collaboration](/202606/14/2606.12475v1-learning-to-assist-collaborative-vlas-for-implicit-human-robot-collaboration)  
-   标签：评分：6.0/10、query:embodied-rl
-   evidence：端到端模仿学习与VLA模型用于人机协作
-10. [Learning to Adapt: Representation-Based Reinforcement Learning for Multi-Task Skill Transfer](/202606/14/2606.12890v1-learning-to-adapt-representation-based-reinforcement-learning-for-multi-task-skill-transfer)  
-   标签：评分：6.0/10、query:embodied-rl
-   evidence：多任务强化学习用于四旋翼导航
+   evidence：用于可扩展机器人学习的3D交互轨迹世界模型
 
 
 <div class="dpr-home-promo-card">
