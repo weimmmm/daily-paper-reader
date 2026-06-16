@@ -1,0 +1,848 @@
+Title: Task-Aware Environment Augmentation for Reliable Navigation via Shielded Conditional Diffusion
+
+URL Source: https://arxiv.org/pdf/2606.15154v1
+
+Published Time: Tue, 16 Jun 2026 00:36:23 GMT
+
+Number of Pages: 30
+
+Markdown Content:
+# Task-Aware Environment Augmentation for Reliable Navigation via Shielded Conditional Diffusion 
+
+Bharawee Phoompho, Gokul Puthumanaillam, Yan Miao, Ruben Hernandez , Tim Bretl , Sayan Mitra , Melkior Ornik 
+
+University of Illinois Urbana-Champaign ( {bp16, gokulp2, mornik }@illinois.edu )
+
+Abstract: Reliable trajectory planning under partial observability depends not only on computing a feasible geometric path, but also on whether the robot receives informative observations while executing that trajectory. Existing ap-proaches usually keep the environment fixed and adapt the robot through belief-space planning, active localization, or added sensing, often incurring costly uncer-tainty propagation and brittle behavior in observation-poor regions. We flip this perspective and address the largely open problem of task-aware environment aug-mentation : given a mapped environment, a planned task trajectory, and a small budget of visual fiducial markers, where should the environment be augmented so that the planned trajectory can be executed reliably under uncertainty? Our key observation is that useful marker layouts are defined by the localization support they provide along the task trajectory: a small number of well-timed observa-tions can be sufficient to prevent uncertainty from accumulating in regions where state-estimation error would otherwise compromise control. Building on this ob-servation, we present SCoDA, Shielded Co nditional Diffusion for Environment 
+
+Augmentation. SCoDA learns a conditional distribution over high-performing fiducial layouts from data, using the environment, planned trajectory, disturbance context, and desired execution profile as conditioning. Its shielded sampler rea-sons over where along the planned execution pose corrections should occur, and steers this distribution toward task-relevant, finite-budget augmentations. Across simulated benchmarks and hardware deployments, we show that SCoDA improves trajectory execution reliability and completion time over strong baselines. Code, models and dataset available at: https://scoda-diffusion.github.io/ 
+
+Keywords: Environment augmentation, Trajectory Planning, Diffusion models 
+
+## 1 Introduction 
+
+Autonomous robots executing navigation tasks under partial observability must solve two coupled problems: they must know where to go, and they must remain localized well enough to get there. In GPS-denied or perceptually degraded environments, a planned trajectory can become unreliable if the robot receives too few informative observations while executing it. Between observations, pose error grows under process noise, sensing uncertainty, and external disturbances; once the estimate drifts far enough, even a good controller may track the state incorrectly and fail the task. The standard response is to make the robot more adaptive through richer sensing, belief-space planning, or active localization. We study the complementary question: given a mapped environment and a trajectory-planning task, where should a small number of visual fiducials be added so the planned trajectory receives just enough localization support to be executed reliably? Prior work largely treats limited observability as a robot-side problem: localization and SLAM estimate from whatever measurements are available [1, 2, 3, 4], while belief-space and active-localization methods adapt motion to manage or seek information [5, 6, 7, 8, 9, 10]. In many robotics deployments, the environment can be instrumented for reliable execution. For known trajectories in 
+
+> arXiv:2606.15154v1 [cs.RO] 13 Jun 2026
+
+warehouses, inspection corridors, indoor flight arenas, or factory floors, placing a small number of visual landmarks can be less intrusive than adding sensing hardware, replanning online, or forcing localization-seeking detours. Visual fiducials such as AprilTags and ArUco markers provide a practical way to add known vi-sual reference points to a mapped environment [11, 12, 13, 14]. When visible, they provide pose measurements that help the onboard estimator correct accumulated state error, so their placement de-termines where along the trajectory localization support is available. However, uniform or manual placements can waste fiducials in regions where the estimate is already reliable, and pure visibility objectives only measure whether a fiducial can be seen, not whether it improves execution. Further-more, dense augmentation is costly, visually intrusive, and often unnecessary [15, 16]. Therefore, we seek a budgeted, task-specific augmentation: adding just enough visual structure to keep the robot localized during the given task. Choosing where to place this sparse visual structure requires rea-soning about the interaction between the planned trajectory, sensing model, disturbances, estimator, and controller, motivating a data-driven model learned from closed-loop rollout outcomes. We formulate sparse environment augmentation as conditional generative design: learning a distri-bution over sparse fiducial placements that make a prescribed trajectory reliable under uncertainty. The key observation is that the value of a fiducial is not determined by visibility alone, but by its closed-loop effect on execution: a detection is useful when it corrects the state estimate early enough to improve tracking of the planned trajectory. This makes placement depend on the environment, reference trajectory, disturbances, estimator, and controller, rather than on a static coverage objec-tive. Building on diffusion models for multimodal structured generation [17, 18, 19], we introduce SCoDA, Shielded Conditional Diffusion for Environment Augmentation.  
+
+> Figure 1: Task-aware fiducial augmentation. Poor or missing fiducial support can cause trajectory-tracking failures, while SCoDA places sparse fiducials where localization support improves execution.
+
+SCoDA learns from closed-loop rollout data by pairing fiducial placements with their execution outcomes. Given a new task, it generates fiducial placements conditioned on the environment, refer-ence trajectory, disturbance context, and desired execution profile. Its shielded reverse sampler uses the same task context during inference to steer the learned distribution toward finite-budget place-ments whose detections are likely to affect execution, while avoiding redundant placements. Across simulated benchmarks and real-time hardware experiments, SCoDA improves trajectory execution reliability and completion time over heuristic and unguided placement baselines. To spur further research in this domain, we release the code, models, and dataset on the project website. 
+
+## 2 Related Work 
+
+Probabilistic localization and belief-space planning. Robot navigation under uncertainty is com-monly formulated in terms of belief states, where the robot maintains a distribution over possible poses rather than a single deterministic state [1, 2]. Classical SLAM and localization algorithms estimate this belief through probabilistic filtering or factorized map representations [20, 21]. Active localization and active perception methods choose actions to reduce pose uncertainty or increase future observation informativeness [9, 10, 22, 23, 24]. Belief-space planners reason about future 2uncertainty through covariance propagation, maximum-likelihood observations, sampling-based be-lief trees, or feedback roadmaps [8, 7, 25, 26, 27]. Chance-constrained and Bayesian formulations further encode risk bounds in the planner [28, 29]. These methods primarily optimize robot ac-tions or trajectories; our work instead modifies the environment by placing visual landmarks so a reference trajectory can be followed more reliably. 
+
+Informative planning and landmark-based localization. Information-theoretic planning improves mapping, localization, or exploration by selecting trajectories that provide informative observations [30, 31, 32, 33]. In camera-based navigation, these observations often depend on stable visual features, as shown by visual SLAM systems [34, 35]. Artificial fiducials such as AprilTags and ArUco markers provide engineered features with known identity and geometry for pose estimation [11, 12, 13, 14]. Landmark placement has been studied directly: landmark selection in natural terrain [36], geometric landmark distinguishability [37], placement for reliable mobile robot navi-gation [15], indoor localization with uncertainty constraints [16], and fiducial placement for visual localization [38]. These approaches typically use explicit optimization, greedy selection, or hand-designed objectives, whereas we learn a conditional generative model over landmark configurations. 
+
+Diffusion models and guided generation for planning and robotics. Diffusion models are generative models that sample data by reversing a gradual noising process [17, 18, 19], and guidance can steer generation toward desired properties or constraints [39, 40, 41]. Their ability to model multimodal distributions has made them useful for generating robot trajectories, actions, and manipulation be-haviors [42, 43, 44, 45, 46, 47]. Diffusion has also been combined with cost-guided sampling for autonomous driving and planning [48]. In contrast, SCoDA uses diffusion to generate environment augmentations: sparse fiducial layouts that provide localization support for a prescribed trajectory. Our guidance objective is specific to this setting, encouraging coverage of task-relevant trajectory intervals while discouraging redundant fiducial placements. 
+
+## 3 Problem Formulation 
+
+Consider a robot assigned a trajectory-planning task in a mapped environment E under partial ob-servability. One example is an indoor mobile robot executing a planned trajectory through a ware-house aisle, inspection corridor, or flight arena, where GPS is unavailable and camera-based local-ization corrections are intermittent. Let τ = ( xr
+
+> 0
+
+, . . . , x rN ) denote the reference trajectory for the task. During execution, the robot does not observe its true state xt directly; it maintains an estimate 
+
+ˆxt and applies a feedback controller at = π(ˆ xt, τ ). The true state evolves as xt+1 = f (xt, a t) + wt,where wt captures process noise and external disturbances. We write ξ for the rollout randomness, including process noise, measurement noise, initial estimation error, and disturbance realizations. Before execution, the planner may augment the environment with at most K visual fiducials. Avisual fiducial is a calibrated marker with known identity and pose; when detected by the robot’s camera, it provides a measurement zt that the robot’s existing estimator can use to correct ˆxt. We denote a candidate augmentation by m ∈ M K , where m is a feasible layout of at most K physical fiducial poses in the mapped environment. Let V(xt) denote the set of fiducial poses detectable from robot state xt under the camera model, including range, field of view, occlusion, and marker-orientation constraints. A fiducial correction is available when αt(m) = 1[m ∩ V (xt)̸ = ∅]. If αt(m) = 1 , the estimator incorporates the detected fiducial measurement zt; if αt(m) = 0 , the estimate is propagated using the motion model without a fiducial correction. Thus, the chosen augmentation changes the closed-loop execution by changing when fiducial-based pose corrections are available along the planned trajectory. The objective is to choose a sparse augmentation that makes the entire trajectory execution reliable. Let eτt denote the tracking error between the executed state and the reference trajectory at the cor-responding progress along τ , and let tf be the first time the terminal task region is reached. Let 
+
+Fτ denote the event that trajectory execution fails, for example by violating task tolerances or not reaching the terminal region within the horizon Tmax . The rollout randomness follows ξ ∼ p(ξ), the 3matrix Q ⪰ 0 weights tracking error, the scalar λtime weights completion time, and Cfail is a large penalty assigned to failed executions. We define the budgeted augmentation objective as 
+
+m⋆ ∈ arg min 
+
+> m∈M K
+
+Eξ∼p(ξ)
+
+"Tmax X
+
+> t=0
+
+∥eτt ∥2 
+
+> Q
+
++ λtime tf + Cfail I[Fτ ]
+
+#
+
+. (1) This objective favors augmentations that keep the robot localized well enough to track the planned trajectory, reach the terminal task region efficiently, and avoid execution failure under stochastic disturbances. Solving Eq. (1) directly for every new task would require repeated closed-loop roll-outs over candidate augmentations and would typically return only one layout. We instead learn a conditional generator that produces high-performing, task-specific augmentation candidates from the environment, reference trajectory, disturbance context, and execution statistics. 
+
+## 4 SCoDA: Shielded Conditional Diffusion for Environment Augmentation 
+
+SCoDA is an amortized solver for the budgeted augmentation problem in Eq. (1). Instead of run-ning a new search over fiducial placements for every trajectory-planning task, SCoDA learns to generate sparse augmentations that have supported reliable closed-loop execution in similar task contexts. The method has three main components: path-coordinate fiducial representation, rollout-conditioned diffusion training, and shielded reverse diffusion to cover task-critical regions while avoiding redundant tag placements.    
+
+> Figure 2: SCoDA pipeline: a conditional diffusion model iteratively denoiseDs landmark positions in trajectory-progress space, guided by task context and shielded inference.
+> Figure 3: SCoDA decouples when a pose correction is needed from where the fiducial is placed by reasoning in trajectory-progress space before mapping back to a physical layout.
+
+Trajectory-indexed augmentation. 
+
+A generative model for environment augmentation must decide how to describe the candidate layout m.Generating fiducial poses directly in workspace coordinates forces the model to learn two things at once: where a fiducial should physically be placed, and where along the planned execution its detection should correct the state estimate. SCoDA therefore generates an intermediate progress-space variable u ∈ [−1, 1] K , where each ui specifies the point along τ at which the corresponding fiducial should provide a pose correction (see Figure 3). After sampling, 
+
+u is instantiated as a feasible physical layout m ∈ M K in the mapped environment. This parame-terization keeps generation tied to execution: task-relevant parts of τ become intervals over u, and redundant fiducials correspond to progress values that are too close together. 4Rollout-conditioned supervision. SCoDA learns from the effect an augmentation has on closed-loop trajectory execution. For each training task, an augmentation vector u is mapped to fidu-cial poses through ME,τ , and the robot executes the reference trajectory over repeated stochas-tic rollouts with the task controller, estimator, process noise, measurement noise, and disturbance model. The resulting execution statistics define y = [ sr , ¯tc], where sr is the fraction of successful trajectory executions and ¯tc is the mean completion time normalized by Tmax . The conditional input is c = [ gx, g y , ψ (τ ), d, y] , where (gx, g y ) is the terminal task location, ψ(τ ) is a fixed-size trajectory encoding obtained by uniformly sampling the reference trajectory in progress, and 
+
+d = [ ud,s , u d,e , u r,e ] specifies task-relevant intervals along the trajectory. Here, ud,s and ud,e mark the start and end of the disturbance interval, while ur,e is the end of the subsequent recovery inter-val, where additional localization support may be useful. During training, y is computed from the rollout outcomes of each candidate layout. At inference, we set y to the target profile y⋆ = [1 , ¯tdes ],querying the model for augmentations associated with reliable and efficient execution. 
+
+Diffusion model over sparse augmentations. For a fixed context c, there may be more than one augmentation vector u that leads to reliable execution. We therefore learn a conditional distribution 
+
+pθ (x0 | c) over augmentation vectors, where x0 is the diffusion input corresponding to u. Following [18], a clean augmentation vector is corrupted as q(xt | x0) = N (√¯αtx0, (1 − ¯αt)I), and the denoiser is trained to predict the injected noise, 
+
+Ldiff = Ex0,c,t,ϵ 
+
+h
+
+∥ϵ − ϵθ (xt, t, ˜c)∥22
+
+i
+
+, (2) where ϵ ∼ N (0, I) and ˜c is set to a null context with fixed probability during training. This condi-tioning dropout lets the same network produce both conditional and unconditional predictions. At inference, we combine the two predictions using classifier-free guidance [49], 
+
+ˆϵcfg = ϵθ (xt, t, 0) + wcfg (ϵθ (xt, t, c) − ϵθ (xt, t, 0)) . (3) The guidance weight wcfg controls how strongly generation follows the requested context and target execution profile. Starting the reverse process from different noise samples gives multiple candidate fiducial layouts for the same trajectory-planning task. The layouts are then ranked by the placement objective or closed-loop evaluation before returning a single selected layout. 
+
+Shielded reverse diffusion. Rollout-conditioned diffusion biases samples toward layouts that per-formed well in the training data, but it does not ensure that every generated layout uses the finite tag budget effectively. In particular, a sample may cluster several tags at nearly the same trajectory progress or miss an interval where the context indicates that a correction is needed. We therefore add a generation-time shield: a differentiable guidance objective that steers samples toward simple structural requirements without rerunning closed-loop rollouts during denoising. This differentiable modification of the denoising update follows guided diffusion methods, which steer sampling with classifier gradients, classifier-free scores, or external objectives [39, 40]. Formally, this corresponds to sampling from a guided distribution 
+
+qλ(u | c) ∝ pθ (u | c) exp ( −λJ task (u; c)) , (4) where Jtask assigns low cost to layouts that satisfy the task-level placement preferences and λ con-trols the strength of shielding. This distributional view gives a useful sanity check: under exact sampling from Eq. (4), ddλ Eqλ [Jtask ] = −Var qλ (Jtask ) ≤ 0, so increasing λ monotonically lowers the expected task-objective violation. The derivation is given in Appendix C. To implement this guidance during denoising, the current diffusion state is mapped to trajectory-progress coordinates vt ∈ [0 , 1] K . Let I(c) = {[am, b m]}Mm=1 denote the task-relevant trajec-tory intervals specified by the context. For an interval [a, b ], we use the smooth membership score 
+
+ψ(v; a, b ) = σ(κ(v − a)) σ(κ(b − v)) , which is close to 1 when v lies inside the interval and close to 0 outside it. The task objective is 
+
+Jtask (vt; c) = 
+
+> M
+
+X
+
+> m=1
+
+βm
+
+"
+
+1 −
+
+> K
+
+X
+
+> k=1
+
+ψ(vt,k ; am, b m)
+
+#
+
+> +
+
++ βs
+
+X
+
+> i<j
+
+σ (κs(δmin − | vt,i − vt,j |)) . (5) 5The first term penalizes intervals that receive no fiducial-induced pose correction. The second term penalizes pairs of fiducials that are too close along trajectory progress, since nearby fiducials usually provide redundant corrections under a fixed budget. The task gradient is injected into the reverse update through the predicted noise, 
+
+ˆϵsh = ˆ ϵcfg + λt∇xt Jtask (vt(xt); c). (6) With the DDPM reverse-mean parameterization, this guidance moves the next sample toward lower 
+
+Jtask while the denoiser keeps it close to the rollout-conditioned distribution. Shielding is applied only over intermediate reverse steps, after noise-dominated early states and before late states become nearly fixed. 
+
+Candidate validation. After denoising, the generated vector is clipped to [−1, 1] K and interpreted as the augmentation u. The deployment map ME,τ then maps u to physical fiducial poses in the environment. We optionally apply a final feasibility check using the same trajectory-interval and separation requirements encoded in Jtask . This check gives a direct guarantee on the returned lay-out: every retained augmentation satisfies the specified interval-coverage and minimum-separation constraints. If one generated sample passes the check with probability pacc , then R independent samples yield at least one feasible augmentation with probability 1 − (1 − pacc )R; see Appendix C. When closed-loop evaluation is available, multiple feasible candidates can be ranked by the objec-tive in Eq. (1); otherwise, the candidate with the lowest Jtask is selected. 
+
+Implementation recipe. The denoiser is a one-dimensional U-Net with input and output dimen-sion K. Sinusoidal timestep embeddings are combined with a learned projection of the context vector c and injected into the residual blocks. Trajectory-progress values are represented in [−1, 1] 
+
+for diffusion and rescaled to [0 , 1] when evaluating Jtask ; workspace quantities are normalized by the environment dimensions, and completion time is normalized by Tmax . The task objective uses smooth interval-membership and separation penalties, so the guidance gradient in Eq. (6) is com-puted by automatic differentiation without modifying the denoising network. Diffusion-schedule parameters, classifier-free guidance weights, task-guidance weights, and feasibility-check thresh-olds are reported in Appendix C. 
+
+## 5 Experimental Results 
+
+We evaluate SCoDA in simulation and hardware. In simulation, we use FalconGym 2.0 [50], a pho-torealistic aerial-navigation benchmark. We trivially modify it to support external disturbance wind fields. FalconGym’s edit API lets us instantiate visual tags at generated locations while keeping the robot dynamics, rendering, and closed-loop execution fixed across methods [51]. We evaluate two simulated environment settings: nominal, with no external perturbation, and disturbance-augmented, with localized wind fields along the reference trajectory. The simulated vehicle uses FalconGym’s fixed-wing aerial dynamics [52] and its default low-level tracking controller. For hardware, we de-ploy generated augmentations on a Crazyflie 2.0 quadrotor in a cluttered indoor environment with physical fiducial tags placed according to the generated layouts. All hardware trials use the on-board low-level flight controller and the same reference trajectory, estimator interface, and fiducial-detection pipeline across methods. Additional details on the setup are provided in Appendix A. We compare SCoDA against baselines chosen to isolate trajectory-indexed generation, rollout con-ditioning, shielding, and test-time optimization, while keeping the fiducial budget K, estimator, controller, and reference trajectory fixed. (i) No-Augmentation (NA) uses no added fiducials. (ii) Random (Rand) places K fiducials at randomly sampled feasible locations. (iii) Periodic-K (PK) 
+
+places K fiducials at equidistant locations along the reference trajectory. (iv) Periodic-Dense (PD) 
+
+keeps adding periodic fiducials until the maximum observation gap falls below a threshold, giving an unbounded coverage baseline for measuring frugality. (v) Critical-Region (CR) places fiducials near disturbance, recovery, and terminal-approach regions. (vi) Visibility-Greedy (VG) greedily selects fiducials that make the largest number of reference states observable. (vii) Localizability-Greedy 
+
+6(LG) selects fiducials using a camera-localizability score inspired by prior marker-placement objec-tives [38]. (viii) Deviation-Greedy (DG) places fiducials near regions with large predicted tracking or estimation-error growth [15] rather than optimizing for [sr , ¯tc]. (ix) Rollout-Opt (RO) directly optimizes Eq. (1) with closed-loop rollouts and serves as an expensive upper bound. We also ab-late SCoDA by removing shielding, rollout conditioning, disturbance context, trajectory-indexed generation, and shielded denoising. Baseline implementation details are provided in Appendix A. 
+
+5.1 Results and Key Findings 
+
+Table 1: Hardware deployment results over 45 trials; K = 8 .
+
+Method Success rate (%) ↑
+
+Waypoint following (%) ↑
+
+Completion time (s) ↓
+
+NA 4.6 ± 3.1 24 .2 ± 5.4 58 .4 ± 1.4
+
+Rand 13 .7 ± 5.1 36 .9 ± 6.2 55 .6 ± 2.3
+
+PK 57 .4 ± 7.4 72 .8 ± 6.1 44 .8 ± 3.4
+
+VG 68 .7 ± 6.9 78 .9 ± 5.7 40 .9 ± 3.1
+
+SCoDA 91 .2 ± 4.4 94 .7 ± 3.2 29 .5 ± 2.1
+
+Key Finding #1: SCoDA gives strong execution perfor-mance with just-enough augmentation. Across simu-lation and hardware, SCoDA is the strongest placement method under a fixed fiducial budget. Random and pe-riodic layouts show that adding fiducials alone is insuffi-cient; SCoDA improves over greedy methods by learning which observations actually support closed-loop execu-tion. Table 3 further shows that SCoDA reaches target thresholds with the smallest deployable budget, matching the rollout-optimized upper bound while saving markers over dense periodic coverage. 
+
+Table 2: Simulated trajectory execution with and without disturbances for K =6. Results are reported as mean ± standard error over 150 simulated rollouts.                                                                                                                                                                                                                                   
+
+> Method No external disturbances With disturbances Success rate (%) ↑
+> Waypoint following (%) ↑
+> Tracking error (m) ↓
+> Completion time (s) ↓
+> Success rate (%) ↑
+> Waypoint following (%) ↑
+> Tracking error (m) ↓
+> Completion time (s) ↓
+> NA 5.4±1.822 .7±3.90.96 ±0.07 56 .9±1.21.8±1.113 .6±2.81.31 ±0.10 59 .2±0.8
+> Rand 9.6±2.429 .4±4.60.89 ±0.08 54 .5±1.55.9±1.923 .8±3.91.03 ±0.08 56 .8±1.2
+> PK 64 .8±4.276 .3±3.50.34 ±0.03 39 .2±1.743 .7±4.158 .9±4.20.56 ±0.05 47 .4±2.0
+> CR ––––70 .8±3.779 .4±3.20.34 ±0.03 39 .3±1.7
+> VG 72 .6±3.882 .1±3.10.29 ±0.03 35 .4±1.557 .9±4.068 .1±3.80.45 ±0.04 44 .0±1.9
+> LG 78 .4±3.486 .6±2.70.25 ±0.02 33 .4±1.464 .6±3.973 .8±3.50.39 ±0.04 41 .2±1.8
+> DG 84 .1±3.089 .7±2.40.21 ±0.02 31 .2±1.377 .3±3.484 .9±2.80.28 ±0.03 35 .2±1.5
+> RO 98 .7±0.999 .1±0.60.12 ±0.01 26 .3±0.797 .8±1.198 .6±0.70.13 ±0.01 27 .9±0.8
+> SCoDA 96 .9±1.398 .3±0.80.14 ±0.01 27 .1±0.894 .7±1.796 .8±1.10.16 ±0.02 29 .2±1.1
+
+Table 3: Budget efficiency (FalconGym). K90 , Kwp 95 
+
+are to reach 90% success, 
+
+95% waypoint following.                                           
+
+> Method K90
+> ↓
+> Kwp 95
+> ↓
+> Success at K= 6 (%) ↑
+> Rand >12 >12 14 .8±2.9
+> PK 10 11 68 .3±3.9
+> PD 10 11 91 .4±2.1
+> VG 7876 .9±3.5
+> DG 5684 .6±3.0
+> RO 3398 .2±0.9
+> SCoDA 3396 .5±1.3
+
+Figure 4: SCoDA generates context-aware placements on both simulated (top) and hardware (bottom) tasks, matching rollout-optimized quality orders of magnitude faster while baselines fail to complete the task. 
+
+Key Finding #2: SCoDA generates context-aware placements. Figures 1 and 4 show that SCoDA’s generated placements concen-trate near disturbance entry points, obstacle-dense segments, and parts of the trajectory where tracking errors are likely to compound. This matters because each fiducial consumes one of only K opportunities to correct the robot’s pose estimate. Placing a fiducial in an easy segment, where the robot would re-main well-localized anyway, wastes augmenta-tion capacity that could instead be used near a failure-prone region. In contrast, SCoDA learns to allocate observations where they change the closed-loop execution outcome: before uncer-tainty grows too large, during regions where disturbances affect tracking, or shortly after those regions to help the robot recover. SCoDA improves reliability not by making the entire envi-ronment more observable, but by placing limited corrective observations where they are most useful for executing the planned trajectory. 7Table 4: Placement-time compute. Averages are over held-out tasks; K = 6 .
+
+Method # Rollouts Placement time (s) ↓
+
+Success rate (%) ↑
+
+Completion time (s) ↓
+
+PK 0 0.04 ± 0.01 68 .3 ± 3.9 79 .1 ± 3.4
+
+VG 0 0.47 ± 0.08 76 .9 ± 3.5 71 .8 ± 3.0
+
+DG 20 3.86 ± 0.54 84 .6 ± 3.0 63 .7 ± 2.7
+
+RO 4500 417 .3 ± 34 .6 98 .2 ± 0.9 52 .7 ± 1.4
+
+SCoDA 0 0.18 ± 0.03 94 .8 ± 1.8 56 .1 ± 1.9
+
+Key Finding #3: SCoDA approaches rollout-optimized placement without test-time search. Rollout-Opt has access to closed-loop evaluations for each test task and directly optimizes Eq. (1), making it an expensive upper bound. SCoDA comes close to this upper bound using only a learned generator and shielded inference (refer Tables 3 and 4 and Figure 4). The remaining gap is the cost of amortization; the gain is that placement no longer requires expensive rollout search. 
+
+Key Finding #4: amortization removes the placement-time bottleneck. Table 4 separates placement quality from placement cost. Rollout-Opt achieves excellent execution by evaluating many candidate layouts, while fast methods rely on surrogate objectives that leave performance on the table. SCoDA gives a better accuracy-compute trade-off: a single sample is already competitive, and shield sampling improves performance while remaining far cheaper than rollout optimization. 
+
+Table 5: Ablations on disturbed simulation tasks with 
+
+K = 6 over 150 rollouts.                                                                                                                           
+
+> Variant Success
+> (%) ↑
+> Waypoint follow. (%) ↑
+> Completion time (s) ↓
+> Jtask
+> ↓
+> SCoDA full 94 .7±1.796 .8±1.158 .3±2.10.18 ±0.03
+> (-) shield 78 .1±3.585 .3±2.975 .9±3.50.74 ±0.07
+> (-) interval term 82 .4±3.288 .1±2.670 .8±3.20.62 ±0.06
+> (-) separation term 86 .2±2.990 .7±2.466 .6±2.90.51 ±0.05
+> (-) rollout y84 .9±3.089 .4±2.568 .2±3.00.43 ±0.05
+> (-) disturb. cont. d80 .7±3.485 .9±3.074 .5±3.40.58 ±0.06
+> (-) CFG 88 .5±2.692 .1±2.062 .9±2.60.36 ±0.04
+> post-hoc filtering only 87 .6±2.891 .6±2.264 .1±2.80.28 ±0.04
+> workspace diffusion 70 .4±3.978 .8±3.583 .7±3.80.91 ±0.08
+
+Ablations. Table 5 identifies the main sources of improvement. Removing the shield reduces critical-region support and increases redundant placements; the interval and sep-aration terms direct corrections to important regions and prevent budget clustering. Re-moving the rollout profile weakens the link between generated layouts and execution quality, while removing disturbance context reduces task-specific responsiveness. Post-hoc filtering improves feasibility less than shielded denoising since it selects after generation rather than shaping samples during it. Workspace-coordinate diffusion performs worst among learned variants, confirming that trajectory-indexed generation is central to sparse augmentation. 
+
+## 6 Conclusion and Limitations 
+
+SCoDA demonstrates that diffusion can be used as a generative designer for just-enough environ-ment augmentation. The method couples a trajectory-indexed augmentation representation, rollout-conditioned diffusion over sparse fiducial layouts, and a task-space shield that focuses the finite budget on useful corrective observations. Across simulation and hardware, SCoDA (i) improves trajectory-execution reliability over strong heuristic and learned baselines, (ii) reaches 90% success and 95% waypoint following using the same minimum number of fiducials as the rollout-optimized upper bound, and (iii) produces shield-ranked layouts in under a second rather than requiring hun-dreds of seconds of closed-loop search. The results show that reliable execution under partial ob-servability improves when task-aware fiducials are placed where localization support is most useful. 
+
+Limitations: SCoDA optimizes where to place a prescribed number K of markers, but it does not choose K. SCoDA assumes that a reference trajectory and mapped environment are available before deployment, so it is best suited to structured tasks. Because training supervision comes from closed-loop rollouts, performance depends on how well the models and estimator match the deployment setting. Future work: Our experiments focus on single-robot trajectory execution. Extending SCoDA to multi-robot settings, where cooperative agents can act as moving sources of localization information or share relative observations, is a promising direction. Another important extension includes jointly choosing the number and placement of fiducials and reasoning about richer three-dimensional visibility. 8References 
+
+[1] S. Thrun, W. Burgard, and D. Fox. Probabilistic Robotics . 2005. [2] D. Fox, W. Burgard, F. Dellaert, and S. Thrun. Monte Carlo localization: Efficient position estimation for mobile robots. The National Conference on Artificial Intelligence , pages 343– 349, 1999. [3] H. Durrant-Whyte and T. Bailey. Simultaneous localization and mapping: Part i. IEEE Robotics & Automation Magazine , 13(2):99–110, 2006. [4] C. Cadena, L. Carlone, H. Carrillo, Y. Latif, D. Scaramuzza, J. Neira, I. Reid, and J. J. Leonard. Past, present, and future of simultaneous localization and mapping: Toward the robust-perception age. IEEE Transactions on Robotics , 32(6):1309–1332, 2016. [5] L. P. Kaelbling and T. Lozano-P´ erez. Integrated task and motion planning in belief space. The International Journal of Robotics Research , 32(9–10):1194–1227, 2013. [6] V. Indelman, L. Carlone, and F. Dellaert. Planning in the continuous domain: A generalized belief space approach for autonomous navigation in unknown environments. The International Journal of Robotics Research , 34(7):849–882, 2015. [7] R. Platt, R. Tedrake, L. P. Kaelbling, and T. Lozano-P´ erez. Belief space planning assuming maximum likelihood observations. In Robotics: Science and Systems (RSS) , 2010. [8] J. van den Berg, P. Abbeel, and K. Goldberg. LQG-MP: Optimized path planning for robots with motion uncertainty and imperfect state information. The International Journal of Robotics Research , 30(7):895–913, 2011. [9] W. Burgard, D. Fox, and S. Thrun. Active mobile robot localization. In The International Joint Conference on Artificial Intelligence , pages 1346–1352, 1997. [10] S. Thrun. Active exploration in dynamic environments. In 12th Advances in Neural Informa-tion Processing Systems (NeuIPS) , 1998. [11] E. Olson. AprilTag: A robust and flexible visual fiducial system. In IEEE International Conference on Robotics and Automation (ICRA) , pages 3400–3407, 2011. [12] J. Wang and E. Olson. AprilTag 2: Efficient and robust fiducial detection. In IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , pages 4193–4198, 2016. [13] S. Garrido-Jurado, R. Mu˜ noz-Salinas, F. J. Madrid-Cuevas, and R. Medina-Carnicer. Auto-matic generation and detection of highly reliable fiducial markers under occlusion. Pattern Recognition , 47(6):2280–2292, 2014. [14] M. Kalaitzakis, S. Carroll, A. Ambrosi, C. Whitehead, and N. Vitzilaios. Fiducial markers for pose estimation: Overview, applications and experimental comparison of the ARTag, AprilTag, ArUco and STag markers. Journal of Intelligent & Robotic Systems , 101(4):71, 2021. [15] M. Beinhofer, J. M¨ uller, and W. Burgard. Effective landmark placement for accurate and reliable mobile robot navigation. Robotics and Autonomous Systems , 61(10):1060–1069, 2013. [16] V. Magnago, L. Palopoli, R. Passerone, D. Fontanelli, and D. Macii. Effective landmark place-ment for robot indoor localization with position uncertainty constraints. IEEE Transactions on Instrumentation and Measurement , 68(11):4443–4455, 2019. [17] J. Sohl-Dickstein, E. A. Weiss, N. Maheswaranathan, and S. Ganguli. Deep unsupervised learning using nonequilibrium thermodynamics. In The International Conference on Machine Learning (ICML) , 2015. 9[18] J. Ho, A. Jain, and P. Abbeel. Denoising diffusion probabilistic models. In 34th Advances in Neural Information Processing Systems (NeurIPS) , pages 6840–6851, 2020. [19] Y. Song, J. Sohl-Dickstein, D. P. Kingma, A. Kumar, S. Ermon, and B. Poole. Score-based generative modeling through stochastic differential equations. In International Conference on Learning Representations (ICLR) , 2021. [20] M. W. M. G. Dissanayake, P. Newman, S. Clark, H. F. Durrant-Whyte, and M. Csorba. A solu-tion to the simultaneous localization and map building (SLAM) problem. IEEE Transactions on Robotics and Automation , 17(3):229–241, 2001. [21] M. Montemerlo, S. Thrun, D. Koller, and B. Wegbreit. FastSLAM: A factored solution to the simultaneous localization and mapping problem. In The AAAI National Conference on Artificial Intelligence , pages 593–598, 2002. [22] R. Bajcsy, Y. Aloimonos, and J. K. Tsotsos. Active perception. Autonomous Robots , 42(2): 177–196, 2018. [23] D. Liberzon and S. Mitra. Indistinguishability in localization and control with coarse informa-tion. In Proceedings of the 28th ACM International Conference on Hybrid Systems: Compu-tation and Control , pages 12:1–12:10, 2025. doi:10.1145/3716863.3718034. [24] E. Yuceel, D. Liberzon, and S. Mitra. Active localization of unstable systems with coarse information. arXiv preprint arXiv:2602.06191 , 2026. [25] S. Prentice and N. Roy. The belief roadmap: Efficient planning in belief space by factoring the covariance. The International Journal of Robotics Research , 28(11–12):1448–1465, 2009. [26] A. Bry and N. Roy. Rapidly-exploring random belief trees for motion planning under uncer-tainty. In IEEE International Conference on Robotics and Automation (ICRA) , pages 723–730, 2011. [27] A.-a. Agha-mohammadi, S. Chakravorty, and N. M. Amato. FIRM: Sampling-based feedback motion-planning under motion uncertainty and imperfect measurements. The International Journal of Robotics Research , 33(2):268–304, 2014. [28] A. Censi, D. Calisi, A. De Luca, and G. Oriolo. A bayesian framework for optimal motion planning with uncertainty. In IEEE International Conference on Robotics and Automation (ICRA) , pages 1798–1805, 2008. [29] L. Blackmore, M. Ono, A. Bektassov, and B. C. Williams. Chance-constrained optimal path planning with obstacles. IEEE Transactions on Robotics , 27(6):1080–1094, 2011. [30] F. Bourgault, A. A. Makarenko, S. B. Williams, B. Grocholsky, and H. F. Durrant-Whyte. Information based adaptive robotic exploration. IEEE/RSJ International Conference on Intel-ligent Robots and Systems (IROS) , 1:540–545, 2002. [31] C. Stachniss, G. Grisetti, and W. Burgard. Information gain-based exploration using rao-blackwellized particle filters. Robotics: Science and Systems (RSS) , 2005. [32] B. Charrow, S. Liu, V. Kumar, and N. Michael. Information-theoretic planning with trajectory optimization for dense 3d mapping. In Robotics: Science and Systems (RSS) , 2015. [33] G. A. Hollinger and G. S. Sukhatme. Sampling-based robotic information gathering algo-rithms. The International Journal of Robotics Research , 33(9):1271–1287, 2014. [34] A. J. Davison. Real-time simultaneous localization and mapping with a single camera. In IEEE International Conference on Computer Vision (ICCV) , pages 1403–1410, 2003. 10 [35] H. Strasdat, J. M. M. Montiel, and A. J. Davison. Scale drift-aware large scale monocular SLAM. Robotics: Science and Systems (RSS) , 2010. [36] C. F. Olson. Selecting landmarks for localization in natural terrain. Autonomous Robots , 12 (2):201–210, 2002. [37] L. H. Erickson and S. M. LaValle. An art gallery approach to ensuring that landmarks are distinguishable. In Robotics: Science and Systems , volume 7, pages 81–88, 2012. [38] Q. Huang, J. DeGol, V. Fragoso, S. N. Sinha, and J. J. Leonard. Optimizing fiducial marker placement for improved visual localization. IEEE Robotics and Automation Letters , 8(5): 2756–2763, 2023. [39] P. Dhariwal and A. Nichol. Diffusion models beat GANs on image synthesis. In 35th Advances in Neural Information Processing Systems (NIPS) , pages 8780–8794, 2021. [40] J. Ho and T. Salimans. Classifier-free diffusion guidance, 2022. [41] A. Bansal, H.-M. Chu, A. Schwarzschild, R. Sengupta, M. Goldblum, J. Geiping, and T. Gold-stein. Universal guidance for diffusion models. In International Conference on Learning Representations (ICLR) , pages 51304–51323, 2024. [42] M. Janner, Y. Du, J. B. Tenenbaum, and S. Levine. Planning with diffusion for flexible behavior synthesis. In The International Conference on Machine Learning (ICML) , pages 9902–9915, 2022. [43] A. Ajay, Y. Du, A. Gupta, J. B. Tenenbaum, T. Jaakkola, and P. Agrawal. Is conditional gen-erative modeling all you need for decision-making? In International Conference on Learning Representations (ICLR) , 2023. [44] J. Carvalho, A. T. Le, M. Baierl, D. Koert, and J. Peters. Motion planning diffusion: Learning and planning of robot motions with diffusion models. In IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , 2023. [45] C. Chi, S. Feng, Y. Du, Z. Xu, E. Cousineau, B. Burchfiel, and S. Song. Diffusion policy: Visuomotor policy learning via action diffusion. In Robotics: Science and Systems (RSS) ,2023. [46] J. Urain, N. Funk, J. Peters, and G. Chalvatzaki. SE(3)-diffusionfields: Learning smooth cost functions for joint grasp and motion optimization through diffusion. In IEEE International Conference on Robotics and Automation (ICRA) , 2023. [47] U. A. Mishra, S. Xue, Y. Chen, and D. Xu. Reorientdiff: Diffusion model based reorienta-tion for object manipulation. In IEEE International Conference on Robotics and Automation (ICRA) , 2023. [48] B. Yang, H. Su, N. Gkanatsios, T.-W. Ke, A. Jain, J. Schneider, and K. Fragkiadaki. Diffusion-ES: Gradient-free planning with diffusion for autonomous and instruction-guided driving. In 
+
+IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , 2024. [49] J. Ho and T. Salimans. Classifier-free diffusion guidance. In NeurIPS 2021 Workshop on Deep Generative Models and Downstream Applications , 2021. [50] Y. Miao, E. Yuceel, G. Fainekos, B. Hoxha, H. Okamoto, and S. Mitra. Performance-guided refinement for visual aerial navigation using editable gaussian splatting in FalconGym 2.0. In 
+
+IEEE International Conference on Robotics and Automation (ICRA) , 2026. [51] Y. Miao, W. Shen, and S. Mitra. Falcongym: A photorealistic simulation framework for zero-shot sim-to-real vision-based quadrotor navigation. In 2025 IEEE/RSJ International Confer-ence on Intelligent Robots and Systems (IROS) , pages 17154–17161, 2025. 11 [52] Y. Miao, W. Shen, H. Cui, and S. Mitra. Falconwing: An ultra-light indoor fixed-wing uav platform for vision-based autonomy. arXiv preprint arXiv:2505.01383 , 2025. 12 Appendix Contents 
+
+A Experiment setting and Details 14 
+
+A.1 Simulation Setup: FalconGym . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14 A.2 Hardware Setup: Crazyflie Deployment . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15 A.3 Baselines . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16 
+
+B Derivations and Implementation Parameters 18 
+
+B.1 Notation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18 B.2 Task-Relevant Intervals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19 B.3 Exponential-Tilt View of Shielding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20 B.4 Shielded DDPM Update . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20 B.5 Physical Instantiation and Final Feasibility Check . . . . . . . . . . . . . . . . . . . . . . . 21 B.6 Repeated-Sampling Acceptance Probability . . . . . . . . . . . . . . . . . . . . . . . . . . . 22 B.7 Implementation Recipes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22 
+
+C Additional Qualitative Results 27 
+
+C.1 Early-path disturbance regions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28 C.2 Mid-path disturbance regions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29 C.3 End-of-path disturbance regions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30 
+
+13 A Experiment setting and Details 
+
+A.1 Simulation Setup: FalconGym  
+
+> Figure 5: Simulator environment
+
+We evaluate SCoDA in FalconGym 2.0 [50], using the fixed-wing vehicle dynamics from Falcon-Wing [52]. FalconGym provides a photorealistic aerial-navigation simulator with editable scene elements, which allows us to insert task-specific fiducial structures while keeping the vehicle dy-namics, reference trajectory, estimator, controller, and rendering pipeline fixed across methods. We use the simulator only as an execution environment; SCoDA does not receive closed-loop rollout evaluations at test time. Figure 5 shows the simulated fiducial structures used in our FalconGym experiments. We modify FalconGym so that these fiducial structures act as localization-update regions. During execution, when the fixed-wing vehicle reaches a pose from which an inserted fiducial is detectable under the nominal camera and visibility model, the estimator receives a noisy pose correction associated with the known fiducial pose. This models the effect of visual landmarks such as AprilTags or gate-like fiducials without changing the low-level dynamics or controller. The pose-correction noise, detection range, field-of-view threshold, and visibility checks are shared across all augmentation methods. We also extend the simulator with localized wind regions for the disturbance-augmented tasks. Each wind region occupies a specified spatial region of the environment and applies an external distur-bance to the vehicle while it is inside that region. The disturbance interval used by SCoDA’s con-text is obtained by projecting the wind-affected segment of the nominal trajectory into trajectory-progress coordinates. Nominal tasks use the same simulator, estimator, controller, and trajectory-generation procedure, but do not include external wind disturbances. We evaluate on two arena sizes: a small arena of size 5.53 m × 3.64 m and a larger room of size 
+
+10 .71 m × 8.92 m . The main simulated execution table averages results over both room sizes. The budget-efficiency and placement-time compute tables are reported on the larger room only, since it provides a wider range of feasible sparse-placement configurations and larger observation-poor regions. All simulation evaluations are performed on held-out settings not used to train SCoDA; the held-out split includes unseen trajectories, unseen goals, unseen disturbance placements and unseen room layouts. Unless otherwise stated, simulated fixed-budget experiments use K = 6 fiducials and report means and standard errors over 150 stochastic closed-loop rollouts. 14 Table 6: FalconGym simulation parameters                              
+
+> Parameter Meaning Value
+> Environment setup
+> Small arena size Planar room dimensions 5.53 m ×3.64 m
+> Large room size Planar room dimensions 10 .71 m ×8.92 m
+> Simulator Photorealistic aerial-navigation environment FalconGym 2.0 [50] Vehicle model Fixed-wing dynamics used in simulation FalconWing [52]
+> Evaluation setup
+> Fixed-budget fiducials Number of added fiducials in main simulation experiments K= 6
+> Rollouts per reported setting Stochastic closed-loop executions used for evaluation 150
+> Train/test split Held-out evaluation settings 80/20
+> Planning and sensing setup
+> Reference-trajectory generation Planner or trajectory source Oracle path planner (A*) Detection range Minimum and maximum fiducial-detection range 14 cm
+> Camera field of view Visibility threshold used for fiducial detection 15 cm
+> Number of wind regions Wind regions per disturbed task 1
+
+A.2 Hardware Setup: Crazyflie Deployment 
+
+Figure 6: Hardware environment setup 
+
+We also evaluate SCoDA on a Crazyflie quadrotor in a 2 m × 2 m indoor arena. The hardware experiments are designed to test whether the trajectory-progress placements generated by SCoDA provide useful localization support during real closed-loop execution. The estimator, low-level flight controller, reference trajectory, and fiducial-detection pipeline are kept fixed across methods. Figure 6 shows the hardware deployment. At deployment time, SCoDA generates a sparse set of desired correction locations along the planned trajectory. We instantiate these suggestions using physical AprilTags placed on the floor of the arena. The tag poses are measured in the arena coordi-nate frame and provided to the estimator before flight. During execution, when the Crazyflie detects a tag, the known tag pose and the measured camera-to-tag transform provide a pose correction to the robot estimator. This follows the standard fiducial-localization setup in which tags have known identities and calibrated world-frame poses. The hardware study is intended primarily to evaluate the quality of the generated correction sched-ule and sparse placement pattern, not the difficulty of finding arbitrary wall or ceiling mounting 15 surfaces. Therefore, the physical-placement problem is controlled: tags are placed on the floor near the generated trajectory-progress locations and oriented so that a robot following the nominal trajec-tory, or deviating moderately from it, can still observe the tags. This makes the hardware experiment a direct test of whether SCoDA allocates a limited number of corrections to useful parts of the task trajectory. All methods use the same floor-placement convention, the same tag-size and detection settings, and the same calibrated tag-pose map. The hardware arena contains obstacles, and the obstacle placements used for evaluation are held out from training. The evaluated trajectories are also previously unseen. Thus, the hardware results test deployment on unseen obstacle configurations and unseen reference trajectories rather than memo-rization of a training layout. Unless otherwise stated, hardware experiments use K = 8 AprilTags and report results over 45 total trials. 
+
+Table 7: Hardware deployment parameters.                        
+
+> Parameter Meaning Value
+> Robot platform Quadrotor used for hardware deployment Crazyflie 2.0 Arena size Planar hardware workspace dimensions 2 m ×2 m
+> Fiducial type Physical visual markers used for localization AprilTags Fiducial budget Number of deployed tags K= 8
+> Tag placement surface Physical mounting surface Floor Controller Low-level and/or trajectory-tracking controller Cascaded PID Waypoint-following criterion Definition of hardware waypoint-following metric The drone moves within a radius of 13cm of the given waypoint Obstacle configurations Held-out obstacle-placement protocol Previously unseen Number of trials Hardware trials used in reported table 45
+
+A.3 Baselines 
+
+We compare SCoDA against baselines chosen to isolate trajectory-indexed generation, rollout-profile conditioning, shielded denoising, and test-time rollout optimization. For all methods, the reference trajectory τ , mapped environment E, estimator, controller, camera model, process-noise model, measurement-noise model, and disturbance model are held fixed. For all fixed-budget aug-mentation methods, the fiducial budget K and physical feasibility constraints are also held fixed. Let 
+
+P denote the discretized feasible physical candidate set used by physical-space baselines. A pose is included in P only if it satisfies the common installability, range, field-of-view, marker-orientation, occlusion, and workspace-duplicate constraints. Unless otherwise stated, fixed-budget augmenta-tion methods return m ∈ M K , while Periodic-Dense returns mPD ∈ M KPD . Methods that choose desired correction locations in trajectory-progress space are mapped to physical fiducial poses using the same instantiation map ME,τ . If ME,τ cannot instantiate a requested progress value, the value is snapped to the nearest unused feasible progress value within the allowed local progress window; if no such value exists, the layout is rejected and the method continues with its next candidate or proposal. 
+
+No-Augmentation (NA) uses no added fiducials. The robot executes the reference trajectory using the same controller, estimator, process noise, measurement noise, and disturbance model as all other methods, but receives no additional fiducial-based pose corrections. This baseline measures how often the planned trajectory can be executed using the unaugmented environment alone. 
+
+Random (Rand) samples K fiducial poses uniformly without replacement from the feasible physi-cal candidate set P. Rand therefore tests whether reliability improves merely from adding feasible visual structure, without using trajectory timing, disturbance context, localizability, predicted devi-ation, or rollout outcomes. 
+
+Periodic-K (PK) places K fiducials at uniformly spaced progress values along the reference trajec-tory and then instantiates them physically with ME,τ . The target progress values are the centers of 
+
+K equal progress bins, 
+
+vPK  
+
+> i
+
+= i − 12
+
+K , i = 1 , . . . , K. (7) 16 PK is a strong non-learning baseline because it distributes corrections across the full execution, but it is not task-aware: it spends the same budget in easy, already-localizable regions as in disturbance, recovery, or terminal-approach regions. 
+
+Periodic-Dense (PD) is an unbounded periodic-coverage baseline. Instead of using afixed budget, PD increases the periodic budget KPD until the maximum nominal obser-vation gap along the reference trajectory is below a threshold ∆obs . Let on(m) =
+
+1[at least one added fiducial in m is detectable from xrn]. In implementation, the observation gap is computed on the discretized reference trajectory as 
+
+G(m) = 1
+
+N max {b − a + 1 : on(m) = 0 for all n = a, . . . , b }. (8) PD chooses the smallest periodic budget KPD such that 
+
+G(mPD ) ≤ ∆obs . (9) PD is not a fair fixed-budget competitor to SCoDA; it measures how many markers are needed when one solves the problem by dense periodic coverage rather than task-aware sparse augmentation. 
+
+Critical-Region (CR) is a hand-designed disturbance-aware heuristic with access to the same dis-turbance and recovery intervals used by SCoDA’s shield. For disturbance-conditioned tasks, CR allocates fiducials to the pre-disturbance, disturbance-traversal, recovery, and terminal-approach re-gions, then maps the selected progress values to physical marker poses using ME,τ . When the budget is smaller than the number of critical regions, CR assigns markers according to the fixed priority or-der pre-disturbance, disturbance traversal, recovery, and terminal approach. When extra markers remain, they are distributed across the critical regions in proportion to interval length; within each assigned interval, progress values are placed at equally spaced bin centers. CR is omitted from nominal settings because its allocation rule is defined by disturbance and recovery intervals. 
+
+Visibility-Greedy (VG) greedily selects fiducials that make the largest number of nominal reference states observable. For each candidate marker pose p ∈ P , let O(p) ⊆ { 0, . . . , N } be the set of reference-trajectory indices from which p is detectable under the same camera, projected-size, viewing-geometry, and occlusion model used by ME,τ . Starting from S0 = ∅, VG repeatedly selects 
+
+pj ∈ arg max 
+
+> p∈P\S j−1
+
+O(p) \ [
+
+> q∈S j−1
+
+O(q) , (10) and sets Sj = Sj−1 ∪ { pj } until K markers are selected. Ties are broken by the common candidate ordering. VG uses geometry and visibility but ignores whether the covered states are important for closed-loop execution. 
+
+Localizability-Greedy (LG) greedily selects fiducials using a geometric localizability surrogate in-spired by camera-localizability marker-placement objectives [38], rather than a binary visibility count. For each feasible candidate marker pose p and reference index n, let χ(n, p ) indicate whether 
+
+p is detectable from xrn, let r(n, p ) be the camera-marker range, let θ(n, p ) be the marker incidence angle, and let A(n, p ) be the projected marker area. We use the normalized score 
+
+ℓ(n, p ) = χ(n, p )
+
+
+
+1 − r(n, p ) − rmin 
+
+rmax − rmin 
+
+
+
+max(0 , cos θ(n, p )) min 
+
+
+
+1, A(n, p )
+
+Aref 
+
+
+
+, (11) where Aref = max n,p :χ(n,p )=1 A(n, p ). LG maintains the best localizability score already provided at each reference state and greedily selects the candidate with the largest marginal improvement, 
+
+pj ∈ arg max 
+
+> p∈P\S j−1
+> N
+
+X
+
+> n=0
+
+[max( Lj−1(n), ℓ (n, p )) − Lj−1(n)] , (12) where Lj−1(n) = max q∈S j−1 ℓ(n, q ) and L0(n) = 0 . Ties are broken by the common candidate ordering. LG is stronger than VG because it accounts for nominal measurement quality, but it still optimizes a geometric-localization surrogate rather than closed-loop task success. 17 Deviation-Greedy (DG) is a deviation-inspired heuristic related to landmark-placement methods that reason about predicted deviation from a desired trajectory [15]. DG places fiducials near trajectory regions where the robot is predicted to accumulate large tracking error without additional local-ization support. DG first estimates a deviation profile using BDG = 20 stochastic unaugmented rollouts. Let ˜eτn,b denote the tracking error at reference index n in rollout b if that index is reached before termination, and let ∥˜eτn,b ∥2 
+
+> Q
+
+= Emax if the rollout terminates before reaching index n. The risk score is 
+
+r(n) = 1
+
+BDG 
+
+> BDG
+
+X
+
+> b=1
+
+min  ∥˜eτn,b ∥2
+
+> Q
+
+, E max 
+
+ . (13) DG sorts reference indices by decreasing r(n) and greedily selects the highest-risk index whose normalized progress is at least δDG away from all previously selected indices, until K indices are selected. The selected progress values are then instantiated with ME,τ . Unlike RO, DG does not evaluate candidate fiducial layouts under closed-loop execution; it only estimates where the unaug-mented trajectory is likely to drift. 
+
+Rollout-Opt (RO) is an expensive test-time rollout-search baseline that directly evaluates candidate layouts using the closed-loop objective in Eq. (1). RO performs random shooting over progress-space layouts: it samples K progress values from the feasible progress grid subject to the same minimum-separation rule used by the validation check, instantiates the resulting layout with ME,τ ,rejects physically infeasible layouts, and evaluates each retained candidate using BRO stochastic rollouts. For each candidate layout m, RO estimates 
+
+bJRO (m) = 1
+
+BRO 
+
+> BRO
+
+X
+
+> b=1
+
+"Tmax X
+
+> t=0
+
+∥eτt,b ∥2 
+
+> Q
+
++ λtime tf,b + Cfail 1[Fτ,b ]
+
+#
+
+. (14) RO returns the lowest-cost layout found within its total rollout budget. In the compute comparison, this total budget is 4500 closed-loop rollouts. RO has access to closed-loop evaluations for each test task, so it is not an amortized placement method and is much more expensive than SCoDA. We use it as an empirical test-time optimization reference rather than as a formal global optimum. We also report ablations of SCoDA to isolate the contribution of each component. Removing the shield tests whether rollout-conditioned diffusion alone uses the finite marker budget effectively. Removing the interval term tests whether explicitly covering task-relevant regions is necessary. Re-moving the separation term tests whether progress-space redundancy hurts sparse augmentation. Removing the rollout profile y tests the value of conditioning generation on execution outcomes. Removing disturbance context d tests whether SCoDA adapts to task-specific perturbations. Re-moving classifier-free guidance tests the effect of stronger conditioning at inference. Post-hoc filtering samples from the unshielded diffusion model and then applies the same final hard fea-sibility check, testing whether rejecting bad samples after generation is sufficient compared with shaping the reverse process itself. Workspace diffusion replaces trajectory-indexed generation with direct workspace-coordinate generation before applying the same physical feasibility checks, testing whether reasoning in trajectory-progress space is important for sparse task-aware augmentation. 
+
+## B Derivations and Implementation Parameters 
+
+This appendix gives the derivations and implementation details referenced in the main paper. 
+
+B.1 Notation 
+
+In this appendix, t indexes the diffusion step, not physical rollout time, and xt denotes the noisy diffusion variable rather than the robot state. Clean training augmentations are represented as vectors 
+
+x0 ∈ [−1, 1] K , where K is the fiducial budget. During sampling, the reverse process produces an unconstrained denoised estimate, which is clipped to [−1, 1] K before being interpreted as a progress-space augmentation. We convert diffusion coordinates to normalized trajectory-progress coordinates 18 by 
+
+S(u) = u + 1
+
+2 , v = S(u) ∈ [0 , 1] K . (15) Let sg[ ·] denote the stop-gradient operator. To avoid zeroing the shield gradient when a predicted clean value lies outside [−1, 1] , we use a straight-through clip for shield evaluation: 
+
+clip ST (z) = z + sg 
+
+h
+
+clip [−1,1] (z) − z
+
+i
+
+. (16) The forward value of clip ST equals the clipped value, while its backward derivative with respect to 
+
+z is the identity. For stable and inexpensive guidance, we also stop gradients through the denoiser prediction when computing the shield gradient. The predicted clean sample used by the shield is 
+
+bxsg 0,t = xt − √1 − ¯αt sg[ˆ ϵcfg (xt, t, c)] 
+
+√¯αt
+
+, (17) and the corresponding progress vector is 
+
+vt = S clip ST 
+
+ bxsg 0,t 
+
+ . (18) The denoising network parameters are frozen during sampling; only the derivative with respect to the current diffusion state xt is used for shielding. 
+
+B.2 Task-Relevant Intervals 
+
+The context c specifies task-relevant trajectory intervals I(c) = {[am, b m]}Mm=1 , where 0 ≤ am ≤
+
+bm ≤ 1. In disturbance-conditioned tasks, the disturbance context is d = [ ud,s , u d,e , u r,e ], where 
+
+ud,s is the disturbance-entry progress, ud,e is the disturbance-exit progress, and ur,e is the end of the recovery region. Unless otherwise stated, we construct 
+
+I(c) = {[max(0 , u d,s − ∆pre ), u d,s ], [ud,s , u d,e ], [ud,e , u r,e ], [max(0 , 1 − ∆goal ), 1] } . (19) The four intervals correspond to pre-disturbance correction, disturbance traversal, recovery, and terminal approach. Intervals with width smaller than ϵint are omitted. For nominal tasks without an external disturbance interval, we use the terminal-approach interval 
+
+Inom (c) = {[max(0 , 1 − ∆goal ), 1] } . (20) When intervals overlap, a single progress value may contribute to multiple interval counts. This is intentional because overlapping task-relevant regions can be supported by the same fiducial-induced correction. For interval m, let nm be the required number of fiducials in that interval. In all reported experiments using the interval-coverage shield, nm = 1 unless otherwise stated. We use the sigmoid σ(r) = 1/(1 + exp( −r)) and the smooth interval-membership score 
+
+ρ(v; a, b ) = σ(κ(v − a)) σ(κ(b − v)) , κ > 0. (21) The score ρ(v; a, b ) is close to one when v lies well inside an interval whose width is large relative to 1/κ , and close to zero far outside the interval. To avoid a nondifferentiability in the separation penalty, we use the smooth distance 
+
+dηij =
+
+q
+
+(vi − vj )2 + η2, (22) where η > 0 is small. The shield objective is 
+
+Jtask (v; c) = 
+
+> M
+
+X
+
+> m=1
+
+βm
+
+"
+
+nm −
+
+> K
+
+X
+
+> k=1
+
+ρ(vk; am, b m)
+
+#
+
+> +
+
++ βs
+
+X
+
+> i<j
+
+σ κs(δmin − dηij ) . (23) The first term is a differentiable surrogate for requiring at least nm progress values inside inter-val m. The second term penalizes progress-space redundancy under a finite marker budget. The positive-part function [r]+ = max( r, 0) is implemented using the automatic-differentiation subgra-dient at r = 0 . The separation term encodes the design assumption that, under a small marker budget, multiple fiducials observed at nearly the same trajectory progress are usually less valuable than corrections distributed across the execution. It is a progress-space redundancy heuristic, not a statement that simultaneous multi-tag observations are never useful. 19 B.3 Exponential-Tilt View of Shielding 
+
+Let pθ, base (u | c) denote the distribution induced by the reverse sampler before applying the progress-space shield. In our experiments, this base sampler includes classifier-free guidance. For readability, we write this distribution as pθ (u | c). For a fixed context c, define the tilted distribution over valid progress-space augmentations u ∈ [−1, 1] K by 
+
+qλ(u | c) = pθ (u | c) exp( −λJ task (S(u); c)) 
+
+Zλ(c) , (24) where λ ≥ 0 is the shielding strength and 
+
+Zλ(c) = 
+
+Z
+
+> [−1,1] K
+
+pθ (u | c) exp( −λJ task (S(u); c)) du. (25) Since K, βm, and βs are finite and Jtask is bounded on [0 , 1] K , Zλ(c) is finite whenever pθ is a normalized density on [−1, 1] K . For readability, write J(u) = Jtask (S(u); c). Assuming differen-tiation under the integral is valid, we have 
+
+Eqλ [J] = 
+
+R 
+
+> [−1,1] K
+
+J(u)pθ (u | c) exp( −λJ (u)) du
+
+Zλ(c) = − ddλ log Zλ(c). (26) Differentiating once more gives 
+
+ddλ Eqλ [J] = − d2
+
+dλ 2 log Zλ(c) = −  Eqλ [J2] − Eqλ [J]2 = −Var qλ (J) ≤ 0. (27) Therefore, under exact sampling from qλ, increasing λ cannot increase the expected shield objective. This result motivates the shielded sampler, but the actual reverse-diffusion sampler is approximate; the monotonicity statement above is not a guarantee that every generated sample has lower Jtask ,nor is it a guarantee of closed-loop execution success. 
+
+B.4 Shielded DDPM Update 
+
+The DDPM reverse mean using a noise prediction ˆϵ is 
+
+μθ (xt, t, c) = 1
+
+√αt
+
+
+
+xt − βt
+
+√1 − ¯αt
+
+ˆϵ
+
+
+
+, (28) where βt is the diffusion variance schedule, αt = 1 − βt, and ¯αt = Qts=1 αs. The shield gradient is 
+
+gt = ∇xt Jtask (vt; c). (29) If gradient clipping is used, we replace gt by 
+
+gt ← gt min 
+
+
+
+1, gmax 
+
+∥gt∥2 + εg
+
+
+
+, (30) where gmax > 0 is the maximum gradient norm and εg > 0 prevents division by zero. The shielded sampler uses 
+
+ˆϵsh = ˆ ϵcfg + λtgt, (31) where λt ≥ 0 is the shield strength at reverse step t. Substituting Eq. (31) into Eq. (28) gives 
+
+μsh = μcfg − βtλt
+
+√αt
+
+√1 − ¯αt
+
+gt. (32) Equivalently, the shield induces a mean-space step size 
+
+ηt = βtλt
+
+√αt
+
+√1 − ¯αt
+
+, (33) so that μsh = μcfg − ηtgt. Thus, adding +λt∇xt Jtask to the predicted noise moves the reverse mean in the negative gradient direction of Jtask . The positive sign in Eq. (31) is therefore con-sistent with descending the shield objective under the DDPM noise-prediction parameterization. In 20 implementation, λt is tuned with the timestep-dependent preconditioning above in mind. This calcu-lation establishes the local direction of the reverse-mean shift induced by the ϵ-space modification. It should not be interpreted as a proof that each stochastic reverse step decreases Jtask , because the sampler also includes diffusion noise, the denoiser score, clipping or projection, and a shield objective evaluated through a predicted clean sample. Shielding is applied only on a specified subset of reverse steps Tsh ⊆ { 1, . . . , T }. Early reverse steps are often too noise-dominated for the progress-space objective to be meaningful, while very late steps leave little freedom to change the sample. 
+
+B.5 Physical Instantiation and Final Feasibility Check 
+
+After denoising, we obtain bu = clip [−1,1] (bx0) and bv = S(bu). The physical instantiation map returns either a feasible physical layout and realized progress values or a rejection: 
+
+( bm, ev) = ME,τ (bu). (34) Here bm is the physical fiducial layout and ev ∈ [0 , 1] K contains the realized correction progress values induced by the instantiated markers under the nominal reference trajectory. We use ev, rather than the requested progress values bv, for the final hard feasibility check because ME,τ may snap a requested progress value to a nearby feasible physical marker pose. For each requested progress value bvk, ME,τ searches candidate marker poses associated with refer-ence states whose progress lies in [bvk − ∆u, bvk + ∆ u]. A candidate physical marker pose is feasible only if it lies on an installable surface, is within the detector range [rmin , r max ] from at least one rel-evant reference pose, lies inside the camera field of view, satisfies the marker-incidence constraint, is not occluded under the map visibility test, and is not a duplicate or near-duplicate of another selected marker pose in workspace. When multiple feasible poses exist, ME,τ selects the candidate with the highest local visibility score. The realized progress evk is the progress value of the nominal reference state at which the selected marker obtains its highest local visibility score. If no feasible candidate exists for any requested progress value, the layout is rejected. For each task interval [am, b m], define the hard interval count 
+
+Cm(ev) = 
+
+> K
+
+X
+
+> k=1
+
+1[evk ∈ [am, b m]] . (35) The final validation accepts a generated layout only if 
+
+Cm(ev) ≥ nm ∀m, |evi − evj | ≥ δcheck ∀i < j, (36) and the physical layout returned by ME,τ satisfies the installability, visibility, occlusion, range, orientation, and workspace-duplicate constraints described above. We set δcheck = δmin unless otherwise stated. Before sampling, we reject interval specifications that are trivially infeasible in progress space, such as requiring more separated fiducials than the budget can provide in pairwise disjoint intervals. This check does not prove physical feasibility because physical feasibility also depends on the map, candidate installable surfaces, visibility, and occlusion constraints. If no generated candidate passes the final feasibility check after R samples, we continue sampling up to Rmax . If no candidate passes after Rmax samples, we return the physically feasible candidate with the smallest hard validation violation 
+
+H(ev) = 
+
+> M
+
+X
+
+> m=1
+
+[nm − Cm(ev)] + + X
+
+> i<j
+
+[δcheck − | evi − evj |]+ . (37) If no physically feasible candidate exists, the layout is marked infeasible and the fallback baseline specified in the experimental protocol is used. By construction, any retained candidate satisfies the hard interval-coverage and progress-space sep-aration constraints, and satisfies physical feasibility with respect to the installability and visibility model implemented by ME,τ .21 B.6 Repeated-Sampling Acceptance Probability 
+
+Let Ar be the event that the r-th generated candidate passes the final feasibility check. If candidates are generated independently from independent initial Gaussian noise samples and P(Ar ) = pacc for all r = 1 , . . . , R , then the probability that at least one of R generated candidates is feasible is 
+
+P
+
+> R
+
+[
+
+> r=1
+
+Ar
+
+!
+
+= 1 − P
+
+> R
+
+\
+
+> r=1
+
+Acr
+
+!
+
+= 1 −
+
+> R
+
+Y
+
+> r=1
+
+P(Acr ) = 1 − (1 − pacc )R. (38) If candidates have different acceptance probabilities pr but remain independent, the expression be-comes 
+
+1 −
+
+> R
+
+Y
+
+> r=1
+
+(1 − pr ). (39) If candidates are generated adaptively, or if rejection of one candidate changes the generation distri-bution for later candidates, the independence expression need not hold exactly. 
+
+B.7 Implementation Recipes B.7.1 Dataset Generation 
+
+The training dataset is generated using a simulation-based procedure that varies the environment, disturbance conditions, and fiducial landmark configurations. We first generate a set of mapped en-vironments by sampling obstacle layouts, including the number, type, and placement of obstacles. For each environment, start and goal locations are selected, and a collision-free reference path is planned using the A* algorithm. The planner searches over a discretized representation of the en-vironment to find a shortest feasible path from start to goal while avoiding obstacles. In total, the dataset contains 20 unique maps and planned trajectories. For each map, we generate 40 different wind fields. Each wind field corresponds to a different disturbance region relative to the path. For every unique map–wind pair, we then generate 50 dif-ferent fiducial landmark configurations. The landmark configurations are generated randomly using a heuristic constraint-based sampling procedure. Each configuration consists of a fixed number of fiducial tags placed along the planned path. The heuristic constraints are designed to produce landmark placements that are useful for naviga-tion rather than arbitrary samples along the path. First, a minimum pairwise distance is enforced between landmarks to prevent tags from clustering too closely together. Second, coverage con-straints encourage landmarks to be placed in task-relevant regions, including the disturbance region and a subsequent recovery interval, defined as a short segment after the disturbance region where additional localization can help the robot return to the planned path. Additional landmarks are en-couraged near obstacle-related regions, such as before obstacles and around obstacle-induced turns, since these portions of the path often correspond to sharper maneuvers and higher tracking uncer-tainty. We also prevent landmarks from being placed immediately at the start of the trajectory, since the robot begins with a known initial condition and does not benefit significantly from an observation at the starting location. Each landmark configuration is evaluated using the FalconGym simulator. For every map–wind– landmark configuration, we run 5 stochastic Monte Carlo trials, where each trial uses a different realization of the process noise. During each rollout, we record the environment, the true robot trajectory, whether the robot reaches the goal, and the completion time. The statistics saved for each landmark configuration include the success rate over the 5 trials and the mean completion time. If the robot fails to reach the goal in a trial, the trial is assigned the maximum allowed completion time. This penalty ensures that failed or poor landmark configurations are represented as low-quality examples during training. The resulting dataset therefore associates each landmark configuration with both its geometric placement and its empirical navigation performance under stochastic distur-bances. 22 B.7.2 Training Details  
+
+> Figure 7: Architecture of the conditional 1D diffusion model used by SCoDA. The denoiser operates on trajectory-progress fiducial layouts and is conditioned on the task context through a learned context projection added to the timestep embedding.
+
+This section gives implementation details for training the conditional diffusion model used in SCoDA. Each training example consists of a candidate fiducial layout, its task context, and roll-out statistics obtained by executing the corresponding reference trajectory in simulation. As in Sec. 4, the diffusion model operates in trajectory-progress space rather than directly in workspace coordinates. Figure 7 summarizes the denoising architecture. 
+
+Fiducial layout representation. For each candidate layout, the K fiducial locations are projected onto the reference trajectory ω and represented by progress variables ui ∈ [0 , 1] , where ui = 0 
+
+corresponds to the start of the trajectory and ui = 1 corresponds to the terminal region. Before diffusion training, these values are linearly scaled to the diffusion range 
+
+udiff  
+
+> i
+
+= 2 ui − 1 ∈ [−1, 1] . (40) The resulting vector is used as the clean diffusion sample x0. Fiducial entries are sorted by trajectory progress before training. When padded fiducial slots are used, we store a binary mask and apply the diffusion loss only to valid entries. 
+
+Context encoding. The conditional input follows the notation in Sec. 4. The full context is 
+
+c = [ gx, g y , ζ (ω), d, y], (41) We train two conditioning variants to isolate the effect of disturbance awareness. The base model omits the disturbance interval and uses 
+
+cbase = [ gx, g y , ζ (ω), y], (42) while the disturbance-conditioned model uses 
+
+cdist = [ gx, g y , ζ (ω), d, y]. (43) Here, 
+
+d = [ ud,s , u d,e , u r,e ], (44) where ud,s and ud,e denote the start and end of the disturbance interval in trajectory-progress co-ordinates, and ur,e denotes the end of the subsequent recovery interval. These interval values are 23 Figure 8: Architecture of the compact conditional 1D U-Net denoiser. 
+
+scaled to [−1, 1] before being concatenated with the other context features. The base model there-fore learns from trajectory geometry and rollout outcomes alone, while the disturbance-conditioned model is given explicit information about where along the trajectory the disturbance occurs and where recovery may be useful. 
+
+Timestep and context conditioning. For each diffusion timestep t, the model uses a learned timestep embedding of dimension 128 followed by a two-layer MLP. The context vector c is pro-jected with a linear layer into the same 128-dimensional embedding space. The timestep and context embeddings are added to form a combined embedding, which is injected into every residual block through a learned linear projection and broadcast addition over the sequence dimension. This makes the denoiser both time-conditioned and task-conditioned at all stages. We use this additive condi-tioning pathway rather than cross-attention or FiLM-style scale-shift modulation. 
+
+1D U-Net denoiser. The architecture of our conditional 1D U-Net denoiser is shown in Figure 8. The denoising network is a compact 1D U-Net that operates on a sequence of fiducial progress values. The input has shape B × 1 × T , where T is the maximum number of fiducial slots. In our experiments, T = Kmax and is typically small. The network first applies a 1D convolution from 1 channel to 64 channels with kernel size 3 and padding 1. This is followed by a residual block at the original sequence length. The encoder then downsamples using a stride-2 1D convolution from 64 to 128 channels with kernel size 4 and padding 1, reducing the sequence length from T to T / 2.A second residual block operates at 128 channels, followed by a 128-channel bottleneck residual block. The decoder upsamples the bottleneck features by a factor of two using linear interpolation followed by a 1D convolution from 128 channels to 64 channels. The upsampled features are concatenated with the corresponding encoder features through a U-Net skip connection, producing a 128-channel tensor at the original sequence length. A decoder residual block maps this tensor back to 64 chan-nels. Finally, a 1D convolution with kernel size 3 and padding 1 maps the features to a single output channel, producing a noise prediction with the same shape as the input diffusion sample. The fi-nal layer uses a tanh nonlinearity in our implementation to keep the network output numerically bounded. 
+
+Residual block. Each residual block consists of two 1D convolutional layers with SiLU activa-tions. The combined timestep-context embedding is projected to the block’s channel dimension and added after the first convolution, with the embedding broadcast over the sequence dimension. A residual connection adds the block input to the output; when the input and output channel dimen-sions differ, a 1 × 1 convolution is used on the skip path to match dimensions. This design lets each 24 block adapt its denoising computation to the diffusion timestep and task context while preserving local structure over the ordered fiducial slots. 
+
+Diffusion objective. Training follows the noise-prediction DDPM objective in Sec. 4. At each iteration, a diffusion timestep t is sampled uniformly, Gaussian noise ϵ is added to the clean fiducial vector x0, producing the noisy sample xt, and the denoising network is trained to predict the injected noise. For masked layouts, we minimize the masked noise-prediction loss 
+
+Ltrain =
+
+P   (ϵθ (xt, t, ˜c) − ϵ)2 ⊙ mP m + ε , (45) where ϵθ is the predicted noise, ϵ is the sampled Gaussian noise, m is the binary validity mask over fiducial slots, and ε is a small constant used for numerical stability. 
+
+Classifier-free conditioning dropout. To enable classifier-free guidance at generation time, we use conditioning dropout during training. With probability puncond = 0 .1, the context vector is replaced by the null context ˜c = 0. Otherwise, the original context is used, ˜c = c. This allows the same denoising network to learn both conditional and unconditional noise predictions, which are later combined during sampling. 
+
+B.7.3 Shielding Details 
+
+We implement shielding at inference time using a two-stage strategy: (1) differentiable soft guidance during denoising, and (2) hard feasibility checks after sampling. The purpose of the shield is to bias the generated fiducial layout toward task-relevant trajectory regions while avoiding redundant placements under the finite marker budget. During reverse diffusion, the current diffusion state xt is mapped to trajectory-progress coordinates 
+
+vt(xt) ∈ [0 , 1] K . Let 
+
+I(c) = {[am, b m]}Mm=1 (46) denote the task-relevant trajectory intervals specified by the context c. In our implementation, these intervals include the disturbance interval [ud,s , u d,e ], the subsequent recovery interval [ud,e , u r,e ],and a terminal-approach interval near the goal. The recovery interval corresponds to the short seg-ment after the disturbance region where an additional pose correction may help the robot return to the reference trajectory. For an interval [a, b ], we use the same smooth membership score as in Sec.4, 
+
+ψ(v; a, b ) = σ(κ(v − a)) σ(κ(b − v)) , (47) which is close to one when v lies inside the interval and close to zero outside it. The shielding objective combines interval coverage and separation penalties as shown in Eq. (5). Classifier-free guidance is applied first to form ˆϵcfg . The task-gradient is then injected into the predicted noise before the DDPM reverse update as shown in Eq. (6). As in Sec.4, shielding is applied only over intermediate reverse steps, after the early noise-dominated states and before the late states become nearly fixed. In our implementation, the guidance window is the middle portion of the reverse process. After one full denoising pass, the generated vector is clipped to [−1, 1] K and interpreted as the augmentation vector u. For feasibility checking, u is rescaled to trajectory-progress coordinates in 
+
+[0 , 1] K . A sample is accepted only if it satisfies the same interval-coverage and minimum-separation requirements encoded in Jtask . In particular, each required interval in I(c) must contain at least one fiducial, and all fiducial pairs must satisfy 
+
+|ui − uj | ≥ rshield 
+
+Lpath 
+
+, ∀i̸ = j, (48) where rshield is the desired physical spacing between fiducials and Lpath is the length of the refer-ence trajectory. If any hard check fails, the sample is discarded and a new denoising run is performed, up to a fixed maximum number of attempts. 25 Accepted samples are sorted by trajectory progress and passed to the deployment map ME,ω , which maps the progress-space augmentation u to physical fiducial poses in the environment. The soft guidance shapes the reverse diffusion trajectory toward task-relevant regions, while the final hard feasibility check ensures that the returned layout satisfies the specified interval-coverage and sepa-ration requirements. 
+
+B.7.4 Hyperparameters 
+
+Table 8 lists each stage of the compact 1D U-Net denoiser. The model operates on a one-dimensional sequence of fiducial-progress values with input shape B ×1×T , where T = Kmax . The architecture contains one downsampling stage, one bottleneck residual block, and one upsampling stage with a skip connection from the encoder to the decoder. 
+
+Table 8: Layer specification of the compact conditional 1D U-Net denoiser. ResBlock1D denotes a residual 1D convolutional block with SiLU activations and additive timestep-context conditioning. The final output has the same sequence length as the input and predicts the diffusion noise for each fiducial slot. 
+
+Stage In C Out C Operation Output size 
+
+Input 
+
+Input xt 1 1 – T
+
+conv 1 64 Conv1D, k = 3 , pad 1 T
+
+Encoder 
+
+enc-1 64 64 ResBlock1D T
+
+down 64 128 Conv1D, k = 4 , stride 2, pad 1 T / 2
+
+enc-2 128 128 ResBlock1D T / 2
+
+Bottleneck 
+
+bottleneck 128 128 ResBlock1D T / 2
+
+Decoder 
+
+up 128 64 Interp. ×2 + Conv1D, k = 3 , pad 1 T
+
+skip concat 64+64 128 Concatenate encoder feature T
+
+dec-1 128 64 ResBlock1D T
+
+Output 
+
+noise head 64 1 Conv1D, k = 3 , pad 1 + tanh T
+
+26 C Additional Qualitative Results 
+
+We evaluate SCoDA on unseen test environments that are not included in the training dataset. The test set is constructed by varying the start and goal locations to generate five different maps and planned paths. For each map, we evaluate three wind-region placements along the path: one near the beginning of the trajectory, one near the middle, and one near the goal. This results in fifteen map–wind test scenarios. 
+
+Qualitative visualization of generated layouts. Figures 9–11 show the raw SCoDA outputs for five unseen maps with early-, middle-, and end-of-path disturbance regions. The dashed curve is the planned trajectory, the green markers indicate start and goal, and the shaded shapes denote obstacles and disturbance regions. Each column corresponds to one fiducial slot. For each slot, we draw many generated samples from SCoDA and project the resulting fiducial locations back onto the reference trajectory. The blue heatmap visualizes the empirical occupancy of these samples along the path: darker or denser regions indicate trajectory segments where that fiducial slot is generated more frequently across samples. The red × marks the highest-occupancy point, corresponding to the mode of the generated distribution for that slot. This visualization therefore shows not only a single selected layout, but also the distributional structure learned by the model. The results illustrate that SCoDA places probability mass near task-relevant regions, such as disturbance intervals and subsequent recovery segments, obstacle-induced turns, and terminal-approach regions. 27 C.1 Early-path disturbance regions      
+
+> (a) Map 1
+> (b) Map 2
+> (c) Map 3
+> (d) Map 4
+> (e) Map 5
+
+Figure 9: Top-ranked fiducial layouts across different maps affected by early-path disturbance regions. 
+
+28 C.2 Mid-path disturbance regions      
+
+> (a) Map 1
+> (b) Map 2
+> (c) Map 3
+> (d) Map 4
+> (e) Map 5
+
+Figure 10: Top-ranked fiducial layouts across different maps affected by mid-path disturbance regions. 
+
+29 C.3 End-of-path disturbance regions      
+
+> (a) Map 1
+> (b) Map 2
+> (c) Map 3
+> (d) Map 4
+> (e) Map 5
+
+Figure 11: Top-ranked fiducial layouts across different maps affected by end-of-path disturbance regions. 
+
+30

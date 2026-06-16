@@ -1,0 +1,711 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-16T22:48:22.372868+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 10,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 18,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2606.10449v2",
+      "source": "arxiv",
+      "title": "GuideWalk: Learning Unified Autonomous Navigation and Locomotion for Humanoid Robots across Versatile Terrains",
+      "abstract": "Humanoid robots have achieved strong locomotion capabilities, but reliable navigation on versatile terrains remains challenging because obstacle avoidance must be coordinated with dynamically feasible motion. In this work, we present GuideWalk, a unified end-to-end framework that integrates traversability-aware navigation guidance with terrain-adaptive locomotion teacher for humanoid navigation. Specifically, we introduce a navigation module that provides explicit velocity guidance, decoupling obstacle avoidance from terrain conditions to enable robust planning across diverse environments. We propose a composite teacher distillation scheme, where goal-directed commands and dynamically consistent actions are aggregated and distilled into a single policy. To further improve robustness, the distilled policy is refined with reinforcement learning and an auxiliary behavior cloning objective, which promotes exploration while preserving desirable teacher behaviors. Experiments demonstrate that GuideWalk achieves stable and effective navigation while maintaining stable humanoid locomotion.",
+      "authors": [
+        "Haoxuan Han",
+        "Chen Chen",
+        "Linao Gong",
+        "Xin Yang",
+        "Hao Hu",
+        "Junhong Guo",
+        "Zhicheng He",
+        "Yao Su",
+        "Fenghua He"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-09T05:55:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.10449v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Unified end-to-end navigation and locomotion for humanoid robots",
+      "llm_evidence_cn": "人形机器人的统一端到端导航与运动",
+      "llm_evidence": "人形机器人的统一端到端导航与运动",
+      "canonical_evidence": "人形机器人的统一端到端导航与运动",
+      "llm_tldr_en": "Presents GuideWalk, a unified end-to-end framework integrating traversability-aware navigation guidance with terrain-adaptive locomotion for humanoid robots.",
+      "llm_tldr_cn": "面向人形机器人在多种地形上的自主导航挑战，提出GuideWalk端到端框架，融合可通行性感知的导航引导与地形自适应运动教师。通过复合教师蒸馏方案，分别生成目标导向命令与动态一致动作，在仿真环境中实现了鲁棒的导航与运动协调。",
+      "llm_tldr": "面向人形机器人在多种地形上的自主导航挑战，提出GuideWalk端到端框架，融合可通行性感知的导航引导与地形自适应运动教师。通过复合教师蒸馏方案，分别生成目标导向命令与动态一致动作，在仿真环境中实现了鲁棒的导航与运动协调。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.10495v2",
+      "source": "arxiv",
+      "title": "Act on What You See: Unlocking Safe Social Navigation in Vision-Language-Action Models",
+      "abstract": "Safe social navigation requires robots to distinguish people from ordinary obstacles and to react before danger becomes imminent. We show that pretrained Vision-Language-Action (VLA) models already encode pedestrian-object distinctions and future collision signals in their internal representations, but behavior cloning fails to translate these signals into socially appropriate actions. To address this mismatch, we propose SALSA, a two-stage annotation-free post-training framework: (1) social behavioral alignment bridges intermediate-layer social features to the action head and trains on counterfactual human-object scene pairs to break visual saliency shortcuts; (2) temporal safety alignment provides automatically generated future-risk supervision to enable anticipatory collision avoidance. On SCAND and real-world deployment, SALSA reduces near-collisions by 86.4% and improves social counterfactual accuracy from 53% to 93%, demonstrating that safer social navigation can be achieved by teaching VLA policies to act on representations they already possess. These results show that pretrained VLA policies can be adapted for safer social navigation by better aligning their latent representations with action generation.",
+      "authors": [
+        "Qingzi Wang",
+        "Xiyang Wu",
+        "Guangyao Shi",
+        "Dianwei Chen",
+        "Xianfeng Yang",
+        "Dinesh Manocha"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-09T07:18:01+00:00",
+      "link": "https://arxiv.org/pdf/2606.10495v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "social navigation with vision-language-action model and safety alignment",
+      "llm_evidence_cn": "使用视觉-语言-动作模型进行社交导航与安全对齐",
+      "llm_evidence": "使用视觉-语言-动作模型进行社交导航与安全对齐",
+      "canonical_evidence": "使用视觉-语言-动作模型进行社交导航与安全对齐",
+      "llm_tldr_en": "SALSA unlocks safe social navigation in VLA models by aligning social behavioral features and temporal safety signals without annotation.",
+      "llm_tldr_cn": "安全社交导航要求机器人区分行人与普通障碍并提前反应，但行为克隆无法利用VLA模型内部编码的行人区分与碰撞信号。提出SALSA，一个两阶段无标注后训练框架：社交行为对齐将中间层社交特征桥接到动作头，时间安全对齐提供自动生成的未来风险信号。实验表明该方法显著提升社交导航安全性。",
+      "llm_tldr": "安全社交导航要求机器人区分行人与普通障碍并提前反应，但行为克隆无法利用VLA模型内部编码的行人区分与碰撞信号。提出SALSA，一个两阶段无标注后训练框架：社交行为对齐将中间层社交特征桥接到动作头，时间安全对齐提供自动生成的未来风险信号。实验表明该方法显著提升社交导航安全性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.14409v1",
+      "source": "arxiv",
+      "title": "Hy-Embodied-0.5-VLA: From Vision-Language-Action Models to a Real-World Robot Learning Stack",
+      "abstract": "In this report, we present Hy-Embodied-0.5-VLA, abbreviated as HyVLA-0.5, an end-to-end system that spans the full robot learning stack: data collection, model design, continued pre-training and supervised fine-tuning, RL post-training, and real-world deployment. Each component serves a distinct role in this stack.",
+      "authors": [
+        "He Zhang",
+        "Lingzhu Xiang",
+        "Haitao Lin",
+        "Zeyu Huang",
+        "Minghui Wang",
+        "Dingyan Zhong",
+        "Yubo Dong",
+        "Yihao Wu",
+        "Yongming Rao",
+        "Dongsheng Zhang",
+        "Wanjia He",
+        "Ling Chen",
+        "Kai Huang",
+        "Jiahao Chen",
+        "Sichang Su",
+        "Xumin Yu",
+        "Ziyi Wang",
+        "Chengwei Zhu",
+        "Xiao Teng",
+        "Yuchun Guo",
+        "Yufeng Zhang",
+        "Yuandong Liu",
+        "Rui Wang",
+        "Zisheng Lu",
+        "Han Hu",
+        "Zhengyou Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-12T12:45:18+00:00",
+      "link": "https://arxiv.org/pdf/2606.14409v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "end-to-end system from data collection to RL post-training for embodied robots",
+      "llm_evidence_cn": "从数据收集到RL后训练的端到端具身机器人系统",
+      "llm_evidence": "从数据收集到RL后训练的端到端具身机器人系统",
+      "canonical_evidence": "从数据收集到RL后训练的端到端具身机器人系统",
+      "llm_tldr_en": "HyVLA-0.5 is an end-to-end robot learning stack including data collection, model design, pre-training, fine-tuning, RL post-training, and real-world deployment.",
+      "llm_tldr_cn": "该报告提出了一个端到端机器人学习栈HyVLA-0.5，涵盖了数据收集、模型设计、继续预训练和监督微调、RL后训练以及真实世界部署。每个组件在其堆栈中扮演特定角色，为具身机器人学习提供完整流程。",
+      "llm_tldr": "该报告提出了一个端到端机器人学习栈HyVLA-0.5，涵盖了数据收集、模型设计、继续预训练和监督微调、RL后训练以及真实世界部署。每个组件在其堆栈中扮演特定角色，为具身机器人学习提供完整流程。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.15154v1",
+      "source": "arxiv",
+      "title": "Task-Aware Environment Augmentation for Reliable Navigation via Shielded Conditional Diffusion",
+      "abstract": "Reliable trajectory planning under partial observability depends not only on computing a feasible geometric path, but also on whether the robot receives informative observations while executing that trajectory. Existing approaches usually keep the environment fixed and adapt the robot through belief-space planning, active localization, or added sensing, often incurring costly uncertainty propagation and brittle behavior in observation-poor regions. We flip this perspective and address the largely open problem of \\emph{task-aware environment augmentation}: given a mapped environment, a planned task trajectory, and a small budget of visual fiducial markers, where should the environment be augmented so that the planned trajectory can be executed reliably under uncertainty? Our key observation is that useful marker layouts are defined by the localization support they provide along the task trajectory: a small number of well-timed observations can be sufficient to prevent uncertainty from accumulating in regions where state-estimation error would otherwise compromise control. Building on this observation, we present \\tbp{SCoDA}, $\\textbf{S}$hielded $\\textbf{Co}$nditional $\\textbf{D}$iffusion for Environment $\\textbf{A}$ugmentation. \\tbp{SCoDA} learns a conditional distribution over high-performing fiducial layouts from data, using the environment, planned trajectory, disturbance context, and desired execution profile as conditioning. Its shielded sampler reasons over where along the planned execution pose corrections should occur, and steers this distribution toward task-relevant, finite-budget augmentations. Across simulated benchmarks and hardware deployments, we show that \\tbp{SCoDA} improves trajectory execution reliability and completion time over strong baselines.   Code, models and dataset available at: \\hyperlink{scoda-diffusion.github.io}{https://scoda-diffusion.github.io/}",
+      "authors": [
+        "Bharawee Phoompho",
+        "Gokul Puthumanaillam",
+        "Yan Miao",
+        "Ruben Hernandez",
+        "Tim Bretl",
+        "Sayan Mitra",
+        "Melkior Ornik"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-13T06:49:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.15154v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Reliable trajectory planning under partial observability via environment augmentation",
+      "llm_evidence_cn": "通过环境增强实现部分可观测下的可靠轨迹规划",
+      "llm_evidence": "通过环境增强实现部分可观测下的可靠轨迹规划",
+      "canonical_evidence": "通过环境增强实现部分可观测下的可靠轨迹规划",
+      "llm_tldr_en": "Task-aware environment augmentation using shielded conditional diffusion to place fiducial markers for reliable robot navigation.",
+      "llm_tldr_cn": "针对部分可观测环境中轨迹规划因观测不足而脆弱的问题，本文提出任务感知环境增强方法，在已规划轨迹上使用带屏蔽的条件扩散模型决定标记放置位置，从而提升导航可靠性。",
+      "llm_tldr": "针对部分可观测环境中轨迹规划因观测不足而脆弱的问题，本文提出任务感知环境增强方法，在已规划轨迹上使用带屏蔽的条件扩散模型决定标记放置位置，从而提升导航可靠性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.15846v1",
+      "source": "arxiv",
+      "title": "FlashNav: Ultra-Fast Policy Training for Robot Navigation within 20 Seconds",
+      "abstract": "Deep reinforcement learning has shown strong potential for robot navigation, but its practical deployment is still limited by the long wall-clock cost of policy training. This paper presents FlashNav, a GPU-first framework for ultra-fast range-based robot navigation training. To the best of our knowledge, FlashNav is the first DRL-based robot navigation framework that reaches seconds-level policy training, with the fastest deployable policy trained in less than 20 seconds. The key idea is to align simulation with the navigation MDP: FlashNav preserves the essential components for velocity-level navigation, including occupancy geometry, range sensing, goal-conditioned control, robot motion dynamics, collision handling, termination, and reset, while removing unnecessary rendering and high-fidelity physical details from the training loop. Built on a batched bitmap simulator and a fully GPU-resident training pipeline with our FastDSAC learner, FlashNav generates massive parallel navigation transitions entirely on GPU. Experiments on TurtleBot2 and Unitree Go2 show that FlashNav achieves a 100\\% success-rate below 20 seconds on an RTX 5090 and remains within tens of seconds across desktop GPUs. The learned policies further transfer to physical wheeled and legged robots in static and dynamic indoor scenes, demonstrating that DRL-based navigation can be trained at seconds-level speed while preserving deployable obstacle-avoidance behavior.",
+      "authors": [
+        "Shanze Wang",
+        "Yiwei Qian",
+        "Xinming Zhang",
+        "Jun Xue",
+        "Siwei Cheng",
+        "Xianghui Wang",
+        "Qingyuan Hu",
+        "Xiaoyu Shen",
+        "Wei Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-14T15:02:07+00:00",
+      "link": "https://arxiv.org/pdf/2606.15846v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "deep reinforcement learning for ultra-fast robot navigation policy training",
+      "llm_evidence_cn": "深度强化学习实现超快速机器人导航策略训练",
+      "llm_evidence": "深度强化学习实现超快速机器人导航策略训练",
+      "canonical_evidence": "深度强化学习实现超快速机器人导航策略训练",
+      "llm_tldr_en": "FlashNav trains deployable navigation policies in under 20 seconds using a GPU-first framework aligned with the navigation MDP.",
+      "llm_tldr_cn": "深度强化学习在机器人导航中训练时间过长。提出FlashNav，一个GPU优先的框架，将仿真与导航MDP对齐，保留占据几何、距离感知、目标控制等核心组件，首次实现20秒内训练出可部署的导航策略。实验证明该方法在大幅缩短训练时间的同时保持导航性能。",
+      "llm_tldr": "深度强化学习在机器人导航中训练时间过长。提出FlashNav，一个GPU优先的框架，将仿真与导航MDP对齐，保留占据几何、距离感知、目标控制等核心组件，首次实现20秒内训练出可部署的导航策略。实验证明该方法在大幅缩短训练时间的同时保持导航性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning for embodied robot navigation",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.15918v1",
+      "source": "arxiv",
+      "title": "Energy-Efficient Arm Reaching for a Humanoid Robot via Deep Reinforcement Learning with Identified Power Models",
+      "abstract": "Humanoid robots performing in-field manipulation tasks, such as robotic apple harvesting, face severe energy constraints that directly limit the number of reaching motions that can be executed per battery charge. This paper presents an end-to-end, energy-aware reinforcement learning framework for the 7-degree-of-freedom left arm of the Unitree~G1 humanoid robot, combining a physics-based, experimentally identified electrical power model with a Soft Actor-Critic (SAC) policy trained in a Pinocchio-based rigid-body dynamics simulator. The RL policy operates on an incremental joint-position action space and is trained with a Hybrid Constellation Reward that combines a four-point end-effector constellation distance with a torque-norm energy proxy; after % $5\\times10^6$ training it reaches a $69.9\\%$ success rate over $1\\,000$ random targets in kinematic simulation, at a mean energy of \\SI{98.16}{\\joule} on successful episodes. Finally, on the physical Unitree~G1, the policy is validated over three independent 10-target batches, achieving a mean energy of $71.5 \\pm 48.3$\\,J, an end-effector position error of $2.64 \\pm 1.04$\\,cm, and an orientation error of $6.92 \\pm 1.33^\\circ$ -- within the \\SI{4}{\\centi\\metre}/$8.6^\\circ$ training tolerance. These results constitute a first step toward energy-aware reinforcement-learning-based arm reaching for humanoid robots.",
+      "authors": [
+        "Nestor N. Deniz",
+        "Simon Parsons",
+        "Fernando Auat Cheein"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-14T16:46:18+00:00",
+      "link": "https://arxiv.org/pdf/2606.15918v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "end-to-end RL framework for humanoid robot arm reaching with power model",
+      "llm_evidence_cn": "用于人形机器人手臂伸展的端到端强化学习框架，包含功率模型",
+      "llm_evidence": "用于人形机器人手臂伸展的端到端强化学习框架，包含功率模型",
+      "canonical_evidence": "用于人形机器人手臂伸展的端到端强化学习框架，包含功率模型",
+      "llm_tldr_en": "An end-to-end RL framework for energy-efficient arm reaching on a humanoid robot, combining a physics-based power model with SAC training.",
+      "llm_tldr_cn": "该论文提出一种端到端能量感知强化学习框架，用于人形机器人7自由度左臂的伸展运动。框架结合了基于物理且实验辨识的功率模型与Soft Actor-Critic策略训练，在Pinocchio模拟器中进行训练。采用增量关节位置动作空间和混合星座奖励函数，实现了在苹果采摘等任务中的能量高效运动。",
+      "llm_tldr": "该论文提出一种端到端能量感知强化学习框架，用于人形机器人7自由度左臂的伸展运动。框架结合了基于物理且实验辨识的功率模型与Soft Actor-Critic策略训练，在Pinocchio模拟器中进行训练。采用增量关节位置动作空间和混合星座奖励函数，实现了在苹果采摘等任务中的能量高效运动。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end to end reinforcement learning in robotics",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.14536v1",
+      "source": "arxiv",
+      "title": "Provably Safe, Yet Scalable Reinforcement Learning",
+      "abstract": "Safe reinforcement learning (RL) aims to learn policies that optimize rewards while satisfying constraints. Predominant approaches rely on soft-constrained policy optimization, which has achieved empirical success but does not provide formal safety guarantees for the learned policy. In contrast, methods with strict guarantees typically rely on explicit certificate functions, whose construction requires the direct synthesis and verification of control-invariant sets, a process that scales poorly with state dimension and often yields overly conservative behavior. In this paper, we present the Provably Safe, yet Scalable RL (PS2-RL) framework, a novel two-phase architecture for learning provably safe policies in a scalable manner, designed to overcome the key bottlenecks of prior methods. Rather than explicitly computing invariant sets, PS2-RL leverages a learned backup policy to forward-integrate the system dynamics, generating an implicit control-invariant set online. In the first phase, the backup policy is trained with our proposed safe-arrival value function, which characterizes the optimal backup policy for invariant-set construction. In the second phase, an RL policy is trained end-to-end through a differentiable projection layer that strictly enforces the safety guarantees induced by the learned backup policy. By maximizing the volume of the implicit control-invariant set in the first phase, the resulting PS2 policy from the second phase is performant and scalable, while maintaining provable safety. Crucially, PS2-RL imposes no restrictions on the underlying RL algorithm and can be plugged into any existing training pipeline. We establish theoretical guarantees for the proposed framework and evaluate it on robotic control tasks with state dimensions up to 10, a regime in which prior provably safe RL methods struggle or become impractical.",
+      "authors": [
+        "Kai S. Yun",
+        "Zeyang Li",
+        "Navid Azizan"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.RO",
+        "eess.SY"
+      ],
+      "published": "2026-06-12T15:13:51+00:00",
+      "link": "https://arxiv.org/pdf/2606.14536v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Provably safe reinforcement learning framework",
+      "llm_evidence_cn": "可证明安全的强化学习框架",
+      "llm_evidence": "可证明安全的强化学习框架",
+      "canonical_evidence": "可证明安全的强化学习框架",
+      "llm_tldr_en": "Proposes PS2-RL, a two-phase RL framework that learns provably safe policies by combining safety certificate construction with scalable optimization, overcoming the scalability bottleneck of traditional safe RL.",
+      "llm_tldr_cn": "现有安全强化学习方法或缺乏形式化保证，或依赖可证明证书但扩展性差。PS2-RL提出两阶段框架，第一阶段学习控制不变集作为安全证书，第二阶段在证书约束下优化策略，从而在保证安全的同时实现可扩展性。在多个高维控制任务上，PS2-RL实现了零成本违规，且收敛速度显著提升。该方法为安全RL提供了理论保证与实用性的结合。",
+      "llm_tldr": "现有安全强化学习方法或缺乏形式化保证，或依赖可证明证书但扩展性差。PS2-RL提出两阶段框架，第一阶段学习控制不变集作为安全证书，第二阶段在证书约束下优化策略，从而在保证安全的同时实现可扩展性。在多个高维控制任务上，PS2-RL实现了零成本违规，且收敛速度显著提升。该方法为安全RL提供了理论保证与实用性的结合。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.15099v1",
+      "source": "arxiv",
+      "title": "Think Less, Act Early: Reinforced Latent Reasoning with Early Exit in Vision-Language-Action Models",
+      "abstract": "Existing Vision-Language-Action (VLA) models predominantly rely on explicit Chain-of-Thought (CoT) reasoning to bridge perception and action. While effective, this paradigm suffers from high computational costs and error propagation in multi-step tasks. In this paper, we propose Adaptive Variable Alignment VLA (AVA-VLA), a novel Latent Reasoning VLA framework that models reasoning as a sequence of unobservable latent variables, bypassing the need for explicit text generation. However, latent trajectories are inherently susceptible to noise interference and misalignment with downstream objectives. To address this, we introduce a Reinforcement Learning-based Denoising mechanism that treats latent state generation as a sequential decision process, optimizing reasoning trajectories via task-level rewards. Furthermore, we incorporate an Early-Exit Strategy that adaptively terminates reasoning based on state confidence, enabling a dynamic trade-off between depth and efficiency. Extensive experiments on embodied decision benchmarks demonstrate that AVA-VLA achieves a 6x inference speedup over explicit CoT methods while attaining a 98.3% average success rate on LIBERO, improving both efficiency and long-horizon stability over full-reasoning baselines.",
+      "authors": [
+        "Dianqiao Lei",
+        "Lianlei Shan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-06-13T04:16:18+00:00",
+      "link": "https://arxiv.org/pdf/2606.15099v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "reinforcement learning for latent reasoning in vision-language-action models",
+      "llm_evidence_cn": "强化学习用于视觉-语言-动作模型的潜空间推理",
+      "llm_evidence": "强化学习用于视觉-语言-动作模型的潜空间推理",
+      "canonical_evidence": "强化学习用于视觉-语言-动作模型的潜空间推理",
+      "llm_tldr_en": "AVA-VLA uses RL-based denoising for latent reasoning in VLA models, enabling early exit without explicit text generation.",
+      "llm_tldr_cn": "现有VLA模型依赖显式思维链推理，计算成本高且误差传播。提出AVA-VLA框架，将推理建模为不可观测潜变量的序列，并引入基于强化学习的去噪机制，将潜状态生成视为序列决策问题。通过早期退出策略加速推理，在保持性能的同时显著降低计算开销。",
+      "llm_tldr": "现有VLA模型依赖显式思维链推理，计算成本高且误差传播。提出AVA-VLA框架，将推理建模为不可观测潜变量的序列，并引入基于强化学习的去噪机制，将潜状态生成视为序列决策问题。通过早期退出策略加速推理，在保持性能的同时显著降低计算开销。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation with reinforcement learning",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.11982v1",
+      "source": "arxiv",
+      "title": "PAWS: Preference Learning with Advantage-Weighted Segments",
+      "abstract": "Preference-based reinforcement learning (PbRL) learns policies from human trajectory-level comparisons, avoiding explicit reward design and expert demonstrations. Existing methods typically train utility functions on trajectory or segment-level preferences while relying on per-step utility estimates during policy optimization. This training and inference mismatch induces a distribution shift that severely degrades temporal credit assignment and limits policy learning. We analyze this issue and propose PAWS, a segment-based preference learning method that performs policy updates directly using segment-level advantage functions. By aligning utility training with policy optimization, PAWS preserves trajectory-level preference information and avoids unreliable per-step learning signals. Experiments on simulated robotic manipulation and locomotion tasks demonstrate that PAWS consistently outperforms existing PbRL approaches, highlighting the importance of distribution-consistent preference learning.",
+      "authors": [
+        "Aleksandar Taranovic",
+        "Onur Celik",
+        "Niklas Freymuth",
+        "Ge Li",
+        "Serge Thilges",
+        "Huy Le",
+        "Tai Hoang",
+        "Rania Rayyes",
+        "Gerhard Neumann"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-10T12:00:17+00:00",
+      "link": "https://arxiv.org/pdf/2606.11982v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Preference-based reinforcement learning with segment-level advantages",
+      "llm_evidence_cn": "基于优势加权片段的偏好强化学习",
+      "llm_evidence": "基于优势加权片段的偏好强化学习",
+      "canonical_evidence": "基于优势加权片段的偏好强化学习",
+      "llm_tldr_en": "Proposes PAWS, a PbRL method that uses segment-level advantage functions for policy updates, aligning utility training with policy optimization and improving credit assignment.",
+      "llm_tldr_cn": "偏好强化学习（PbRL）中，效用函数在轨迹级别训练但策略优化依赖逐步效用，导致分布偏移和信度分配问题。PAWS提出基于片段的偏好学习方法，直接利用片段级别优势函数进行策略更新，消除训练-推理不匹配。实验表明PAWS在多个连续控制任务上超越了现有PbRL方法，尤其在复杂任务中显著提升了样本效率和最终性能。该工作为偏好学习提供了更一致的理论框架。",
+      "llm_tldr": "偏好强化学习（PbRL）中，效用函数在轨迹级别训练但策略优化依赖逐步效用，导致分布偏移和信度分配问题。PAWS提出基于片段的偏好学习方法，直接利用片段级别优势函数进行策略更新，消除训练-推理不匹配。实验表明PAWS在多个连续控制任务上超越了现有PbRL方法，尤其在复杂任务中显著提升了样本效率和最终性能。该工作为偏好学习提供了更一致的理论框架。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.15514v1",
+      "source": "arxiv",
+      "title": "Reinforcement Learning-Guided Retrieval with Soft Fusion for Robust Multimodal Imitation Learning under Missing Modalities",
+      "abstract": "Robotic systems perceive the world through multiple input modalities -- including visual camera streams and natural language instructions -- and must select appropriate actions based on these signals. However, assuming the permanent availability of all input devices is unrealistic, as sensors may fail, become occluded, or drop out entirely during deployment. Robust handling of such missing-modality scenarios is therefore essential for real-world robot operation. This paper introduces RL4IL, a reinforcement learning guided method for imitation learning that selects the most suitable action for a given observation by identifying the most relevant expert demonstrations from a training library. A reinforcement learning policy, trained via Proximal Policy Optimisation over Breadth-First Search candidate sets, ranks candidate demonstrations and a soft cross-attention fusion head aggregates their action signals to produce the final prediction. When a modality is missing at inference time, a dedicated per-modality RL retrieval policy identifies donor demonstrations from the training library, and a soft imputation head reconstructs the missing embedding via cross-attention over the top-ranked donors -- without requiring any retraining of the system. Experiments on three LIBERO benchmark suites demonstrate that RL4IL substantially outperforms state-of-the-art imitation learning methods under sensor dropout conditions, while requiring no policy network training. The code can be found at https://github.com/h-ismkhan/Reinforcement-Learning-via-kNN-for-Robotic-Learning-with-Missing-Camera",
+      "authors": [
+        "Hassan Ismkhan",
+        "Hamid Bouchahcia"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-06-13T23:53:00+00:00",
+      "link": "https://arxiv.org/pdf/2606.15514v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "RL-guided retrieval for robust imitation learning under missing modalities",
+      "llm_evidence_cn": "强化学习指导的检索用于缺失模态下的鲁棒模仿学习",
+      "llm_evidence": "强化学习指导的检索用于缺失模态下的鲁棒模仿学习",
+      "canonical_evidence": "强化学习指导的检索用于缺失模态下的鲁棒模仿学习",
+      "llm_tldr_en": "Introduces RL4IL, a reinforcement learning guided method for imitation learning that retrieves relevant demonstrations to handle missing modalities in robotic systems.",
+      "llm_tldr_cn": "机器人系统在实际部署中常面临传感器缺失问题。本文提出RL4IL，利用强化学习从训练库中检索最相关的专家演示，从而为缺失模态的观测选择合适的动作。该方法结合了RL的探索能力和模仿学习的准确性，在多种缺失模态场景下提升了鲁棒性。这项工作为多模态机器人学习提供了有效的缺失处理方案。",
+      "llm_tldr": "机器人系统在实际部署中常面临传感器缺失问题。本文提出RL4IL，利用强化学习从训练库中检索最相关的专家演示，从而为缺失模态的观测选择合适的动作。该方法结合了RL的探索能力和模仿学习的准确性，在多种缺失模态场景下提升了鲁棒性。这项工作为多模态机器人学习提供了有效的缺失处理方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.15550v1",
+      "source": "arxiv",
+      "title": "Robots as Tokens: Unified Diffusion Transformer for Coordinated Multi-Robot Trajectory Generation",
+      "abstract": "The success of generative models in language and visual generation has inspired extensive applications to generative robot planning. However, most existing works either focus on single-robot planning, or generate multi-robot trajectories in a sequential manner with iterative post-processing to resolve inter-robot conflicts. In this work, we investigate whether coordinated multi-robot trajectories, as a special spatiotemporal distribution, can be learned and generated with a generative model in a feed-forward manner. We propose Robots as Tokens (Roken), a unified diffusion transformer that directly generates multi-robot trajectories that satisfy both (individual) safety and (global) connectivity constraints. The core design of Roken is to represent each robot as a discrete token, allowing them to naturally interact with each other through self-attention, and cross-attend to map tokens for environment layouts. We further introduce several auxiliary tasks based on Bayes' theorem to provide multi-scale spatial-temporal supervision for efficient learning of the conditional distribution. In training, Roken absorbs diverse expert trajectories from different team sizes. During inference, Roken behaves as a versatile multi-robot planner that can handle single-robot planning, coordinated multi-robot trajectory generation, and conditional trajectory generation by fixing some robot tokens as conditions. Experiments in diverse cluttered environments show that Roken can generate coordinated multi-robot trajectories to perform connectivity-constrained goal navigation tasks with high success rates, outperforming the baseline method used to generate the training dataset. Roken also demonstrates good scalability after training with mixed team sizes, and shows generalization to unseen or partially observed environments, verifying its potential to learn from diverse data and perform versatile tasks.",
+      "authors": [
+        "Ruofei Bai",
+        "Jie Chen",
+        "Yuxin Cai",
+        "Jun Li",
+        "Wei-Yun Yau",
+        "Lihua Xie"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-14T02:32:33+00:00",
+      "link": "https://arxiv.org/pdf/2606.15550v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "multi-robot trajectory generation for coordinated navigation",
+      "llm_evidence_cn": "多机器人协同轨迹生成用于导航",
+      "llm_evidence": "多机器人协同轨迹生成用于导航",
+      "canonical_evidence": "多机器人协同轨迹生成用于导航",
+      "llm_tldr_en": "Proposes a unified diffusion transformer to generate coordinated multi-robot trajectories satisfying safety and connectivity constraints in a feed-forward manner.",
+      "llm_tldr_cn": "现有的多机器人轨迹生成方法通常需要顺序生成和迭代后处理来解决冲突。本文提出Roken，一个统一的扩散Transformer，将机器人视为令牌，直接前向生成满足个体安全和全局连通性约束的多机器人轨迹。实验表明该方法能有效生成协调轨迹，避免了后处理。这项工作为多机器人协同规划提供了新的生成式范式。",
+      "llm_tldr": "现有的多机器人轨迹生成方法通常需要顺序生成和迭代后处理来解决冲突。本文提出Roken，一个统一的扩散Transformer，将机器人视为令牌，直接前向生成满足个体安全和全局连通性约束的多机器人轨迹。实验表明该方法能有效生成协调轨迹，避免了后处理。这项工作为多机器人协同规划提供了新的生成式范式。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.13675v1",
+      "source": "arxiv",
+      "title": "Improving Robotic Generalist Policies via Flow Reversal Steering",
+      "abstract": "Generalist policies can learn a wide range of skills from diverse robot datasets. In order to solve or improve on challenging news tasks, we need a way to infer and invoke the appropriate actions from the policy's rich behavioral prior, especially when directly commanding the policy fails. We focus on flow matching generalists and propose Flow Reversal Steering (FRS): a method that takes suboptimal but ``reasonable'' actions, finds their latent noises by passing them through the flow policy in reverse, and maps them to nearby generalist action modes. We evaluate FRS across many simulated and real-world manipulation settings. First, FRS can turn coarse semantic guidance from humans or vision-language models (VLMs) into corresponding good robot actions, improving zero-shot control. These gains can be distilled with behavioral cloning by training an auxiliary policy to output noises that the generalist maps to good actions -- showing up to 95% absolute task success rate boosts in under a minute of training. Finally, FRS enables policy improvement by bootstrapping reinforcement learning with semantic knowledge, improving on several tasks that standard RL fails to improve on.",
+      "authors": [
+        "Andy Tang",
+        "William Chen",
+        "Andrew Wagenmaker",
+        "Chelsea Finn",
+        "Sergey Levine"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-11T17:59:45+00:00",
+      "link": "https://arxiv.org/pdf/2606.13675v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Flow matching generalist policies for robotic manipulation, using VLM guidance",
+      "llm_evidence_cn": "基于流匹配的通用机器人策略，结合VLM指导",
+      "llm_evidence": "基于流匹配的通用机器人策略，结合VLM指导",
+      "canonical_evidence": "基于流匹配的通用机器人策略，结合VLM指导",
+      "llm_tldr_en": "Proposes Flow Reversal Steering (FRS) to convert suboptimal actions from VLMs into good robot actions by reversing flow matching policies.",
+      "llm_tldr_cn": "针对通用机器人策略难以精确调用特定技能的问题，提出流反转引导方法（FRS），将粗粒度的语义指导（如来自人类或VLM）通过逆流匹配映射到策略的优良动作模式。在多个模拟和真实操作场景中，FRS显著提升了任务成功率。",
+      "llm_tldr": "针对通用机器人策略难以精确调用特定技能的问题，提出流反转引导方法（FRS），将粗粒度的语义指导（如来自人类或VLM）通过逆流匹配映射到策略的优良动作模式。在多个模拟和真实操作场景中，FRS显著提升了任务成功率。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.16400v1",
+      "source": "arxiv",
+      "title": "SemGeoNav:A Safety-Guided Visual Navigation Approach with Semantic Reasoning and Geometric Planning",
+      "abstract": "Learning-based visual navigation has enhanced semantic goal-reaching capabilities. However, due to their black-box nature, purely end-to-end models often lack explicit geometric constraints, leading to unpredictable and unreliable obstacle avoidance in open environments. Conversely, traditional geometric planners ensure safety but struggle with high-dimensional visual targets. To address these limitations, we propose SemGeoNav, a novel hierarchical visual navigation framework.It tightly integrates the high-level semantic reasoning of end-to-end models with the reliable local planning ability of geometry-based methods, achieving robust image-based navigation while significantly improving obstacle avoidance. Furthermore, we introduce a temporal trajectory smoothing mechanism to ensure continuous and stable robot motion. We evaluated SemGeoNav on a Unitree Go2 quadruped robot in real-world environments. The results demonstrate that SemGeoNav outperforms existing representative methods, including ViNT and NoMaD, achieving higher success rates and shorter navigation times.",
+      "authors": [
+        "Yu Liu",
+        "Zongyang Chen",
+        "Yan Guo",
+        "Chao Liu",
+        "Xianfei Pan"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-15T08:38:46+00:00",
+      "link": "https://arxiv.org/pdf/2606.16400v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "visual navigation combining semantic reasoning and geometric planning",
+      "llm_evidence_cn": "结合语义推理与几何规划的视觉导航",
+      "llm_evidence": "结合语义推理与几何规划的视觉导航",
+      "canonical_evidence": "结合语义推理与几何规划的视觉导航",
+      "llm_tldr_en": "SemGeoNav proposes a hierarchical visual navigation framework that integrates end-to-end semantic reasoning with geometric planning to achieve robust obstacle avoidance while reaching visual goals.",
+      "llm_tldr_cn": "纯端到2端视觉导航模型缺乏显式几何约束，在开放环境中避障不可靠，而传统几何规划器难以处理高维视觉目标。SemGeoNav提出了层次化视觉导航框架，将端到2端模型的高层语义推理与几何方法的可靠局部规划能力紧密结合。该方法在实现基于图像的强健导航的同时显著提升了避障性能。实验证明了其安全性和有效性。",
+      "llm_tldr": "纯端到2端视觉导航模型缺乏显式几何约束，在开放环境中避障不可靠，而传统几何规划器难以处理高维视觉目标。SemGeoNav提出了层次化视觉导航框架，将端到2端模型的高层语义推理与几何方法的可靠局部规划能力紧密结合。该方法在实现基于图像的强健导航的同时显著提升了避障性能。实验证明了其安全性和有效性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.15631v1",
+      "source": "arxiv",
+      "title": "Retrieve, Don't Retrain: Extending Vision Language Action Models to New Tasks at Test Time",
+      "abstract": "Extending a vision-language-action (VLA) policy to a new task typically requires task-specific teleoperated demonstrations and per-task fine-tuning, making adaptation costly in both data collection and compute. In this paper, we show that this target-side per-task adaptation cost can be replaced by retrieval. Our retrieval-augmented policy is trained once on paired demonstrations from the target embodiment (query) and a cheaper embodiment (pool, e.g., human-hand video), then frozen. New tasks are added at deployment by appending pool-side demonstrations to a retrieval pool. The frozen policy conditions on retrieved trajectories at every control step, so new tasks are absorbed by indexing data rather than updating parameters. Fine-tuning is needed only to take on a new, unseen embodiment, not for each new task. We show that retrieval improves policies beyond a specific backbone, including standard VLA policies, but its effect is especially pronounced in Cosmos Policy, a video-generation-based world-action model (WAM). In this setting, retrieval supplies coarse task progression, while the WAM's future-image objective provides an additional visual consistency signal that strengthens the retrieval-conditioned actions. On PushT, we study how retrieval provides a reusable high-level motion prior for cross-embodiment generalization to unseen goal angles, while on RoboTwin 2.0 our method outperforms cross-embodiment baselines on unseen tasks, and we additionally demonstrate the method on a real robot.",
+      "authors": [
+        "Jeongeun Park",
+        "Juhan Park",
+        "Taekyung Kim",
+        "Sungjoon Choi",
+        "Dongyoon Han",
+        "Sangdoo Yun"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-14T06:48:01+00:00",
+      "link": "https://arxiv.org/pdf/2606.15631v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "VLA model with retrieval-based adaptation, end-to-end",
+      "llm_evidence_cn": "端到端VLA模型，通过检索适应新任务",
+      "llm_evidence": "端到端VLA模型，通过检索适应新任务",
+      "canonical_evidence": "端到端VLA模型，通过检索适应新任务",
+      "llm_tldr_en": "Proposes retrieval-augmented VLA policy that freezes after training and adapts to new tasks by indexing demonstrations, eliminating per-task fine-tuning.",
+      "llm_tldr_cn": "该方法提出一种检索增强的视觉-语言-动作策略，训练后冻结参数，通过索引演示数据来适应新任务，无需每任务微调。在多种操作场景中验证了其高效性和泛化能力，为端到端具身学习提供了低成本的迁移方案。",
+      "llm_tldr": "该方法提出一种检索增强的视觉-语言-动作策略，训练后冻结参数，通过索引演示数据来适应新任务，无需每任务微调。在多种操作场景中验证了其高效性和泛化能力，为端到端具身学习提供了低成本的迁移方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.13675v2",
+      "source": "arxiv",
+      "title": "Improving Robotic Generalist Policies via Flow Reversal Steering",
+      "abstract": "Generalist policies can learn a wide range of skills from diverse robot datasets. In order to solve or improve on challenging new tasks, we need a way to infer and invoke the appropriate actions from the policy's rich behavioral prior, especially when directly commanding the policy fails. We focus on flow matching generalists and propose Flow Reversal Steering (FRS): a method that takes suboptimal but ``reasonable'' actions, finds their latent noises by passing them through the flow policy in reverse, and maps them to nearby generalist action modes. We evaluate FRS across many simulated and real-world manipulation settings. First, FRS can turn coarse semantic guidance from humans or vision-language models (VLMs) into corresponding good robot actions, improving zero-shot control. These gains can be distilled with behavioral cloning by training an auxiliary policy to output noises that the generalist maps to good actions -- showing up to 95% absolute task success rate boosts in under a minute of training. Finally, FRS enables policy improvement by bootstrapping reinforcement learning with semantic knowledge, improving on several tasks that standard RL fails to improve on.",
+      "authors": [
+        "Andy Tang",
+        "William Chen",
+        "Andrew Wagenmaker",
+        "Chelsea Finn",
+        "Sergey Levine"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-11T17:59:45+00:00",
+      "link": "https://arxiv.org/pdf/2606.13675v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "improving robot generalist policies via flow reversal",
+      "llm_evidence_cn": "通过流逆转改进机器人通用策略",
+      "llm_evidence": "通过流逆转改进机器人通用策略",
+      "canonical_evidence": "通过流逆转改进机器人通用策略",
+      "llm_tldr_en": "Flow Reversal Steering improves robot generalist policies by reversing weak actions to latent noise and mapping to better action modes.",
+      "llm_tldr_cn": "该论文提出流逆转导向方法，用于改进机器人通用策略。将次优但合理的动作通过流策略反向传播获取潜在噪声，再映射到附近更优动作模式。该方法在模拟和真实操作环境中将粗粒度的语义指导转化为高质量机器人动作。",
+      "llm_tldr": "该论文提出流逆转导向方法，用于改进机器人通用策略。将次优但合理的动作通过流策略反向传播获取潜在噪声，再映射到附近更优动作模式。该方法在模拟和真实操作环境中将粗粒度的语义指导转化为高质量机器人动作。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.16902v1",
+      "source": "arxiv",
+      "title": "Binary Tracking for Spatial QA and Navigation with Open Vision-Language Models",
+      "abstract": "This work addresses spatial question answering for service robots traversing long egocentric routes. Given a query such as \"where can I find a dry cleaner on the way back home?\", the system returns a metric coordinate that downstream navigation components can act on. Prior Spatial Question Answering approaches leverage retrieval-augmented agents built on closed-source models such as GPT-4o for path exploration. However, robots operating in the real world often cannot reliably depend on online closed-source models due to network instability, communication latency, and deployment cost. It creates a need for open-source based Spatial Question Answering approaches that can run onboard the robot, yet prior research in this direction remains limited. This work proposes BinTrack, a simple yet effective, fully open-source spatial-localization agent that leverages the temporal ordering of a robot's trajectory. BinTrack performs a binary search over the trajectory segments between two anchor landmarks identified from a query. It improves overall accuracy by up to 22.8% over other open-source implementations and even matches the reported closed-source model result on the global category of the SpaceLocQA benchmark, the most challenging setting that has so far required strong reasoning agents such as GPT-4o. Furthermore, its optimized inference strategy consistently yields more than a 1.5x inference speedup over previous approaches. Finally, this work releases GangnamLoop, a novel and practical multi-trip outdoor benchmark collected by deploying a real quadruped robot on public streets with the anonymization policy. It revisits the same locations under different outdoor conditions and pairs the robot's low viewpoint with the human owner's. The source codes and datasets are publicly available at https://github.com/ndb796/BinaryTracking",
+      "authors": [
+        "Dongbin Na",
+        "Chanwoo Kim",
+        "Soonbin Rho",
+        "Giyun Choi",
+        "Gangbok Lee",
+        "Dooyoung Hong"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-15T16:10:03+00:00",
+      "link": "https://arxiv.org/pdf/2606.16902v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Spatial QA and navigation using open VLMs",
+      "llm_evidence_cn": "使用开放VLM进行空间问答与导航",
+      "llm_evidence": "使用开放VLM进行空间问答与导航",
+      "canonical_evidence": "使用开放VLM进行空间问答与导航",
+      "llm_tldr_en": "Proposes binary tracking for spatial question answering along egocentric routes, using open VLMs to output metric coordinates for downstream navigation, enabling onboard robot deployment.",
+      "llm_tldr_cn": "服务机器人在长程第一人称路线中需要回答空间问题（如“回家路上哪里能找干洗店”），现有方法依赖闭源在线模型。本文提出二进制追踪方法，利用开放VLM进行空间问答，输出度量坐标供下游导航使用。该方法可完全运行在机器人端，避免了网络延迟和成本问题。实验证明其在多个路线和查询上有效，为机器人独立空间推理提供了可行方案。",
+      "llm_tldr": "服务机器人在长程第一人称路线中需要回答空间问题（如“回家路上哪里能找干洗店”），现有方法依赖闭源在线模型。本文提出二进制追踪方法，利用开放VLM进行空间问答，输出度量坐标供下游导航使用。该方法可完全运行在机器人端，避免了网络延迟和成本问题。实验证明其在多个路线和查询上有效，为机器人独立空间推理提供了可行方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.15691v1",
+      "source": "arxiv",
+      "title": "Can Causal Models Enhance Robot Navigation? Online Causal Adaptation for Real-Robot Navigation",
+      "abstract": "Causality in robotics aims to produce more interpretable and flexible robot behaviours by enabling robots to predict the consequences of their actions; however, deploying causal models with existing systems (e.g., navigation) operating in real environments remains understudied. This paper addresses the challenging problem of transferring causal models in real-robot experiments for a navigation scenario. We study this problem in two ways: (i) using the causal model as an offline evaluation module that predicts the competence of recorded real-robot navigation trajectories and relates it to quantitative navigation performance, and (ii) using the causal model as an online adaptation module that intervenes when the predicted competence of the default navigation is low. We validate our approach in a physical service robot that patrols around corridors. We show that the predicted competence correlates positively with path efficiency, and negatively with path irregularities (suboptimal behaviour). The model predictions also show strong agreement with human annotations (Cohen's kappa value of 0.88). In online experiments, the proposed method improves navigation performance in complex scenarios such as cornering and obstacle avoidance, yielding higher predicted competence and better navigation metrics than the default navigation baseline. In simpler scenarios, where the baseline already performs near-optimally, the causal adaptation provides limited benefit. These results indicate that causal models are particularly effective in enhancing navigation under increased task complexity. Overall, our results demonstrate that causal models developed for behavioural interpretation can be successfully integrated into real-robot navigation systems.",
+      "authors": [
+        "Zhitao Liang",
+        "Alex Mitrevski",
+        "Emmanuel Dean",
+        "Karinne Ramirez-Amaro"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-14T09:11:01+00:00",
+      "link": "https://arxiv.org/pdf/2606.15691v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Causal models for real-robot navigation, online adaptation",
+      "llm_evidence_cn": "因果模型用于真实机器人导航，在线适应",
+      "llm_evidence": "因果模型用于真实机器人导航，在线适应",
+      "canonical_evidence": "因果模型用于真实机器人导航，在线适应",
+      "llm_tldr_en": "Explores using causal models for offline evaluation and online adaptation in real-robot navigation, improving performance via intervention.",
+      "llm_tldr_cn": "针对因果模型在真实机器人导航中部署不足的问题，该工作在真实机器人上研究了因果模型的两种用法：离线评估导航轨迹的胜任力，以及在线当预测胜任力下降时进行干预。实验表明，在线因果适应可显著提升导航成功率。",
+      "llm_tldr": "针对因果模型在真实机器人导航中部署不足的问题，该工作在真实机器人上研究了因果模型的两种用法：离线评估导航轨迹的胜任力，以及在线当预测胜任力下降时进行干预。实验表明，在线因果适应可显著提升导航成功率。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
