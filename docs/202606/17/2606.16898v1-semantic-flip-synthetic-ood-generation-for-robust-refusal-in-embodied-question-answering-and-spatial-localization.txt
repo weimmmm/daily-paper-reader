@@ -1,0 +1,424 @@
+Title: Semantic Flip: Synthetic OOD Generation for Robust Refusal in Embodied Question Answering and Spatial Localization
+
+URL Source: https://arxiv.org/pdf/2606.16898v1
+
+Published Time: Tue, 16 Jun 2026 02:31:43 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+# SEMANTIC FLIP : Synthetic OOD Generation for Robust Refusal in Embodied Question Answering and Spatial Localization 
+
+Dongbin Na *,† Chanwoo Kim * Giyun Choi Dooyoung Hong †
+
+RGA Inc. 
+
+{dongbinna, cwkim, cky, dooyoung }@rgarobot.com 
+
+Abstract: Detecting unanswerable user queries remains essential for the reliable deployment of real-world embodied agents. However, modern vision-language models (VLMs) often generate overly confident answers even when the available visual memory cannot support the query. Such overconfidence poses various task-dependent risks. The agent may provide misleading information to the user in Embodied Question Answering and select an arbitrary coordinate and physically guide the user there in spatial reasoning for navigation. Despite these high stakes, only a few prior studies directly address when and how an embodied VLM should respond with “I do not know.” This work proposes S EMANTIC FLIP , a simple yet effective framework that synthesizes auxiliary out-of-distribution (OOD) sam-ples for embodied refusal without requiring external OOD annotations. The key idea is to independently transform the query and video memory to construct aux-iliary OOD pairs that lack sufficient visual grounding. These synthesized pairs enable training a lightweight rejection module on top of a frozen pretrained VLM. The module attaches to any existing VLM-based pipeline without retraining the underlying model. Across two complementary benchmarks, S EMANTIC FLIP 
+
+consistently outperforms strong prompting baselines. This work also introduces SPACE REJECT , a new refusal benchmark for spatial localization with deliberately unanswerable queries over long video memory, where S EMANTIC FLIP achieves an F1 score of 0.9559 . The source codes and datasets are publicly available at 
+
+https://github.com/ndb796/SemanticFlip .
+
+Keywords: Abstention, Out-of-Distribution Detection, Embodied Question An-swering, Vision-Language Models, Spatial Reasoning, Ambiguous Queries 
+
+# 1 Introduction 
+
+Mobile delivery robots receive natural-language queries at deployment time, yet many real user queries are intrinsically unanswerable. Users may ask about unseen objects, ambiguous refer-ents, false premises, or subjective judgments [1]. An embodied agent should avoid hallucinated responses by honestly saying “I do not know” or initiating a multi-turn clarification dialogue [2]. Existing embodied-agent pipelines still do not treat refusal as a first-class behavior. Instead, the model typically commits to the most plausible answer and presents it confidently. This behavior carries different costs across tasks. Users can often correct misleading information in Embodied Question Answering (EQA) through follow-up dialogue, whereas failures in spatial reasoning for physical robot control carry much higher costs. State-of-the-art memory-augmented agents such as ReMEmbR and M ETA -M EMORY directly emit an (x, y ) navigation target and produce some coor-dinate even for unanswerable queries [3, 4]. Their large mean Euclidean errors on NaVQA, 28 .5 mfor ReMEmbR and 21 .7 m for M ETA -M EMORY , indicate that a robot may physically navigate to an essentially arbitrary point. A robust abstention module, therefore, prevents the most harmful failures in both EQA and spatial navigation. Existing approaches do not fully solve this problem. 
+
+> *
+
+Equal contribution. 
+
+> †
+
+Correspondence to dongbinna@postech.ac.kr and dooyoung@rgarobot.com .The project page: https://ndb796.github.io/SemanticFlip 
+
+> arXiv:2606.16898v1 [cs.CV] 15 Jun 2026
+
+Prompt-based methods can encourage “I do not know”, but they rely on surface-level instructions and remain sensitive to prompt wording [1]. Supervised fine-tuning trains abstention more directly, but it assumes known OOD categories and curated representative examples in advance, which con-flicts with the open-ended nature of deployment-time unanswerable queries. Fine-tuned models may therefore learn dataset-specific shortcuts rather than grounded unanswerability, consistent with prior findings that a simple TF-IDF classifier can match a fine-tuned model. CoT prompting also fails to provide a reliable path to abstention because it tends to construct plausible answer paths even when visual evidence supports no valid answer [5]. Recent work further shows that reasoning-oriented fine-tuning can degrade abstention rather than improve it [6]. These limitations motivate a training signal that directly captures ungroundability without manually curated OOD annotations. This work proposes S EMANTIC FLIP , a simple and effective framework that synthesizes auxiliary OOD sam-ples for embodied refusal without external OOD annotation. The key idea corrupts one modality, either the video memory or the text query, while keeping the other intact, producing OOD pairs that lack valid cross-modal grounding. Built on the same frozen VLM as the prompting baselines, SEMANTIC FLIP adds only a lightweight rejection module. On A BSTAIN EQA, S EMANTIC FLIP 
+
+reaches an F1 score of 0.7110 with a frozen 7B VLM, outperforming the strongest 32 B prompting baseline at 0.6746 . On S PACE REJECT , S EMANTIC FLIP further achieves an F1 score of 0.9559 ,showing strong refusal performance in spatial localization over long video memory. These results show that synthetic OOD supervision can make a practical open-source 7B backbone outperform larger prompt-only alternatives. 
+
+Technical contributions. 
+
+1. This work introduces S EMANTIC FLIP , a synthetic OOD generation framework for em-bodied refusal that creates auxiliary unanswerable pairs by independently corrupting either the query (Q-F LIP ) or the video memory (V-F LIP ) without external OOD annotation, and attaches to frozen VLM-based embodied pipelines as a lightweight rejection module. 2. S EMANTIC FLIP outperforms strong prompting baselines across two complementary benchmarks. On A BSTAIN EQA, it reaches an F1 score of 0.7110 with a frozen 7B VLM, surpassing the strongest 32 B prompting baseline at 0.6746 . On S PACE REJECT , it achieves an F1 score of 0.9559 .3. This work introduces S PACE REJECT , a spatial-localization refusal benchmark that extends SPACE LOC QA with 135 unanswerable queries over long video memory, and additionally releases S PACE REJECT EXTRA , a larger extension with 2,520 newly curated OOD queries across six sequences. 
+
+# 2 Related Work 
+
+Embodied question answering and refusal. Das et al. [7] introduced EQA, which OpenEQA later extended to foundation-model settings [2]. Most EQA benchmarks assume answerable ques-tions grounded in the observed environment. ABSTAIN EQA defines a new setting that includes unanswerable questions across five categories, namely Actionability Limitation , Referential Under-specification , Preference Dependence , Information Unavailability , and False Presupposition [1]. Interestingly, its best fine-tuned model performs similarly to a text-only classifier, which suggests that the previous work could not fully leverage vision-side supervision for reliable embodied refusal. 
+
+Memory-augmented robot navigation and spatial QA. ReMEmbR introduces retrieval-augmented memory for long-horizon navigation and presents the NaVQA benchmark [3]. M ETA -MEMORY has formalized Spatial Localization QA (SLQA) and has proposed a three-tool LLM agent that combines semantic-similarity retrieval, spatial-range retrieval, and memory integration [4]. Both benchmarks assume that each query has a valid spatial answer. 
+
+Out-of-distribution detection and outlier exposure. Prior studies have examined OOD detection using post hoc scoring and ensemble-based uncertainty estimates [8, 9, 10, 11]. These methods 2do not directly fit embodied EQA because the task takes a multimodal video-query pair as input and produces a free-form textual answer rather than a label over a fixed class set. Classical class-conditional scores such as MSP and ODIN, therefore, do not transfer cleanly to this setting [8, 9]. Outlier exposure (OE) provides a closer analogue because it trains a classifier with auxiliary OOD data[12]. However, OE requires large-scale auxiliary OOD data, which deployment settings often lack. Recent studies address this limitation by synthesizing surrogate OOD samples from ID data through token-level masking, input mixup, and marginal-feature disentangling [13, 14, 15]. 
+
+Selective prediction and calibration. The selective-prediction literature formalizes abstention under input uncertainty [16, 17]. Prior studies show that modern neural networks often suffer from miscalibration, and recent studies further report that LLM self-reports of uncertainty remain unreli-able [18, 19, 20]. 
+
+Open-source vision-language components. Open-source VLMs expose the multimodal rep-resentations on which downstream rejection modules can operate, which makes embodied re-fusal more reproducible and inspectable than reliance on opaque confidence from commercial APIs [21, 22, 23]. Open-source tools for open-vocabulary detection, inpainting, and parsing fur-ther support controlled perturbations of visual memory and language queries [24, 25, 26]. 
+
+Chain-of-thought and refusal. CoT prompting has recently been adopted across many down-stream tasks because it often improves reasoning by encouraging intermediate steps [5, 27]. How-ever, refusal requires a model to reject unsupported answer paths rather than elaborate a plausible one, and prior calibration studies report that CoT can increase overconfidence in incorrect answers. 
+
+# 3 SEMANTIC FLIP 
+
+Figure 1: SEMANTIC FLIP overview. (a) From in-distribution training pairs, Q-F LIP corrupts the query while keeping the video, and V-F LIP corrupts the video while keeping the query. (b) A frozen VLM encoder produces joint embeddings for all three distributions, and only a lightweight rejection module is trained. (c) At test time, the module plugs into both an EQA decoder and a memory-augmented navigation agent. This work presents S EMANTIC FLIP , a framework for embodied refusal that synthesizes two com-plementary OOD distributions from in-distribution training pairs. Q-F LIP corrupts the query while keeping the video memory, whereas V-F LIP corrupts the video memory while keeping the query. A frozen VLM encoder produces joint embeddings for ID, Q-F LIP , and V-F LIP samples, on top of which a lightweight MLP rejection gate is trained. At test time, the gate plugs into both an EQA decoder (rejecting unanswerable questions) and a memory-augmented navigation agent (vetoing un-supported coordinate proposals before the robot moves). 33.1 Problem formulation 
+
+The proposed method considers an embodied agent that answers a natural-language query Q using a visual memory V . The training set contains only answerable examples DID = {(Qi, V i, A i)}Ni=1 ,where Ai denotes an answer grounded in Vi. At deployment time, however, the agent may receive queries for which the available visual memory does not provide sufficient evidence to determine a valid answer. The goal is to learn a rejection module gθ : ( Q, V ) 7 → [0 , 1] , where low scores indicate answerable pairs and high scores indicate unanswerable pairs. The desired behavior is 
+
+gθ (Qi, V i) ≈ 0 for answerable training pairs (Qi, V i) ∈ D ID , and gθ (Q, V ) ≈ 1 for unanswer-able deployment inputs. The main challenge is that the training data contains no manually labelled unanswerable pairs. S EMANTIC FLIP addresses this challenge by synthesizing auxiliary unanswer-able pairs from answerable ones. The agent should answer only when the available visual memory provides sufficient evidence to ground the language query. If the query asks for unsupported infor-mation, or if the memory no longer contains the required referent, the pair should trigger abstention. Let TQ and TV denote query-side and video-side corruption operators. Given an answerable pair 
+
+(Qi, V i), S EMANTIC FLIP constructs 
+
+DQ-F LIP = (TQ(Qi), V i) i, DV-F LIP = (Qi, TV (Vi)) i. (1) Q-Flip changes the query while preserving the visual memory, creating queries with insufficient vi-sual grounding, such as ambiguous referents, false premises, or subjective requests. V-Flip preserves the query while removing the target referent from the visual memory through a parse → detect 
+
+→ inpaint pipeline. Both transformations change only one axis of an originally answerable pair, 
+
+Figure 2: Concrete examples of Q-F LIP and V-F LIP . Q-F LIP keeps the video and rewrites the query into an ungroundable variant, such as a referential, false premise, or subjective question, while V-F LIP keeps the query and erases its referent from every frame so that the label flips to abstain .as shown in Figure 2. This minimal corruption keeps the other axis in-distribution and discourages the rejection module from relying on single-modality artifacts. Both Q-F LIP and V-F LIP samples receive the label abstain .
+
+3.2 Q-F LIP for linguistic corruption 
+
+Q-F LIP keeps the visual memory Vi unchanged and corrupts only the query for each ID example 
+
+(Qi, V i). It generates a new query ˜Qi such that ( ˜Qi, V i) no longer has sufficient visual grounding. The coarse variant asks an LLM to write a question that the given video cannot answer without using any abstention taxonomy. The fine variant uses three A BSTAIN EQA categories, namely referential underspecification, false premise, and subjective judgment, and thus assumes partial prior knowl-edge of abstention types. It excludes Actionability Limitation and Information Unavailability during synthesis to evaluate generalization to unseen abstention categories. Appendix A provides the full prompts, quality filters, and coarse-versus-fine Q-F LIP comparison. 43.3 V-F LIP for perceptual corruption 
+
+V-F LIP keeps the query Qi unchanged and corrupts only the visual memory for each ID example 
+
+(Qi, V i), creating ˜Vi in which the original query can no longer be grounded. Figure 2 (b) illus-trates the pipeline. spaCy extracts the target noun phrase [26], Grounding-DINO localizes it across video frames [24], and LaMa removes the localized regions through inpainting [25]. The resulting pair (Qi, ˜Vi) receives the label abstain because the visual referent required by the query no longer appears in the memory. Although inpainting may leave residual artifacts, V-F LIP still removes the direct visual evidence required by the original query and provides auxiliary OOD supervision. Appendix C compares inpainting with simpler perceptual corruptions, including dilation , graying ,
+
+noise , and mean-color fill .
+
+3.4 Frozen-encoder rejection module 
+
+The rejection module in S EMANTIC FLIP uses an abstention gate on top of a frozen pretrained VLM. Let ϕ denote the frozen VLM encoder, which maps a query-memory pair (Q, V ) to a joint embedding f ∈ Rd, and let πθ : Rd → [0 , 1] denote a small trainable classifier head. The full rejection module takes the form 
+
+gθ = πθ ◦ ϕ, gθ (Q, V ) = πθ
+
+ ϕ(Q, V ), (2) where low values indicate answerable pairs and high values indicate abstention. The proposed method implements πθ as a small 3-layer MLP. The encoder ϕ remains frozen, so training up-dates only πθ using answerable ID samples and synthetic OOD samples from Q-F LIP and V-F LIP .Keeping ϕ frozen lets ID and synthetic OOD samples share the same pretrained multimodal repre-sentation, makes S EMANTIC FLIP a drop-in module for VLM-equipped pipelines, and reduces the risk of text-only shortcut learning that can arise from full VLM fine-tuning. Since S EMANTIC FLIP 
+
+does not modify the underlying VLM, the original answer-generation model remains intact. The training set combines answerable ID samples and synthetic abstention samples, 
+
+Dtrain = DID ∪ D Q-F LIP ∪ D V-F LIP . (3) Each sample receives an abstention label y ∈ { 0, 1}, where ID samples use y = 0 and Q-F LIP or V-F LIP samples use y = 1 . For each sample, the frozen encoder produces fi = ϕ(Qi, V i), and the classifier predicts πθ (fi). The proposed method trains πθ with class-weighted binary cross entropy, 
+
+L(θ) = − X
+
+> (fi,y i)
+
+wyi
+
+yi log πθ (fi) + (1 − yi) log  1 − πθ (fi) , (4) where wyi is inversely proportional to the frequency of class yi.
+
+3.5 Plugging S EMANTIC FLIP into downstream tasks 
+
+SEMANTIC FLIP computes gθ (Q∗, V ∗) = πθ (ϕ(Q∗, V ∗)) for a test query-memory pair (Q∗, V ∗)
+
+and triggers abstention when gθ (Q∗, V ∗) > τ , with τ = 0 .5 unless otherwise stated. Experiments show that the overall F1 remains largely insensitive to τ , and Appendix C reports ROC curves, PR curves, and AUROC values across thresholds. The EQA pipeline lets the underlying VLM answer only when the gate remains inactive. When the gate triggers, the agent returns “I cannot answer this question”. The spatial-localization pipeline integrates the gate into M ETA -M EMORY as a fourth in-loop action alongside its three retrieval tools. The gate performs a top-5 semantic-similarity lookup, packs the question and retrieved caption-image pairs into one frozen Qwen2.5-VL forward pass, and feeds the last-token hidden state to the MLP. A score above τ = 0 .5 terminates the loop with abstention, while a lower score lets the agent continue reasoning. The experiments adopt this in-loop configuration, denoted C2, because it outperforms the pre-cycle gatekeeper C1 and post-cycle verifier C3 variants. 54 SPACE REJECT 
+
+SPACE LOC QA provides 270 spatial question answering queries over six campus video sequences, with 45 queries per sequence [4]. Each sequence records a distinct campus environment, such as a building corridor or an outdoor street view. However, S PACE LOC QA assumes that every query has a valid answer by construction, which prevents it from evaluating refusal. This work extends SPACE LOC QA into S PACE REJECT , a benchmark for measuring refusal under long video memory. The six sequences are split disjointly into seq 0, 1, 2 and seq 3, 4, 5, yielding 135 in-distribution queries for training and 135 held-out answerable queries for testing. This sequence-level split pre-vents direct visual overlap between training and test images. On top of the held-out answerable queries, S PACE REJECT adds 135 newly curated unanswerable queries, resulting in a balanced test set for evaluating abstention. The ID portion reuses the original answerable queries from S PACE -LOC QA’s position human qa.json . The OOD portion contains the newly curated unanswer-able queries in ood human qa.json . Appendix B describes the test sequences in detail. OOD queries in S PACE REJECT cover two practical refusal types. Type 1, Object-Absent, asks about ob-jects that never appear in the campus video, such as “ where is the seminar room’s printer? ” when no printer appears in any frame. This type contains 68 queries. Type 2, Visually-Unavailable, asks about properties that RGB observations cannot determine, such as “ what is the temperature of the lab? ”. This type contains 67 queries. A large language model first drafts candidate unanswerable queries. Three robotics specialists then independently validate every candidate against the recorded video, and the dataset keeps only queries on which all three reviewers agree. Table 1 summarizes the dataset composition. Table 1: Composition of the S PACE REJECT test split. Partition # queries Description 
+
+ID 135 answerable spatial queries from S PACE LOC QA Type 1 (Object-Absent) 68 target object never recorded in campus video Type 2 (Visually-Unavailable) 67 properties not derivable from RGB Total 270 balanced 1:1 ID/OOD split 
+
+# 5 Experiments 
+
+The evaluation considers two complementary settings, namely EQA with A BSTAIN EQA and spa-tial localization with S PACE REJECT . All experiments use frozen Qwen2.5-VL-7B-Instruct as the encoder ϕ [21]. 
+
+5.1 EQA: A BSTAIN EQA (Subset of HM3D) 
+
+The EQA evaluation uses the HM3D subset of A BSTAIN EQA [1, 28]. All methods share the same HM3D-380 split, and the prompted baselines re-implement the coarse and taxonomy-aware prompts of A BSTAIN EQA on locally hosted open models [1]. The comparison includes Qwen2.5-VL-32B-AWQ with Coarse, Fine, and Fine with naive CoT prompts under greedy decoding. The evaluation treats abstain as positive and reports F1, balanced accuracy, OOD recall, and ID specificity. Ta-ble 2 compares abstention performance. S EMANTIC FLIP reaches F1 = 0 .7110 with a frozen 7Bencoder and a small classifier head, exceeding the strongest prompted baseline, Qwen-32B-Coarse at F1 = 0 .6746 , by 3.6 percentage points. Because S EMANTIC FLIP trains only a 3-layer MLP and reuses the VLM forward pass required for EQA, it adds essentially no extra inference cost at test time. Table 2 also shows that Naive CoT improves ID specificity at the cost of OOD recall. Appending “ let us think step by step ” to the Fine prompt raises specificity from 0.13 to 0.93 , but col-lapses OOD recall from 0.95 to 0.20 . As a result, F1 falls from 0.67 to 0.31 . This pattern suggests that CoT encourages the model to rationalize plausible answers rather than reject unsupported candi-dates. Figure 3 shows the same trade-off in the (Specificity , Recall ) plane. Naive CoT moves toward 6Table 2: Abstention results on A BSTAIN EQA HM3D-380. Appendix C provides the full experi-mental results. 
+
+Method Params F1 ↑ BalAcc ↑ Recall ↑ Spec. ↑
+
+Qwen-32B-Coarse 32B 0.6746 0.5684 0.8947 0.2421 Qwen-32B-Fine 32B 0.6741 0.5395 0.9526 0.1263 Qwen-32B-Fine + Naive CoT 32B 0.3099 0.5654 0.1960 0.9344 SEMANTIC FLIP (Ours) 7B + small head 0.7110 0.6684 0.8158 0.5211 
+
+the high-specificity, low-recall region, whereas S EMANTIC FLIP reaches a balanced operating point without any inference-time reasoning chain. Table 3 evaluates zero-shot generalization across ab-      
+
+> 00.20.40.60.81
+> 0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1
+> BalAcc=0.5
+> 0.7
+> 0.9
+> Naive CoT
+> −75 .7pp recall
+> ideal
+
+ID Specificity ( ↑)  
+
+> OOD Recall ( ↑)
+> Qwen-32B-Coarse
+> Qwen-32B-Fine
+> Qwen-32B-Fine + Naive CoT
+> SEMANTIC FLIP (Ours)
+
+Figure 3: Reasoning-vs-abstention trade-off on A BSTAIN EQA HM3D-380 .stention categories. Q-F LIP -Fine targets only three of the five A BSTAIN EQA categories, namely 
+
+Referential Underspecification , False Presupposition , and Subjective Judgment . The remaining two categories, Information Unavailability and Actionability Limitation , do not appear during synthe-sis. The gate nevertheless reaches 0.89 recall on Information Unavailability and 0.68 recall on 
+
+Actionability Limitation . The former even exceeds the 0.69 recall on the targeted Referential Un-derspecification category. This result suggests that S EMANTIC FLIP learns a structural abstention signal rather than category-specific lexical cues. The ablation in Appendix C varies |D V-F LIP | at Table 3: Per-category OOD recall of S EMANTIC FLIP on the HM3D-380 test set. ⋆: category targeted during Q-F LIP synthesis; ×: untargeted (zero-shot). 
+
+Category Targeted? n Recall ↑
+
+Preference Dependence ⋆ 37 0.9189 Information Unavailability × 37 0.8919 False Presupposition ⋆ 42 0.8810 Referential Underspecification ⋆ 36 0.6944 Actionability Limitation × 38 0.6842 
+
+Overall (ensemble) — 190 0.8158 
+
+fixed |D Q-F LIP | = 3 ,303 . The best F1 appears at a moderate V-F LIP scale, and |D V-F LIP | = 0 al-ready comes within a fraction of a point of the peak, indicating that Q-F LIP provides most of the abstention signal while V-F LIP adds a small calibration benefit. 
+
+5.2 Spatial localization: S PACE REJECT 
+
+The spatial-localization evaluation uses the S PACE REJECT test split of 270 queries built on S PACE -LOC QA [4]. Following the original six-sequence setup, S EMANTIC FLIP trains on synthesized samples from seq 0, 1, 2 and evaluates on held-out seq 3, 4, 5, while attaching the abstention module 7to the M ETA -M EMORY agent [4]. The underlying LLM varies between Qwen3-8B and Qwen2.5-32B-AWQ. The evaluation compares three hook points. C1 checks the question and top-5 retrieved memories before the reasoning cycle, C2 adds abstention as a fourth in-loop tool alongside the three META -M EMORY retrieval and integration tools, and C3 verifies the final coordinate before execu-tion. Table 4: Abstention results on S PACE REJECT (135 ID + 135 OOD). The top row is the strongest prompt-based check (C2 Tool). Full per-LLM prompt-based breakdown is in Appendix D.                              
+
+> Method BalAcc ↑F1↑Recall ↑Spec. ↑
+> C2 (Tool) Qwen3-8B (prompt) 0.8778 0.8874 0.9630 0.7926 SEMANTIC FLIP , V-F LIP only 0.7237 0.6867 0.6385 0.8089 SEMANTIC FLIP , Q-F LIP only 0.9504 0.9494 0.9363 0.9644
+> SEMANTIC FLIP , Q-F LIP +V-F LIP 0.9563 0.9559 0.9467 0.9659
+
+Results and ablation studies. Among prompt-based abstention checks (Appendix D), C2 (Tool) on Qwen3-8B is strongest at 0.8778 balanced accuracy and F1 0.8874 , while C1 (Pre) and C3 (Post) reach equal or higher recall yet much lower specificity, 0.556 and 0.393 , over-abstaining on an-swerable queries. Table 4 compares this strongest check against the learned gate of S EMANTIC 
+
+FLIP , which trains a small MLP on the frozen Qwen2.5-VL-7B verifier embedding using synthe-sized samples from seq 0, 1, 2 and is evaluated on the held-out seq 3, 4, 5. The full Q-F LIP +V-F LIP 
+
+gate reaches 0.9559 F1, exceeding C2 (Tool) by about 0.07 with a single classifier pass rather than an extra LLM call, on a verifier comparable in scale to the C2 backbone, so the gain reflects the abstention approach rather than model capacity. Ablating the synthesis, Q-F LIP alone already at-tains 0.9494 F1, itself surpassing the best prompt-based check, whereas V-F LIP alone reaches only 
+
+0.6867 F1 and contributes mainly in combination with Q-F LIP , where it further lifts recall from 
+
+0.9363 to 0.9467 and balanced accuracy from 0.9504 to 0.9563 , mirroring the EQA finding. 
+
+# 6 Limitation 
+
+SEMANTIC FLIP trains the gate on minimal OOD samples that differ from an answerable pair along a single axis, learning the joint consistency “ Q is groundable in V ”, which brings two limitations. First, although the synthesis-level ablation isolates the contribution of Q-F LIP and V-F LIP , at infer-ence the single fused (Q, V ) embedding gives only a combined consistency signal, so an abstention cannot be attributed to an ungrounded query or a missing visual referent, which limits cause-specific feedback to the user. In practice, the weakest categories, Referential Underspecification and Action-ability Limitation, remain at 0.68 –0.69 recall. Second, V-F LIP quality depends on the detector and inpainter, and inpainting artifacts in ˜Vi may slightly weaken the perceptual signal even though they remain informative enough in practice. 
+
+# 7 Conclusion 
+
+SEMANTIC FLIP synthesizes auxiliary unanswerable pairs by independently corrupting the query or the video memory to train a lightweight gate on a frozen VLM, and releases S PACE REJECT 
+
+(and its large-scale extension S PACE REJECT EXTRA ) as abstention benchmarks for spatial localiza-tion. Across two complementary tasks, S EMANTIC FLIP consistently outperforms strong prompting baselines, achieving an F1 score of 0.7110 on A BSTAIN EQA and 0.9559 on S PACE REJECT with only a small trainable classifier head on top of a frozen 7B VLM. Because S EMANTIC FLIP op-erates on top of a frozen multimodal encoder and requires only query-memory pairs, it integrates into a broad range of embodied systems without modifying their underlying reasoning or answer-generation pipelines. 8References 
+
+[1] T. Wu, C. Zhou, G. Zhao, H. Cao, Y. Pu, and J. Yang. When robots should say” i don’t know”: Benchmarking abstention in embodied question answering. arXiv preprint arXiv:2512.04597 ,2025. [2] A. Majumdar, A. Ajay, X. Zhang, P. Putta, S. Yenamandra, M. Henaff, S. Silwal, P. Mcvay, O. Maksymets, S. Arnaud, et al. Openeqa: Embodied question answering in the era of foun-dation models. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , pages 16488–16498, 2024. [3] A. Anwar, J. Welsh, J. Biswas, S. Pouya, and Y. Chang. Remembr: Building and reasoning over long-horizon spatio-temporal memory for robot navigation. In 2025 IEEE International Conference on Robotics and Automation (ICRA) , pages 2838–2845. IEEE, 2025. [4] Y. Mao, H. Ye, W. Dong, C. Zhang, and H. Zhang. Meta-memory: Retrieving and integrating semantic-spatial memories for robot spatial reasoning. arXiv preprint arXiv:2509.20754 , 2025. [5] J. Wei, X. Wang, D. Schuurmans, M. Bosma, F. Xia, E. Chi, Q. V. Le, D. Zhou, et al. Chain-of-thought prompting elicits reasoning in large language models. Advances in neural information processing systems , 35:24824–24837, 2022. [6] P. Kirichenko, M. Ibrahim, K. Chaudhuri, and S. J. Bell. Abstentionbench: Reasoning llms fail on unanswerable questions. Advances in Neural Information Processing Systems , 38, 2026. [7] A. Das, S. Datta, G. Gkioxari, S. Lee, D. Parikh, and D. Batra. Embodied question answering. In Proceedings of the IEEE conference on computer vision and pattern recognition , pages 1–10, 2018. [8] D. Hendrycks and K. Gimpel. A baseline for detecting misclassified and out-of-distribution examples in neural networks. arXiv preprint arXiv:1610.02136 , 2016. [9] S. Liang, Y. Li, and R. Srikant. Enhancing the reliability of out-of-distribution image detection in neural networks. arXiv preprint arXiv:1706.02690 , 2017. [10] K. Lee, K. Lee, H. Lee, and J. Shin. A simple unified framework for detecting out-of-distribution samples and adversarial attacks. Advances in neural information processing sys-tems , 31, 2018. [11] B. Lakshminarayanan, A. Pritzel, and C. Blundell. Simple and scalable predictive uncertainty estimation using deep ensembles. Advances in neural information processing systems , 30, 2017. [12] D. Hendrycks, M. Mazeika, and T. G. Dietterich. Deep anomaly detection with outlier expo-sure. In International Conference on Learning Representations (ICLR) , 2019. [13] J. Kim, K. Jung, D. Na, S. Jang, E. Park, and S. Choi. Pseudo outlier exposure for out-of-distribution detection using pretrained transformers. In Findings of the Association for Com-putational Linguistics: ACL 2023 , pages 1469–1482, 2023. [14] D. Choi and D. Na. Towards reliable ai model deployments: Multiple input mixup for out-of-distribution detection. arXiv preprint arXiv:2312.15514 , 2023. [15] J. Kim, S. T. Kong, D. Na, and K.-H. Jung. Key feature replacement of in-distribution samples for out-of-distribution detection. In Proceedings of the AAAI conference on artificial intelli-gence , volume 37, pages 8246–8254, 2023. [16] R. El-Yaniv et al. On the foundations of noise-free selective classification. Journal of Machine Learning Research , 11(5), 2010. 9[17] Y. Geifman and R. El-Yaniv. Selective classification for deep neural networks. Advances in neural information processing systems , 30, 2017. [18] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger. On calibration of modern neural networks. In International conference on machine learning , pages 1321–1330. PMLR, 2017. [19] S. Kadavath, T. Conerly, A. Askell, T. Henighan, D. Drain, E. Perez, N. Schiefer, Z. Hatfield-Dodds, N. DasSarma, E. Tran-Johnson, et al. Language models (mostly) know what they know. 
+
+arXiv preprint arXiv:2207.05221 , 2022. [20] Z. Yin, Q. Sun, Q. Guo, J. Wu, X. Qiu, and X.-J. Huang. Do large language models know what they don’t know? In Findings of the association for Computational Linguistics: ACL 2023 ,pages 8653–8665, 2023. [21] S. Bai, K. Chen, X. Liu, J. Wang, W. Ge, S. Song, K. Dang, P. Wang, S. Wang, J. Tang, H. Zhong, Y. Zhu, M. Yang, Z. Li, J. Wan, P. Wang, W. Ding, Z. Fu, Y. Xu, J. Ye, X. Zhang, T. Xie, Z. Cheng, H. Zhang, Z. Yang, H. Xu, and J. Lin. Qwen2.5-vl technical report. arXiv preprint arXiv:2502.13923 , 2025. [22] H. Liu, C. Li, Q. Wu, and Y. J. Lee. Visual instruction tuning. Advances in neural information processing systems , 36:34892–34916, 2023. [23] A. Radford, J. W. Kim, C. Hallacy, A. Ramesh, G. Goh, S. Agarwal, G. Sastry, A. Askell, P. Mishkin, J. Clark, et al. Learning transferable visual models from natural language supervi-sion. In International conference on machine learning , pages 8748–8763. PmLR, 2021. [24] S. Liu, Z. Zeng, T. Ren, F. Li, H. Zhang, J. Yang, Q. Jiang, C. Li, J. Yang, H. Su, et al. Grounding dino: Marrying dino with grounded pre-training for open-set object detection. In 
+
+European conference on computer vision , pages 38–55. Springer, 2024. [25] R. Suvorov, E. Logacheva, A. Mashikhin, A. Remizova, A. Ashukha, A. Silvestrov, N. Kong, H. Goka, K. Park, and V. Lempitsky. Resolution-robust large mask inpainting with fourier convolutions. In Proceedings of the IEEE/CVF winter conference on applications of computer vision , pages 2149–2159, 2022. [26] M. Honnibal, I. Montani, S. Van Landeghem, and A. Boyd. spaCy: Industrial-strength natural language processing in python, 2020. URL https://spacy.io/ . Version 3.8.4. [27] T. Kojima, S. S. Gu, M. Reid, Y. Matsuo, and Y. Iwasawa. Large language models are zero-shot reasoners. Advances in neural information processing systems , 35:22199–22213, 2022. [28] S. K. Ramakrishnan, A. Gokaslan, E. Wijmans, O. Maksymets, A. Clegg, J. Turner, E. Un-dersander, W. Galuba, A. Westbury, A. X. Chang, et al. Habitat-matterport 3d dataset (hm3d): 1000 large-scale 3d environments for embodied ai. arXiv preprint arXiv:2109.08238 , 2021. 10 A Q-F LIP Prompts, Quality Filters, and Coarse-vs-Fine Comparison 
+
+This appendix details the Q-F LIP synthesis pipeline summarized in Section 3.2. It provides the full prompts for both variants, the filtering criteria for generated queries, and a direct comparison between the assumption-free coarse variant and the taxonomy-aware fine variant. 
+
+A.1 Synthesis pipeline overview 
+
+Q-F LIP generates a corrupted query ˜Qi that visual memory Vi cannot answer for each answerable in-distribution pair (Qi, V i) from the HM3D training split of A BSTAIN EQA. The pipeline consists of four stages: 1. The original answerable query Qi is passed as text only to a frozen Qwen2.5-7B-Instruct rewriter. The released synthesis does not use frames from Vi at this stage. The corrupted query is paired with Vi later, when the frozen vision-language encoder extracts abstention features. 2. The rewriter receives the coarse or fine instruction described in Sections A.2 and A.3. Generation uses nucleus sampling with temperature 0.7 and top-p = 0 .9 to produce diverse variants for each pair (Qi, strategy ).3. The first non-empty line of the plain-text completion is used as ˜Qi. The released code does not request or parse JSON. 4. The quality filter in Section A.4 removes queries that violate any rule or are too similar to 
+
+Qi.The surviving queries form the Q-F LIP pool and pair with the original Vi to produce abstention training samples ( ˜Qi, V i, y =1) .
+
+A.2 Coarse prompt (assumption-free default) 
+
+The coarse variant does not assume the taxonomy of unanswerable queries. It asks the LLM to write a question that the given video cannot answer, without specifying any abstention category. 
+
+Q-F LIP -Coarse prompt (as implemented; text-only). 
+
+> You are helping evaluate vision-language models on unanswerable questions. Original answerable question: “ Qi”. Instruction: rewrite the question so that it CANNOT be answered from the indoor scene the original question came from, without assuming any particular reason why it is unanswerable. Keep it natural and grammatical. Output ONE question. No explanation. Output (one question only):
+
+A.3 Fine prompt (taxonomy-aware) 
+
+The fine variant specifies three abstention categories from the A BSTAIN EQA taxonomy [1], namely 
+
+referential underspecification , false presupposition , and subjective judgment . It excludes Informa-tion Unavailability and Actionability Limitation to evaluate zero-shot generalization to unseen ab-stention categories, as shown in Section 5.1 and Table 3. 
+
+Q-F LIP -Fine prompts (as implemented; text-only, one call per strategy). 
+
+> The fine variant does not present a single “pick one” menu. For each source question it issues three separate text-only rewrite calls, one per strategy, each wrapped in the coarse template above with the strategy-specific instruction below.
+> referential : Rewrite the question so that its head noun is replaced with a generic / ambiguous reference that could match many objects in the scene. Output ONE rewritten question. No explanation.
+
+11 false premise : Rewrite the question so that it embeds a false premise that contradicts the scene (e.g. asks about an object placed somewhere it is not). Output ONE question. No explanation. 
+
+> subjective : Rewrite the question so that it asks about a subjective property (prettiness, comfort, taste, mood) that cannot be answered from RGB observation. Output ONE question. No explanation.
+
+A.4 Quality filters 
+
+Every generated query passes through five filters before joining the training pool. 1. Output well-formedness . The completion must contain a single non-empty question on its first non-empty line. The filter drops empty outputs, degenerate outputs, and malformed multi-line completions. The released code parses plain text rather than JSON. 2. Length bounds . The generated query must satisfy 5 ≤ | ˜Qi| ≤ 35 tokens. 3. Surface novelty . The token-level Jaccard similarity between ˜Qi and Qi must stay below 
+
+0.7 to remove near-duplicates. 4. Category match . For the fine variant, the declared category must match a lexical regex pattern. The filter drops queries that fail this check. 5. Manual spot check . One author reviews a random 5% subset to identify obvious failures, such as queries that remain answerable. The pass rate exceeds 0.92 across both variants. 
+
+A.5 Coarse vs. fine comparison 
+
+Table 5 compares gates trained with either the coarse or fine Q-F LIP variant on the HM3D-380 test set. Both variants use the same frozen Qwen2.5-VL-7B-Instruct encoder, ID samples, and V-F LIP 
+
+pool. The two variants show comparable abstention performance. The coarse variant attains slightly higher F1 (0.7458 vs. 0.7382 ), balanced accuracy, and specificity, while the fine variant attains higher OOD recall ( 0.9053 vs. 0.8263 ). The fine variant serves as the default because it explicitly targets interpretable abstention categories, and the F1 gap between the two variants remains within the gate’s five-seed standard deviation ( ±0.013 ). 1
+
+Table 5: Q-F LIP coarse vs. fine on A BSTAIN EQA HM3D-380 . Both rows use the same frozen Qwen2.5-VL-7B-Instruct encoder, the same ID samples, and the same V-F LIP pool.                     
+
+> Variant |D Q-F LIP |F1↑BalAcc ↑Recall ↑Spec. ↑
+> Q-F LIP -Coarse 3,303 0.7458 0.7184 0.8263 0.6105
+> Q-F LIP -Fine 3,303 0.7382 0.6789 0.9053 0.4526
+
+# B SPACE REJECT Sequence Details 
+
+This appendix provides per-sequence descriptions of the six campus videos used in S PACE REJECT ,along with details of the OOD curation protocol and the S PACE REJECT EXTRA extension. 
+
+B.1 Per-sequence description 
+
+SPACE REJECT reuses the six campus video sequences from S PACE LOC QA [4]. Each sequence records a distinct indoor or outdoor environment and contains 45 original answerable spatial queries. The split assigns seq 0, 1, 2 to training and seq 3, 4, 5 to held-out testing, yielding 135 in-distribution queries on each side. The test split additionally includes 135 newly curated unanswerable queries    
+
+> 1All Appendix C numbers come from a fresh end-to-end re-run of the released pipeline. Because Q-F LIP
+> synthesis uses temperature-0.7sampling, the reproduced headline ( F1= 0 .7382 ) differs slightly from the main-text 0.7110 ; the latter lies within this reproduction’s five-seed ensemble spread ( 0.706 –0.745 ).
+
+12 for refusal evaluation. Table 6 summarizes the per-sequence statistics. The disjoint sequence-level split prevents direct visual overlap between training and test images, so a gate trained on seq 0, 1, 2
+
+cannot exploit memorized frame content when scored on seq 3, 4, 5.Table 6: Per-sequence composition of S PACE REJECT . Raw frames are recorded at ≈ 10 fps; retrieval modules operate over 3-second caption segments (one per ≈ 30 raw frames).                                           
+
+> Seq. Environment Split Frames Segments ID queries OOD queries
+> 0building corridor (indoor) train 3,978 128 45 —1laboratory and office (indoor) train 9,398 303 45 —2cafeteria area (indoor) train 5,851 188 45 —3multi-floor lobby (indoor) test 5,672 183 45 45 4outdoor walkway (outdoor) test 7,317 237 45 45 5campus street view (outdoor) test 8,550 275 45 45
+
+B.2 OOD curation protocol 
+
+The 135 unanswerable test queries cover the two refusal types defined in Section 4. • Type 1 (Object-Absent, 68 queries) asks about objects that never appear in the recorded video. • Type 2 (Visually-Unavailable, 67 queries) asks about properties that RGB observations cannot determine, such as temperature, smell, or future state. The curation process has two stages. First, Claude drafted candidate unanswerable queries from a textual scene description of each target sequence, with explicit instructions to avoid objects or properties visible in the recording. The model received separate prompts for the two refusal types, Object-Absent and Visually-Unavailable, and the released artifact provides the full prompts. Sec-ond, an author reviewed every candidate against the full per-sequence caption file produced by the META -M EMORY captioner and a uniformly sampled subset of the underlying key frames. The re-view retained a Type-1 candidate only when its target noun phrase appeared in neither the captions nor the sampled frames. It retained a Type-2 candidate only when RGB observation could not de-termine the target property, such as temperature, smell, future state, or monetary value. The review discarded candidates that failed these criteria or remained ambiguous. This procedure retained 135 
+
+unanswerable test queries after drafting approximately 50 candidates per sequence on average. 
+
+B.3 SPACE REJECT EXTRA : large-scale extension 
+
+SPACE REJECT EXTRA extends SPACE REJECT to support larger-scale evaluation of spatial-localization refusal. It pairs the 270 original answerable queries from S PACE LOC QA with 420 
+
+newly curated unanswerable queries per sequence, yielding 2,520 OOD queries across the six se-quences. The extension broadens the two S PACE REJECT refusal types into the five A BSTAIN EQA abstention categories listed in Table 7 ( 84 unanswerable queries per category per sequence). The cu-ration pipeline scales the original protocol by sampling a broader set of seed concepts during LLM drafting and using majority agreement among three reviewers during validation. Table 7 reports the dataset composition. 
+
+# C Additional EQA Experiments 
+
+This appendix provides additional EQA analyses omitted from the main text for space. It covers alternative perceptual corruptions for V-F LIP , threshold-sweep ROC and PR curves, the synthesis-scale ablation over |D V-F LIP | at fixed |D Q-F LIP | = 3 ,303 , and per-LLM prompt-based baseline results. 13 Table 7: Composition of S PACE REJECT EXTRA . The extension covers all six S PACE LOC QA sequences and adds 420 unanswerable queries per sequence, evenly distributed across the five A B-
+
+> STAIN
+
+EQA abstention categories ( 84 per category per sequence).                                            
+
+> Partition Per sequence Total (6 seqs) Description
+> ID (answerable, from S PACE LOC QA) 45 270 original spatial queries with valid
+> (x, y, z )
+> OOD: Referential Underspecification 84 504 ambiguous or generic head noun OOD: False Presupposition 84 504 embedded premise contradicting the scene OOD: Preference Dependence 84 504 subjective property (taste, comfort, mood) OOD: Information Unavailability 84 504 property not derivable from RGB (tem-perature, smell, time) OOD: Actionability Limitation 84 504 request exceeding agent capability or scope
+> Total OOD 420 2,520 balanced across five A BSTAIN EQA cate-gories
+> Grand total (ID +OOD) 465 2,790 per-sequence and dataset totals
+
+C.1 Alternative perceptual corruptions for V-F LIP 
+
+Section 3.3 uses a parse → detect → inpaint pipeline based on spaCy [26], Grounding-DINO [24], and LaMa [25]. This section compares LaMa inpainting with four simpler fill operators that mask or replace the detected referent region: • dilation dilates the detection mask by 8 pixels and fills it with the surrounding median color. • graying replaces the masked region with mid-gray (128 , 128 , 128) .• noise replaces the masked region with i.i.d. Gaussian noise. • mean-color fill replaces the masked region with the per-image mean RGB value. All variants share the same parse and detect stages and differ only in how they fill the detected referent region. Table 8: V-F LIP fill-operator ablation on A BSTAIN EQA HM3D-380 . All variants share the same detection masks, Q-F LIP -Fine pool, and V-F LIP sample cap. LaMa performs best, but cheaper fill operators remain competitive.                             
+
+> Fill operator F1↑BalAcc ↑Recall ↑Spec. ↑
+> dilation 0.6919 0.6579 0.7684 0.5474
+> graying 0.6932 0.6553 0.7789 0.5316
+> noise 0.6737 0.6737 0.6737 0.6737
+> mean-color fill 0.7136 0.6684 0.8263 0.5105 LaMa (default) 0.7382 0.6789 0.9053 0.4526
+
+Table 8 reports the abstention performance of gates trained with different V-F LIP fill operators on top of a fixed |D Q-F LIP | = 3 ,303 Q-F LIP -Fine pool. All variants use the same detection masks and the same capped number of V-F LIP samples, so the comparison isolates the effect of the fill operator. LaMa inpainting achieves the best performance, but the cheaper fill operators remain competitive. Mean-color fill is closest to LaMa with F1 = 0 .7136 , about 2.5 points below LaMa. Dilation and graying follow at roughly 4.5 points below LaMa, while noise is the weakest variant with F1 = 0 .6737 , about 6.5 points below LaMa. The cheap operators still reach 0.67 –0.71 F1,which suggests that the main V-F LIP signal comes from removing the referent rather than from 14 photorealistic background completion. This supports the framing in Section 3.3, where the gate learns to detect missing visual evidence rather than merely discriminate against inpainting artifacts. 
+
+C.2 Threshold-sweep ROC, PR, and AUROC 
+
+Section 3.5 uses τ = 0 .5 as the default abstention threshold. This section evaluates the sensitivity to this choice by sweeping τ across the unit interval and reporting ROC and PR curves with scalar summaries. Table 9: Threshold sweep for S EMANTIC FLIP on A BSTAIN EQA HM3D-380 . The default threshold τ = 0 .5 stays close to the best F1 achieved at τ = 0 .6.                             
+
+> τF1↑BalAcc ↑Recall ↑Spec. ↑
+> 0.30.7028 0.5816 0.9895 0.1737
+> 0.40.7273 0.6447 0.9474 0.3421
+> 0.5(default) 0.7382 0.6789 0.9053 0.4526
+> 0.60.7748 0.7553 0.8421 0.6684
+> 0.70.6986 0.7184 0.6526 0.7842
+
+Table 9 reports F1, balanced accuracy, OOD recall, and ID specificity at five threshold values from abstention-conservative τ = 0 .3 to abstention-aggressive τ = 0 .7. The gate uses the headline Q-FLIP -Fine + V-F LIP configuration. The best F1 appears at τ = 0 .6 with 0.7748 , while the default 
+
+τ = 0 .5 remains close to the peak with 0.7382 . Across τ ∈ [0 .4, 0.6] , F1 changes by about 5
+
+points and degrades substantially only beyond τ = 0 .7. Thus, τ = 0 .5 provides a near-optimal and slightly recall-favoring operating point with 0.7382 F1 and 0.91 recall. The integrated summaries are AUROC = 0 .8125 and AUPRC = 0 .8137 .
+
+C.3 Synthesis-scale ablation: varying the V-F LIP pool size 
+
+Section 5.1 reports that adding V-F LIP provides a small but consistent gain on top of Q-F LIP . This appendix further examines this effect by varying |D V-F LIP | while keeping |D Q-F LIP | = 3 ,303 fixed. Table 10 reports the results. Performance peaks at a moderate V-F LIP scale, with |D V-F LIP | =148 reaching F1 = 0 .7436 . Adding V-F LIP improves F1 from 0.7030 at |D V-F LIP | = 0 by about four points. This result suggests that Q-F LIP supplies most of the abstention signal, while V-F LIP 
+
+provides a measurable complementary benefit. Table 10: Effect of V-F LIP pool size at fixed |D Q-F LIP | = 3 ,303 . All rows use the headline Q-FLIP -Fine pool and the same encoder. Row labels are the feasible V-F LIP sizes available; V-F LIP 
+
+adds ≈ 4 F1 points over |D V-F LIP | = 0 .                              
+
+> |D V-F LIP |F1↑BalAcc ↑Recall ↑Spec. ↑
+> 00.7030 0.6842 0.7474 0.6211
+> 49 0.7208 0.6921 0.7947 0.5895
+> 99 0.7393 0.6789 0.9105 0.4474
+> 148 0.7436 0.7079 0.8474 0.5684
+> 198 (full) 0.7382 0.6789 0.9053 0.4526
+
+C.4 Per-LLM prompt-based baselines 
+
+The main paper reports prompt baselines with Qwen2.5-VL-32B-AWQ, the strongest locally hosted open VLM used in this study. This appendix adds per-LLM results for additional model sizes that prompt-only practitioners may consider. Table 11 reports F1, balanced accuracy, OOD recall, and ID specificity for Coarse and Fine prompts across Qwen2.5-VL-7B and Qwen2.5-VL-32 B-AWQ. The 7B and 32 B prompt baselines show comparable performance. The 7B Fine prompt reaches 
+
+0.6938 F1, slightly exceeding both 32 B prompts, which reach 0.6746 with Coarse and 0.6741 with Fine. This result suggests that prompt-only abstention does not scale cleanly with model size. All 15 prompt baselines remain below the learned S EMANTIC FLIP gate, which is the main comparison emphasized in the paper. Table 11: Per-LLM prompt-based baselines on A BSTAIN EQA HM3D-380 . Coarse and Fine prompts only; the 7B Fine prompt is on par with the 32 B prompts, and all remain below the learned SEMANTIC FLIP gate.                              
+
+> Model Prompt F1↑BalAcc ↑Recall ↑Spec. ↑
+> Qwen2.5-VL-7B Coarse 0.6741 0.5395 0.9526 0.1263 Qwen2.5-VL-7B Fine 0.6938 0.5842 0.9421 0.2263 Qwen2.5-VL-32B Coarse 0.6746 0.5684 0.8947 0.2421 Qwen2.5-VL-32B Fine 0.6741 0.5395 0.9526 0.1263
+
+For completeness, this appendix also reports S EMANTIC FLIP on a 32 B encoder. The main paper uses a 7B encoder to show that the gain comes from the abstention approach rather than from model capacity alone. Stacking S EMANTIC FLIP on Qwen2.5-VL-32 B-Instruct-AWQ yields F1 = 0 .7454 ,BalAcc = 0 .6711 , Recall = 0 .9632 , and Spec. = 0 .3789 . The relative ordering against the 32 Bprompt baselines remains consistent with the 7B setting reported in the main paper. 
+
+# D Spatial-Localization Hook Configurations and Per-LLM Breakdown 
+
+This appendix specifies the three abstention hook points, C1, C2, and C3, introduced in Section 5.2. It also reports per-query cost, per-LLM prompt-based results, and multimodal verifier variants. 
+
+D.1 Hook-point specifications 
+
+Table 12 details how each hook attaches the abstention module to the M ETA -M EMORY agent [4]. C1 acts as a pre-cycle gatekeeper before reasoning starts. C2 adds abstention as a fourth in-loop tool alongside semantic-similarity retrieval, spatial-range retrieval, and memory integration. C3 verifies the emitted coordinate after the reasoning cycle and before execution. Table 12: Hook-point specifications for spatial-localization abstention. C2 is adopted as the default in the main paper because it offers the best balance between computational cost and accuracy.                                   
+
+> Hook Location in loop Inputs Outputs Cost / query
+> C1 (Pre) before reasoning cycle starts question +top-5semantically retrieved memory captions
+> abstain or
+> continue
+> 1 LLM call, ≈
+> 5sC2 (Tool) in-loop tool alongside semantic-similarity re-trieval, spatial-range re-trieval, and memory in-tegration question +current agent his-tory +retrieved memory at invocation
+> abstain
+> (terminates loop) or normal co-ordinate emission full agent loop,
+> ≈120 sC3 (Post) after agent emits final coordinate question +full tool trace +
+> emitted coordinate override to
+> abstain or keep coordi-nate agent loop +1verifier call, ≈
+> 125 s
+
+C2 empirically outperforms C1 and C3 because it places abstention at the most informative point in the reasoning cycle. C1 lacks the full reasoning context because it runs before the agent begins reasoning, while C3 tends to under-reject because it checks the output after the agent has already committed to a candidate coordinate. C2 evaluates abstention when the agent has both the question and retrieved context and naturally decides which tool to invoke next, making the decision both informed and timely. 16 D.2 Full per-LLM prompt-based breakdown 
+
+Table 13 decomposes the spatial-localization results into the full 3 × 2 grid of hook points and underlying LLMs. For each hook and LLM pair, the table reports balanced accuracy, F1, OOD recall, and ID specificity on the 135 ID plus 135 OOD test split. The trend remains consistent across both LLMs. C2 achieves the best F1 and balanced accuracy, while C1 and C3 trade higher recall for much lower specificity. The specificity values highlighted in the main text, 0.556 for C1 and 0.393 
+
+for C3, correspond to the Qwen3-8B rows in this table. Table 13: Full per-LLM, per-hook prompt-based breakdown on S PACE REJECT .                                       
+
+> Hook LLM BalAcc ↑F1↑Recall ↑Spec. ↑
+> C1 (Pre) Qwen3-8B 0.7780 0.8180 1.0000 0.5560 C2 (Tool) Qwen3-8B 0.8778 0.8874 0.9630 0.7926
+> C3 (Post) Qwen3-8B 0.6780 0.7490 0.9630 0.3930 C1 (Pre) Qwen2.5-32B-AWQ 0.6630 0.7479 1.0000 0.3259 C2 (Tool) Qwen2.5-32B-AWQ 0.8037 0.8349 0.9926 0.6148 C3 (Post) Qwen2.5-32B-AWQ 0.6481 0.7368 0.9852 0.3111
+
+D.3 Multimodal variant with a vision-language verifier 
+
+The prompt-based baselines in the main paper use only text at the abstention hook. A natural mul-timodal variant adds a vision-language verifier, Qwen2.5-VL-7B, which uses the same backbone as the learned S EMANTIC FLIP gate. This verifier receives the top-retrieved frames at the same hook point. Table 14 reports the comparison. The multimodal variants substantially improve C1 and C3 over their text-only counterparts, but they provide only a modest gain over the strongest text-only C2 baseline. The main paper therefore uses C2-Text as the primary prompt-based reference. Table 14: Text-only vs. multimodal abstention checks on S PACE REJECT . “Text” uses only textual context, while “VL-7B” additionally provides top-retrieved frames to Qwen2.5-VL-7B at the same hook point. C2-Text is the strongest text-only baseline.                                        
+
+> Hook Modality BalAcc ↑F1↑Recall ↑Spec. ↑
+> C1 (Pre) text 0.7780 0.8180 1.0000 0.5560 C1 (Pre) VL-7B 0.7296 0.7872 1.0000 0.4593 C2 (Tool) text 0.8778 0.8874 0.9630 0.7926
+> C2 (Tool) VL-7B 0.7889 0.8246 0.9926 0.5852 C3 (Post) text 0.6780 0.7490 0.9630 0.3930 C3 (Post) VL-7B 0.7926 0.8250 0.9778 0.6074
+
+D.4 Learned-gate composition ablation on S PACE REJECT 
+
+Table 15 reports a composition ablation for the learned S EMANTIC FLIP gate on S PACE REJECT .The ablation varies the ratio of ID, Q-F LIP , and V-F LIP samples in the training pool, ranging from a balanced 1:1:1 split to the headline 1:10:1 composition. It also compares three synthesis settings, namely V-F LIP alone, Q-F LIP alone, and the full Q-F LIP + V-F LIP combination. The learned gate achieves its best performance with the 1:10:1 composition used in the main paper, and the full combination consistently outperforms each ablated component. 
+
+D.5 Per-query computational cost 
+
+Table 12 reports the measured per-query wall-clock cost on a single RTX 5000 Ada GPU. 2 The full 
+
+270 -query test set takes approximately 16 minutes with C1, 1.3 hours with C2, and 5.4 hours with 
+
+> 2The absolute numbers depend on the GPU, but the relative ordering remains stable.
+
+17 Table 15: Composition ablation of the learned S EMANTIC FLIP gate on S PACE REJECT . All rows train the same 3-layer MLP head on the frozen Qwen2.5-VL-7B verifier embedding. Ratios are ID : Q-F LIP : V-F LIP .
+
+Composition ntrain BalAcc ↑ F1 ↑ Recall ↑ Spec. ↑
+
+Q-F LIP only, 1:1 270 0.9400 0.9370 0.8948 0.9852 
+
+Q-F LIP only, 1:10 1,485 0.9504 0.9494 0.9363 0.9644 V-F LIP only, 1:1 268 0.7237 0.6867 0.6385 0.8089 Q-F LIP + V-F LIP , 1:1:1 403 0.8911 0.9017 0.9496 0.8326 
+
+Q-F LIP + V-F LIP , 1:10:1 1,618 0.9563 0.9559 0.9467 0.9659 
+
+C3. 3 The learned S EMANTIC FLIP gate adds 15 .4 minutes of upfront filtering on the same test set, corresponding to 3.43 s per query from one frozen Qwen2.5-VL-7B verifier forward pass and one MLP pass. When paired with the C2 agent on accepted queries, the end-to-end pipeline completes in approximately 54 minutes. This yields a ∼1.4× speedup over C2 alone because the gate abstains on OOD queries before invoking the more expensive agent loop. 4
+
+> 3
+
+Measured wall-clock times with the Qwen3-8B agent backbone are C1 = 943 s, C2 = 4 ,623 s, and C3 =19 ,368 s. 
+
+> 4
+
+This estimate assumes that the gate abstains on the 135 OOD queries and forwards the 135 ID queries to the C2 agent: 926 + (4 ,623 /270) · 135 ≈ 3,238 s. 
+
+18
