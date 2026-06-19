@@ -6,73 +6,50 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-18
-- 运行时间：2026-06-18 22:10:40 UTC
+- 最新运行日期：2026-06-19
+- 运行时间：2026-06-19 21:18:36 UTC
 - 运行状态：成功
-- 本次总论文数：17
-- 精读区：6
-- 速读区：11
+- 本次总论文数：10
+- 精读区：3
+- 速读区：7
 
 ### 今日简报（AI）
-今日推荐17篇论文，聚焦多模态导航与视觉语言推理，精读两篇均获8分高分。  
-最值得关注：FloVerse利用平面图引导多模态导航，Self-Questioning VLM通过强化学习实现组合视觉推理，均为当前热点方向。  
-建议优先精读这两篇高评论文，尝试将FloVerse的融合策略应用于实际室内导航，或借鉴Self-Questioning方法改进视觉问答系统的逻辑推理能力。
-- 详情：[/202606/18/README](/202606/18/README)
+今日精读两篇高分论文，聚焦机器人导航与路径规划新方法。神经形态强化学习在机器人路径规划中效率显著，Qwen-RobotNav展示了可扩展的导航模型。建议优先关注神经形态计算与强化学习在机器人领域的应用，以及大模型驱动的导航框架。
+- 详情：[/202606/19/README](/202606/19/README)
 
 ### 精读区论文标签
-1. [FloVerse: Floor Plan-Guided Multi-Modal Navigation](/202606/18/2606.14267v1-floverse-floor-plan-guided-multi-modal-navigation)  
+1. [A Neuromorphic Reinforcement Learning Framework for Efficient Pathfinding in Robotic Mobile Fulfillment Systems](/202606/19/2606.20031v1-a-neuromorphic-reinforcement-learning-framework-for-efficient-pathfinding-in-robotic-mobile-fulfillment-systems)  
+   标签：评分：10.0/10、query:embodied-rl
+   evidence：强化学习在机器人系统中的路径规划应用
+2. [Qwen-RobotNav Technical Report: A Scalable Navigation Model Designed for an Agentic Navigation System](/202606/19/2606.18112v2-qwen-robotnav-technical-report-a-scalable-navigation-model-designed-for-an-agentic-navigation-system)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：可重配置观测的可扩展机器人导航模型，用于智能体导航系统
+3. [Temporal Self-Imitation Learning](/202606/19/2606.19752v1-temporal-self-imitation-learning)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：地板引导的具身导航，统一PointNav、ObjectNav和ImageNav
-2. [Self-Questioning Vision-Language Models: Reinforcement Learning for Compositional Visual Reasoning](/202606/18/2606.15651v1-self-questioning-vision-language-models-reinforcement-learning-for-compositional-visual-reasoning)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：强化学习用于VLM组合视觉推理
-3. [Performance-Driven Environment Abstraction with Multi-Timescale Learning](/202606/18/2606.17377v1-performance-driven-environment-abstraction-with-multi-timescale-learning)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：多时间尺度强化学习环境抽象框架
-4. [Reversal Q-Learning](/202606/18/2606.17551v1-reversal-q-learning)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：基于流匹配和反转轨迹的离线强化学习算法
-5. [EvolveNav: Proactive Preflection and Self-Evolving Memory for Zero-Shot Object Goal Navigation](/202606/18/2606.18235v1-evolvenav-proactive-preflection-and-self-evolving-memory-for-zero-shot-object-goal-navigation)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：具有自进化记忆的零样本目标物体导航
-6. [VEGA: Learning Navigation VLAs from In-the-Wild Egocentric Video with Geometric Trajectory Supervision](/202606/18/2606.18426v1-vega-learning-navigation-vlas-from-in-the-wild-egocentric-video-with-geometric-trajectory-supervision)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：视觉语言导航
+   evidence：用于机器人操作的强化学习时间自模仿方法
 
 ### 速读区论文标签
-1. [EffiNav: Fusing Depth and Vision-Language for Efficient Object Goal Navigation](/202606/18/2606.18634v1-effinav-fusing-depth-and-vision-language-for-efficient-object-goal-navigation)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：融合深度与视觉语言的高效物体目标导航
-2. [$μ_0$: A Scalable 3D Interaction-Trace World Model](/202606/18/2606.13769v2-0-a-scalable-3d-interaction-trace-world-model)  
+1. [$μ_0$: A Scalable 3D Interaction-Trace World Model](/202606/19/2606.13769v1-0-a-scalable-3d-interaction-trace-world-model)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：预测3D交互轨迹的具身无关世界模型，支持可扩展机器人学习
-3. [TetraRL: A Self-Adaptive Runtime for On-Device Deep Reinforcement Learning Systems](/202606/18/2606.13891v1-tetrarl-a-self-adaptive-runtime-for-on-device-deep-reinforcement-learning-systems)  
+   evidence：基于3D轨迹的可扩展机器人学习世界模型
+2. [Where Should Action Generation Begin? A Learnable Source Prior for Generative Robot Policies](/202606/19/2606.17408v1-where-should-action-generation-begin-a-learnable-source-prior-for-generative-robot-policies)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：面向自主机器人的设备端深度强化学习运行时
-4. [V2P-Manip: Learning Dexterous Manipulation from Monocular Human Videos](/202606/18/2606.16436v1-v2p-manip-learning-dexterous-manipulation-from-monocular-human-videos)  
+   evidence：机器人生成策略的可学习先验
+3. [Benchmarking Action Spaces in Reinforcement Learning for Vision-based Robotic Manipulation](/202606/19/2606.18594v1-benchmarking-action-spaces-in-reinforcement-learning-for-vision-based-robotic-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：从单目视频学习灵巧操作的具身机器人框架
-5. [Qwen-RobotWorld Technical Report: Unifying Embodied World Modeling through Language-Conditioned Video Generation](/202606/18/2606.17030v1-qwen-robotworld-technical-report-unifying-embodied-world-modeling-through-language-conditioned-video-generation)  
+   evidence：强化学习动作空间在机器人操作中的基准测试
+4. [Advancing DialNav through Automatic Embodied Dialog Augmentation](/202606/19/2606.19948v1-advancing-dialnav-through-automatic-embodied-dialog-augmentation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：语言条件视频世界模型用于具身智能，包括室内导航
-6. [Qwen-RobotWorld Technical Report: Unifying Embodied World Modeling through Language-Conditioned Video Generation](/202606/18/2606.17030v3-qwen-robotworld-technical-report-unifying-embodied-world-modeling-through-language-conditioned-video-generation)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：语言条件世界模型用于具身智能，包括导航
-7. [PearlVLA: Progressive Embodied Action-Plan Refinement in Latent Space](/202606/18/2606.17924v1-pearlvla-progressive-embodied-action-plan-refinement-in-latent-space)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：具身机器人，视觉-语言-动作模型，潜在规划
-8. [Recover, Discover, Plan: Learning Skills and Concepts from Robot Failures](/202606/18/2606.18328v1-recover-discover-plan-learning-skills-and-concepts-from-robot-failures)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：强化学习用于机器人故障恢复和概念发现
-9. [When Does Language Matter? Multilingual Instructions Reveal Step-wise Language Sensitivity in Vision-Language-Action Models](/202606/18/2606.11906v1-when-does-language-matter-multilingual-instructions-reveal-step-wise-language-sensitivity-in-vision-language-action-models)  
+   evidence：利用VLN数据增强具身对话导航数据集
+5. [MuseVLA: An Adaptive Multimodal Sensing Vision-Language-Action Model for Robotic Manipulation](/202606/19/2606.17598v1-musevla-an-adaptive-multimodal-sensing-vision-language-action-model-for-robotic-manipulation)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：面向具身机器人的视觉-语言-动作模型多语言评估
-10. [PO-PDDL: Learning Symbolic POMDPs from Visual Demonstrations for Robot Planning Under Uncertainty](/202606/18/2606.15654v1-po-pddl-learning-symbolic-pomdps-from-visual-demonstrations-for-robot-planning-under-uncertainty)  
+   evidence：自适应多模态感知VLA模型用于机器人操作
+6. [Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement](/202606/19/2606.18247v1-visual-verification-enables-inference-time-steering-and-autonomous-policy-improvement)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：从视觉演示学习机器人不确定性规划
-11. [Unified Motion-Action Modeling for Heterogeneous Robot Learning](/202606/18/2606.16917v1-unified-motion-action-modeling-for-heterogeneous-robot-learning)  
+   evidence：基于视觉验证器的通用机器人策略推理时引导框架
+7. [Mem-World: Memory-Augmented Action-Conditioned World Models for Persistent Robot Manipulation](/202606/19/2606.18960v2-mem-world-memory-augmented-action-conditioned-world-models-for-persistent-robot-manipulation)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：统一运动-动作建模用于机器人学习
+   evidence：用于机器人操作的内存增强世界模型
 
 
 <div class="dpr-home-promo-card">

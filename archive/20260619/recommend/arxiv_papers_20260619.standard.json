@@ -1,0 +1,456 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-19T21:11:57.553727+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2606.20031v1",
+      "source": "arxiv",
+      "title": "A Neuromorphic Reinforcement Learning Framework for Efficient Pathfinding in Robotic Mobile Fulfillment Systems",
+      "abstract": "Dynamic environmental changes, confined workspaces, and stringent real-time constraints make pathfinding in Robotic Mobile Fulfillment Systems (RMFS) a challenging problem for conventional search- and rule-based methods, which typically suffer from high computational complexity and long decision latency. While reinforcement learning (RL) has emerged as a powerful alternative, deploying learned policies with extreme energy efficiency on resource-constrained hardware remains an open challenge. We present SDQN-RMFS, an end-to-end framework that achieves high-fidelity deployment of an RL-trained policy from a full-precision artificial neural network (ANN) through to a neuromorphic chip. By computing only when triggered by sparse events, this framework unlocks ultra-low-power RMFS pathfinding. Our full-stack pipeline operates as follows: an ANN policy is first efficiently trained via a collision-allowing strategy to densify informative trajectories, and then converted into a spiking neural network (SNN) via a hard-label knowledge distillation approach. This effectively addresses the output distribution mismatch, preserving policy capability across the ANN-to-SNN pipeline while substantially reducing inference latency. Hardware experiments demonstrate up to 11,281$\\times$ energy savings and a nearly two-fold reduction in latency compared to a high-performance GPU baseline, while maintaining decision quality on par with the original trained policy. These results establish physical neuromorphic inference as a practical and energy-sustainable pathway for large-scale RMFS operations.",
+      "authors": [
+        "Junzhe Xu",
+        "Zecui Zeng",
+        "Lusong Li",
+        "Yuetong Fang",
+        "Renjing Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-18T10:04:28+00:00",
+      "link": "https://arxiv.org/pdf/2606.20031v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "reinforcement learning for pathfinding in robotic systems",
+      "llm_evidence_cn": "强化学习在机器人系统中的路径规划应用",
+      "llm_evidence": "强化学习在机器人系统中的路径规划应用",
+      "canonical_evidence": "强化学习在机器人系统中的路径规划应用",
+      "llm_tldr_en": "Presents SDQN-RMFS, an end-to-end neuromorphic RL framework for efficient pathfinding in Robotic Mobile Fulfillment Systems, achieving high energy efficiency.",
+      "llm_tldr_cn": "针对机器人移动拣货系统中路径规划计算复杂和延迟高的问题，提出SDQN-RMFS，一种端到端神经形态强化学习框架，将完整精度策略高效部署到神经形态芯片上。实验表明在保持路径质量的同时，能耗降低数个数量级。",
+      "llm_tldr": "针对机器人移动拣货系统中路径规划计算复杂和延迟高的问题，提出SDQN-RMFS，一种端到端神经形态强化学习框架，将完整精度策略高效部署到神经形态芯片上。实验表明在保持路径质量的同时，能耗降低数个数量级。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning for embodied robot navigation",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.18112v2",
+      "source": "arxiv",
+      "title": "Qwen-RobotNav Technical Report: A Scalable Navigation Model Designed for an Agentic Navigation System",
+      "abstract": "Agentic navigation systems require a base navigation model whose observation strategy can be externally reconfigured at inference time, because instruction following, object search, target tracking, and autonomous driving share the same perception-planning backbone yet demand fundamentally different strategies for consuming the visual stream. We present Qwen-RobotNav, a scalable navigation model built on Qwen-RobotNav that addresses it through a parameterised interface with two complementary dimensions: multiple task modes that select the navigation behaviour, and controllable observation parameters (e.g., token budget, per-camera weights) that govern how visual history is encoded. With training-time randomization over all parameters, Qwen-RobotNav is robust to any inference-time configuration requiring zero architectural modification to the Qwen-RobotNav backbone. We train Qwen-RobotNav on 15.6M samples; co-training with vision-language data prevents the collapse into reactive action-sequence mappers observed in trajectory-only training. The parameterised interface also makes Qwen-RobotNav a natural building block for agentic systems: for long-horizon scenarios, an upper-level planner decomposes goals into sub-tasks and dynamically switches Qwen-RobotNav's task mode and context strategy mid-episode, composing complex behaviours from repeated calls to the same model. Extensive experiments show that Qwen-RobotNav sets new state-of-the-art results across major navigation benchmarks. The model exhibits favourable scaling from 2B to 8B parameters, with joint multi-task training developing a shared spatial-planning substrate that transfers across task families, and demonstrates strong zero-shot generalisation to real-world robots across diverse environments.",
+      "authors": [
+        "Jiazhao Zhang",
+        "Gengze Zhou",
+        "Hale Yin",
+        "Yiyang Huang",
+        "Zixing Lei",
+        "Qihang Peng",
+        "Haoqi Yuan",
+        "Jie Zhang",
+        "Xudong Guo",
+        "Xiaoyue Chen",
+        "An Yang",
+        "Fei Huang",
+        "Zhibo Yang",
+        "Junyang Lin",
+        "Dayiheng Liu",
+        "Jingren Zhou",
+        "Zhuoyuan Yu",
+        "Jingyang Fan",
+        "Zhixuan Liang",
+        "Pei Lin",
+        "Ye Wang",
+        "Anzhe Chen",
+        "Kun Yan",
+        "Xiao Xu",
+        "Jiahao Li",
+        "Lulu Hu",
+        "Minying Zhang",
+        "Shurui Li",
+        "Wenhu Xiao",
+        "Shuai Bai",
+        "Xuancheng Ren",
+        "Chenxu Lv",
+        "Chenfei Wu",
+        "Xiong-Hui Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-16T16:17:44+00:00",
+      "link": "https://arxiv.org/pdf/2606.18112v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "scalable robot navigation model with reconfigurable observation for agentic navigation",
+      "llm_evidence_cn": "可重配置观测的可扩展机器人导航模型，用于智能体导航系统",
+      "llm_evidence": "可重配置观测的可扩展机器人导航模型，用于智能体导航系统",
+      "canonical_evidence": "可重配置观测的可扩展机器人导航模型，用于智能体导航系统",
+      "llm_tldr_en": "Qwen-RobotNav is a scalable navigation model with a parameterised interface supporting multiple task modes and controllable observation parameters for different navigation behaviors.",
+      "llm_tldr_cn": "本文提出Qwen-RobotNav，一个可扩展的机器人导航模型。该模型通过参数化接口支持多种任务模式（如指令跟随、目标搜索）和可控观测参数（如Token预算、相机权重），使同一模型能在推理时灵活适应不同导航行为。训练时随机化参数确保了泛化能力。该工作为构建智能体导航系统提供了基础模型，在多种导航任务上取得了优异表现。",
+      "llm_tldr": "本文提出Qwen-RobotNav，一个可扩展的机器人导航模型。该模型通过参数化接口支持多种任务模式（如指令跟随、目标搜索）和可控观测参数（如Token预算、相机权重），使同一模型能在推理时灵活适应不同导航行为。训练时随机化参数确保了泛化能力。该工作为构建智能体导航系统提供了基础模型，在多种导航任务上取得了优异表现。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.19752v1",
+      "source": "arxiv",
+      "title": "Temporal Self-Imitation Learning",
+      "abstract": "Long-horizon robot manipulation policies trained with reward shaping can still exploit dense rewards through inefficient interaction, while rare efficient behaviors may be forgotten during training. We argue that temporal efficiency itself provides a powerful and underutilized source of self-supervision for reinforcement learning. We introduce Temporal Self-Imitation Learning (TSIL), a reinforcement learning framework that mines temporally efficient successful trajectories generated during learning and converts them into reusable supervision for future policy improvement. TSIL progressively refines learning using configuration-conditioned adaptive temporal targets derived from fast successful trajectories, while preserving and replaying efficient behaviors through efficiency-weighted self-imitation learning. Across 15 distinct long-horizon manipulation tasks, TSIL consistently improves learning efficiency, task-completion efficiency, revisitation of fast successful behaviors, and robustness to unstable training conditions. More broadly, our results suggest that the temporal structure of successful behavior itself provides a scalable self-supervisory signal for reinforcement learning beyond manually engineered reward shaping alone.",
+      "authors": [
+        "Yinsen Jia",
+        "Boyuan Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-18T03:31:56+00:00",
+      "link": "https://arxiv.org/pdf/2606.19752v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Temporal Self-Imitation Learning for RL in robot manipulation",
+      "llm_evidence_cn": "用于机器人操作的强化学习时间自模仿方法",
+      "llm_evidence": "用于机器人操作的强化学习时间自模仿方法",
+      "canonical_evidence": "用于机器人操作的强化学习时间自模仿方法",
+      "llm_tldr_en": "Proposes Temporal Self-Imitation Learning (TSIL) that mines temporally efficient trajectories to improve RL policy learning for long-horizon robot manipulation.",
+      "llm_tldr_cn": "针对长程机器人操作中奖励塑造导致低效行为被遗忘的问题，提出时间自模仿学习（TSIL），从学习过程中自动挖掘高效轨迹，通过配置自适应的时序目标提供自监督，并利用效率加权重放保留高效行为，显著提升策略效率和性能。",
+      "llm_tldr": "针对长程机器人操作中奖励塑造导致低效行为被遗忘的问题，提出时间自模仿学习（TSIL），从学习过程中自动挖掘高效轨迹，通过配置自适应的时序目标提供自监督，并利用效率加权重放保留高效行为，显著提升策略效率和性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.13769v1",
+      "source": "arxiv",
+      "title": "$μ_0$: A Scalable 3D Interaction-Trace World Model",
+      "abstract": "World models that capture how actions induce physical change enable scalable robot learning without reliance on embodiment-specific action labels. Pixel-space video models provide broad visual priors but expend model capacity on dense appearance reconstruction, while direct action models require embodiment-specific labels that hinder scalability. We present $μ_0$, a scalable world model based on 3D traces. Rather than predicting dense pixels or directly modeling actions, $μ_0$ forecasts smooth 3D trajectories for salient interaction points such as objects, tools, hands, and contact regions, yielding a compact, embodiment-agnostic motion interface. To enable training from diverse video sources, our TraceExtract system automatically extracts 3D supervision by selecting keypoints, constructing globally aligned traces, and associating motion segments with hierarchical language captions. This TraceExtract supervision pretrains $μ_0$ by combining a pretrained vision-language backbone with a modular trace expert, which represents each query via B-spline control points and predicts future traces. Experiments show that $μ_0$ outperforms baselines in both 2D and 3D trace prediction, including trace prediction models and tokenized VLM methods. Because $μ_0$ is frozen and reusable, it can be paired with action experts for downstream robot embodiments. Despite action-free pretraining, the resulting trace-conditioned policies achieve performance competitive with VLA models pretrained with action supervision, such as $π_0$. These results establish 3D traces as a scalable and transferable representation for cross-embodiment manipulation.",
+      "authors": [
+        "Seungjae Lee",
+        "Yoonkyo Jung",
+        "Jusuk Lee",
+        "Jonghun Shin",
+        "Amir Hossein Shahidzadeh",
+        "Yao-Chih Lee",
+        "H. Jin Kim",
+        "Jia-Bin Huang",
+        "Furong Huang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-06-11T17:59:56+00:00",
+      "link": "https://arxiv.org/pdf/2606.13769v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "scalable world model for robot learning using 3D traces",
+      "llm_evidence_cn": "基于3D轨迹的可扩展机器人学习世界模型",
+      "llm_evidence": "基于3D轨迹的可扩展机器人学习世界模型",
+      "canonical_evidence": "基于3D轨迹的可扩展机器人学习世界模型",
+      "llm_tldr_en": "MuZero-style world model based on 3D trajectories of interaction points, enabling embodiment-agnostic robot learning from diverse video sources.",
+      "llm_tldr_cn": "现有世界模型要么预测像素耗费容量，要么依赖具身标签限制扩展。μ₀预测交互点的3D轨迹，形成紧凑的与具身无关的运动接口。通过TraceExtract自动从视频提取监督，可在多种机器人数据上训练，实现可扩展的学习。",
+      "llm_tldr": "现有世界模型要么预测像素耗费容量，要么依赖具身标签限制扩展。μ₀预测交互点的3D轨迹，形成紧凑的与具身无关的运动接口。通过TraceExtract自动从视频提取监督，可在多种机器人数据上训练，实现可扩展的学习。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.17598v1",
+      "source": "arxiv",
+      "title": "MuseVLA: An Adaptive Multimodal Sensing Vision-Language-Action Model for Robotic Manipulation",
+      "abstract": "Humans naturally leverage diverse sensing modalities to interact with the physical world, while most Vision-Language-Action (VLA) models for robotics rely solely on RGB observations. This limits their ability to perceive physical properties that are difficult or impossible to infer from RGB cameras, such as temperature, sound, or radar response. We present MuseVLA, an adaptive multimodal sensing VLA model that integrates novel sensors as on-demand tools for robotic manipulation. Given a task instruction and visual context, MuseVLA first generates a sensor token and target description that select the sensing modality to invoke and what to attend to, analogous to a tool call with arguments. It then converts the selected sensor measurement into a grounded sensor image, a unified intermediate representation that encodes heterogeneous readings for multimodal fusion and action generation. This design decouples sensor-specific processing from the VLA backbone, enabling efficient integration of diverse modalities. To reduce the need for expensive multisensory robot datasets, we further introduce a data synthesis pipeline that augments existing RGB video datasets with grounded sensor images, enabling generalization to unseen sensor-guided tasks. We evaluate MuseVLA on a real-world robot across challenging dexterous hand manipulation tasks that require multimodal sensing inputs, including temperature-guided pick-and-place, audio-driven object search, and radar-assisted hidden object retrieval. MuseVLA achieves 80.6% success rate on average, outperforming RGB-only and multisensory VLA baselines significantly, and exhibits strong zero-shot capabilities on unseen tasks.",
+      "authors": [
+        "Xingyuming Liu",
+        "Ruichun Ma",
+        "Heyu Guo",
+        "Qixiu Li",
+        "Qingwen Yang",
+        "Lin Luo",
+        "Shiqi Jiang",
+        "Chenren Xu",
+        "Jiaolong Yang",
+        "Baining Guo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-16T07:04:13+00:00",
+      "link": "https://arxiv.org/pdf/2606.17598v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "adaptive multimodal sensing VLA for robotic manipulation",
+      "llm_evidence_cn": "自适应多模态感知VLA模型用于机器人操作",
+      "llm_evidence": "自适应多模态感知VLA模型用于机器人操作",
+      "canonical_evidence": "自适应多模态感知VLA模型用于机器人操作",
+      "llm_tldr_en": "MuseVLA proposes an adaptive multimodal sensing Vision-Language-Action model that integrates diverse sensors as on-demand tools for robotic manipulation, enhancing perception beyond RGB.",
+      "llm_tldr_cn": "针对现有VLA模型仅依赖RGB视觉、无法感知温度声音等物理属性的局限，MuseVLA提出自适应多模态感知VLA模型，通过生成传感器调用token和描述，按需集成多种传感器，增强机器人操作中的物理感知能力。实验表明该方法在多种操作任务上有效，拓展了VLA模型的感知边界。",
+      "llm_tldr": "针对现有VLA模型仅依赖RGB视觉、无法感知温度声音等物理属性的局限，MuseVLA提出自适应多模态感知VLA模型，通过生成传感器调用token和描述，按需集成多种传感器，增强机器人操作中的物理感知能力。实验表明该方法在多种操作任务上有效，拓展了VLA模型的感知边界。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.17408v1",
+      "source": "arxiv",
+      "title": "Where Should Action Generation Begin? A Learnable Source Prior for Generative Robot Policies",
+      "abstract": "Generative robot policies typically begin action generation from an observation-independent standard Gaussian distribution, leaving the choice of source distribution underexplored. This work asks a simple question: where should action generation begin? We propose LeaP, a Learnable source Prior that replaces the standard Gaussian with a proprioception-conditioned diagonal Gaussian over action chunks. Parameterized by a lightweight MLP, LeaP jointly predicts the mean and state-adaptive variance of the source distribution, while keeping the downstream generator architecture and inference solver unchanged. This design provides an observation-informed yet stochastic initialization, allowing the generator to focus on precise action refinement rather than transporting samples from an uninformed noise source. On 15 RoboTwin manipulation tasks, LeaP achieves an average success rate of 81.6%, outperforming four representative baselines -- including deterministic-source methods, a no-prior counterpart, and a diffusion-bridge policy -- by 6.5 to 25.5 percentage points. The same prior consistently improves both flow-matching and diffusion-bridge generators, while using fewer parameters and converging faster. The advantage carries over to real-world deployment, where LeaP attains the best performance. These results suggest that the source distribution is an independent and reusable design axis for generative robot policies, complementary to the choice of generative dynamics.",
+      "authors": [
+        "Meipo Dai",
+        "Qiyuan Zhuang",
+        "He-Yang Xu",
+        "Ying-Jie Shuai",
+        "Yijun Wang",
+        "Qi Dou",
+        "Xiu-Shen Wei"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-06-16T01:43:56+00:00",
+      "link": "https://arxiv.org/pdf/2606.17408v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "generative robot policies with learnable source prior",
+      "llm_evidence_cn": "机器人生成策略的可学习先验",
+      "llm_evidence": "机器人生成策略的可学习先验",
+      "canonical_evidence": "机器人生成策略的可学习先验",
+      "llm_tldr_en": "LeaP replaces standard Gaussian prior with a proprioception-conditioned learnable source prior for generative robot policies, improving action generation precision.",
+      "llm_tldr_cn": "针对生成式机器人策略从标准高斯分布采样导致动作不精确的问题，提出LeaP可学习先验，利用本体感知信息生成条件高斯分布，使动作生成更具信息性。实验表明该方法在不改变下游架构的情况下提升动作生成质量。",
+      "llm_tldr": "针对生成式机器人策略从标准高斯分布采样导致动作不精确的问题，提出LeaP可学习先验，利用本体感知信息生成条件高斯分布，使动作生成更具信息性。实验表明该方法在不改变下游架构的情况下提升动作生成质量。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.18247v1",
+      "source": "arxiv",
+      "title": "Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement",
+      "abstract": "Robots deployed in the real world should learn from their experience and improve over time. This requires a mechanism of practicing and learning from feedback. In this paper, we propose VERITAS, a generator-verifier framework for generalist robot policies for inference-time policy steering and self-improvement. We use a pre-trained generalist robot policy as a ``generator'' and pair it with a gradient-free ``visual verifier'' that evaluates actions at inference time. This framework enables inference-time steering that improves policy performance without additional training. We demonstrate that inference-time verification consistently outperforms vanilla generalists without training on additional demonstration data. Additionally, we demonstrate that the verified rollouts provide effective supervision for offline policy improvement: policies fine-tuned on verified self-generated trajectories achieve consistent performance gains. Notably, we find that post-training with verified rollouts achieves comparable efficiency to expert demonstrations, while requiring no human interventions. Our results highlight inference-time verification as a practical and scalable mechanism for improving robotic policies during deployment.",
+      "authors": [
+        "Mingtong Zhang",
+        "Dhruv Shah"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-16T17:59:04+00:00",
+      "link": "https://arxiv.org/pdf/2606.18247v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "inference-time steering framework for generalist robot policies with visual verifier",
+      "llm_evidence_cn": "基于视觉验证器的通用机器人策略推理时引导框架",
+      "llm_evidence": "基于视觉验证器的通用机器人策略推理时引导框架",
+      "canonical_evidence": "基于视觉验证器的通用机器人策略推理时引导框架",
+      "llm_tldr_en": "VERITAS pairs a generalist robot policy generator with a visual verifier for inference-time steering and self-improvement, improving performance without extra training.",
+      "llm_tldr_cn": "本文提出VERITAS框架，将预训练的通用机器人策略作为生成器，并搭配一个无梯度的视觉验证器在推理时评估动作。该框架无需额外训练即可实现推理时策略引导和自主改进，在真实机器人上持续提升性能。实验表明，推理时验证一致优于原始通用策略，为机器人自适应提供了新思路。",
+      "llm_tldr": "本文提出VERITAS框架，将预训练的通用机器人策略作为生成器，并搭配一个无梯度的视觉验证器在推理时评估动作。该框架无需额外训练即可实现推理时策略引导和自主改进，在真实机器人上持续提升性能。实验表明，推理时验证一致优于原始通用策略，为机器人自适应提供了新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.18594v1",
+      "source": "arxiv",
+      "title": "Benchmarking Action Spaces in Reinforcement Learning for Vision-based Robotic Manipulation",
+      "abstract": "In real-world reinforcement learning (RL), the choice of action space can play a key role in shaping motion smoothness, safety, and overall task performance. In this study, we evaluate pose increment, pose velocity, joint position increment, and joint velocity across two vision-based manipulation tasks: object picking and pushing. We train policies in simulation and deploy them to the real world using sim-to-real transfer. We find that action-space representation indeed significantly affects sim-to-real performance. In particular, we find that the joint velocity action space is best for the vision-based picking and pushing tasks in terms of smoothness and final task performance. We also provide practical guidance for RL practitioners in choosing action spaces for both simulation and real-world experiments.",
+      "authors": [
+        "Seyed Alireza Azimi",
+        "Homayoon Farrahi",
+        "Abhishek Naik",
+        "Colin Bellinger",
+        "A. Rupam Mahmood"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-17T01:45:13+00:00",
+      "link": "https://arxiv.org/pdf/2606.18594v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "benchmarking action spaces in reinforcement learning for robotic manipulation",
+      "llm_evidence_cn": "强化学习动作空间在机器人操作中的基准测试",
+      "llm_evidence": "强化学习动作空间在机器人操作中的基准测试",
+      "canonical_evidence": "强化学习动作空间在机器人操作中的基准测试",
+      "llm_tldr_en": "Benchmarks four action spaces for vision-based robotic manipulation RL, finding joint velocity best for sim-to-real transfer in picking and pushing tasks.",
+      "llm_tldr_cn": "针对真实世界强化学习中动作空间选择影响性能的问题，在视觉操作任务上系统比较了位姿增量、位姿速度、关节位置增量和关节速度四种动作空间。通过仿真训练和真实世界迁移实验发现，关节速度动作空间在平滑度和任务性能上最优，为机器人RL实践者提供指导。",
+      "llm_tldr": "针对真实世界强化学习中动作空间选择影响性能的问题，在视觉操作任务上系统比较了位姿增量、位姿速度、关节位置增量和关节速度四种动作空间。通过仿真训练和真实世界迁移实验发现，关节速度动作空间在平滑度和任务性能上最优，为机器人RL实践者提供指导。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.18960v2",
+      "source": "arxiv",
+      "title": "Mem-World: Memory-Augmented Action-Conditioned World Models for Persistent Robot Manipulation",
+      "abstract": "Action-conditioned world models have emerged as a promising paradigm for robot learning, offering a scalable alternative to costly real-world experimentation by generating action-consistent video rollouts. However, persistent world modeling remains challenging in manipulation: frequent end-effector occlusions and rapid wrist-camera motion make the current observation insufficient for predicting future views, causing models to forget or hallucinate scene details seen in earlier frames. Existing memory retrieval strategies often fail to identify informative history in dynamic manipulation scenarios. To address this limitation, we propose Mem-World, a memory-augmented multi-view action-conditioned world model. At its core, we present W-VMem, a 4D wrist-view-centered surfel-indexed memory that anchors historical observations to temporally evolving surface elements. By explicitly modeling when and where scene elements are observed, W-VMem enables geometry-aware retrieval of relevant history frames conditioned on future actions. During generation, relevant history frames are selected via surfel-based rendering and scoring, providing informative and non-redundant context for prediction. Extensive experiments show that Mem-World generates persistent rollouts in complex manipulation scenarios, enables more reliable policy evaluation than Ctrl-World, improving the Pearson correlation with real-world performance by 14.5\\%, and supports effective policy improvement through synthetic data generation, increasing success rates from 58\\% to 72\\% on long-horizon tasks.",
+      "authors": [
+        "Zirui Zheng",
+        "Jiaqian Yu",
+        "Xiongfeng Peng",
+        "jun shi",
+        "Mingyi Li",
+        "Chao Zhang",
+        "Weiming Li",
+        "Dong Wang",
+        "Huchuan Lu",
+        "Xu Jia"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-06-17T11:42:00+00:00",
+      "link": "https://arxiv.org/pdf/2606.18960v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "memory-augmented world model for robot manipulation",
+      "llm_evidence_cn": "用于机器人操作的内存增强世界模型",
+      "llm_evidence": "用于机器人操作的内存增强世界模型",
+      "canonical_evidence": "用于机器人操作的内存增强世界模型",
+      "llm_tldr_en": "Proposes Mem-World, a memory-augmented action-conditioned world model to address forgetting and hallucination in persistent robot manipulation by leveraging multi-view memory retrieval.",
+      "llm_tldr_cn": "针对操作任务中频繁遮挡导致世界模型遗忘或幻觉的问题，提出Mem-World，一种记忆增强的多视角动作条件世界模型，通过动态检索历史帧改进未来帧预测。在多个模拟操作场景中验证了其有效性，为持久机器人学习提供了可扩展方法。",
+      "llm_tldr": "针对操作任务中频繁遮挡导致世界模型遗忘或幻觉的问题，提出Mem-World，一种记忆增强的多视角动作条件世界模型，通过动态检索历史帧改进未来帧预测。在多个模拟操作场景中验证了其有效性，为持久机器人学习提供了可扩展方法。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.19948v1",
+      "source": "arxiv",
+      "title": "Advancing DialNav through Automatic Embodied Dialog Augmentation",
+      "abstract": "For embodied agents capable of physical interaction, the capability to create and understand dialog is crucial to ensure both safety and effectiveness. While DialNav~\\cite{han2025dialnav} provides a framework for holistic evaluation of the dialog--execution loop in photorealistic indoor navigation, its performance remains limited by a critical scarcity of training data (2K episodes). To address this, we propose an automatic generation pipeline, and construct the \\textbf{RAINbow} dataset, a large-scale training dataset with 238K episodes for DialNav. Our pipeline converts existing VLN datasets into multi-turn dialog and creates cost-efficient and high-quality dataset. Then, we introduce two additional complementary advances to unlock the data's full potential: (1) Dual-Strategy Training, a navigation training scheme to align the navigation training with the dynamic dialog-navigation loop, and (2) a localization model that leverages VLN knowledge. By combining these complementary solutions, our model substantially outperforms the baseline in success rate on both \\textbf{Val Seen} (58.24, \\textbf{+89\\%}) and \\textbf{Val Unseen} (29.05, \\textbf{+100\\%}) splits, establishing a new state of the art.",
+      "authors": [
+        "Leekyeung Han",
+        "Sangwon Jung",
+        "Hyunji Min",
+        "Jinseong Jeong",
+        "Minyoung Kim",
+        "Paul Hongsuck Seo"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-18T08:45:25+00:00",
+      "link": "https://arxiv.org/pdf/2606.19948v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "augmented dataset for embodied dialog navigation (DialNav) using VLN data",
+      "llm_evidence_cn": "利用VLN数据增强具身对话导航数据集",
+      "llm_evidence": "利用VLN数据增强具身对话导航数据集",
+      "canonical_evidence": "利用VLN数据增强具身对话导航数据集",
+      "llm_tldr_en": "RAINbow dataset augments DialNav with 238K episodes by converting VLN data into multi-turn dialog, improving dialog-guided navigation.",
+      "llm_tldr_cn": "本文针对具身对话导航（DialNav）训练数据稀缺（仅2K片段）的问题，提出自动化生成流水线，将现有VLN数据集转换为多轮对话数据，构建了包含238K片段的RAINbow数据集。此外引入两项互补技术充分挖掘数据潜力。实验表明，使用该数据集训练的DialNav模型在理解复杂指令和视觉语言导航方面显著提升。该工作促进了具身对话交互与导航的结合。",
+      "llm_tldr": "本文针对具身对话导航（DialNav）训练数据稀缺（仅2K片段）的问题，提出自动化生成流水线，将现有VLN数据集转换为多轮对话数据，构建了包含238K片段的RAINbow数据集。此外引入两项互补技术充分挖掘数据潜力。实验表明，使用该数据集训练的DialNav模型在理解复杂指令和视觉语言导航方面显著提升。该工作促进了具身对话交互与导航的结合。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
