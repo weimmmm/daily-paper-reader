@@ -1,0 +1,227 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-21T21:15:46.616658+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2606.17011v1",
+      "source": "arxiv",
+      "title": "ROVE: Unlocking Human Interventions for Humanoid Manipulation via Reinforcement Learning",
+      "abstract": "Human interventions provide crucial corrective signals for post-training Vision-Language-Action (VLA) models. However, enabling seamless humanoid interventions is a formidable systems challenge due to complex whole-body kinematics and dexterous-hand control. Consequently, the collected intervention trajectories are often suboptimal, and methods that rely on human interventions as expert supervision can absorb hesitant, inefficient, or even erroneous behaviors. To address both the system and algorithmic challenges, we propose ROVE, a reinforcement learning framework for humanoid VLA post-training with imperfect human interventions. First, ROVE introduces a human-in-the-loop pipeline capable of collecting deployment and intervention data for humanoid manipulation. Second, it utilizes Optimistic Value Estimation (OVE) to prioritize high-value behaviors from mixed-quality trajectories. To further robustify value estimation, we incorporate cross-embodiment human experience videos to provide rich supervision for long-tailed failure and recovery modes. The resulting critic yields informative advantage signals, steering the VLA actor to focus on high-value behaviors rather than indiscriminately imitating all actions. On challenging real-world contact-rich and fine-grained humanoid manipulation tasks, ROVE outperforms experience-learning baselines and consistently improves across multiple rollout-intervention iterations.",
+      "authors": [
+        "Wei Xiao",
+        "Weiliang Tang",
+        "Yuying Ge",
+        "Hui Zhou",
+        "Yao Mu",
+        "Li Zhang",
+        "Yixiao Ge"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-06-15T17:45:06+00:00",
+      "link": "https://arxiv.org/pdf/2606.17011v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "reinforcement learning for humanoid VLA post-training with imperfect interventions",
+      "llm_evidence_cn": "用强化学习进行人形VLA后训练，处理不完美人类干预",
+      "llm_evidence": "用强化学习进行人形VLA后训练，处理不完美人类干预",
+      "canonical_evidence": "用强化学习进行人形VLA后训练，处理不完美人类干预",
+      "llm_tldr_en": "ROVE proposes a reinforcement learning framework to post-train humanoid VLA models using imperfect human interventions, addressing system and algorithmic challenges of whole-body kinematics and dexterous control.",
+      "llm_tldr_cn": "该论文提出ROVE框架，利用强化学习对具有不完美人类干预的人形VLA模型进行后训练。针对人形机器人全身运动学和灵巧手控制带来的系统和算法挑战，ROVE引入人机交互流水线收集部署和干预数据，并通过RL算法吸收有益信号、抑制错误行为。在仿真和真实人形机器人上验证了提升策略性能的有效性。",
+      "llm_tldr": "该论文提出ROVE框架，利用强化学习对具有不完美人类干预的人形VLA模型进行后训练。针对人形机器人全身运动学和灵巧手控制带来的系统和算法挑战，ROVE引入人机交互流水线收集部署和干预数据，并通过RL算法吸收有益信号、抑制错误行为。在仿真和真实人形机器人上验证了提升策略性能的有效性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.17906v1",
+      "source": "arxiv",
+      "title": "WAM-RL: World-Action Model Reinforcement Learning with Reconstruction Rewards and Online Video SFT",
+      "abstract": "Recent World-Action (WA) models demonstrate strong generalization ability and data efficiency, but they typically rely on expert trajectories for training. This reliance limits their ability to acquire fine-grained manipulation skills beyond the demonstration distribution and prevents them from continuously improving through real-world interaction. To address these limitations, we propose WAM-RL, a reinforcement learning framework that enables joint optimization of the world model and the action model through online interaction with the environment. By allowing the two components to co-evolve, our approach enhances fine-grained control and adaptability. Specifically, a WA model consists of a world model and an actor. We design a tailored reinforcement learning method with hierarchical optimization to coordinate their improvement. On the methodological side, we systematically investigate the effects of applying reinforcement learning to the action model, as well as online training of the world model within an RL setting. Our experiments reveal a key insight: optimizing only the actor yields improvements on short-horizon tasks, but fails to provide significant gains on long-horizon tasks. In contrast, jointly optimizing both the world model and the actor is critical for achieving strong performance in long-horizon settings. Our work is the first to introduce reinforcement learning into the World-Action paradigm, and provides insights into how online optimization of both the action head and the world model impacts overall performance.",
+      "authors": [
+        "Zezhong Qian",
+        "Xiaowei Chi",
+        "Yu Qi",
+        "Haozhan Li",
+        "Zhi Yang Chen",
+        "Shanghang Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-16T13:29:12+00:00",
+      "link": "https://arxiv.org/pdf/2606.17906v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "World-action model reinforcement learning with online interaction",
+      "llm_evidence_cn": "世界-动作模型在线交互强化学习",
+      "llm_evidence": "世界-动作模型在线交互强化学习",
+      "canonical_evidence": "世界-动作模型在线交互强化学习",
+      "llm_tldr_en": "Proposes WAM-RL for joint optimization of world model and actor via online RL, enabling fine-grained control in robotics.",
+      "llm_tldr_cn": "现有世界-动作模型依赖专家轨迹，限制了细粒度技能获取和持续改进。本文提出WAM-RL框架，通过在线环境交互联合优化世界模型和动作模型，使两者协同进化。该框架利用重建奖励和在线视频SFT，无需先验演示即可提升精细操作能力。实验表明WAM-RL在多种操作任务上优于依赖演示的方法。该工作推动了世界模型在机器人强化学习中的端到端应用。",
+      "llm_tldr": "现有世界-动作模型依赖专家轨迹，限制了细粒度技能获取和持续改进。本文提出WAM-RL框架，通过在线环境交互联合优化世界模型和动作模型，使两者协同进化。该框架利用重建奖励和在线视频SFT，无需先验演示即可提升精细操作能力。实验表明WAM-RL在多种操作任务上优于依赖演示的方法。该工作推动了世界模型在机器人强化学习中的端到端应用。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end to end reinforcement learning in robotics",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.20285v1",
+      "source": "arxiv",
+      "title": "Co-VLA: Coordination-Aware Structured Action Modeling for Dual-Arm Vision-Language-Action Systems",
+      "abstract": "Vision-language-action (VLA) models show strong capabilities in single and dual-arm robotic manipulation. Prior works show coordinated bimanual behaviors can emerge from end-to-end learning, leveraging large vision-language backbones with continuous action prediction. However, as bimanual tasks become tightly coupled and execution constraints become critical, implicit coordination alone is insufficient to ensure reliable, interpretable, and stable behavior.   In this work, we propose Co-VLA, a coordination-aware bimanual manipulation framework introducing explicit structural priors into VLA models. We instantiate our method on a state-of-the-art vision-language backbone by replacing its monolithic action head with a Structured Action Expert (SAE) designed for bimanual coordination. Specifically, we introduce explicit structure at the action generation level with a modular coordination-aware loss that shapes shared and residual latents according to task-specific structures. The shared latent encodes task-level coordination intent, while residual latents capture execution adjustments for each arm.   At deployment, a Latent-Aware Controller (LAC) interprets the learned representations to modulate synchronization strength, execution asymmetry, smoothness, and safety constraints in real time. LAC operates at the joint-command level and remains compatible with standard control pipelines without requiring force or impedance control. Experiments across simulation and real-world benchmarks show Co-VLA significantly outperforms monolithic baselines, achieving a 27% success rate gain in tight-coordination tasks, more than doubling performance in OOD real-world scenarios (from 13% to 27%), and reducing task completion time by up to 25%.",
+      "authors": [
+        "Yandong Wang",
+        "Jiaqian Yu",
+        "Xiongfeng Peng",
+        "Lu Xu",
+        "Yamin Mao",
+        "Weiming Li",
+        "Jaewook Yoo",
+        "Dongwook Lee",
+        "Daehyun Ji",
+        "Mingbo Zhao",
+        "Chao Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-18T14:28:37+00:00",
+      "link": "https://arxiv.org/pdf/2606.20285v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "end-to-end VLA for dual-arm manipulation with structured action",
+      "llm_evidence_cn": "端到端双机械臂VLA系统引入结构先验",
+      "llm_evidence": "端到端双机械臂VLA系统引入结构先验",
+      "canonical_evidence": "端到端双机械臂VLA系统引入结构先验",
+      "llm_tldr_en": "Proposes Co-VLA, a coordination-aware bimanual manipulation framework that introduces explicit structural priors into end-to-end VLA models, improving reliability and interpretability.",
+      "llm_tldr_cn": "现有端到端VLA模型通过隐式协调可产生双机械臂行为，但在紧密耦合任务中可靠性不足。Co-VLA在视觉语言骨干上引入显式结构先验，用结构化动作头替代单一动作预测。实验证明该方法在协调性和稳定性上显著提升，且保持端到端学习优势。",
+      "llm_tldr": "现有端到端VLA模型通过隐式协调可产生双机械臂行为，但在紧密耦合任务中可靠性不足。Co-VLA在视觉语言骨干上引入显式结构先验，用结构化动作头替代单一动作预测。实验证明该方法在协调性和稳定性上显著提升，且保持端到端学习优势。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.18960v1",
+      "source": "arxiv",
+      "title": "Mem-World: Memory-Augmented Action-Conditioned World Models for Persistent Robot Manipulation",
+      "abstract": "Action-conditioned world models have emerged as a promising paradigm for robot learning, offering a scalable alternative to costly real-world experimentation by generating action-consistent video rollouts. However, persistent world modeling remains challenging in manipulation: frequent end-effector occlusions and rapid wrist-camera motion make the current observation insufficient for predicting future views, causing models to forget or hallucinate scene details seen in earlier frames. Existing memory retrieval strategies often fail to identify informative history in dynamic manipulation scenarios. To address this limitation, we propose Mem-World, a memory-augmented multi-view action-conditioned world model. At its core, we present W-VMem, a 4D wrist-view-centered surfel-indexed memory that anchors historical observations to temporally evolving surface elements. By explicitly modeling when and where scene elements are observed, W-VMem enables geometry-aware retrieval of relevant history frames conditioned on future actions. During generation, relevant history frames are selected via surfel-based rendering and scoring, providing informative and non-redundant context for prediction. Extensive experiments show that Mem-World generates persistent rollouts in complex manipulation scenarios, enables more reliable policy evaluation than Ctrl-World, improving the Pearson correlation with real-world performance by 14.5\\%, and supports effective policy improvement through synthetic data generation, increasing success rates from 58\\% to 72\\% on long-horizon tasks.",
+      "authors": [
+        "Zirui Zheng",
+        "Jiaqian Yu",
+        "Xiongfeng Peng",
+        "jun shi",
+        "Mingyi Li",
+        "Chao Zhang",
+        "Weiming Li",
+        "Dong Wang",
+        "Huchuan Lu",
+        "Xu Jia"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-06-17T11:42:00+00:00",
+      "link": "https://arxiv.org/pdf/2606.18960v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "world model for robot manipulation",
+      "llm_evidence_cn": "具身机器人操作的世界模型",
+      "llm_evidence": "具身机器人操作的世界模型",
+      "canonical_evidence": "具身机器人操作的世界模型",
+      "llm_tldr_en": "Introduces Mem-World, a memory-augmented world model that maintains informative history to predict future views in dynamic manipulation, addressing occlusion and motion challenges.",
+      "llm_tldr_cn": "机器人操作中的世界模型常因遮挡和相机运动而遗忘场景细节。Mem-World提出记忆增强的多视角动作条件世界模型，通过高效检索历史信息生成一致视频。实验表明该方法在持久建模上优于现有方案，为具身操作提供了更可靠的模拟环境。",
+      "llm_tldr": "机器人操作中的世界模型常因遮挡和相机运动而遗忘场景细节。Mem-World提出记忆增强的多视角动作条件世界模型，通过高效检索历史信息生成一致视频。实验表明该方法在持久建模上优于现有方案，为具身操作提供了更可靠的模拟环境。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.20458v1",
+      "source": "arxiv",
+      "title": "Slow Brain, Fast Planner: Latency-Resilient VLM-Augmented Urban Navigation",
+      "abstract": "Learning-based planners for sidewalk navigation can generate diverse candidate trajectories in real time, yet their scoring functions often fail to select the best trajectory in challenging situations, outputting trajectories that make the mobile robot drive onto grass, toward pedestrians, or in the wrong direction, even when better candidates exist in the same set. We call this the trajectory scoring gap: in real-world sidewalk navigation, the gap between an anchor-based planner's top choice and the best possible candidate is substantial, likely due to limited high-level scene understanding capability of the planner. Rather than replacing the planner with an end-to-end Vision-Language-Action model, we propose a VLM-Planner interface that uses a VLM to select a candidate index from the planner's proposal set and then fuse it with the planner's initial output. However, VLMs take 1--3s per query and so cannot directly drive a 5--20Hz control loop. We contribute a training-free, latency-resilient trajectory-level fusion layer that turns a stale VLM selection into real-time planner scoring via geometric similarity with exponential decay. On $\\sim$2,000 challenging real-world scenarios (e.g., junctions, pedestrian encounters), VLM selection achieves 30% ADE reduction versus the planner's best selection, while the planner remains competitive in routine situations. In simulation, Score Fusion maintains >80% success rate with delays up to 5s. We demonstrate the full system on a mobile robot navigating challenging campus sidewalks with varied network latency.",
+      "authors": [
+        "Zhenghao \"Mark'' Peng",
+        "Honglin He",
+        "Quanyi Li",
+        "Yukai Ma",
+        "Bolei Zhou"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-18T16:40:07+00:00",
+      "link": "https://arxiv.org/pdf/2606.20458v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "VLM-augmented urban navigation, trajectory scoring gap",
+      "llm_evidence_cn": "视觉语言模型增强的城市导航，解决轨迹评分差距",
+      "llm_evidence": "视觉语言模型增强的城市导航，解决轨迹评分差距",
+      "canonical_evidence": "视觉语言模型增强的城市导航，解决轨迹评分差距",
+      "llm_tldr_en": "Slow Brain Fast Planner uses a VLM-Planner interface to improve trajectory scoring in sidewalk navigation, addressing the gap between planner's top choice and best candidate.",
+      "llm_tldr_cn": "该论文提出慢脑快规划器框架，通过视觉语言模型（VLM）与规划器接口，改善人行道导航中的轨迹评分差距。VLM提供高层次场景理解，辅助规划器选择更优轨迹。实验显示该方法在真实世界场景中显著减少了无效轨迹（如驶入草地、接近行人），提升了导航安全性和可靠性。",
+      "llm_tldr": "该论文提出慢脑快规划器框架，通过视觉语言模型（VLM）与规划器接口，改善人行道导航中的轨迹评分差距。VLM提供高层次场景理解，辅助规划器选择更优轨迹。实验显示该方法在真实世界场景中显著减少了无效轨迹（如驶入草地、接近行人），提升了导航安全性和可靠性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
