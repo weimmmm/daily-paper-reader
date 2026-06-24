@@ -6,74 +6,71 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-23
-- 运行时间：2026-06-23 22:23:30 UTC
+- 最新运行日期：2026-06-24
+- 运行时间：2026-06-24 20:45:55 UTC
 - 运行状态：成功
-- 本次总论文数：18
-- 精读区：7
+- 本次总论文数：17
+- 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日精读7篇论文，聚焦具身智能与强化学习安全前沿。最值得关注的是安全强化学习框架《SafeDojo》与通用具身推理模型《Vesta》，两者均获9.0高分。建议优先研读这两篇，把握世界模型驱动的VLA安全训练与多任务推理能力。
-- 详情：[/202606/23/README](/202606/23/README)
+今日精选17篇推荐论文，重点精读6篇，聚焦离散扩散VLA模型与抓取姿态规范化两项突破。最值得关注的方向是扩散模型强化学习（dVLA-RL, 9.0分）与观测-动作规范化抓取（8.0分）。建议优先精读这两篇，并留意FOCA等高效模型适配方法。
+- 详情：[/202606/24/README](/202606/24/README)
 
 ### 精读区论文标签
-1. [SafeDojo: Safe Reinforcement Learning for VLA via Interactive World Model](/202606/23/2606.20698v1-safedojo-safe-reinforcement-learning-for-vla-via-interactive-world-model)  
+1. [dVLA-RL: Reinforcement Learning over Denoising Trajectories for Discrete Diffusion Vision-Language-Action Models](/202606/24/2606.23623v1-dvla-rl-reinforcement-learning-over-denoising-trajectories-for-discrete-diffusion-vision-language-action-models)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：用于VLA的安全强化学习与交互式世界模型
-2. [Vesta: A Generalist Embodied Reasoning Model](/202606/23/2606.20905v1-vesta-a-generalist-embodied-reasoning-model)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：通用具身推理模型，具备导航能力
-3. [Long-Distance Real-World Navigation of the Legged-Wheeled Robot Go2-W Using Deep Reinforcement Learning](/202606/23/2606.21387v1-long-distance-real-world-navigation-of-the-legged-wheeled-robot-go2-w-using-deep-reinforcement-learning)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：深度强化学习用于轮腿机器人导航
-4. [BIT-Nav: Brain-Inspired Trajectory Memory for Embodied Navigation](/202606/23/2606.21398v1-bit-nav-brain-inspired-trajectory-memory-for-embodied-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：脑启发轨迹记忆用于基于VLM的具身导航
-5. [Backpropagating Through Simulation: Analytic Policy Gradients for Sample and Learning Efficient Differentiable Continuous Control](/202606/23/2606.21525v1-backpropagating-through-simulation-analytic-policy-gradients-for-sample-and-learning-efficient-differentiable-continuous-control)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：利用可微模拟的策略梯度强化学习
-6. [FlowDec: Temporal Conditional Flow Decorruptor for Robust Continuous Vision-Language Navigation](/202606/23/2606.22424v1-flowdec-temporal-conditional-flow-decorruptor-for-robust-continuous-vision-language-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：鲁棒的连续视觉语言导航与时序条件流
-7. [LP-NavOA: Integrated Local Navigation and Obstacle Avoidance for Humanoid Robots under Limited Perception](/202606/23/2606.23249v1-lp-navoa-integrated-local-navigation-and-obstacle-avoidance-for-humanoid-robots-under-limited-perception)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：PPO强化学习用于仿人机器人局部导航
+   evidence：在离散扩散VLA模型上使用强化学习
+2. [Pose-Agnostic Robotic Functional Grasping via Observation-Action Canonicalization](/202606/24/2606.21148v1-pose-agnostic-robotic-functional-grasping-via-observation-action-canonicalization)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：基于规范化的强化学习实现功能性机器人抓取
+3. [FlowDPG: Deterministic Policy Gradient on Flow Matching Policies for Real-World Manipulation](/202606/24/2606.22303v1-flowdpg-deterministic-policy-gradient-on-flow-matching-policies-for-real-world-manipulation)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：现实世界操作强化学习
+4. [FlowDec: Temporal Conditional Flow Decorruptor for Robust Continuous Vision-Language Navigation](/202606/24/2606.22424v2-flowdec-temporal-conditional-flow-decorruptor-for-robust-continuous-vision-language-navigation)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：视觉语言导航中的图像恢复
+5. [Scalable Multi-Task Data Generation via Reinforcement Learning for Language-Conditioned Bimanual Dexterous Manipulation](/202606/24/2606.22471v1-scalable-multi-task-data-generation-via-reinforcement-learning-for-language-conditioned-bimanual-dexterous-manipulation)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：使用强化学习为灵巧操作生成可扩展的多任务数据
+6. [HiL-ResRL: A Model-Agnostic Finetuning Adapter via Human-in-the-loop Residual Reinforcement Learning](/202606/24/2606.22860v1-hil-resrl-a-model-agnostic-finetuning-adapter-via-human-in-the-loop-residual-reinforcement-learning)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：强化学习微调视觉-语言-动作模型
 
 ### 速读区论文标签
-1. [Temporal Self-Imitation Learning](/202606/23/2606.19752v2-temporal-self-imitation-learning)  
+1. [HoloAgent-0: A Unified Embodied Agent Framework with 3D Spatial Memory](/202606/24/2606.23565v1-holoagent-0-a-unified-embodied-agent-framework-with-3d-spatial-memory)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：通过时间自我模仿学习提升机器人操作强化学习效率
-2. [A Neuromorphic Reinforcement Learning Framework for Efficient Pathfinding in Robotic Mobile Fulfillment Systems](/202606/23/2606.20031v2-a-neuromorphic-reinforcement-learning-framework-for-efficient-pathfinding-in-robotic-mobile-fulfillment-systems)  
+   evidence：统一的具身智能体框架，包含导航能力
+2. [Vision-Language Model Reasoning for Contextual Semantic Mapping in Intralogistics](/202606/24/2606.24814v1-vision-language-model-reasoning-for-contextual-semantic-mapping-in-intralogistics)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向机器人路径规划的神经形态强化学习
-3. [Adversarial observations in probabilistic State-Space Models for robust Reinforcement Learning](/202606/23/2606.20880v1-adversarial-observations-in-probabilistic-state-space-models-for-robust-reinforcement-learning)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：状态空间模型中对抗观测的鲁棒强化学习方法
-4. [Horizon Adaptive Offline Policy Learning via Value Stitching](/202606/23/2606.21136v1-horizon-adaptive-offline-policy-learning-via-value-stitching)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：自适应视距的离线强化学习
-5. [Inverting the Bellman Equation: From $Q$-Values to World Models](/202606/23/2606.21173v1-inverting-the-bellman-equation-from-q-values-to-world-models)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：从Q值中提取世界模型的逆强化学习方法
-6. [ENPIRE: Agentic Robot Policy Self-Improvement in the Real World](/202606/23/2606.19980v1-enpire-agentic-robot-policy-self-improvement-in-the-real-world)  
+   evidence：基于VLM的上下文语义建图，用于自主移动机器人导航
+3. [FOCA: Future-Oriented Conditioning for Data-Efficient Vision-Language-Action Adaptation](/202606/24/2606.20867v1-foca-future-oriented-conditioning-for-data-efficient-vision-language-action-adaptation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：真实世界具身机器人策略自我改进框架
-7. [FOCA: Future-Oriented Conditioning for Data-Efficient Vision-Language-Action Adaptation](/202606/23/2606.20867v1-foca-future-oriented-conditioning-for-data-efficient-vision-language-action-adaptation)  
+   evidence：面向未来的条件框架实现数据高效VLA适应，提升机器人少样本学习能力
+4. [A Reward-Petri-Net Interpretation of Temporal Behavior Trees](/202606/24/2606.21350v1-a-reward-petri-net-interpretation-of-temporal-behavior-trees)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：数据高效的视觉语言动作适应框架
-8. [Heterogeneous Policy Networks for Composite Robot Team Communication and Coordination](/202606/23/2606.20962v1-heterogeneous-policy-networks-for-composite-robot-team-communication-and-coordination)  
+   evidence：面向机器人强化学习的奖励设计
+5. [Robot Self-Improvement via Human-Video Dynamics Models](/202606/24/2606.21406v1-robot-self-improvement-via-human-video-dynamics-models)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：多智能体强化学习用于机器人团队
-9. [MV-WAM: Manifold-Aware World Action Model with Value Augmentation](/202606/23/2606.21088v1-mv-wam-manifold-aware-world-action-model-with-value-augmentation)  
+   evidence：利用人类视频学习价值表征，实现机器人自我改进，连接人类数据与具身实践
+6. [Semi-Supervised Vision-Language-Action Model](/202606/24/2606.21493v1-semi-supervised-vision-language-action-model)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端强化学习框架用于具身操作
-10. [When Robots Sleep: Offline Skill Consolidation for Shared-Policy Robot Learning](/202606/23/2606.17493v1-when-robots-sleep-offline-skill-consolidation-for-shared-policy-robot-learning)  
+   evidence：半监督视觉-语言-动作模型，适用于具身动作
+7. [Decoupling the Declarative from the Procedural in Vision-Language-Action Models](/202606/24/2606.21496v1-decoupling-the-declarative-from-the-procedural-in-vision-language-action-models)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：端到端VLA模型中解耦声明性与程序性知识
+8. [Bridging Semantics and Kinematics: A Modular Framework for Zero-Shot Robotic Manipulation](/202606/24/2606.23157v1-bridging-semantics-and-kinematics-a-modular-framework-for-zero-shot-robotic-manipulation)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：面向具身机器人的语言引导零样本操作
+9. [Remember what you did?: Learning Behavioral Memories for Partially Observable Object Manipulation](/202606/24/2606.21188v1-remember-what-you-did-learning-behavioral-memories-for-partially-observable-object-manipulation)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：强化学习用于机器人离线技能整合
-11. [PhiBE-Q-Learning: Bridging Off-Policy Reinforcement Learning and Continuous-Time Control](/202606/23/2606.21925v1-phibe-q-learning-bridging-off-policy-reinforcement-learning-and-continuous-time-control)  
+   evidence：具身机器人操作中的压缩动作记忆
+10. [Select-to-Act: Hierarchical Reinforcement Learning via Adaptive Language Guidance](/202606/24/2606.22350v1-select-to-act-hierarchical-reinforcement-learning-via-adaptive-language-guidance)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：连接离策略强化学习与连续时间控制
+   evidence：使用语言指令的分层强化学习，可应用于机器人导航
+11. [Imagine to Ensure Safety in Hierarchical Reinforcement Learning](/202606/24/2606.22509v1-imagine-to-ensure-safety-in-hierarchical-reinforcement-learning)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：分层强化学习中的安全探索方法，可迁移至机器人领域
 
 
 <div class="dpr-home-promo-card">
