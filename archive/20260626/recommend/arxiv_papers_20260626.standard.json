@@ -1,0 +1,571 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-26T20:47:01.171569+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 12,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2606.21271v1",
+      "source": "arxiv",
+      "title": "Reward-free Pretraining for Reinforcement Learning via Occupancy Coverage Maximization",
+      "abstract": "Sparse rewards pose a central challenge in reinforcement learning, since agents receive no informative signal until they reach their goal. Intrinsic-reward methods address this issue by optimizing non-stationary objectives such as novelty, prediction error, or skill diversity, thereby injecting a supervision signal into the problem. While effective, these methods often require that the extrinsic (sparse) reward can be evaluated -- either online or during offline relabeling of the stored transitions. This limitation is particularly vexing for multi-task, meta-, and continual reinforcement learning, where agents' interactions with the environment are usually reward-free. In this work, we present a method to pre-train transferable exploration policies that rapidly adapt to sparse rewards at downstream task time. Our objective maximizes state-space covering for the occupancy measure, and can be framed in terms of entropy maximization. Its algorithmic implementation, ROVER, leverages recent advances on the operatorial formulation of RL to estimate occupancy with a learned resolvent world model, bypassing common hurdles associated with density and entropy estimation. ROVER further introduces a virtual \"sink\" state for unexplored regions, balancing coverage of known states with expansion into unseen ones and preventing cyclic expansion-collapse behavior during learning. In tabular and pixel-based sparse navigation tasks, ROVER produces more uniform aggregate coverage and stronger initializations for downstream tasks than standard reward-free baselines.",
+      "authors": [
+        "Marco Pratticò",
+        "Pietro Novelli",
+        "Massimiliano Pontil",
+        "Carlo Ciliberto"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-19T09:47:38+00:00",
+      "link": "https://arxiv.org/pdf/2606.21271v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "reinforcement learning pretraining without rewards",
+      "llm_evidence_cn": "无奖励的强化学习预训练",
+      "llm_evidence": "无奖励的强化学习预训练",
+      "canonical_evidence": "无奖励的强化学习预训练",
+      "llm_tldr_en": "Proposes a reward-free pretraining method for RL via occupancy coverage maximization to learn transferable exploration.",
+      "llm_tldr_cn": "稀疏奖励是强化学习的主要挑战，现有内在奖励方法难以处理无奖励场景。本文提出一种无奖励预训练方法，通过最大化占据覆盖来学习可迁移的探索策略。该方法在多任务和持续强化学习环境中显著提升样本效率。其无需任何奖励信号即可预训练智能体，为无奖励探索提供了新范式。",
+      "llm_tldr": "稀疏奖励是强化学习的主要挑战，现有内在奖励方法难以处理无奖励场景。本文提出一种无奖励预训练方法，通过最大化占据覆盖来学习可迁移的探索策略。该方法在多任务和持续强化学习环境中显著提升样本效率。其无需任何奖励信号即可预训练智能体，为无奖励探索提供了新范式。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.26839v1",
+      "source": "arxiv",
+      "title": "Ordinal Neural Collapse as a Representation Prior for Visual Navigation",
+      "abstract": "Learning robust navigation policies directly from visual observations remains a fundamental challenge in vision-based robotic navigation. In end-to-end imitation learning approaches, the visual encoder and action decoder are jointly optimized using a single action loss, which provides only an indirect supervisory signal to the encoder. This indirect supervision frequently results in the encoder learning ambiguous, action-agnostic representations. The problem is further complicated by substantial variations in scene structure and appearance across diverse environments, as well as the prevalence of visual distractors inherent to real-world navigation settings. Such action-agnostic features cause the navigation policy to produce inconsistent actions at ambiguous decision points, leading to navigation failure. To overcome these limitations, we propose ORION (Ordinal Neural Collapse for Visual Navigation), a method that explicitly organizes the encoder's representation space according to the ordinal structure of navigation actions. In the context of goal-directed navigation, ego-centric control categories from Far Left to Far Right exhibit a natural ordinal relationship in which neighboring classes share similar visual contexts, while semantically opposing classes differ substantially in appearance. We encourage class representations to be arranged sequentially along a single discriminative axis, while suppressing off-axis variance within each class. The pretrained encoder is then integrated into a diffusion-based navigation framework, and the full pipeline is fine-tuned end-to-end. Extensive experiments in both simulation and real-world settings show that ORION consistently outperforms end-to-end and neural collapse baselines in navigation success rate and goal progress, with notable gains in visually challenging scenarios such as complex multi-way intersections.",
+      "authors": [
+        "E-In Son",
+        "Jung-Taak Kim",
+        "Seung-Woo Seo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-25T10:25:25+00:00",
+      "link": "https://arxiv.org/pdf/2606.26839v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "End-to-end visual navigation with representation prior from neural collapse",
+      "llm_evidence_cn": "基于神经坍缩表示先验的端到端视觉导航",
+      "llm_evidence": "基于神经坍缩表示先验的端到端视觉导航",
+      "canonical_evidence": "基于神经坍缩表示先验的端到端视觉导航",
+      "llm_tldr_en": "Ordinal Neural Collapse is introduced as a representation prior for visual navigation, enforcing a low-rank structure in visual encoder to produce action-relevant features and improve consistency.",
+      "llm_tldr_cn": "该论文指出端到端模仿学习中的视觉编码器由于间接监督而学习到模糊的表示，导致导航策略不一致。提出顺序神经坍缩（Ordinal Neural Collapse）作为表示先验，在训练时对编码器施加低秩结构约束，鼓励其学习与动作相关的特征。实验在多个虚拟和真实环境中验证了该方法能显著提升视觉导航策略的鲁棒性和一致性。该方法为端到端视觉导航提供了有效的表示学习框架。",
+      "llm_tldr": "该论文指出端到端模仿学习中的视觉编码器由于间接监督而学习到模糊的表示，导致导航策略不一致。提出顺序神经坍缩（Ordinal Neural Collapse）作为表示先验，在训练时对编码器施加低秩结构约束，鼓励其学习与动作相关的特征。实验在多个虚拟和真实环境中验证了该方法能显著提升视觉导航策略的鲁棒性和一致性。该方法为端到端视觉导航提供了有效的表示学习框架。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.26392v1",
+      "source": "arxiv",
+      "title": "MPC-Injection: Biasing Off-Policy Locomotion RL Toward Controller-Induced Behavior Basins",
+      "abstract": "Reinforcement learning (RL) for locomotion frequently converges to locally optimal but undeployable behaviors, such as vibrating limbs or scooting on the torso, that maximize return without producing a usable gait. We present MPC-Injection, a low-overhead method that steers RL toward a designer-preferred gait by inserting transitions into the replay buffer from a model predictive controller solving the same Markov decision process. Unlike reward shaping, MPC-Injection does not require redesigning the task reward, and unlike adversarial imitation learning, it adds no discriminator, no kinematic retargeting, and no auxiliary objective. Instead, the controller's preferred behavior is transferred to the policy purely through the replay state distribution. On a 2D walker in simulation and with sim-to-real evaluation on a Go2 quadruped, we show that MPC-Injection drives the policy into the controller's behavior basin using a one to two-term task reward, producing gaits qualitatively comparable to those of reward shaping with twenty-one tuned terms and of adversarial motion priors without their discriminator and retargeting overhead. We further analyze how the injected transitions bias actor-critic updates toward controller-visited states, allowing the policy to learn behaviors that pure RL may fail to reach under simple reward functions.",
+      "authors": [
+        "Roy Xing",
+        "Seyoung Ree",
+        "Brian Plancher"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-24T21:23:22+00:00",
+      "link": "https://arxiv.org/pdf/2606.26392v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "reinforcement learning for locomotion with MPC injection",
+      "llm_evidence_cn": "基于MPC注入的强化学习用于步态生成",
+      "llm_evidence": "基于MPC注入的强化学习用于步态生成",
+      "canonical_evidence": "基于MPC注入的强化学习用于步态生成",
+      "llm_tldr_en": "MPC-Injection steers RL toward preferred locomotion gaits by inserting model predictive controller transitions into the replay buffer, avoiding reward redesign.",
+      "llm_tldr_cn": "强化学习在机器人步态学习时容易收敛到次优行为（如抖动、滑行）。本文提出MPC-Injection，一种低开销方法，通过将模型预测控制器生成的转移样本插入RL回放缓冲区，引导策略学到设计师偏好的步态，无需修改奖励函数或添加对抗判别器，仅通过重放样本实现行为引导。",
+      "llm_tldr": "强化学习在机器人步态学习时容易收敛到次优行为（如抖动、滑行）。本文提出MPC-Injection，一种低开销方法，通过将模型预测控制器生成的转移样本插入RL回放缓冲区，引导策略学到设计师偏好的步态，无需修改奖励函数或添加对抗判别器，仅通过重放样本实现行为引导。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.22540v3",
+      "source": "arxiv",
+      "title": "PolicyTrim: Boosting Intrinsic Policy Efficiency of Vision-Language-Action Models",
+      "abstract": "Vision-Language-Action (VLA) models provide a unified paradigm for robotic manipulation, yet their real-world deployment is often bottlenecked by execution efficiency. While existing efforts predominantly focus on compute-centric efficiency to reduce per-step inference latency, the intrinsic \\textbf{policy efficiency} of these models remains largely unexplored. Policy efficiency is fundamentally affected by two factors, namely the effective executable length of predicted action chunks and the total physical steps required to complete a task. These two factors jointly determine the total number of forward inference calls during execution. We observe that current VLA policies struggle with planning unreliability and action redundancy, suffering from severe prediction degradation at the tail of action chunks and tending to generate unnecessarily redundant physical steps. To address this, we propose \\textbf{PolicyTrim}, a reinforcement learning-based post-training framework that extends the reliable action chunk length and reduces redundant physical steps. For reliable chunk extension, we employ a dynamic exploration strategy that explicitly rewards the successful completion of longer executable lengths, progressively pushing the trustworthy prediction horizon to its empirical limit. For step efficiency, we design a redundancy-aware reward that directly favors successful task completions with fewer steps while penalizing unreproducible shortcuts, effectively eliminating redundant physical actions. Extensive experiments across three benchmarks and three VLA models demonstrate that PolicyTrim improves action chunk utilization by 3$\\times$ and reduces physical execution steps by 51.4\\%. Ultimately, our framework delivers up to a 5.83$\\times$ end-to-end deployment speedup without compromising task success rates.",
+      "authors": [
+        "Xianghui Wang",
+        "Feng Chen",
+        "Wenbo Zhang",
+        "Hua Yan",
+        "Zixuan Wang",
+        "Changsheng Li",
+        "Yinjie Lei"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-21T14:54:07+00:00",
+      "link": "https://arxiv.org/pdf/2606.22540v3",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "End-to-end VLA models efficiency",
+      "llm_evidence_cn": "端到端VLA模型效率优化",
+      "llm_evidence": "端到端VLA模型效率优化",
+      "canonical_evidence": "端到端VLA模型效率优化",
+      "llm_tldr_en": "PolicyTrim boosts intrinsic policy efficiency of VLA models by reducing action redundancy and improving planning reliability.",
+      "llm_tldr_cn": "视觉-语言-动作模型（VLA）在机器人操作中呈现端到端范式，但执行效率受限。PolicyTrim首次聚焦策略内在效率，通过修剪动作冗余和提升规划可靠性，减少任务所需推理步数。实验表明在不损失性能下显著降低调用次数，推动VLA模型实用化。",
+      "llm_tldr": "视觉-语言-动作模型（VLA）在机器人操作中呈现端到端范式，但执行效率受限。PolicyTrim首次聚焦策略内在效率，通过修剪动作冗余和提升规划可靠性，减少任务所需推理步数。实验表明在不损失性能下显著降低调用次数，推动VLA模型实用化。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.24049v1",
+      "source": "arxiv",
+      "title": "SPACE: Enabling Learning from Cross-Robot Data Toward Generalist Policies",
+      "abstract": "In robot learning, scaling training datasets across diverse embodiments and environments has become a dominant paradigm for learning generalizable robot policies. These policies are commonly trained via behavior cloning to imitate actions from pre-collected demonstrations. However, since robot actions are tied to the dynamics of the data collection robot, different robots may require different actions to achieve the same motion. This discrepancy hinders both policy training and deployment across diverse robots. To address this, we propose using Cartesian state delta as a universal action representation across robots, and introduce State Prediction and Adaptive Command Execution (SPACE) framework. SPACE handles robot dynamics variation at three levels: across different embodiments, across hardware units of the same embodiment, and within a single robot during operation. It consists of two components: (i) a Cartesian state delta policy that predicts geometric end-effector displacement, and (ii) Action Adapter, which converts the predicted Cartesian state delta into robot-specific control commands. Experiments show that SPACE substantially outperforms policies that directly predict control commands when learning from data collected across different embodiments and across hardware units of the same embodiment. SPACE also remains robust under dynamics shifts at deployment, including changes in control frequency, object weight, and controller gains. The project page is available at http://haeone.site/space-website/.",
+      "authors": [
+        "Haeone Lee",
+        "Byeongguk Jeon",
+        "Suchae Jeong",
+        "Jian Kim",
+        "Kimin Lee"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-23T01:32:40+00:00",
+      "link": "https://arxiv.org/pdf/2606.24049v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Cross-robot data learning for generalist robot policies",
+      "llm_evidence_cn": "跨机器人数据学习通用机器人策略",
+      "llm_evidence": "跨机器人数据学习通用机器人策略",
+      "canonical_evidence": "跨机器人数据学习通用机器人策略",
+      "llm_tldr_en": "SPACE proposes Cartesian state delta as a universal action representation and a three-level framework to handle dynamics variation, enabling learning from cross-robot data for generalist policies.",
+      "llm_tldr_cn": "该论文针对不同机器人动力学差异阻碍跨机器人数据学习的问题，提出使用笛卡尔状态增量作为通用动作表示，并引入SPACE框架在三个层面上处理动力学变化：状态预测、自适应命令执行和行动调整。实验证明该方法能够有效利用不同机器人的演示数据训练通用策略，降低了数据收集成本。该工作在具身机器人学习领域推动了多机器人数据共享和策略泛化。",
+      "llm_tldr": "该论文针对不同机器人动力学差异阻碍跨机器人数据学习的问题，提出使用笛卡尔状态增量作为通用动作表示，并引入SPACE框架在三个层面上处理动力学变化：状态预测、自适应命令执行和行动调整。实验证明该方法能够有效利用不同机器人的演示数据训练通用策略，降低了数据收集成本。该工作在具身机器人学习领域推动了多机器人数据共享和策略泛化。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.24472v1",
+      "source": "arxiv",
+      "title": "G$^3$VLA: Geometric inductive bias for Vision-Language-Action Models",
+      "abstract": "Vision-language-action (VLA) models have made rapid progress in generalist robot manipulation by harnessing semantic knowledge from pretrained vision-language backbones, but their visual tokens remain grounded in 2D image coordinates rather than the calibrated geometry of the robot's cameras -- a mismatch especially pronounced in multi-camera setups, where views are coupled by known intrinsics and extrinsics yet processed as independent images. We propose G$^3$VLA, a camera-aware geometric module that injects calibrated structure into the visual-token stream of a pretrained VLA without altering its action space or imitation objective, combining intrinsic-conditioned ray embeddings, projective positional encoding (PRoPE), and bidirectional cross-view fusion. Geometric supervision is provided either from ground-truth point maps when available, or from confidence-gated $π^3$X teacher predictions, requiring no depth sensors or manual annotations. Instantiated on $π_0$, G$^3$VLA yields consistent gains across the LIBERO suites, RoboCasa24, RoboTwin2.0, and real-robot settings, with the largest improvements on spatially and object-sensitive tasks. We further validate on $π_{0.5}$ and GR00T 1.5, with results suggesting that geometric transfer is most effective when geometry-aware tokens have direct access to the action generation pathway. Our project page is at https://sites.google.com/view/g3vla",
+      "authors": [
+        "Yue Peng",
+        "Yongzhe Zhao",
+        "Artur Habuda",
+        "Khuyen Pham",
+        "Yanheng Zhu",
+        "Tran Nguyen Le",
+        "Fares Abu-Dakka",
+        "Li Guo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-23T12:02:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.24472v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "vision-language-action model with geometric inductive bias for robotic manipulation",
+      "llm_evidence_cn": "具身机器人视觉-语言-动作模型及几何归纳偏置",
+      "llm_evidence": "具身机器人视觉-语言-动作模型及几何归纳偏置",
+      "canonical_evidence": "具身机器人视觉-语言-动作模型及几何归纳偏置",
+      "llm_tldr_en": "G^3VLA injects calibrated geometric structure into pretrained VLA models for multi-camera robot manipulation, improving generalization without altering the action space.",
+      "llm_tldr_cn": "该论文针对多相机设置下视觉-语言-动作模型缺乏几何结构的问题，提出G^3VLA模块，通过内在条件化射线嵌入、投影位置编码和双向跨视图融合，在不改变动作空间和目标的前提下提升操作泛化能力。",
+      "llm_tldr": "该论文针对多相机设置下视觉-语言-动作模型缺乏几何结构的问题，提出G^3VLA模块，通过内在条件化射线嵌入、投影位置编码和双向跨视图融合，在不改变动作空间和目标的前提下提升操作泛化能力。",
+      "llm_tags": [
+        "query:embodied-rl:composite"
+      ],
+      "matched_query_tag": "query:embodied-rl:composite",
+      "matched_query_text": "Papers central to 帮我找强化学习在具身机器人上的相关论文，主要方向为导航、端到端、VLN, especially work that connects or combines: reinforcement learning; embodied robots; robot navigation; end-to-end learning; vision language navigation; reinforcement learning for embodied robot navigation; end to end reinforcement learning in robotics; vision language navigation with reinforcement learning.",
+      "matched_requirement_id": "req-composite-embodied-rl",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.25706v1",
+      "source": "arxiv",
+      "title": "Learning Asynchronous Upper-body Task-space Trajectory Tracking Policy for Humanoid Robots",
+      "abstract": "High-level humanoid planners often output sparse task-space, low-rate trajectories, whereas whole-body controllers run at high frequency. This creates temporal asynchrony between the planning and execution, and structural incompleteness for full-body control. We propose an asynchronous upper body task-space tracking framework for humanoids. A student policy is initialized by teacher-student distillation, conditioned on the full cached future trajectory and an execution-time index, and trained with a sliding-window global reward to reduce frame drift without explicit frame estimation. For task-specific post-training, an MPC module completes sparse references into floating-base and upper-body guidance, while action- and FK level self-guidance constrain policy drift. Simulation and Unitree G1 hardware experiments show improved tracking under low update rates, stronger performance than synchronous and decoupled baselines, and safer adaptation to out-of-distribution motions.",
+      "authors": [
+        "Yumeng Liu",
+        "Dongqi Wang",
+        "Jiyu Yu",
+        "Yijun Fan",
+        "Rong Xiong",
+        "Yue Wang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-24T11:19:38+00:00",
+      "link": "https://arxiv.org/pdf/2606.25706v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "humanoid robot upper-body trajectory tracking with RL",
+      "llm_evidence_cn": "人形机器人上半身轨迹跟踪与强化学习",
+      "llm_evidence": "人形机器人上半身轨迹跟踪与强化学习",
+      "canonical_evidence": "人形机器人上半身轨迹跟踪与强化学习",
+      "llm_tldr_en": "This paper proposes an asynchronous upper-body task-space tracking framework for humanoids using teacher-student distillation and MPC.",
+      "llm_tldr_cn": "该论文针对人形机器人规划-执行不同步问题，提出异步上半身任务空间轨迹跟踪框架，通过师生蒸馏初始化策略，结合滑动窗口全局奖励和MPC模块实现稀疏参考补全。",
+      "llm_tldr": "该论文针对人形机器人规划-执行不同步问题，提出异步上半身任务空间轨迹跟踪框架，通过师生蒸馏初始化策略，结合滑动窗口全局奖励和MPC模块实现稀疏参考补全。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.25360v1",
+      "source": "arxiv",
+      "title": "Decoupling Semantics and Geometric Grounding: Spatial Visual Prompts for Language-Conditioned Imitation Learning",
+      "abstract": "While end-to-end Vision-Language-Action (VLA) models show promise in robotic manipulation, their monolithic paradigm inherently couples semantic reasoning and spatial control. This creates a severe alignment bottleneck, limiting precise target disambiguation in data-constrained imitation learning. To overcome this, we propose SVP-IL, a decoupled architecture that explicitly extracts spatial visual grounding from the action generation loop. By leveraging vision-language foundation models, we parse instructions into zero-shot geometric masks, translating language into explicit Spatial Visual Prompts (SVP). These priors are injected into a continuous action generator via a lightweight direct feature-level fusion mechanism. This integration provides explicit and uncorrupted spatial gradient guidance while ensuring highly stable optimization under low-data regimes. Extensive experiments demonstrate that SVP-IL significantly outperforms state-of-the-art VLAs and pure visuomotor baselines. Trained on as few as 50 to 100 demonstrations, SVP-IL improves average success rates on highly ambiguous language-conditioned tasks from 24.0% to 39.5%, achieving 67.8% on standard benchmarks. Real-world robotic experiments further validate its robustness and data efficiency in unstructured physical environments.",
+      "authors": [
+        "Yanzhe Tang",
+        "Xinyu Shao",
+        "Yuxuan Hu",
+        "Siyu Chen",
+        "Bowen Yang",
+        "Yajun Gao",
+        "Tongtong Cao",
+        "Xiu Li",
+        "Long Zeng"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-24T03:45:06+00:00",
+      "link": "https://arxiv.org/pdf/2606.25360v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "End-to-end VLA with decoupled spatial grounding",
+      "llm_evidence_cn": "端到端VLA解耦空间定位",
+      "llm_evidence": "端到端VLA解耦空间定位",
+      "canonical_evidence": "端到端VLA解耦空间定位",
+      "llm_tldr_en": "SVP-IL decouples semantics and geometric grounding in end-to-end VLA models for imitation learning.",
+      "llm_tldr_cn": "端到端VLA模型耦合语义推理与空间控制，导致对齐瓶颈。SVP-IL提出解耦架构，利用视觉语言基础模型将指令解析为零样本几何掩码，作为空间视觉提示注入动作生成器。在数据有限的模仿学习中，该方法有效提升目标分辨精度。属于端到端学习的重要改进。",
+      "llm_tldr": "端到端VLA模型耦合语义推理与空间控制，导致对齐瓶颈。SVP-IL提出解耦架构，利用视觉语言基础模型将指令解析为零样本几何掩码，作为空间视觉提示注入动作生成器。在数据有限的模仿学习中，该方法有效提升目标分辨精度。属于端到端学习的重要改进。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.25398v1",
+      "source": "arxiv",
+      "title": "MAPL: Multi-Objective Preference Learning for Robot Locomotion",
+      "abstract": "Reward design remains a major bottleneck in reinforcement learning for robot locomotion, where successful policies often depend on carefully tuned, task-specific reward functions. Preference-based reinforcement learning offers an alternative, but existing LLM-based methods typically ask for a single overall judgment between behaviors, making it difficult to capture the multiple competing objectives that underlie high-quality locomotion. We present Multi-Objective AI-Informed Preference Learning (MAPL), a framework that learns locomotion rewards from high-level natural language objectives rather than manually engineered reward equations. MAPL prompts a large language model to compare trajectories independently along semantically meaningful criteria, using generic language descriptions that are terrain-invariant and require little domain expertise. These objective-wise preferences are used to train a multi-head preference scoring model, whose outputs are aggregated to form a scalar reward for policy optimization. Across four quadruped locomotion environments, MAPL trains policies using only LLM-generated preferences and achieves performance comparable to or better than expert-designed rewards, while eliminating task-specific reward engineering.",
+      "authors": [
+        "Xiyue Chen",
+        "Muhan Lin",
+        "Shuyang Shi",
+        "Joseph Campbell"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-24T04:52:04+00:00",
+      "link": "https://arxiv.org/pdf/2606.25398v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Preference-based RL for robot locomotion",
+      "llm_evidence_cn": "基于偏好的强化学习用于机器人运动",
+      "llm_evidence": "基于偏好的强化学习用于机器人运动",
+      "canonical_evidence": "基于偏好的强化学习用于机器人运动",
+      "llm_tldr_en": "MAPL uses LLM to learn locomotion rewards from natural language objectives via preference comparisons, addressing reward design in RL.",
+      "llm_tldr_cn": "机器人运动中的奖励设计是强化学习的瓶颈。MAPL提出多目标偏好学习框架，利用大语言模型根据自然语言目标比较轨迹，学习奖励函数。实验表明该方法能有效捕捉多目标权衡，提升运动质量。该工作为具身机器人奖励设计提供了可扩展的新范式。",
+      "llm_tldr": "机器人运动中的奖励设计是强化学习的瓶颈。MAPL提出多目标偏好学习框架，利用大语言模型根据自然语言目标比较轨迹，学习奖励函数。实验表明该方法能有效捕捉多目标权衡，提升运动质量。该工作为具身机器人奖励设计提供了可扩展的新范式。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.25800v1",
+      "source": "arxiv",
+      "title": "ROAD-VLA: Robust Online Adaptation via Self-Distillation for Vision-Language-Action Models",
+      "abstract": "Effective online adaptation of vision-language-action (VLA) models remains challenging, as sparse rewards provide weak supervision for high-dimensional autoregressive action policies. Although self-distillation can in principle provide denser training signals, we find that text-based privileged teachers conditioned on demonstrations, retrieved experiences, or high-level plans are ineffective for VLA adaptation, exposing a modality gap between symbolic guidance and low-level robot actions. We propose ROAD-VLA, an advantage-guided self-distillation framework that constructs a proximal teacher directly in action space by perturbing action-token logits with calibrated advantage estimates. This converts sparse rewards into dense token-level supervision while keeping the teacher close to the current policy. We further derive a policy-improvement lower bound under calibrated advantages and accurate teacher matching. Across seven robotic manipulation environments with in-distribution and out-of-distribution shifts, ROADVLA outperforms PPO in nearly all settings, demonstrating robust online VLA adaptation.",
+      "authors": [
+        "Kejing Wang",
+        "Toan Nguyen",
+        "Minh Hoang Nguyen",
+        "Simon Khan",
+        "Flora D. Salim"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-06-24T13:17:59+00:00",
+      "link": "https://arxiv.org/pdf/2606.25800v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Online adaptation for end-to-end VLA models",
+      "llm_evidence_cn": "端到端VLA模型的在线适应",
+      "llm_evidence": "端到端VLA模型的在线适应",
+      "canonical_evidence": "端到端VLA模型的在线适应",
+      "llm_tldr_en": "ROAD-VLA uses advantage-guided self-distillation to adapt VLA models online, converting sparse rewards into dense signals.",
+      "llm_tldr_cn": "VLA模型在线适应因稀疏奖励而困难。ROAD-VLA提出优势引导自蒸馏框架，在动作空间构建近端教师，通过扰动动作令牌对数几率生成密集训练信号。实验证明该方法在多种机器人操作任务上实现高效在线适应，无需额外教师模型。该工作改进了端到端VLA的在线学习能力。",
+      "llm_tldr": "VLA模型在线适应因稀疏奖励而困难。ROAD-VLA提出优势引导自蒸馏框架，在动作空间构建近端教师，通过扰动动作令牌对数几率生成密集训练信号。实验证明该方法在多种机器人操作任务上实现高效在线适应，无需额外教师模型。该工作改进了端到端VLA的在线学习能力。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.26025v1",
+      "source": "arxiv",
+      "title": "In-Context World Modeling for Robotic Control",
+      "abstract": "Modern Vision-Language-Action (VLA) models often fail to generalize to novel setups, such as altered camera viewpoints or robot morphologies, because they are typically conditioned only on current observations and language instructions. By ignoring the underlying system configuration as a variable, these models implicitly assume a fixed execution context encountered during training, necessitating data-intensive fine-tuning for any new environment. In this work, we introduce In-Context World Modeling (ICWM), a framework that treats system identification as an in-context adaptation problem. ICWM enables robot policies to autonomously infer essential system variables from a short history of self-generated, task-agnostic interactions. Unlike traditional In-Context Learning that uses demonstrations to specify what task to perform, ICWM leverages the context window to understand how the system operates. By processing these interactions before task execution, the model implicitly captures the world dynamics of the current system, enabling adaptation to novel configurations without parameter updates. Extensive experiments in simulation and on real-world robot platforms demonstrate that ICWM significantly outperforms standard VLA baselines on novel camera viewpoints.",
+      "authors": [
+        "Siyin Wang",
+        "Junhao Shi",
+        "Senyu Fei",
+        "Zhaoyang Fu",
+        "Li Ji",
+        "Jingjing Gong",
+        "Xipeng Qiu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-24T16:53:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.26025v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "In-context world modeling for VLA-based robotic control, enabling system identification",
+      "llm_evidence_cn": "针对基于VLA的机器人控制的上下文世界建模，实现系统辨识",
+      "llm_evidence": "针对基于VLA的机器人控制的上下文世界建模，实现系统辨识",
+      "canonical_evidence": "针对基于VLA的机器人控制的上下文世界建模，实现系统辨识",
+      "llm_tldr_en": "ICWM enables VLA models to infer system parameters from short task-agnostic interactions, improving generalization to novel camera viewpoints and robot morphologies.",
+      "llm_tldr_cn": "该论文指出现代VLA模型因忽略系统配置变量而难以泛化到新环境。提出In-Context World Modeling（ICWM），通过自生成的任务无关交互历史推断系统变量，实现上下文自适应。该方法无需额外微调即可适应不同的相机视角和机器人形态，显著提升了端到端机器人控制的泛化能力。这为VLA模型在机器人领域的实际部署提供了新思路。",
+      "llm_tldr": "该论文指出现代VLA模型因忽略系统配置变量而难以泛化到新环境。提出In-Context World Modeling（ICWM），通过自生成的任务无关交互历史推断系统变量，实现上下文自适应。该方法无需额外微调即可适应不同的相机视角和机器人形态，显著提升了端到端机器人控制的泛化能力。这为VLA模型在机器人领域的实际部署提供了新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.26025v2",
+      "source": "arxiv",
+      "title": "In-Context World Modeling for Robotic Control",
+      "abstract": "Modern Vision-Language-Action (VLA) models often fail to generalize to novel setups, such as altered camera viewpoints or robot morphologies, because they are typically conditioned only on current observations and language instructions. By ignoring the underlying system configuration as a variable, these models implicitly assume a fixed execution context encountered during training, necessitating data-intensive fine-tuning for any new environment. In this work, we introduce In-Context World Modeling (ICWM), a framework that treats system identification as an in-context adaptation problem. ICWM enables robot policies to autonomously infer essential system variables from a short history of self-generated, task-agnostic interactions. Unlike traditional In-Context Learning that uses demonstrations to specify what task to perform, ICWM leverages the context window to understand how the system operates. By processing these interactions before task execution, the model implicitly captures the world dynamics of the current system, enabling adaptation to novel configurations without parameter updates. Extensive experiments in simulation and on real-world robot platforms demonstrate that ICWM significantly outperforms standard VLA baselines on novel camera viewpoints.",
+      "authors": [
+        "Siyin Wang",
+        "Junhao Shi",
+        "Senyu Fei",
+        "Zhaoyang Fu",
+        "Li Ji",
+        "Jingjing Gong",
+        "Xipeng Qiu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-24T16:53:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.26025v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "robotic control using vision-language-action models with in-context adaptation",
+      "llm_evidence_cn": "使用视觉-语言-动作模型进行机器人控制，上下文自适应",
+      "llm_evidence": "使用视觉-语言-动作模型进行机器人控制，上下文自适应",
+      "canonical_evidence": "使用视觉-语言-动作模型进行机器人控制，上下文自适应",
+      "llm_tldr_en": "In-Context World Modeling enables robot policies to autonomously infer system variables from short interaction histories, improving generalization across novel camera viewpoints and robot morphologies.",
+      "llm_tldr_cn": "现有VLA模型在视角或机器人形态变化时泛化能力差，需要大量微调。本文提出上下文世界建模（ICWM），将系统辨识视为上下文适应问题，使机器人策略能从短时间自生成交互历史中自主推断关键系统变量，从而实现对新环境的零样本泛化。",
+      "llm_tldr": "现有VLA模型在视角或机器人形态变化时泛化能力差，需要大量微调。本文提出上下文世界建模（ICWM），将系统辨识视为上下文适应问题，使机器人策略能从短时间自生成交互历史中自主推断关键系统变量，从而实现对新环境的零样本泛化。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.26175v1",
+      "source": "arxiv",
+      "title": "RMTL: Reinforced Micro-task Learning for Long-Horizon Manipulation with VLM Rewards",
+      "abstract": "Reinforcement learning (RL) for robotic manipulation often requires manually designing a dense reward function, which is difficult to tune and often fragile, or learning a reward from human demonstrations or preferences, which can be expensive. A recent line of work uses pretrained vision-language models (VLMs) as zero-shot reward models, replacing these costs with a single text prompt. However, we argue that a single global prompt is too coarse for long-horizon manipulation tasks with randomized initial conditions. The single-prompt VLM reward is near-flat for much of the trajectory, making early progress hard for the agent to detect. We propose Reinforced Micro-Task Learning (RMTL), an approach that decomposes a manipulation task into a small set of language-described micro-tasks and trains the agent to switch between them. At each step, the agent receives a multi-view VLM reward computed using the prompt of the currently active micro-task and averaged across multiple camera views to reduce the effect of view-specific occlusions. A reverse curriculum gradually exposes the agent to harder initial conditions, while a PPO worker is first trained with a fixed distance-based rule that selects the active micro-task. We then replace this rule with a learned hierarchical manager, turning rule-based phase selection into a fully learned hierarchical policy. We instantiate RMTL on the Fetch manipulation environment using three short stage-specific prompts and without additional prompt tuning. Experiments show that RMTL provides more informative reward signals than single-prompt VLM rewards, enabling faster learning. These results suggest that decomposing VLM rewards into micro-task-specific language prompts can substantially improve the scalability of language-guided reinforcement learning for robotic manipulation.",
+      "authors": [
+        "Anıl Can Ateş",
+        "Orhan Kahraman",
+        "Cihan Topal"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-24T10:32:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.26175v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "reinforcement learning for robotic manipulation with VLM rewards",
+      "llm_evidence_cn": "结合视觉语言模型奖励的机器人操作强化学习",
+      "llm_evidence": "结合视觉语言模型奖励的机器人操作强化学习",
+      "canonical_evidence": "结合视觉语言模型奖励的机器人操作强化学习",
+      "llm_tldr_en": "RMTL decomposes long-horizon manipulation into micro-tasks and uses VLM rewards per micro-task, enabling dense reward signals for RL without manual design.",
+      "llm_tldr_cn": "强化学习在机器人操作中常需要精心设计的稠密奖励，而利用VLM作为零样本奖励模型时，单一全局提示在长时任务中奖励信号稀疏。本文提出强化微任务学习（RMTL），将长时操作分解为微任务，并为每个微任务提供VLM奖励，使代理更快检测到进步，提高学习效率。",
+      "llm_tldr": "强化学习在机器人操作中常需要精心设计的稠密奖励，而利用VLM作为零样本奖励模型时，单一全局提示在长时任务中奖励信号稀疏。本文提出强化微任务学习（RMTL），将长时操作分解为微任务，并为每个微任务提供VLM奖励，使代理更快检测到进步，提高学习效率。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.27180v1",
+      "source": "arxiv",
+      "title": "Automating Potential-based Reward Shaping with Vision Language Model Guidance",
+      "abstract": "Sparse rewards are inherently challenging for reinforcement learning agents as they lack intermediate feedback to guide exploration and to correctly attribute the sparse success rewards to relevant parts of the trajectory. Naive reward shaping can induce reward hacking, yielding policies that exploit auxiliary signals instead of solving the intended task. Potential-based reward shaping (PBRS) guarantees preservation of the optimal policy set, but requires the definition of a heuristic potential function over the state space. In this work, we introduce the VLM-guided PBRS framework VLM-PBRS that learns the potential function directly from vision language model (VLM) feedback. We query a lightweight VLM to obtain preferences over image pairs and train a model of the potential function using these preferences. As this approach is based on potential-based reward shaping, it preserves the original optimal policies, and removes the need for expert-designed reward shaping terms. Because large VLMs are prohibitively expensive to invoke repeatedly during policy learning, we employ smaller, more computationally efficient VLMs. Although the resulting preference labels are less accurate, empirical evidence shows that the preference labels can still be used to accelerate learning. We validate our method empirically in the Meta-World and Franka Kitchen environments and highlight the connection between VLM preference label accuracy and sample efficiency improvements. Our contributions are threefold: (1) the first application of VLM preference-based learning to synthesize a potential function for PBRS, (2) a principled, low-cost solution that leverages small VLMs, and (3) extensive empirical demonstration of improved sample efficiency and robustness to reward hacking.",
+      "authors": [
+        "Henrik Müller",
+        "Daniel Kudenko"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-06-25T15:45:57+00:00",
+      "link": "https://arxiv.org/pdf/2606.27180v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "VLM-guided reward shaping for RL",
+      "llm_evidence_cn": "VLM引导的奖励塑形用于强化学习",
+      "llm_evidence": "VLM引导的奖励塑形用于强化学习",
+      "canonical_evidence": "VLM引导的奖励塑形用于强化学习",
+      "llm_tldr_en": "VLM-PBRS automates potential-based reward shaping by learning from VLM preferences, preserving optimal policy set.",
+      "llm_tldr_cn": "稀疏奖励是强化学习的挑战。VLM-PBRS框架利用视觉语言模型对图像对进行偏好判断，自动学习势能函数进行奖励塑形。该方法在保持最优策略集的同时，提供密集奖励信号，在多个控制任务中加速学习。该工作连接了VLM与RL奖励设计。",
+      "llm_tldr": "稀疏奖励是强化学习的挑战。VLM-PBRS框架利用视觉语言模型对图像对进行偏好判断，自动学习势能函数进行奖励塑形。该方法在保持最优策略集的同时，提供密集奖励信号，在多个控制任务中加速学习。该工作连接了VLM与RL奖励设计。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
