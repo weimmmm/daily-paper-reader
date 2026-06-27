@@ -6,64 +6,56 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-26
-- 运行时间：2026-06-26 20:56:50 UTC
+- 最新运行日期：2026-06-27
+- 运行时间：2026-06-27 20:31:52 UTC
 - 运行状态：成功
-- 本次总论文数：14
-- 精读区：3
+- 本次总论文数：11
+- 精读区：0
 - 速读区：11
 
 ### 今日简报（AI）
-今日精选14篇论文，精读聚焦强化学习免奖励预训练与视觉导航表示先验，速读关注视觉-语言-动作模型的效率与几何偏置。  
-最值得精读的两篇9.0分工作：一是通过占据覆盖最大化实现免奖励预训练；二是将序数神经坍缩作为视觉导航的表示先验。  
-建议优先精读这两篇高分论文以把握前沿范式，速读部分可作为VLA模型效率与空间提示的补充参考。
-- 详情：[/202606/26/README](/202606/26/README)
+今天速读了11篇论文，涵盖机器人导航、视觉-语言-动作模型和操作任务，其中3篇获得7.0分。  
+值得关注的两个方向：利用预训练ViT实现快速移动导航，以及引入几何归纳偏置的VLA模型。  
+建议优先精读这三篇高评分论文，深入理解其核心方法。
+- 详情：[/202606/27/README](/202606/27/README)
 
 ### 精读区论文标签
-1. [Reward-free Pretraining for Reinforcement Learning via Occupancy Coverage Maximization](/202606/26/2606.21271v1-reward-free-pretraining-for-reinforcement-learning-via-occupancy-coverage-maximization)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：无奖励的强化学习预训练
-2. [Ordinal Neural Collapse as a Representation Prior for Visual Navigation](/202606/26/2606.26839v1-ordinal-neural-collapse-as-a-representation-prior-for-visual-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：基于神经坍缩表示先验的端到端视觉导航
-3. [MPC-Injection: Biasing Off-Policy Locomotion RL Toward Controller-Induced Behavior Basins](/202606/26/2606.26392v1-mpc-injection-biasing-off-policy-locomotion-rl-toward-controller-induced-behavior-basins)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：基于MPC注入的强化学习用于步态生成
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [PolicyTrim: Boosting Intrinsic Policy Efficiency of Vision-Language-Action Models](/202606/26/2606.22540v3-policytrim-boosting-intrinsic-policy-efficiency-of-vision-language-action-models)  
+1. [A scalar per patch from pre-trained ViTs enables fast moving navigation in the real world](/202606/27/2606.21216v1-a-scalar-per-patch-from-pre-trained-vits-enables-fast-moving-navigation-in-the-real-world)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端VLA模型效率优化
-2. [G$^3$VLA: Geometric inductive bias for Vision-Language-Action Models](/202606/26/2606.24472v1-g3vla-geometric-inductive-bias-for-vision-language-action-models)  
+   evidence：预训练视觉编码器用于真实世界导航
+2. [G$^3$VLA: Geometric inductive bias for Vision-Language-Action Models](/202606/27/2606.24472v1-g3vla-geometric-inductive-bias-for-vision-language-action-models)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：具身机器人视觉-语言-动作模型及几何归纳偏置
-3. [Decoupling Semantics and Geometric Grounding: Spatial Visual Prompts for Language-Conditioned Imitation Learning](/202606/26/2606.25360v1-decoupling-semantics-and-geometric-grounding-spatial-visual-prompts-for-language-conditioned-imitation-learning)  
+   evidence：为视觉-语言-动作模型注入几何先验，实现端到端机器人操作
+3. [World Value Models for Robotic Manipulation](/202606/27/2606.24742v1-world-value-models-for-robotic-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端VLA解耦空间定位
-4. [MAPL: Multi-Objective Preference Learning for Robot Locomotion](/202606/26/2606.25398v1-mapl-multi-objective-preference-learning-for-robot-locomotion)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：基于偏好的强化学习用于机器人运动
-5. [ROAD-VLA: Robust Online Adaptation via Self-Distillation for Vision-Language-Action Models](/202606/26/2606.25800v1-road-vla-robust-online-adaptation-via-self-distillation-for-vision-language-action-models)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端VLA模型的在线适应
-6. [In-Context World Modeling for Robotic Control](/202606/26/2606.26025v1-in-context-world-modeling-for-robotic-control)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：针对基于VLA的机器人控制的上下文世界建模，实现系统辨识
-7. [In-Context World Modeling for Robotic Control](/202606/26/2606.26025v2-in-context-world-modeling-for-robotic-control)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：使用视觉-语言-动作模型进行机器人控制，上下文自适应
-8. [RMTL: Reinforced Micro-task Learning for Long-Horizon Manipulation with VLM Rewards](/202606/26/2606.26175v1-rmtl-reinforced-micro-task-learning-for-long-horizon-manipulation-with-vlm-rewards)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：结合视觉语言模型奖励的机器人操作强化学习
-9. [Automating Potential-based Reward Shaping with Vision Language Model Guidance](/202606/26/2606.27180v1-automating-potential-based-reward-shaping-with-vision-language-model-guidance)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：VLM引导的奖励塑形用于强化学习
-10. [SPACE: Enabling Learning from Cross-Robot Data Toward Generalist Policies](/202606/26/2606.24049v1-space-enabling-learning-from-cross-robot-data-toward-generalist-policies)  
+   evidence：将世界模型与价值估计结合用于机器人RL
+4. [RoBoSR: Structured Scene Representations for Embodied Robotic Reasoning](/202606/27/2606.24338v1-robosr-structured-scene-representations-for-embodied-robotic-reasoning)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：跨机器人数据学习通用机器人策略
-11. [Learning Asynchronous Upper-body Task-space Trajectory Tracking Policy for Humanoid Robots](/202606/26/2606.25706v1-learning-asynchronous-upper-body-task-space-trajectory-tracking-policy-for-humanoid-robots)  
+   evidence：具身机器人推理与场景图
+5. [Beyond Monotonic Progress: Retry-Supervised Value Learning for Robot Imitation](/202606/27/2606.24633v1-beyond-monotonic-progress-retry-supervised-value-learning-for-robot-imitation)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：人形机器人上半身轨迹跟踪与强化学习
+   evidence：从不完美示教中学习机器人模仿的价值函数
+6. [Learning Perceptive Platform Adaptive Locomotion Controllers for Quadrupedal Robots](/202606/27/2606.25179v1-learning-perceptive-platform-adaptive-locomotion-controllers-for-quadrupedal-robots)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：强化学习用于四足机器人感知运动控制器
+7. [Inference-Time Robot Behavior Steering through Physically-Aware Reconfiguration of Task-Structure](/202606/27/2606.26588v1-inference-time-robot-behavior-steering-through-physically-aware-reconfiguration-of-task-structure)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：通过任务结构重配置实现推理时机器人行为导向
+8. [PhysReflect-VLA: Physical Feasibility and Self-Reflective Regulation for Reliable Vision-Language-Action Policies](/202606/27/2606.27146v1-physreflect-vla-physical-feasibility-and-self-reflective-regulation-for-reliable-vision-language-action-policies)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：PhysReflect-VLA为VLA策略增加物理可行性评估和自我反思，实现可靠的机器人操作。
+9. [LA4VLA: Learning to Act without Seeing via Language-Action Pretraining](/202606/27/2606.27295v1-la4vla-learning-to-act-without-seeing-via-language-action-pretraining)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：LA4VLA: 针对视觉-语言-动作模型的语言-动作预训练，减少对视觉线索的依赖。
+10. [VibeAct: Vibration to Actions for Contact-Rich Reactive Robot Dexterity](/202606/27/2606.27344v1-vibeact-vibration-to-actions-for-contact-rich-reactive-robot-dexterity)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：端到端仿真到真实的强化学习结合振动触觉传感用于灵巧操作
+11. [World Action Models Enable Continual Imitation Learning with Recurrent Generative Replays](/202606/27/2606.27374v1-world-action-models-enable-continual-imitation-learning-with-recurrent-generative-replays)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：用于机器人操作持续模仿学习的世界动作模型。
 
 
 <div class="dpr-home-promo-card">
