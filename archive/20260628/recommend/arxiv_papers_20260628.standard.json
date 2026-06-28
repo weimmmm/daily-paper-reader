@@ -1,0 +1,325 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-28T21:01:22.087521+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2606.23153v1",
+      "source": "arxiv",
+      "title": "Asymmetric physics enables efficient learning in quadrupedal robot swarms",
+      "abstract": "Animal collectives navigate cluttered environments through local coordination, yet robot swarms still struggle to reproduce this capability in the physical world. End-to-end learning offers a route to such coordination, but scaling it to embodied swarms remains difficult: standard sampling-based reinforcement learning becomes inefficient when visual perception, dense robot-robot interaction, and contact-rich locomotion must be learned together. Here we show that asymmetric physics enables efficient end-to-end learning of vision-based, decentralized control in large swarms of quadrupedal robots. During training, quadrupeds interact in shared environments, where a high-fidelity, non-differentiable simulator generates realistic motion and contact dynamics, and differentiable surrogate models provide gradients for navigation and locomotion policies. This separation enables up to 512 quadrupeds to learn coordinated navigation policies in obstacle-rich environments. At deployment, each robot acts from a single forward-facing depth camera, without explicit communication, centralized planning, or global maps. The policies generalize across forests, bridges, enclosures, narrow passages, and mazes, and zero-shot transfer to six physical quadrupeds across five real-world scenarios. The resulting swarms exhibit predictive avoidance, right-side yielding, pausing before bottlenecks, and wall following, showing that asymmetric physics enables efficient training of scalable decentralized control policies for quadrupedal robot swarms.",
+      "authors": [
+        "Yuang Zhang",
+        "Yunlong Song",
+        "Zhihao He",
+        "Zelin Ni",
+        "Kangyu Wang",
+        "Tianchi Liu",
+        "Yu Hu",
+        "Feng Yu",
+        "Danping Zou",
+        "Weiyao Lin"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-22T10:58:43+00:00",
+      "link": "https://arxiv.org/pdf/2606.23153v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "RL for embodied robot navigation with end-to-end learning in swarms",
+      "llm_evidence_cn": "强化学习用于具身机器人群体导航与端到端学习",
+      "llm_evidence": "强化学习用于具身机器人群体导航与端到端学习",
+      "canonical_evidence": "强化学习用于具身机器人群体导航与端到端学习",
+      "llm_tldr_en": "Asymmetric physics enables efficient end-to-end RL for vision-based decentralized control of quadrupedal robot swarms, overcoming the inefficiency of standard sampling-based RL in cluttered environments.",
+      "llm_tldr_cn": "动物群体能够通过局部协调穿越杂乱环境，但机器人群体在物理世界复制此能力仍具挑战。本文利用不对称物理实现四足机器人群体的大规模端到端强化学习，在训练期间通过高保真仿真器产生真实运动与接触动力学，使视觉、机器人-机器人交互和接触运动同时学习成为可能，有效提高了群体导航性能。",
+      "llm_tldr": "动物群体能够通过局部协调穿越杂乱环境，但机器人群体在物理世界复制此能力仍具挑战。本文利用不对称物理实现四足机器人群体的大规模端到端强化学习，在训练期间通过高保真仿真器产生真实运动与接触动力学，使视觉、机器人-机器人交互和接触运动同时学习成为可能，有效提高了群体导航性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning for embodied robot navigation",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.25591v1",
+      "source": "arxiv",
+      "title": "WOLF-VLA: Whole-Body Humanoid Optimal Locomotion Framework for Vision-Language-Action Learning",
+      "abstract": "Vision-Language-Action (VLA) models have recently demonstrated strong generalization in robotic manipulation, yet their applicability to whole-body, contact-rich humanoid locomotion remains severely underexplored due to data scarcity, the absence of dynamically consistent demonstrations, and the difficulty of encoding optimality and safety in learning-based pipelines. This work introduces a unified framework WOLF-VLA that integrates whole-body optimal-control (OC) motion synthesis with large-scale multi-modal dataset to train VLAs capable of generating humanoid locomotion policies directly from natural-language instructions. We construct a comprehensive dataset of dynamically feasible humanoid trajectories across six locomotion-related task families, each parameterized by environmental variations, object colors, placements, and visual distractors. We train a VLA model using the collected joint trajectories, ego-centric visual observations and natural language instruction, yielding a policy that exhibits strong reasoning and robustness to initial-condition variability, and competitive performance across several tasks and environment settings. A systematic ablation study demonstrates the impact of each modality on the model performance. The full dataset, model checkpoints, and benchmarking simulation suite will be openly released, establishing a reproducible dynamically consistent benchmark for whole-body humanoid locomotion rich VLA control and enabling future research in scalable transfer of instruction-driven locomotion policies.",
+      "authors": [
+        "Melya Boukheddimi",
+        "Omar Adjali",
+        "Daniel Sontag",
+        "Frank Kirchner"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-24T08:59:59+00:00",
+      "link": "https://arxiv.org/pdf/2606.25591v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Humanoid locomotion using VLA, directly relevant to robot navigation",
+      "llm_evidence_cn": "使用VLA的人形机器人运动，与机器人导航直接相关",
+      "llm_evidence": "使用VLA的人形机器人运动，与机器人导航直接相关",
+      "canonical_evidence": "使用VLA的人形机器人运动，与机器人导航直接相关",
+      "llm_tldr_en": "Proposes WOLF-VLA, a framework that integrates optimal control motion synthesis with VLA to generate humanoid locomotion policies from natural language, addressing data scarcity and dynamic consistency.",
+      "llm_tldr_cn": "该工作针对VLA模型在全身接触丰富的人形机器人运动中的未充分探索问题，提出WOLF-VLA框架，结合全身最优控制运动合成与大尺度多模态数据集，训练出能直接从自然语言指令生成人形运动策略的VLA模型，在六种运动模式下实现动态可行轨迹，填补了VLA在全身运动领域的空白。",
+      "llm_tldr": "该工作针对VLA模型在全身接触丰富的人形机器人运动中的未充分探索问题，提出WOLF-VLA框架，结合全身最优控制运动合成与大尺度多模态数据集，训练出能直接从自然语言指令生成人形运动策略的VLA模型，在六种运动模式下实现动态可行轨迹，填补了VLA在全身运动领域的空白。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.26855v1",
+      "source": "arxiv",
+      "title": "Humanoid-DART: Humanoid Loco-Manipulation using Diffusion-guided Augmentation through Relabeling and Tracking",
+      "abstract": "Imitating human demonstrations has emerged as a dominant paradigm for learning humanoid loco-manipulation policies. However, scaling these approaches remains challenging due to the high cost of collecting diverse demonstrations and the need for continual human intervention to correct policy failures. In this paper, we present a self-supervised framework that bootstraps from sparse demonstrations and progressively expands its behavioral repertoire, enabling the learning of a goal-conditioned policy that automatically explores the goal space with minimal expert supervision. Our approach combines diffusion-based trajectory generation with reinforcement learning, where the latter is used to track goal-conditioned trajectories produced by the diffusion model for a range of loco-manipulation skills. Through extensive ablation studies and comparisons with state-of-the-art methods, we demonstrate the effectiveness of our framework on multiple humanoid loco-manipulation skills.",
+      "authors": [
+        "Pranav Debbad",
+        "Kanish Thiagarajan",
+        "Victor Dhédin",
+        "Shafeef Omar",
+        "Majid Khadiv"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-25T10:40:33+00:00",
+      "link": "https://arxiv.org/pdf/2606.26855v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "reinforcement learning for humanoid loco-manipulation (navigation and manipulation)",
+      "llm_evidence_cn": "强化学习用于人形机器人运动操作（导航和操作）",
+      "llm_evidence": "强化学习用于人形机器人运动操作（导航和操作）",
+      "canonical_evidence": "强化学习用于人形机器人运动操作（导航和操作）",
+      "llm_tldr_en": "Combines diffusion-based trajectory generation with reinforcement learning for goal-conditioned humanoid loco-manipulation, bootstrapping from sparse demonstrations.",
+      "llm_tldr_cn": "人形机器人运动操作学习面临演示数据成本高且策略失败需要人工修正的挑战。本文提出Humanoid-DART，一种自监督框架，从稀疏演示开始，利用扩散模型生成多样化轨迹，并通过强化学习跟踪目标条件轨迹，逐步扩展行为库。实验证明，该方法能以最小专家监督学习复杂的运动操作技能，并显著减少人工干预需求，为人形机器人自主技能获取提供了新途径。",
+      "llm_tldr": "人形机器人运动操作学习面临演示数据成本高且策略失败需要人工修正的挑战。本文提出Humanoid-DART，一种自监督框架，从稀疏演示开始，利用扩散模型生成多样化轨迹，并通过强化学习跟踪目标条件轨迹，逐步扩展行为库。实验证明，该方法能以最小专家监督学习复杂的运动操作技能，并显著减少人工干预需求，为人形机器人自主技能获取提供了新途径。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning for embodied robot navigation",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.25985v1",
+      "source": "arxiv",
+      "title": "Action ControlNet: A Lightweight Delay-Aware Adapter for Smooth Asynchronous Control in Vision-Language-Action Models",
+      "abstract": "Vision-language-action (VLA) models have shown strong potential for general-purpose robot manipulation, but their inference latency remains a major obstacle to stable high-frequency control. Asynchronous execution mitigates this bottleneck by overlapping policy inference with action execution, yet the next action chunk is still predicted from stale observations while the robot continues to move. Direct chunk stitching therefore introduces handoff discontinuities, action jitter, and failures in contact-rich manipulation. Existing remedies typically require either full-policy retraining or architecture-specific runtime logic. This work proposes Action ControlNet (ACNet), a lightweight delay-aware adapter that uses the executed motion suffix as a residual condition for a mostly frozen action head. ACNet leaves the pretrained backbone unchanged, introduces few trainable parameters, and remains compatible with generative action heads such as diffusion and flow matching. On Kinetix, Meta-World MT50, and a real-world SO-ARM101 platform, ACNet improves robustness under inference delay and yields smoother asynchronous trajectories than direct chunk stitching, while remaining more lightweight than full delay-conditioned retraining.",
+      "authors": [
+        "Tiecheng Guo",
+        "Meng Guo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-24T15:53:43+00:00",
+      "link": "https://arxiv.org/pdf/2606.25985v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "VLA models for robot manipulation with asynchronous control",
+      "llm_evidence_cn": "视觉-语言-动作模型在机器人操控中的异步控制",
+      "llm_evidence": "视觉-语言-动作模型在机器人操控中的异步控制",
+      "canonical_evidence": "视觉-语言-动作模型在机器人操控中的异步控制",
+      "llm_tldr_en": "Action ControlNet is a lightweight adapter that smooths asynchronous control in VLA models by predicting corrective residuals to reduce action jitter in robot manipulation.",
+      "llm_tldr_cn": "针对视觉-语言-动作模型推理延迟导致的异步控制不连续问题，本文提出Action ControlNet（ACNet），一个轻量级的延迟感知适配器，通过预测修正残差来平滑动作衔接。实验表明，ACNet无需重新训练策略即可有效减少动作抖动和接触操作失败，提升了高频控制稳定性。其贡献在于提供了一种即插即用的解决方案，兼容现有VLA模型。",
+      "llm_tldr": "针对视觉-语言-动作模型推理延迟导致的异步控制不连续问题，本文提出Action ControlNet（ACNet），一个轻量级的延迟感知适配器，通过预测修正残差来平滑动作衔接。实验表明，ACNet无需重新训练策略即可有效减少动作抖动和接触操作失败，提升了高频控制稳定性。其贡献在于提供了一种即插即用的解决方案，兼容现有VLA模型。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.22907v1",
+      "source": "arxiv",
+      "title": "Improving Robotic Imitation Learning via Trajectory Standardization",
+      "abstract": "Imitation learning for robotic manipulation relies on large sets of human demonstration trajectories, which are often noisy and temporally irregular due to variable operator speed, intermittent pauses, and inconsistent action density. A common preprocessing strategy is time-uniform downsampling to shorten sequences, but it cannot effectively remove speed-induced non-uniformity or redundant pauses. This mismatch degrades data quality and hinders policy learning. To address this issue, we propose Information-Standardized Trajectory Resampling (ISR), an offline preprocessing method for effective imitation learning. ISR resamples each trajectory by enforcing approximately equal information distance between adjacent points. Specifically, we map trajectories onto an information-modulated Riemannian manifold and perform geodesic-equidistant parameterization. We construct an information-intensity field from velocity and acceleration norms: the velocity term removes small-motion redundancy, while the acceleration term preserves high-curvature and fine-manipulation phases. We evaluate ISR on three real-world manipulation tasks with mainstream imitation learning policies. Compared with the baseline time-uniform 3x downsampling, ISR improves task success rates by about 25%, remains robust across datasets collected from different operators, and reduces both dataset size and training cost. The code and videos are publicly available at https://d-robotics-ai-lab.github.io/isr.page.",
+      "authors": [
+        "Licheng Yang",
+        "Lingfeng Qian",
+        "Fei Zheng",
+        "Yonghao He",
+        "Wei Sui",
+        "Shuangshuang Li",
+        "Hu Su"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-22T06:46:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.22907v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "robotic imitation learning for embodied agents",
+      "llm_evidence_cn": "机器人模仿学习用于具身智能体",
+      "llm_evidence": "机器人模仿学习用于具身智能体",
+      "canonical_evidence": "机器人模仿学习用于具身智能体",
+      "llm_tldr_en": "Proposes Information-Standardized Trajectory Resampling (ISR) to preprocess human demonstration trajectories for robotic manipulation, improving imitation learning quality.",
+      "llm_tldr_cn": "机器人模仿学习依赖大规模人类演示轨迹，但轨迹中的速度不均匀性和暂停导致数据质量下降，影响策略学习效果。本文提出信息标准化轨迹重采样（ISR）方法，通过强制相邻点之间的信息距离相等来重采样轨迹，从而去除噪声和冗余。在机器人操作任务上的实验表明，该方法有效提升了模仿学习的成功率和泛化能力，且作为预处理方法易于集成到现有流程中。",
+      "llm_tldr": "机器人模仿学习依赖大规模人类演示轨迹，但轨迹中的速度不均匀性和暂停导致数据质量下降，影响策略学习效果。本文提出信息标准化轨迹重采样（ISR）方法，通过强制相邻点之间的信息距离相等来重采样轨迹，从而去除噪声和冗余。在机器人操作任务上的实验表明，该方法有效提升了模仿学习的成功率和泛化能力，且作为预处理方法易于集成到现有流程中。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.24669v1",
+      "source": "arxiv",
+      "title": "LaGO: Latent Action Guidance for Online Reinforcement Learning",
+      "abstract": "Large language models (LLMs) have shown strong potential for planning and sequential decision-making, but prior work often relies on using them as direct controllers, which requires precise action generation and can be unreliable in practice. This paper proposes Latent Action Guidance for Online Reinforcement Learning (LaGO), a framework that uses a pretrained LLM as a latent action prior to softly guide online policy optimization, rather than treating the LLM as an explicit planner or controller. Experiments on both a discrete-control benchmark, CLEVR-Robot, and a continuous-control benchmark, Meta-World, demonstrate that LaGO consistently improves both reward and success rate over Vanilla PPO. In particular, LaGO increases the average success rate from 15.1% to 27.2% on CLEVR-Robot and from 2.7% to 15.2% on Meta-World. Our analysis further shows that stronger pretrained LLMs provide more effective guidance, suggesting that LLM knowledge can improve planning and online decision-making.",
+      "authors": [
+        "Kuan-Yen Liu",
+        "Ren-Jyun Huang",
+        "Ti-Rong Wu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-23T15:03:31+00:00",
+      "link": "https://arxiv.org/pdf/2606.24669v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "online RL with LLM latent action guidance",
+      "llm_evidence_cn": "在线强化学习结合LLM潜在动作引导",
+      "llm_evidence": "在线强化学习结合LLM潜在动作引导",
+      "canonical_evidence": "在线强化学习结合LLM潜在动作引导",
+      "llm_tldr_en": "LaGO uses a pretrained LLM as a latent action prior to softly guide online policy optimization, improving reward and success rate over PPO on CLEVR-Robot and Meta-World benchmarks.",
+      "llm_tldr_cn": "在线强化学习面临稀疏奖励和策略优化挑战。本文提出LaGO，利用预训练LLM作为潜在动作先验，通过软引导方式指导在线策略优化，而非将LLM用作显式控制器。在离散控制基准CLEVR-Robot和连续控制基准Meta-World上，LaGO相较于PPO持续提升了奖励和成功率，展示了语言模型辅助强化学习的潜力。",
+      "llm_tldr": "在线强化学习面临稀疏奖励和策略优化挑战。本文提出LaGO，利用预训练LLM作为潜在动作先验，通过软引导方式指导在线策略优化，而非将LLM用作显式控制器。在离散控制基准CLEVR-Robot和连续控制基准Meta-World上，LaGO相较于PPO持续提升了奖励和成功率，展示了语言模型辅助强化学习的潜力。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.24815v1",
+      "source": "arxiv",
+      "title": "MANGO: Automated Multi-Agent Test Oracle Generation for Vision-Language-Action Models",
+      "abstract": "Vision-Language-Action (VLA) models are emerging robotic control systems that integrate perception, language understanding, and action generation in a unified architecture. Existing testing approaches for VLA-enabled robots rely on manually constructed symbolic test oracles that determine task success from final environment states. These oracles are costly to construct, require domain expertise, and are often tightly coupled to specific tasks and environments, limiting scalability and reuse. Furthermore, they provide only end-state assessments of task outcomes, offering limited insight into intermediate behavior and fault localization. To address these limitations, we introduce MANGO, a multi-agent framework that automatically generates fine-grained oracles from natural-language descriptions of robotic tasks. MANGO first generates a reusable library of atomic tasks, then generates simulator-grounded oracle definitions for each atomic task, and finally produces executable fine-grained oracles by decomposing complex instructions into ordered sequences of atomic actions and corresponding oracles. The framework uses collaborative Generator, Assessor, and Judge agents that iteratively refine generated artifacts through structured feedback. We evaluate MANGO on the LIBERO_10 and RoboCasa Humanoid Tabletop benchmarks. Results show that MANGO generates executable, fine-grained oracles that detect a similar number of failures as symbolic oracles while accurately localizing them and providing richer diagnostic information. Through ablation studies, we further analyzed component contributions and the effect of initial task set, while preserving oracle quality. Overall, the results show the feasibility and effectiveness of test oracle generation for VLA-enabled robots testing.",
+      "authors": [
+        "Pablo Valle",
+        "Shaukat Ali",
+        "Aitor Arrieta",
+        "Lionel Briand"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.RO"
+      ],
+      "published": "2026-06-23T17:00:06+00:00",
+      "link": "https://arxiv.org/pdf/2606.24815v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Automated test oracle generation for VLA robot models",
+      "llm_evidence_cn": "面向VLA机器人模型的自动化测试预言生成",
+      "llm_evidence": "面向VLA机器人模型的自动化测试预言生成",
+      "canonical_evidence": "面向VLA机器人模型的自动化测试预言生成",
+      "llm_tldr_en": "MANGO is a multi-agent framework that automatically generates test oracles for VLA models by analyzing intermediate behaviors and final states.",
+      "llm_tldr_cn": "针对VLA模型测试依赖手工构造预言且无法定位中间故障的问题，本文提出MANGO多智能体框架。它自动生成测试预言，不仅评估最终状态，还能分析中间行为进行故障定位。实验表明，MANGO有效降低了测试成本，提高了故障检测覆盖率。该工作为VLA机器人系统的可靠性验证提供了可扩展的自动化方案。",
+      "llm_tldr": "针对VLA模型测试依赖手工构造预言且无法定位中间故障的问题，本文提出MANGO多智能体框架。它自动生成测试预言，不仅评估最终状态，还能分析中间行为进行故障定位。实验表明，MANGO有效降低了测试成本，提高了故障检测覆盖率。该工作为VLA机器人系统的可靠性验证提供了可扩展的自动化方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.24962v1",
+      "source": "arxiv",
+      "title": "Towards Scalable Multi-Task Reinforcement Learning with Large Decision Models",
+      "abstract": "Recent progress in large-scale sequence modeling has shown that a single model can learn useful representations across highly diverse data distributions. Inspired by these advances, we investigate whether a unified transformer policy can be trained across large collections of heterogeneous reinforcement learning environments.   We introduce LDM-v0, a Large Decision Model trained offline on trajectories collected from thousands of environments spanning multiple domains and modalities. LDM-v0 is a multi-task, multi-modal transformer policy conditioned on histories of observations, actions, rewards, and termination signals, and trained through supervised next-action prediction over offline trajectories. We describe the environment infrastructure, automated data generation pipeline, model architecture, and training methodology used to build LDM-v0, and evaluate its performance across diverse environments. We show that a single pretrained model matches the performance of independently trained task-specific reference policies on approximately 1,000 environments including robotics, autonomous driving, inventory management, cybersecurity, trading, and video games. These results demonstrate the feasibility of large-scale offline pretraining across heterogeneous reinforcement learning environments using a single transformer policy.",
+      "authors": [
+        "Thibaut Kulak"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-23T09:13:08+00:00",
+      "link": "https://arxiv.org/pdf/2606.24962v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multi-task RL with large decision model",
+      "llm_evidence_cn": "基于大型决策模型的多任务强化学习",
+      "llm_evidence": "基于大型决策模型的多任务强化学习",
+      "canonical_evidence": "基于大型决策模型的多任务强化学习",
+      "llm_tldr_en": "LDM-v0 trains a single transformer policy on offline trajectories from thousands of heterogeneous RL environments for scalable multi-task RL.",
+      "llm_tldr_cn": "本文探索使用单一Transformer策略在大量异构强化学习环境中进行多任务学习。提出LDM-v0，基于离线轨迹通过监督下一动作预测训练条件策略。实验表明，该模型在多种任务上展现出泛化能力，为构建可扩展的通用决策模型提供了基础。其意义在于将大规模序列建模的成功经验引入强化学习领域。",
+      "llm_tldr": "本文探索使用单一Transformer策略在大量异构强化学习环境中进行多任务学习。提出LDM-v0，基于离线轨迹通过监督下一动作预测训练条件策略。实验表明，该模型在多种任务上展现出泛化能力，为构建可扩展的通用决策模型提供了基础。其意义在于将大规模序列建模的成功经验引入强化学习领域。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
