@@ -6,46 +6,68 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-28
-- 运行时间：2026-06-28 21:06:22 UTC
+- 最新运行日期：2026-06-29
+- 运行时间：2026-06-29 21:20:42 UTC
 - 运行状态：成功
-- 本次总论文数：8
-- 精读区：3
-- 速读区：5
+- 本次总论文数：16
+- 精读区：6
+- 速读区：10
 
 ### 今日简报（AI）
-今日重点研究了机器人学习前沿，涵盖四足机器人蜂群高效学习与人形机器人全身运动框架。  
-最值得关注的两篇高分论文：不对称物理机制让四足机器人蜂群实现高效学习，以及WOLF-VLA框架让人形机器人整合视觉-语言-动作实现全身最优控制。  
-建议普通读者优先精读这两篇，再延伸阅读速读列表中关于VLA模型异步控制延迟适配的《Action ControlNet》以形成完整认知。
-- 详情：[/202606/28/README](/202606/28/README)
+今日精选16篇论文，聚焦强化学习与视觉-语言-动作模型两大方向。最值得关注的是无需真实世界经验的约束强化学习方法（9.0分）和基于脉冲神经网络的VLA模型（9.0分），两者均展现出卓越的理论与实际应用潜力。建议优先精读这两篇高分论文，深入理解不依赖真实交互的策略优化和类脑计算模型的部署优势。
+- 详情：[/202606/29/README](/202606/29/README)
 
 ### 精读区论文标签
-1. [Asymmetric physics enables efficient learning in quadrupedal robot swarms](/202606/28/2606.23153v1-asymmetric-physics-enables-efficient-learning-in-quadrupedal-robot-swarms)  
+1. [Support-Constrained RL Enables Real-World Policy Improvement without Real-World Experience](/202606/29/2606.27475v1-support-constrained-rl-enables-real-world-policy-improvement-without-real-world-experience)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：强化学习用于具身机器人群体导航与端到端学习
-2. [WOLF-VLA: Whole-Body Humanoid Optimal Locomotion Framework for Vision-Language-Action Learning](/202606/28/2606.25591v1-wolf-vla-whole-body-humanoid-optimal-locomotion-framework-for-vision-language-action-learning)  
+   evidence：面向具身机器人导航改进的强化学习
+2. [SpikeVLA: Vision-Language-Action Models with Spiking Neural Networks](/202606/29/2606.27807v1-spikevla-vision-language-action-models-with-spiking-neural-networks)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：使用VLA的人形机器人运动，与机器人导航直接相关
-3. [Humanoid-DART: Humanoid Loco-Manipulation using Diffusion-guided Augmentation through Relabeling and Tracking](/202606/28/2606.26855v1-humanoid-dart-humanoid-loco-manipulation-using-diffusion-guided-augmentation-through-relabeling-and-tracking)  
+   evidence：基于脉冲神经网络的VLA架构用于具身导航，能效推理
+3. [PPO-EAL: Exact Augmented Lagrangian Proximal Policy Optimization for Safe Robotic Control](/202606/29/2606.27861v1-ppo-eal-exact-augmented-lagrangian-proximal-policy-optimization-for-safe-robotic-control)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：结合增广拉格朗日和PPO的约束策略优化，用于安全机器人控制
+4. [LocalNav: Distilling Frontier VLMs and Embodied RL for On-Device Object Goal Navigation](/202606/29/2606.27871v1-localnav-distilling-frontier-vlms-and-embodied-rl-for-on-device-object-goal-navigation)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：蒸馏前沿VLM和具身强化学习用于设备端物体目标导航
+5. [E-TTS: A New Embodied Test-Time Scaling Framework for Robotic Manipulation](/202606/29/2606.27268v1-e-tts-a-new-embodied-test-time-scaling-framework-for-robotic-manipulation)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：强化学习用于人形机器人运动操作（导航和操作）
+   evidence：具身机器人操作的测试时扩展
+6. [Learning Stable In-Grasp Manipulation in a Non-Dropping Action Space](/202606/29/2606.28196v1-learning-stable-in-grasp-manipulation-in-a-non-dropping-action-space)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：强化学习用于灵巧操作，结合端到端探索和物理约束
 
 ### 速读区论文标签
-1. [Action ControlNet: A Lightweight Delay-Aware Adapter for Smooth Asynchronous Control in Vision-Language-Action Models](/202606/28/2606.25985v1-action-controlnet-a-lightweight-delay-aware-adapter-for-smooth-asynchronous-control-in-vision-language-action-models)  
+1. [NavWM: A Unified Navigation World Model for Foresight-Driven Planning](/202606/29/2606.24101v1-navwm-a-unified-navigation-world-model-for-foresight-driven-planning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：视觉-语言-动作模型在机器人操控中的异步控制
-2. [Improving Robotic Imitation Learning via Trajectory Standardization](/202606/28/2606.22907v1-improving-robotic-imitation-learning-via-trajectory-standardization)  
+   evidence：统一导航世界模型用于前瞻规划
+2. [Reflective VLA: In-Context Action Consequences Make VLAs Generalize](/202606/29/2606.25215v1-reflective-vla-in-context-action-consequences-make-vlas-generalize)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：通过观察-动作-结果三元组条件化提升VLA泛化性
+3. [Improving Vision-Language-Action Model Fine-Tuning with Structured Stage and Keyframe Supervision](/202606/29/2606.26801v1-improving-vision-language-action-model-fine-tuning-with-structured-stage-and-keyframe-supervision)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：为视觉-语言-动作模型微调提供结构化阶段和关键帧监督
+4. [SceneBot: Contact-Prompted General Humanoid Whole Body Tracking with Scene-Interaction](/202606/29/2606.27581v1-scenebot-contact-prompted-general-humanoid-whole-body-tracking-with-scene-interaction)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：人形机器人强化学习策略用于全身跟踪与场景交互
+5. [Direct Action-Head Injection of A Grounded 3D Point Unlocks Spatial and Task Generalization](/202606/29/2606.27663v1-direct-action-head-injection-of-a-grounded-3d-point-unlocks-spatial-and-task-generalization)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：通过3D点注入提升VLA模型在机器人操作中的泛化能力
+6. [S$^2$-VLA: State-Space Guided Vision-Language-Action Models for Long-Horizon Manipulation](/202606/29/2606.27872v1-s2-vla-state-space-guided-vision-language-action-models-for-long-horizon-manipulation)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：端到端视觉-语言-动作模型，自适应注意力机制
+7. [ARP: Enhancing Quantized Skill Abstractions via Visual Alignment and Iterative Refinement for Robotic Manipulation](/202606/29/2606.22480v1-arp-enhancing-quantized-skill-abstractions-via-visual-alignment-and-iterative-refinement-for-robotic-manipulation)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：机器人模仿学习用于具身智能体
-3. [LaGO: Latent Action Guidance for Online Reinforcement Learning](/202606/28/2606.24669v1-lago-latent-action-guidance-for-online-reinforcement-learning)  
+   evidence：机器人操作技能抽象与视觉对齐
+8. [RECALL: Recovery Experience Collection for Active Lifelong Learning in Vision-Language-Action Models](/202606/29/2606.23617v1-recall-recovery-experience-collection-for-active-lifelong-learning-in-vision-language-action-models)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：在线强化学习结合LLM潜在动作引导
-4. [MANGO: Automated Multi-Agent Test Oracle Generation for Vision-Language-Action Models](/202606/28/2606.24815v1-mango-automated-multi-agent-test-oracle-generation-for-vision-language-action-models)  
+   evidence：VLA模型的主动持续学习
+9. [LA4VLA: Learning to Act without Seeing via Language-Action Pretraining](/202606/29/2606.27295v2-la4vla-learning-to-act-without-seeing-via-language-action-pretraining)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：面向VLA机器人模型的自动化测试预言生成
-5. [Towards Scalable Multi-Task Reinforcement Learning with Large Decision Models](/202606/28/2606.24962v1-towards-scalable-multi-task-reinforcement-learning-with-large-decision-models)  
+   evidence：无视觉的VLA语言动作预训练
+10. [Continual Robot Policy Learning via Variational Neural Dynamics](/202606/29/2606.27353v1-continual-robot-policy-learning-via-variational-neural-dynamics)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：基于大型决策模型的多任务强化学习
+   evidence：基于变分神经动力学的机器人策略持续学习
 
 
 <div class="dpr-home-promo-card">
