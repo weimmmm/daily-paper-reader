@@ -6,73 +6,71 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-30
-- 运行时间：2026-06-30 21:35:40 UTC
+- 最新运行日期：2026-07-01
+- 运行时间：2026-07-01 22:12:55 UTC
 - 运行状态：成功
 - 本次总论文数：17
 - 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日聚焦两篇9分精读：空中视觉语言导航的自验证推理框架与社交机器人导航的语义-控制桥接方案。  
-最值得关注的是VLM导航中“闭环自验证”提升鲁棒性，以及如何将高层语义推理无缝映射到低层控制指令。  
-建议普通读者重点追踪VLM在实机部署中的推理效率与探索策略融合，这是从实验室走向落地的关键。
-- 详情：[/202606/30/README](/202606/30/README)
+今日收录17篇论文，精读2篇高分工作聚焦视觉语言导航与符号强化学习。最值得关注《ViTL》实现的零样本自然语言导航和《Plan Right, Then Plan Tight》的高效具身推理。建议优先精读这两篇9分论文以把握前沿方向。
+- 详情：[/202607/01/README](/202607/01/README)
 
 ### 精读区论文标签
-1. [CLOSER-VLN: Closed-Loop Self-Verified Retrieval-Augmented Reasoning for Aerial Vision-Language Navigation](/202606/30/2606.28397v1-closer-vln-closed-loop-self-verified-retrieval-augmented-reasoning-for-aerial-vision-language-navigation)  
+1. [ViTL: Temporal Logic-Guided Zero-Shot Natural Language Navigation via Vision-Language Models](/202607/01/2606.30696v1-vitl-temporal-logic-guided-zero-shot-natural-language-navigation-via-vision-language-models)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：空中视觉语言导航的闭环自我验证检索增强推理
-2. [Vision-Language Models for Deployable Social Robot Navigation: Bridging Semantic Reasoning and Low-Level Control](/202606/30/2606.28760v1-vision-language-models-for-deployable-social-robot-navigation-bridging-semantic-reasoning-and-low-level-control)  
+   evidence：基于时态逻辑的视觉语言导航
+2. [Plan Right, Then Plan Tight: Symbolic RL for Efficient Embodied Reasoning](/202607/01/2606.31260v1-plan-right-then-plan-tight-symbolic-rl-for-efficient-embodied-reasoning)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：视觉语言模型用于社交机器人导航，桥接语义与低级控制
-3. [CORE Planner: Contextual-memory Oriented Reinforcement-learning in Unknown Environments for Robot Navigation](/202606/30/2606.29222v1-core-planner-contextual-memory-oriented-reinforcement-learning-in-unknown-environments-for-robot-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：强化学习用于未知环境机器人导航，结合上下文记忆
-4. [RoamFlow: Reinforcement-Aligned One-Step Action MeanFlow Policy for Image-Goal Navigation](/202606/30/2606.29934v1-roamflow-reinforcement-aligned-one-step-action-meanflow-policy-for-image-goal-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：图像目标导航结合强化学习
-5. [FutureNav: Unified World-Action Modeling for Vision-and-Language Navigation](/202606/30/2606.30367v1-futurenav-unified-world-action-modeling-for-vision-and-language-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：视觉语言导航的统一世界-动作建模
-6. [HUMEMBR: Learning Human Routines for Predictive Embodied Navigation](/202606/30/2606.30404v1-humembr-learning-human-routines-for-predictive-embodied-navigation)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：利用人类日常进行预测性具身导航
+   evidence：强化学习用于具身任务规划
+3. [GPC: Large-Scale Generative Pretraining for Transferable Motor Control](/202607/01/2606.29148v1-gpc-large-scale-generative-pretraining-for-transferable-motor-control)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：端到端强化学习用于运动控制
+4. [Warp RL: Reshaping Base Policy Distributions for Dynamics Adaptation](/202607/01/2606.31043v1-warp-rl-reshaping-base-policy-distributions-for-dynamics-adaptation)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：残差强化学习用于机器人策略分布适应
+5. [A Modular Vision-Language-Action Robotics Framework for Indoor Environments](/202607/01/2606.31144v1-a-modular-vision-language-action-robotics-framework-for-indoor-environments)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：基于VLM和语义映射的模块化VLA室内机器人导航框架
+6. [Z-1: Efficient Reinforcement Learning for Vision-Language-Action Models](/202607/01/2606.31846v1-z-1-efficient-reinforcement-learning-for-vision-language-action-models)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：用于机器人操作的VLA模型的端到端强化学习后训练
 
 ### 速读区论文标签
-1. [Dual-Flow Reinforcement Learning with State-Aware Exploration](/202606/30/2606.29820v1-dual-flow-reinforcement-learning-with-state-aware-exploration)  
+1. [MVP-Nav: Multi-layer Value Map Planner Navigator](/202607/01/2606.31919v1-mvp-nav-multi-layer-value-map-planner-navigator)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：强化学习方法用于连续控制
-2. [Trust Your Instincts: Confidence-Driven Test-Time RL for Vision-Language-Action Models](/202606/30/2606.29892v1-trust-your-instincts-confidence-driven-test-time-rl-for-vision-language-action-models)  
+   evidence：物理感知的纯RGB目标导航框架
+2. [Adapting Generalist Robot Policies with Semantic Reinforcement Learning](/202607/01/2606.31958v1-adapting-generalist-robot-policies-with-semantic-reinforcement-learning)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向视觉-语言-动作模型的测试时强化学习自举方法
-3. [Pondering the Way: Spatial-perceiving World Action Model for Embodied Navigation](/202606/30/2606.29908v1-pondering-the-way-spatial-perceiving-world-action-model-for-embodied-navigation)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：具身导航与世界动作模型
-4. [Training Vision-Language-Action Models with Dense Embodied Chain-of-Thought Supervision](/202606/30/2606.30552v1-training-vision-language-action-models-with-dense-embodied-chain-of-thought-supervision)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：使用密集具身思维链监督的端到端VLA模型
-5. [SSI-Policy: Learning Structured Scene Interfaces for Vision-Language Robotic Manipulation](/202606/30/2606.26800v1-ssi-policy-learning-structured-scene-interfaces-for-vision-language-robotic-manipulation)  
+   evidence：端到端强化学习适应通用机器人策略
+3. [Domain Adaptation with Adaptive Imagination for Visual Reinforcement Learning under Limited Target Data](/202607/01/2606.30192v1-domain-adaptation-with-adaptive-imagination-for-visual-reinforcement-learning-under-limited-target-data)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：基于结构化场景界面的视觉语言机器人操作
-6. [Keypose Exploration: Efficient Automatic Trajectory Labelling and Cross-Embodiment Policy Transfer](/202606/30/2606.29028v1-keypose-exploration-efficient-automatic-trajectory-labelling-and-cross-embodiment-policy-transfer)  
+   evidence：视觉强化学习中的域适应
+4. [Grasp-Oriented Non-Prehensile Manipulation via Learning a Graspability Field](/202607/01/2606.30474v1-grasp-oriented-non-prehensile-manipulation-via-learning-a-graspability-field)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：基于VLM的轨迹标注与跨具身策略迁移用于操作
-7. [CRAFT: Counterfactual Credit Assignment from Free Sibling Rollouts for Self-Distilled Agentic Reinforcement Learning](/202606/30/2606.29476v1-craft-counterfactual-credit-assignment-from-free-sibling-rollouts-for-self-distilled-agentic-reinforcement-learning)  
+   evidence：强化学习用于抓取操作
+5. [Sampling-Based Coordination-Informed Multi-Objective Multi-Robot Reinforcement Learning](/202607/01/2606.30893v1-sampling-based-coordination-informed-multi-objective-multi-robot-reinforcement-learning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：用于自蒸馏智能体强化学习的反事实信用分配
-8. [Hierarchical Policy Learning via Spectral Decomposition](/202606/30/2606.29570v1-hierarchical-policy-learning-via-spectral-decomposition)  
+   evidence：基于采样的协调多目标多机器人强化学习
+6. [Hierarchical 3D Scene Graph Construction and Belief-based Planning for Semantic Navigation](/202607/01/2606.31071v1-hierarchical-3d-scene-graph-construction-and-belief-based-planning-for-semantic-navigation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：基于频谱分解的机器人分层策略学习
-9. [Grounding Generative Policies in Physics: Optimization-Guided Diffusion for Robot Control](/202606/30/2606.24208v1-grounding-generative-policies-in-physics-optimization-guided-diffusion-for-robot-control)  
+   evidence：分层场景图用于语义导航
+7. [Safe Online Learning via Smooth Safety-Structured Policy Composition](/202607/01/2606.31320v1-safe-online-learning-via-smooth-safety-structured-policy-composition)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：安全在线强化学习，平滑安全性保证
+8. [3D HAMSTER: Bridging Planning and Control in Hierarchical Vision Language Action Models through 3D Trajectory Guidance](/202607/01/2606.31329v1-3d-hamster-bridging-planning-and-control-in-hierarchical-vision-language-action-models-through-3d-trajectory-guidance)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：层次化VLA模型结合3D轨迹用于具身机器人
+9. [Vision-Language Model Reasoning for Contextual Semantic Mapping in Intralogistics](/202607/01/2606.24814v2-vision-language-model-reasoning-for-contextual-semantic-mapping-in-intralogistics)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：面向物理可行性的优化引导扩散模型机器人控制
-10. [Learning Action Priors for Cross-embodiment Robot Manipulation](/202606/30/2606.26095v1-learning-action-priors-for-cross-embodiment-robot-manipulation)  
+   evidence：面向机器人导航的语义映射
+10. [OpenSPM: An Environment-Transferable Robotic Key Spatial Pose Memory and Closed-Loop High-Frequency Flow-Matching Action Generation Model](/202607/01/2606.29936v1-openspm-an-environment-transferable-robotic-key-spatial-pose-memory-and-closed-loop-high-frequency-flow-matching-action-generation-model)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：跨实体机器人操作与VLA模型
-11. [SSI-Policy: Learning Structured Scene Interfaces for Vision-Language Robotic Manipulation](/202606/30/2606.26800v2-ssi-policy-learning-structured-scene-interfaces-for-vision-language-robotic-manipulation)  
+   evidence：端到端视觉-语言-动作模型结合空间记忆
+11. [VLK: Learning Humanoid Loco-Manipulation from Synthetic Interactions in Reconstructed Scenes](/202607/01/2606.30645v1-vlk-learning-humanoid-loco-manipulation-from-synthetic-interactions-in-reconstructed-scenes)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：面向视觉-语言机器人操作的结构化场景接口
+   evidence：在重建场景中使用合成视觉-语言-运动学数据的人形机器人移动操作
 
 
 <div class="dpr-home-promo-card">
