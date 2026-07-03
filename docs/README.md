@@ -6,73 +6,71 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-02
-- 运行时间：2026-07-02 21:21:58 UTC
+- 最新运行日期：2026-07-03
+- 运行时间：2026-07-03 21:09:41 UTC
 - 运行状态：成功
 - 本次总论文数：17
-- 精读区：6
-- 速读区：11
+- 精读区：7
+- 速读区：10
 
 ### 今日简报（AI）
-今日处理17篇论文，精读6篇，核心聚焦强化学习奖励设计与运动规划两大方向。  
-最值得关注的是两篇9分论文：正则化奖惩强化学习与基于视觉语言模型的奖励学习方法。  
-普通读者可优先从这两篇RL奖励机制论文入手，再拓展至步态运动规划相关研究。
-- 详情：[/202607/02/README](/202607/02/README)
+今日17篇论文精读速读并行，聚焦无监督泛化技能学习与社交机器人导航两大高分成果。最值得关注的方向是数据高效的无监督RL如何实现技能泛化，以及机器人通过通信完成社会导航。建议优先阅读精读列表中的两篇9.0分论文，并关注分层多智能体通信与流匹配动作策略。
+- 详情：[/202607/03/README](/202607/03/README)
 
 ### 精读区论文标签
-1. [Regularized Reward-Punishment Reinforcement Learning](/202607/02/2606.28152v1-regularized-reward-punishment-reinforcement-learning)  
+1. [Learning Generalizable Skill Policy with Data-Efficient Unsupervised RL](/202607/03/2607.00392v1-learning-generalizable-skill-policy-with-data-efficient-unsupervised-rl)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：正则化奖励-惩罚强化学习
-2. [VLM-AR3L: Vision-Language Models for Absolute and Relative Rewards in Reinforcement Learning](/202607/02/2607.00483v1-vlm-ar3l-vision-language-models-for-absolute-and-relative-rewards-in-reinforcement-learning)  
+   evidence：提出可泛化的无监督强化学习框架用于技能策略学习
+2. [Robots Ask the Way: Communication-Enabled Social Navigation](/202607/03/2607.01044v1-robots-ask-the-way-communication-enabled-social-navigation)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：基于VLM的强化学习奖励学习
-3. [DART-VLN: Test-Time Memory Decay and Anti-Loop Regularization for Discrete Vision-Language Navigation](/202607/02/2607.01043v1-dart-vln-test-time-memory-decay-and-anti-loop-regularization-for-discrete-vision-language-navigation)  
+   evidence：提出支持通信的社交导航
+3. [One Demonstration Is Enough for Real-World Robotic Reinforcement Learning](/202607/03/2607.01651v1-one-demonstration-is-enough-for-real-world-robotic-reinforcement-learning)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：离散视觉语言导航的测试时控制
-4. [Training Vision-Language-Action Models with Dense Embodied Chain-of-Thought Supervision](/202607/02/2606.30552v2-training-vision-language-action-models-with-dense-embodied-chain-of-thought-supervision)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：端到端VLA模型与具身思维链
-5. [Warp RL: Reshaping Base Policy Distributions for Dynamics Adaptation](/202607/02/2606.31043v2-warp-rl-reshaping-base-policy-distributions-for-dynamics-adaptation)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：Warp RL通过可逆变换调整机器人策略的动作分布
-6. [Stage-Transition Dense Reward Modeling for Reinforcement Learning](/202607/02/2606.31377v1-stage-transition-dense-reward-modeling-for-reinforcement-learning)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：强化学习用于机器人操作
+   evidence：真实世界机器人强化学习，单次示教
+4. [Path-level Hindsight Instructions for Semantic Exploration in Vision-Language Navigation](/202607/03/2607.01754v1-path-level-hindsight-instructions-for-semantic-exploration-in-vision-language-navigation)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：用于视觉语言导航的后见指令对齐与在策略探索
+5. [SPLC: Social Preference Learning for Crowd Robot Navigation](/202607/03/2607.01925v1-splc-social-preference-learning-for-crowd-robot-navigation)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：离线强化学习用于人群机器人导航，引入社会偏好学习
+6. [CoFL-S: Spatially Queryable Sector Flow Fields for Local Language-Conditioned Navigation](/202607/03/2607.02222v1-cofl-s-spatially-queryable-sector-flow-fields-for-local-language-conditioned-navigation)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：视觉语言导航，流场预测
+7. [WorldSample: Closed-loop Real-robot RL with World Modelling](/202607/03/2607.02431v1-worldsample-closed-loop-real-robot-rl-with-world-modelling)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：真实机器人强化学习，世界模型增强
 
 ### 速读区论文标签
-1. [Learning Gait-Aware Quadruped Locomotion with Temporal Logic Specifications](/202607/02/2607.00442v1-learning-gait-aware-quadruped-locomotion-with-temporal-logic-specifications)  
+1. [HiComm: Hierarchical Communication for Multi-agent Reinforcement Learning](/202607/03/2606.29126v1-hicomm-hierarchical-communication-for-multi-agent-reinforcement-learning)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：基于时序逻辑的四足运动强化学习
-2. [Motion Planning in Compressed Representation Spaces](/202607/02/2606.30940v1-motion-planning-in-compressed-representation-spaces)  
+   evidence：提出多智能体强化学习的层级通信模块
+2. [Guided Action Flow: Q-Guided Inference for Flow-Matching Vision-Language-Action Policies](/202607/03/2607.02092v1-guided-action-flow-q-guided-inference-for-flow-matching-vision-language-action-policies)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：使用学习到的动作块评论家（Q）引导流匹配VLA策略推理
+3. [LAMP: Long-Horizon Adaptive Manipulation Planning for Multi-Robot Collaboration in Cluttered Space](/202607/03/2606.29358v1-lamp-long-horizon-adaptive-manipulation-planning-for-multi-robot-collaboration-in-cluttered-space)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：机器人导航中的运动规划
-3. [ELMP: Efficient Learning for Motion Planning via Analytical Policy Gradients](/202607/02/2607.00215v1-elmp-efficient-learning-for-motion-planning-via-analytical-policy-gradients)  
+   evidence：使用强化学习进行端到端规划
+4. [3D HAMSTER: Bridging Planning and Control in Hierarchical Vision Language Action Models through 3D Trajectory Guidance](/202607/03/2606.31329v2-3d-hamster-bridging-planning-and-control-in-hierarchical-vision-language-action-models-through-3d-trajectory-guidance)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：基于解析策略梯度的高效运动规划
-4. [Task-Relevant Representation Decoupling for Visual Reinforcement Learning Generalization](/202607/02/2607.00796v1-task-relevant-representation-decoupling-for-visual-reinforcement-learning-generalization)  
+   evidence：层次化视觉语言动作模型结合3D轨迹引导
+5. [VLM-AR3L: Vision-Language Models for Absolute and Relative Rewards in Reinforcement Learning](/202607/03/2607.00483v2-vlm-ar3l-vision-language-models-for-absolute-and-relative-rewards-in-reinforcement-learning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：视觉强化学习泛化方法
-5. [Local Motion Matters: A Deconstruct-Recompose Paradigm for Reinforcement Learning Pre-training from Videos](/202607/02/2607.00808v1-local-motion-matters-a-deconstruct-recompose-paradigm-for-reinforcement-learning-pre-training-from-videos)  
+   evidence：视觉语言模型用于强化学习奖励设计
+6. [CoRe: Combined Rewards with Vision-Language Model Feedback for Preference-Aligned Reinforcement Learning](/202607/03/2607.01721v1-core-combined-rewards-with-vision-language-model-feedback-for-preference-aligned-reinforcement-learning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：强化学习预训练
-6. [From Pixels to Temporal Correlations: Learning Informative Representations for Reinforcement Learning Pre-training](/202607/02/2607.00811v1-from-pixels-to-temporal-correlations-learning-informative-representations-for-reinforcement-learning-pre-training)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：强化学习预训练
-7. [Where Am I? Semantic Map Grounding via Vision-Language Models for Multi-Modal Localization](/202607/02/2607.01079v1-where-am-i-semantic-map-grounding-via-vision-language-models-for-multi-modal-localization)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：视觉语言模型用于GPS缺失环境下的机器人定位
-8. [FAR: Failure-Aware Retry for Test-Time Recovery and Continual Policy Improvement](/202607/02/2607.01111v1-far-failure-aware-retry-for-test-time-recovery-and-continual-policy-improvement)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：机器人策略恢复与持续改进框架
-9. [Event-VLA: Action-Conditioned Event Fusion for Robust Vision-Language-Action Model](/202607/02/2606.29384v1-event-vla-action-conditioned-event-fusion-for-robust-vision-language-action-model)  
+   evidence：结合视觉语言模型反馈的混合奖励框架用于强化学习
+7. [3D HAMSTER: Bridging Planning and Control in Hierarchical Vision Language Action Models through 3D Trajectory Guidance](/202607/03/2606.31329v1-3d-hamster-bridging-planning-and-control-in-hierarchical-vision-language-action-models-through-3d-trajectory-guidance)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：鲁棒视觉-语言-动作模型用于具身操作
-10. [Learning Transferable Dynamics Priors from Action to World Modeling](/202607/02/2606.29501v1-learning-transferable-dynamics-priors-from-action-to-world-modeling)  
+   evidence：提出分层视觉语言动作模型用于机器人操作
+8. [Rank-Then-Act: Reward-Free Control from Frame-Order Progress](/202607/03/2607.01897v1-rank-then-act-reward-free-control-from-frame-order-progress)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：机器人学习，世界建模
-11. [ELASTIC: Efficiently Learning to Adaptively Scale Test-Time Compute for Generative Control Policies](/202607/02/2606.31132v1-elastic-efficiently-learning-to-adaptively-scale-test-time-compute-for-generative-control-policies)  
+   evidence：从视频演示中进行强化学习，无需奖励
+9. [LIME: Learning Intent-aware Camera Motion from Egocentric Video](/202607/03/2607.02417v1-lime-learning-intent-aware-camera-motion-from-egocentric-video)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：机器人控制，生成策略
+   evidence：语言条件相机运动用于机器人感知
+10. [Learning to Move Before Learning to Do: Task-Agnostic pretraining for VLAs](/202607/03/2607.02466v1-learning-to-move-before-learning-to-do-task-agnostic-pretraining-for-vlas)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：提出使用无标注交互数据对VLA进行任务无关预训练
 
 
 <div class="dpr-home-promo-card">

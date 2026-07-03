@@ -1,0 +1,696 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-03T20:59:52.648242+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 9,
+    "deep_cap": 6,
+    "deep_selected": 7,
+    "quick_candidates": 10,
+    "quick_skim_target": 11,
+    "quick_selected": 10
+  },
+  "deep_dive": [
+    {
+      "id": "2607.00392v1",
+      "source": "arxiv",
+      "title": "Learning Generalizable Skill Policy with Data-Efficient Unsupervised RL",
+      "abstract": "Unsupervised Reinforcement Learning (URL) aims to pre-train scalable, skill-conditioned policies without extrinsic rewards, serving as a foundation for downstream control tasks. Despite recent progress, we argue that current off-policy URL methods are limited by two critical, overlooked bottlenecks: (1) non-stationary skill semantics and (2) brittle generalization. To address these challenges, we propose GenDa (Generalizable Data-efficient Agent), a unified framework for robust unsupervised reinforcement learning. First, we introduce a skill relabeling mechanism to mitigate non-stationarity and significantly improve data efficiency for pre-training. Second, we propose a Complementary Information Bottleneck (CIB), encouraging the learned skill policy to focus on ego-centric features and become robust to distribution shifts for downstream tasks. Through various experiments, we demonstrate that GenDa significantly enhances the scalability of URL with superior generalizability and data efficiency. Our code and videos are available at https://ihatebroccoli.github.io/official-GenDa.",
+      "authors": [
+        "Jongchan Park",
+        "Seungjun Oh",
+        "Seungho Baek",
+        "Yusung Kim"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-01T03:34:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.00392v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes a generalizable unsupervised RL framework for skill policy learning",
+      "llm_evidence_cn": "提出可泛化的无监督强化学习框架用于技能策略学习",
+      "llm_evidence": "提出可泛化的无监督强化学习框架用于技能策略学习",
+      "canonical_evidence": "提出可泛化的无监督强化学习框架用于技能策略学习",
+      "llm_tldr_en": "GenDa addresses non-stationary skill semantics and brittle generalization in unsupervised RL with skill relabeling and complementary information bottleneck.",
+      "llm_tldr_cn": "无监督强化学习中技能语义非平稳和泛化脆弱是两大瓶颈。GenDa提出技能重标注机制缓解非平稳性，同时引入互补信息瓶颈鼓励技能策略关注与任务相关的特征。在多个连续控制环境中，GenDa在数据效率和下游任务泛化方面显著优于现有方法。",
+      "llm_tldr": "无监督强化学习中技能语义非平稳和泛化脆弱是两大瓶颈。GenDa提出技能重标注机制缓解非平稳性，同时引入互补信息瓶颈鼓励技能策略关注与任务相关的特征。在多个连续控制环境中，GenDa在数据效率和下游任务泛化方面显著优于现有方法。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.01044v1",
+      "source": "arxiv",
+      "title": "Robots Ask the Way: Communication-Enabled Social Navigation",
+      "abstract": "Assistive autonomous robots operating in multi-agent environments require efficient strategies to locate specific individuals among multiple residents. Current social navigation methods focus on reactive collision avoidance and trajectory adaptation, but lack mechanisms to proactively gather information through human-robot communication.   We introduce Communication-enabled Social Navigation (CommNav). In this novel task, robotic agents actively seek assistance from residents to locate target individuals by requesting information about recent sightings, locations, and movements.   To evaluate CommNav, we extend Habitat 3.0 to create Habitat 3.0c, a communication-enabled variant supporting multi-human environments with information exchange protocols. Adding our communication module (COMM) to a state-of-the-art social navigation model yields a 10 percentage-point improvement in Episode Success. We further investigate the transition from structured data to natural language by evaluating models trained on LLM-generated instructions and on colloquial instructions collected from a human study.   Our experiments reveal that: (i) explicit human-robot communication substantially enhances multi-person navigation performance; (ii) pre-training COMM on a communication pretext task effectively addresses the challenge of occasional interaction signals; and (iii) the navigation policy is highly robust to natural, colloquial human language, achieving an episode success statistically similar to the model using perfect structured data.",
+      "authors": [
+        "Valentino Sacco",
+        "Luca Scofano",
+        "Indro Spinelli",
+        "Fabio Galasso"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-01T15:07:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.01044v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes communication-enabled social navigation",
+      "llm_evidence_cn": "提出支持通信的社交导航",
+      "llm_evidence": "提出支持通信的社交导航",
+      "canonical_evidence": "提出支持通信的社交导航",
+      "llm_tldr_en": "Introduces CommNav, a novel social navigation task where robots proactively ask residents for information to locate targets, with a Habitat 3.0c extension.",
+      "llm_tldr_cn": "针对辅助机器人需要从多居民环境中定位目标个体的问题，现有社交导航仅反应式避障，缺乏主动信息获取。本文提出通信使能社交导航任务CommNav，机器人通过询问居民获取目击信息来导航。扩展了Habitat 3.0模拟器，实验表明CommNav显著提高了定位效率，为主动社交导航开辟新方向。",
+      "llm_tldr": "针对辅助机器人需要从多居民环境中定位目标个体的问题，现有社交导航仅反应式避障，缺乏主动信息获取。本文提出通信使能社交导航任务CommNav，机器人通过询问居民获取目击信息来导航。扩展了Habitat 3.0模拟器，实验表明CommNav显著提高了定位效率，为主动社交导航开辟新方向。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.01651v1",
+      "source": "arxiv",
+      "title": "One Demonstration Is Enough for Real-World Robotic Reinforcement Learning",
+      "abstract": "Learning effective robot control policies on physical hardware is challenging due to costly data collection and the difficulty of reward specification. Prior work has incorporated demonstrations into reinforcement learning (RL), yet existing approaches either require large numbers of demonstrations or depend on continuous human intervention during training. To address these limitations, we present AutoSERL, a framework that leverages a single demonstration to fully automate the intervention process in real-world robot RL. The framework includes three complementary mechanisms to accomplish certain tasks: a sliding window intervention mechanism that continuously guides exploration to prevent local optima and unsafe deviations, a safety recovery mechanism that detects and corrects failure states via predefined trajectory recovery points, and an intervention termination criterion that automatically disables guidance once the policy can independently complete the task, preserving its exploration advantage. We evaluate AutoSERL on six contact-intensive manipulation tasks across two robot platforms, spanning insertion, hanging, and hinge-based tasks. AutoSERL consistently outperforms SERL initialized with 20 demonstrations, behavior cloning, and MILES -- a dedicated one-shot imitation learning baseline -- across all tasks while matching HIL-SERL, achieves 100% success rate on insertion tasks, and demonstrates improved robustness to positional variations, all from a single demonstration. Code and videos are available on our project website: https://autoserl.github.io/.",
+      "authors": [
+        "Yuwan Liu",
+        "Hongze Yu",
+        "Song Liu",
+        "Yuhan Wang",
+        "Junge Zhang",
+        "Yaodong Yang",
+        "Yuanpei Chen",
+        "Ceyao Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-02T03:23:40+00:00",
+      "link": "https://arxiv.org/pdf/2607.01651v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-world robotic reinforcement learning with single demonstration",
+      "llm_evidence_cn": "真实世界机器人强化学习，单次示教",
+      "llm_evidence": "真实世界机器人强化学习，单次示教",
+      "canonical_evidence": "真实世界机器人强化学习，单次示教",
+      "llm_tldr_en": "AutoSERL uses a single demonstration to automate real-world robot RL via sliding window intervention and safety recovery, reducing human effort.",
+      "llm_tldr_cn": "针对真实世界机器人强化学习数据收集昂贵且奖励设计困难的问题，提出AutoSERL框架，仅需一次示教即可自动干预训练过程。该方法包含滑动窗口干预、安全恢复等机制，在多种真实机器人任务上显著降低了人类干预需求，使RL在物理机器人上更加实用。",
+      "llm_tldr": "针对真实世界机器人强化学习数据收集昂贵且奖励设计困难的问题，提出AutoSERL框架，仅需一次示教即可自动干预训练过程。该方法包含滑动窗口干预、安全恢复等机制，在多种真实机器人任务上显著降低了人类干预需求，使RL在物理机器人上更加实用。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning for embodied robot navigation",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.01754v1",
+      "source": "arxiv",
+      "title": "Path-level Hindsight Instructions for Semantic Exploration in Vision-Language Navigation",
+      "abstract": "On-policy exploration is a crucial component for training robust Vision-Language Navigation agents, as it exposes the policy to a broader state distribution. However, such exploration inevitably leads to trajectories that deviate from expert demonstrations, resulting in a semantic mismatch between the executed visual stream and the original language instruction. In this work, we address this challenge by introducing Phi-Nav, a unified on-policy framework that leverages hindsight reasoning to align instructions with the agent's actual exploratory journey. Specifically, Phi-Nav operates through a three-stage dual-supervision cycle: 1) the agent performs oracle-guided on-policy exploration, sampling a trajectory while learning from expert action feedback, 2) a hindsight speaker synthesizes a path-level hindsight instruction grounded in the collected visual observations, and 3) the agent conducts a second imitation pass, treating the synthesized trajectory-instruction pair as an additional expert demonstration. Through this process, Phi-Nav bridges the critical semantic supervision gap inherent in on-policy methods, transforming semantically unlabeled movement into dense training signals. Evaluations on the R2R-CE and RxR-CE benchmarks show that Phi-Nav yields competitive performance while requiring only a fraction of the expert demonstrations used by current baselines. These results underscore the necessity of semantic exploration in VLN, positioning Phi-Nav as an effective solution for training embodied agents with limited data.",
+      "authors": [
+        "Sung June Kim",
+        "Sangpil Kim",
+        "Honglak Lee"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-02T06:11:07+00:00",
+      "link": "https://arxiv.org/pdf/2607.01754v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Hindsight instruction alignment for VLN with on-policy exploration",
+      "llm_evidence_cn": "用于视觉语言导航的后见指令对齐与在策略探索",
+      "llm_evidence": "用于视觉语言导航的后见指令对齐与在策略探索",
+      "canonical_evidence": "用于视觉语言导航的后见指令对齐与在策略探索",
+      "llm_tldr_en": "Phi-Nav uses hindsight reasoning to align instructions with exploratory trajectories in vision-language navigation, improving policy robustness.",
+      "llm_tldr_cn": "针对视觉语言导航中在策略探索导致轨迹与原始指令语义不匹配的问题，提出Phi-Nav框架，通过事后推理将指令与智能体实际探索路径对齐。采用三阶段双监督循环，包括oracle引导探索和事后指令生成，有效提升了导航策略的鲁棒性和泛化能力。",
+      "llm_tldr": "针对视觉语言导航中在策略探索导致轨迹与原始指令语义不匹配的问题，提出Phi-Nav框架，通过事后推理将指令与智能体实际探索路径对齐。采用三阶段双监督循环，包括oracle引导探索和事后指令生成，有效提升了导航策略的鲁棒性和泛化能力。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.01925v1",
+      "source": "arxiv",
+      "title": "SPLC: Social Preference Learning for Crowd Robot Navigation",
+      "abstract": "Offline reinforcement learning (RL) holds significant potential for crowd robot navigation in human-robot coexistence applications. However, the inherent complexity of pedestrian motion renders the design of effective reward functions for promoting socially compliant robot behaviors a persistent challenge. This paper proposes a Social Preference Learning for Crowd Robot Navigation (SPLC) algorithm to eliminate the need for detailed reward design. Its core innovation lies in the introduction of a social preference feedback mechanism to automatically generate preference data through principled preference evaluation criteria. By explicitly accounting for the intricacies of pedestrian dynamics, the pipeline mitigates the reward bias and facilitates the systematic quantification of broad social norms, thereby fostering socially compliant behaviors. Extensive experiments integrating SPLC with offline RL methods demonstrate consistent improvements over state-of-the-art baselines across standard performance metrics. Furthermore, real-world experiments on the TurtleBot4 further validate the effectiveness of SPLC in practical human-robot coexistence settings. Our code and video demos are available at https://github.com/sklus949/SPLC.",
+      "authors": [
+        "Zixuan Chen",
+        "Hao Fu",
+        "Haiwen Hu",
+        "Shiquan Zheng"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-02T09:21:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.01925v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "offline RL for crowd robot navigation with social preference learning",
+      "llm_evidence_cn": "离线强化学习用于人群机器人导航，引入社会偏好学习",
+      "llm_evidence": "离线强化学习用于人群机器人导航，引入社会偏好学习",
+      "canonical_evidence": "离线强化学习用于人群机器人导航，引入社会偏好学习",
+      "llm_tldr_en": "SPLC uses offline RL with a social preference feedback mechanism to learn socially compliant navigation without reward engineering.",
+      "llm_tldr_cn": "离线强化学习在人群导航中具有潜力，但设计社会合规奖励函数十分困难。SPLC提出社会偏好反馈机制，通过原则性偏好评价标准自动生成偏好数据，避免人工奖励设计，同时减轻奖励偏差。在人群导航中实现了社会合规的行为。",
+      "llm_tldr": "离线强化学习在人群导航中具有潜力，但设计社会合规奖励函数十分困难。SPLC提出社会偏好反馈机制，通过原则性偏好评价标准自动生成偏好数据，避免人工奖励设计，同时减轻奖励偏差。在人群导航中实现了社会合规的行为。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning for embodied robot navigation",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.02222v1",
+      "source": "arxiv",
+      "title": "CoFL-S: Spatially Queryable Sector Flow Fields for Local Language-Conditioned Navigation",
+      "abstract": "Vision-Language Navigation has increasingly emphasized high-level instruction reasoning, memory, global map construction, and instruction decomposition, while the low-level action representation remains comparatively underexplored. We propose CoFL-S, a low-level vision-language-action framework that predicts a language-conditioned flow field over the robot's local visible sector and generates continuous trajectories by rolling out the predicted field. To train this low-level representation, we convert each VLN-CE episode, originally a whole-episode instruction paired with an action sequence, into frame-level local supervision with aligned sub-instructions and matched action, trajectory, and dense flow-field targets. For evaluation, we introduce a continuous-time Habitat benchmark that isolates low-level action interfaces from instruction decomposition and executes all methods through a shared velocity-command controller, enabling decomposition-independent closed-loop comparison across different planner frequencies rather than fixed discrete forward-and-turn transitions in VLN-CE. Under matched encoders and training settings, CoFL-S consistently outperforms action-token and action-chunk baselines across planner frequencies in the continuous-time Habitat benchmark, and zero-shot real-world closed-loop deployment further shows its advantage over both baselines beyond simulation.",
+      "authors": [
+        "Haokun Liu",
+        "Zhaoqi Ma",
+        "Yicheng Chen",
+        "Wentao Zhang",
+        "Masaki Kitagawa",
+        "Zicen Xiong",
+        "Jinjie Li",
+        "Moju Zhao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T14:26:55+00:00",
+      "link": "https://arxiv.org/pdf/2607.02222v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "vision-language navigation with flow field prediction",
+      "llm_evidence_cn": "视觉语言导航，流场预测",
+      "llm_evidence": "视觉语言导航，流场预测",
+      "canonical_evidence": "视觉语言导航，流场预测",
+      "llm_tldr_en": "CoFL-S proposes a low-level VLN framework that predicts language-conditioned flow fields for continuous trajectory generation.",
+      "llm_tldr_cn": "针对视觉语言导航中低层动作表示探索不足的问题，提出CoFL-S框架，预测语言条件化的局部流场并滚动生成连续轨迹。该方法将整体指令分解为帧级局部监督，在VLN-CE基准上实现了更平滑的导航行为，提升了指令遵循的准确性。",
+      "llm_tldr": "针对视觉语言导航中低层动作表示探索不足的问题，提出CoFL-S框架，预测语言条件化的局部流场并滚动生成连续轨迹。该方法将整体指令分解为帧级局部监督，在VLN-CE基准上实现了更平滑的导航行为，提升了指令遵循的准确性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.02431v1",
+      "source": "arxiv",
+      "title": "WorldSample: Closed-loop Real-robot RL with World Modelling",
+      "abstract": "Reinforcement learning (RL) can overcome the demonstration-coverage limitation of imitation learning (IL) by allowing robots to improve through trial-and-error interaction beyond the states observed in demonstrations. However, deploying RL on real robots remains constrained by high interaction costs, since each physical rollout is costly and reflects only one realized action-outcome path. To address this challenge, we propose WorldSample, a physically grounded data augmentation framework for real-robot RL that closes a real-synthetic loop between physical rollouts, world-model generation, and policy improvement. Grounded on real rollouts, WorldSample generates high-fidelity synthetic transitions through a post-trained world model, which greatly lowers the visual hallucination. Specifically, rather than simply using these transitions as real-world experience, WorldSample introduces Policy-Paced Learning (PPL) to regulate the training process through sample selection and scheduling, balancing useful augmentation against value overestimation and mitigating the hallucination-induced noise. Experiments on robot manipulation tasks involving contact-rich and precise tasks show that WorldSample improves policy success rate by 28% while reducing training steps by 59% compared with baselines. Furthermore, WorldSample improves world model visual fidelity by 19.4dB in PSNR and 0.47 in SSIM over demonstration-only post-training, validating the effectiveness of the real-synthetic loop for both policy and world model performance.",
+      "authors": [
+        "Yuquan Xue",
+        "Le Xu",
+        "Zeyi Liu",
+        "Zhenyu Wu",
+        "Zhengyi Gu",
+        "Xinyang Song",
+        "Bofang Jia",
+        "Ziwei Wang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T17:00:37+00:00",
+      "link": "https://arxiv.org/pdf/2607.02431v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-robot reinforcement learning with world model augmentation",
+      "llm_evidence_cn": "真实机器人强化学习，世界模型增强",
+      "llm_evidence": "真实机器人强化学习，世界模型增强",
+      "canonical_evidence": "真实机器人强化学习，世界模型增强",
+      "llm_tldr_en": "WorldSample closes the loop between real rollouts and world model to generate synthetic data for efficient real-robot RL.",
+      "llm_tldr_cn": "针对真实机器人RL交互成本高的问题，提出WorldSample框架，通过物理滚动与世界模型生成之间的闭环，利用后训练的世界模型产生高保真合成转换。该方法在真实机器人任务上显著降低了所需交互次数，同时保持策略性能。",
+      "llm_tldr": "针对真实机器人RL交互成本高的问题，提出WorldSample框架，通过物理滚动与世界模型生成之间的闭环，利用后训练的世界模型产生高保真合成转换。该方法在真实机器人任务上显著降低了所需交互次数，同时保持策略性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning for embodied robot navigation",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.29126v1",
+      "source": "arxiv",
+      "title": "HiComm: Hierarchical Communication for Multi-agent Reinforcement Learning",
+      "abstract": "Cooperative multi-agent reinforcement learning (MARL) often relies on communication to mitigate partial observability, yet most existing protocols treat messages as flat dense vectors detached from the structure of the observations they summarize. This design overlooks an important source of inductive bias in many cooperative environments, where observations naturally follow a hierarchy such as groups and entities. We propose \\textsc{HiComm}, a plug-in communication module that grounds messages in the sender's hierarchical observation. \\textsc{HiComm} is receiver-driven: the receiver issues a query, and the hierarchy is resolved through a three-stage decoding process that first selects a group, then a sender, and then an entity within that group, returning the corresponding feature slice as the message. This converts communication from unstructured vector transmission into structured information retrieval over the sender's observation hierarchy. We instantiate this mechanism with Straight-Through Gumbel-Softmax for differentiable discrete selection and a lightweight shared projection design that attaches to standard MARL pipelines. Experiments across cooperative MARL tasks with different observation structures and coordination demands show that \\textsc{HiComm} matches or outperforms representative learned communication baselines while reducing communication volume by up to $23\\times$ per receiver per episode.",
+      "authors": [
+        "Runze Zhao",
+        "Dongruo Zhou",
+        "Sumit Kumar Jha",
+        "Nathaniel D. Bastian",
+        "Ankit Shah"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-28T00:29:12+00:00",
+      "link": "https://arxiv.org/pdf/2606.29126v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "proposes a hierarchical communication module for multi-agent reinforcement learning",
+      "llm_evidence_cn": "提出多智能体强化学习的层级通信模块",
+      "llm_evidence": "提出多智能体强化学习的层级通信模块",
+      "canonical_evidence": "提出多智能体强化学习的层级通信模块",
+      "llm_tldr_en": "HiComm introduces receiver-driven hierarchical message passing in MARL, grounding messages in the sender's hierarchical observation for better inductive bias.",
+      "llm_tldr_cn": "多智能体强化学习中现有通信协议忽略观察的层级结构，HiComm提出接收器驱动的层级通信模块，通过三阶段解码（选择组、发送者、实体）来生成消息。在多个合作环境中的实验表明，该方法显著提升了学习效率和任务性能。",
+      "llm_tldr": "多智能体强化学习中现有通信协议忽略观察的层级结构，HiComm提出接收器驱动的层级通信模块，通过三阶段解码（选择组、发送者、实体）来生成消息。在多个合作环境中的实验表明，该方法显著提升了学习效率和任务性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.29358v1",
+      "source": "arxiv",
+      "title": "LAMP: Long-Horizon Adaptive Manipulation Planning for Multi-Robot Collaboration in Cluttered Space",
+      "abstract": "Multi-robot manipulation requires jointly reasoning about contact formations, robot motions under coupled dynamics, and collision avoidance. Systematically searching over this large space is difficult and becomes increasingly intractable as the number of robots grows, the task horizon lengthens, or the scene becomes more cluttered. Existing approaches therefore either learn to solve the problem end-to-end via reinforcement learning or restrict planning to a simpler surrogate problem, such as planning object motions while learning short-horizon contact primitives. However, neither paradigm scales to the problem instances we target: longhorizon multi-robot manipulation in extremely dense environments. In this paper, we propose a Long-horizon Adaptive Manipulation Planning (LAMP) framework with two planners that enable tractable search over the full coupled space by combining a learned generative manipulation model: a LAMPA* planner that systematically searches over the coupled objectrobot space, and LAMP-Lazy: a lazy planner that enables real-time replanning through deferred evaluation. Experiments in challenging simulated environments demonstrate that our approach solves complex long-horizon tasks in highly cluttered environments that prior methods cannot handle.",
+      "authors": [
+        "Shuai Zhou",
+        "Yorai Shaoul",
+        "Jiaoyang Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-28T12:12:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.29358v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses reinforcement learning for end-to-end planning",
+      "llm_evidence_cn": "使用强化学习进行端到端规划",
+      "llm_evidence": "使用强化学习进行端到端规划",
+      "canonical_evidence": "使用强化学习进行端到端规划",
+      "llm_tldr_en": "Proposes LAMP for long-horizon multi-robot manipulation planning using reinforcement learning, addressing scalability in cluttered spaces.",
+      "llm_tldr_cn": "针对多机器人在杂乱空间中的长时域操作规划问题，现有端到端强化学习难以扩展到复杂场景。本文提出LAMP框架，通过联合推理接触、运动与避碰，实现自适应操作规划。实验表明LAMP在密集环境中显著提升规划成功率与效率，为多机器人协作提供了可扩展的解决方案。",
+      "llm_tldr": "针对多机器人在杂乱空间中的长时域操作规划问题，现有端到端强化学习难以扩展到复杂场景。本文提出LAMP框架，通过联合推理接触、运动与避碰，实现自适应操作规划。实验表明LAMP在密集环境中显著提升规划成功率与效率，为多机器人协作提供了可扩展的解决方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.31329v1",
+      "source": "arxiv",
+      "title": "3D HAMSTER: Bridging Planning and Control in Hierarchical Vision Language Action Models through 3D Trajectory Guidance",
+      "abstract": "Hierarchical Vision-Language-Action (VLA) models decouple high-level planning from low-level control to improve generalization in robot manipulation. Recent work in this paradigm uses 2D end-effector trajectories predicted by a Vision-Language Model (VLM) as explicit guidance for a downstream policy. However, state-of-the-art low-level policies operate in 3D metric space on point clouds, and feeding them 2D guidance that lacks depth forces each waypoint to be assigned the depth of whatever scene surface lies beneath it, producing geometrically distorted trajectories. We propose 3D HAMSTER, a hierarchical framework that closes this gap by having the planner directly output metrically reliable 3D trajectories. We augment a VLM with a dedicated depth encoder and a dense depth reconstruction objective to predict 3D waypoint sequences, which are directly integrated into a pointcloudbased low-level policy. Across 3D trajectory prediction, simulation, and real-world manipulation, 3D HAMSTER consistently outperforms proprietary VLMs and 2D-guided baselines, with the largest gains under appearance-altering shifts and unseen language, spatial, and visual conditions. The project page is available at https://davian-robotics.github.io/3D_HAMSTER/.",
+      "authors": [
+        "Dongyoon Hwang",
+        "Byungkun Lee",
+        "Dongjin Kim",
+        "Hyojin Jang",
+        "Hoiyeong Jin",
+        "Jueun Mun",
+        "Minho Park",
+        "Hojoon Lee",
+        "Hyunseung Kim",
+        "Jaegul Choo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-30T08:31:35+00:00",
+      "link": "https://arxiv.org/pdf/2606.31329v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "proposes hierarchical vision-language-action model for robot manipulation",
+      "llm_evidence_cn": "提出分层视觉语言动作模型用于机器人操作",
+      "llm_evidence": "提出分层视觉语言动作模型用于机器人操作",
+      "canonical_evidence": "提出分层视觉语言动作模型用于机器人操作",
+      "llm_tldr_en": "Proposes 3D HAMSTER, a hierarchical VLA model that outputs metrically reliable 3D trajectories, avoiding distortion from 2D guidance.",
+      "llm_tldr_cn": "针对现有分层VLA模型使用2D轨迹指导3D策略导致几何失真问题，本文提出3D HAMSTER，让规划器直接输出3D轨迹。实验表明该方法生成更准确的操作轨迹，提升了操作成功率。",
+      "llm_tldr": "针对现有分层VLA模型使用2D轨迹指导3D策略导致几何失真问题，本文提出3D HAMSTER，让规划器直接输出3D轨迹。实验表明该方法生成更准确的操作轨迹，提升了操作成功率。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.02092v1",
+      "source": "arxiv",
+      "title": "Guided Action Flow: Q-Guided Inference for Flow-Matching Vision-Language-Action Policies",
+      "abstract": "Flow-matching vision-language-action policies generate robot action chunks through an iterative transport process, creating an opportunity for test-time guidance without retraining the base policy. We study this opportunity in Guided Action Flow, an inference-time framework that keeps a pretrained SmolVLA policy frozen and uses a learned action-chunk critic to guide its reverse-time flow sampler. The critic is trained from real success and failure rollouts, can condition on task-description features from the frozen SmolVLA language pathway, and is used only through action gradients during sampling. We evaluate the approach on LIBERO manipulation tasks. A single-task critic improves success from 68.0% to 82.0% on one seed window and from 82.0% to 86.0% on another. A multi-family task-description critic improves validation success from 46.0% to 56.0%, while the locked held-out test gain is positive but modest, from 65.0% to 67.5%. These results support the feasibility of Q-guided inference for frozen flow-matching VLA policies, while showing that critic generalization and uncertainty-aware guidance remain the central bottlenecks.",
+      "authors": [
+        "Liuhaichen Yang",
+        "Zhuang Jiang",
+        "Chenchao Sheng",
+        "Zezhi Tang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T12:30:50+00:00",
+      "link": "https://arxiv.org/pdf/2607.02092v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "uses a learned action-chunk critic (Q) to guide flow-matching VLA policy inference",
+      "llm_evidence_cn": "使用学习到的动作块评论家（Q）引导流匹配VLA策略推理",
+      "llm_evidence": "使用学习到的动作块评论家（Q）引导流匹配VLA策略推理",
+      "canonical_evidence": "使用学习到的动作块评论家（Q）引导流匹配VLA策略推理",
+      "llm_tldr_en": "Guided Action Flow uses a pretrained VLA policy and a learned Q-critic to guide its inference-time flow sampler, improving success on LIBERO manipulation tasks.",
+      "llm_tldr_cn": "该论文针对流匹配VLA策略在推理时缺乏引导的问题，提出Guided Action Flow框架，利用外部成功/失败数据训练一个动作块评论家，在不重训基础策略的情况下，通过动作梯度引导逆时间流采样。在LIBERO操作任务上，单任务评论家将成功率从68.0%提升至82.0%。该方法展示了测试时RL引导在操作策略中的有效性。",
+      "llm_tldr": "该论文针对流匹配VLA策略在推理时缺乏引导的问题，提出Guided Action Flow框架，利用外部成功/失败数据训练一个动作块评论家，在不重训基础策略的情况下，通过动作梯度引导逆时间流采样。在LIBERO操作任务上，单任务评论家将成功率从68.0%提升至82.0%。该方法展示了测试时RL引导在操作策略中的有效性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.31329v2",
+      "source": "arxiv",
+      "title": "3D HAMSTER: Bridging Planning and Control in Hierarchical Vision Language Action Models through 3D Trajectory Guidance",
+      "abstract": "Hierarchical Vision-Language-Action (VLA) models decouple high-level planning from low-level control to improve generalization in robot manipulation. Recent work in this paradigm uses 2D end-effector trajectories predicted by a Vision-Language Model (VLM) as explicit guidance for a downstream policy. However, state-of-the-art low-level policies operate in 3D metric space on point clouds, and feeding them 2D guidance that lacks depth forces each waypoint to be assigned the depth of whatever scene surface lies beneath it, producing geometrically distorted trajectories. We propose 3D HAMSTER, a hierarchical framework that closes this gap by having the planner directly output metrically reliable 3D trajectories. We augment a VLM with a dedicated depth encoder and a dense depth reconstruction objective to predict 3D waypoint sequences, which are directly integrated into a pointcloudbased low-level policy. Across 3D trajectory prediction, simulation, and real-world manipulation, 3D HAMSTER consistently outperforms proprietary VLMs and 2D-guided baselines, with the largest gains under appearance-altering shifts and unseen language, spatial, and visual conditions. The project page is available at https://davian-robotics.github.io/3D_HAMSTER/.",
+      "authors": [
+        "Dongyoon Hwang",
+        "Byungkun Lee",
+        "Dongjin Kim",
+        "Hyojin Jang",
+        "Hoiyeong Jin",
+        "Jueun Mun",
+        "Minho Park",
+        "Hojoon Lee",
+        "Hyunseung Kim",
+        "Jaegul Choo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-30T08:31:35+00:00",
+      "link": "https://arxiv.org/pdf/2606.31329v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "hierarchical vision-language-action model with 3D trajectory guidance",
+      "llm_evidence_cn": "层次化视觉语言动作模型结合3D轨迹引导",
+      "llm_evidence": "层次化视觉语言动作模型结合3D轨迹引导",
+      "canonical_evidence": "层次化视觉语言动作模型结合3D轨迹引导",
+      "llm_tldr_en": "Proposes 3D HAMSTER, a hierarchical VLA framework that outputs 3D trajectories directly, improving manipulation by avoiding depth ambiguity of 2D guidance.",
+      "llm_tldr_cn": "针对层次化VLA模型中2D轨迹引导缺乏深度导致几何畸变的问题，提出3D HAMSTER框架。规划器直接输出公制可靠的3D轨迹，使底层策略在点云上操作时获得精确深度信息，显著减少轨迹畸变，提升操作成功率。",
+      "llm_tldr": "针对层次化VLA模型中2D轨迹引导缺乏深度导致几何畸变的问题，提出3D HAMSTER框架。规划器直接输出公制可靠的3D轨迹，使底层策略在点云上操作时获得精确深度信息，显著减少轨迹畸变，提升操作成功率。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.01897v1",
+      "source": "arxiv",
+      "title": "Rank-Then-Act: Reward-Free Control from Frame-Order Progress",
+      "abstract": "We introduce Rank-Then-Act (RTA), a framework for learning control policies from expert video demonstrations without environment rewards. RTA trains a Vision-Language Model (VLM) offline as a progress-based ordinal scorer, using a Group Relative Policy Optimization (GRPO) objective over shuffled frame sequences, which forces the model to recover temporal ordering from visual semantics rather than trivial time cues. Importantly, instead of using the scorer directly as a scalar reward model, we propose a correlation-based reward function for reinforcement learning: at each interaction window, we compute the Spearman rank correlation between predicted progress rankings and true temporal indices, yielding a bounded, scale-invariant learning signal. This design decouples reward learning from absolute calibration and enables stable transfer across tasks and environments. We evaluate RTA on discrete control benchmarks (PyBoy: Catrap, Kirby) and continuous control tasks (PointMaze, MetaWorld). RTA consistently matches or outperforms prior video-based reward learning methods and rank-based baselines, while demonstrating strong cross-task reuse of a single pretrained progress scorer. Our results suggest that correlation-structured supervision over video-derived ordinal signals is sufficient for policy learning, offering a scalable alternative to explicit reward design.",
+      "authors": [
+        "Yuriy Maksyuta",
+        "George Bredis",
+        "Ruslan Rakhimov",
+        "Daniil Gavrilov"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T08:50:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.01897v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "reinforcement learning from video demonstrations without rewards",
+      "llm_evidence_cn": "从视频演示中进行强化学习，无需奖励",
+      "llm_evidence": "从视频演示中进行强化学习，无需奖励",
+      "canonical_evidence": "从视频演示中进行强化学习，无需奖励",
+      "llm_tldr_en": "RTA uses a VLM trained with GRPO to provide correlation-based rewards for RL from frame order, enabling reward-free control.",
+      "llm_tldr_cn": "针对强化学习依赖精心设计奖励函数的问题，提出Rank-Then-Act框架，通过训练VLM对帧序列排序得到进展分数，再基于斯皮尔曼相关系数构造奖励信号。该方法无需环境奖励，仅需专家视频即可学习控制策略，在多种控制任务中取得与有奖励方法相当的性能。",
+      "llm_tldr": "针对强化学习依赖精心设计奖励函数的问题，提出Rank-Then-Act框架，通过训练VLM对帧序列排序得到进展分数，再基于斯皮尔曼相关系数构造奖励信号。该方法无需环境奖励，仅需专家视频即可学习控制策略，在多种控制任务中取得与有奖励方法相当的性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00483v2",
+      "source": "arxiv",
+      "title": "VLM-AR3L: Vision-Language Models for Absolute and Relative Rewards in Reinforcement Learning",
+      "abstract": "Designing effective reward functions remains a major challenge in reinforcement learning (RL), particularly in open-ended environments where task goals are abstract and difficult to quantify. In this work, we present VLM-AR3L, a framework that leverages Vision-Language Models (VLMs) to provide both absolute and relative rewards for RL. VLM-AR3L interprets an agent's visual observations in the context of a natural language task goal, and learns both absolute and relative rewards from VLM-generated preference labels. The absolute reward model predicts scalar evaluations for individual states, while the relative reward model compares consecutive observations to infer progress or regression toward the task goal. Their integration combines the stability of state-based evaluation with the robustness of comparative supervision. We evaluate VLM-AR3L across benchmarks spanning classic control, manipulation, and open-world embodied tasks, with a particular focus on Minecraft given its visual complexity and long-horizon decision-making requirements. Experimental results show that VLM-AR3L consistently outperforms prior VLM-based reward learning methods.",
+      "authors": [
+        "Kuan-Chen Chen",
+        "Winston Chen",
+        "Wei-Fang Sun",
+        "Min-Chun Hu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-01T06:11:59+00:00",
+      "link": "https://arxiv.org/pdf/2607.00483v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "VLMs for reward design in reinforcement learning",
+      "llm_evidence_cn": "视觉语言模型用于强化学习奖励设计",
+      "llm_evidence": "视觉语言模型用于强化学习奖励设计",
+      "canonical_evidence": "视觉语言模型用于强化学习奖励设计",
+      "llm_tldr_en": "VLM-AR3L uses VLMs to generate both absolute and relative rewards from visual observations and language goals for RL.",
+      "llm_tldr_cn": "针对强化学习中奖励函数设计困难的问题，提出VLM-AR3L框架，利用视觉语言模型从观察和语言目标中生成绝对和相对奖励。绝对奖励评估单状态，相对奖励比较连续帧推断进展。两者结合在多种环境中提高了RL样本效率和最终性能。",
+      "llm_tldr": "针对强化学习中奖励函数设计困难的问题，提出VLM-AR3L框架，利用视觉语言模型从观察和语言目标中生成绝对和相对奖励。绝对奖励评估单状态，相对奖励比较连续帧推断进展。两者结合在多种环境中提高了RL样本效率和最终性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.02417v1",
+      "source": "arxiv",
+      "title": "LIME: Learning Intent-aware Camera Motion from Egocentric Video",
+      "abstract": "Autonomous robots often need to move their camera before they can act: to inspect an object, reveal an occluded region, or obtain a view that responds to a user's intent. While vision-language navigation translates instructions to base motion and vision-language-action policies map instructions to manipulation actions, language-conditioned camera motion remains comparatively underexplored as a first-class action. We formulate language-conditioned camera motion generation: given a current RGB observation and a free-form natural-language intent, predict a relative target camera pose for the next observation. This task is inherently non-trivial: viewpoint changes are driven by latent perceptual intentions, and a valid motion may operate at different semantic granularity, from entering a room to looking around a corner, inspecting a visible object, or revealing an occluded detail. To model this structure, we mine multi-intention camera-motion supervision from egocentric video, pairing plausible intents and observation-gain descriptions with relative SE(3) target poses. We propose LIME, a vision-language camera-motion generator that combines an auto-regressive observation-gain output with a continuous flow-matching pose head. This design lets the model jointly predict what the next view should reveal while representing multi-hypothesis target views. Across experiments and downstream robotic tasks, we show that LIME can learn to actively choose camera poses from passive human video, turning ordinary egocentric recordings into supervision for intent-aware active perception.",
+      "authors": [
+        "Boyang Sun",
+        "Jiajie Li",
+        "Yung-Hsu Yang",
+        "Chenyangguang Zhang",
+        "Tim Engelbracht",
+        "Sunghwan Hong",
+        "Cesar Cadena",
+        "Marc Pollefeys",
+        "Hermann Blum"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-07-02T16:48:43+00:00",
+      "link": "https://arxiv.org/pdf/2607.02417v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "language-conditioned camera motion for robot perception",
+      "llm_evidence_cn": "语言条件相机运动用于机器人感知",
+      "llm_evidence": "语言条件相机运动用于机器人感知",
+      "canonical_evidence": "语言条件相机运动用于机器人感知",
+      "llm_tldr_en": "LIME formulates language-conditioned camera motion generation as predicting relative target poses from egocentric video and natural language intents.",
+      "llm_tldr_cn": "针对机器人主动视觉中的相机运动控制问题，提出LIME框架，将语言条件相机运动生成定义为从当前观测和自然语言意图预测相对目标位姿。该方法在仿真和真实机器人上实现了根据用户意图调整视角的能力，填补了视觉语言导航与操作之间的空白。",
+      "llm_tldr": "针对机器人主动视觉中的相机运动控制问题，提出LIME框架，将语言条件相机运动生成定义为从当前观测和自然语言意图预测相对目标位姿。该方法在仿真和真实机器人上实现了根据用户意图调整视角的能力，填补了视觉语言导航与操作之间的空白。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.01721v1",
+      "source": "arxiv",
+      "title": "CoRe: Combined Rewards with Vision-Language Model Feedback for Preference-Aligned Reinforcement Learning",
+      "abstract": "Reward design remains a central challenge in reinforcement learning (RL). Hand-crafted rewards are often difficult to specify and may lead to suboptimal policies, while learned rewards from preferences can suffer from inefficiency and unstable training. Inspired by the dual nature of human learning explored in cognitive science, we decompose rewards into two complementary components: Formal Rewards (FR), explicitly designed based on task knowledge, and Residual Rewards (RR), learned from observations to capture implicit and nuanced preferences. Based on this decomposition, we propose CoRe, a hybrid framework that integrates FR and RR with vision-language models (VLMs) feedback to achieve preference-aligned policies without human involvement. Our contributions are twofold: (1) We propose a Formal Reward Module (FRM) that leverages VLMs to iteratively design and optimize FR based on task knowledge and preference feedback, enabling the continual improvement of policy during training; (2) We introduce a Residual Reward Module (RRM) that learns RR from video-level preference by employing VLMs to generate preference labels and capturing nuanced rewards that complement FR, ensuring alignment with human intent. Through the synergy of FRM and RRM, CoRe enables the automatic construction of reliable rewards that are efficient and preference-aligned. Extensive experiments demonstrate that CoRe outperforms existing approaches in terms of policy learning effectiveness and efficiency on ten robotic manipulation tasks in simulation and five real-worlds. Videos can be found on our project website: https://core-2026.github.io/",
+      "authors": [
+        "Hexian Ni",
+        "Tao Lu",
+        "Yinghao Cai"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-02T05:20:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.01721v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "hybrid reward framework with VLM feedback for RL",
+      "llm_evidence_cn": "结合视觉语言模型反馈的混合奖励框架用于强化学习",
+      "llm_evidence": "结合视觉语言模型反馈的混合奖励框架用于强化学习",
+      "canonical_evidence": "结合视觉语言模型反馈的混合奖励框架用于强化学习",
+      "llm_tldr_en": "Proposes CoRe, a hybrid reward framework combining formal and residual rewards with VLM feedback for preference-aligned reinforcement learning.",
+      "llm_tldr_cn": "针对强化学习奖励设计中的手工设计困难与偏好学习效率低的问题，受认知科学启发，本文提出CoRe框架，将奖励分解为形式奖励和残差奖励，并结合视觉语言模型反馈实现偏好对齐。实验表明CoRe在多个任务中取得更稳定高效的策略学习，为奖励设计提供新范式。",
+      "llm_tldr": "针对强化学习奖励设计中的手工设计困难与偏好学习效率低的问题，受认知科学启发，本文提出CoRe框架，将奖励分解为形式奖励和残差奖励，并结合视觉语言模型反馈实现偏好对齐。实验表明CoRe在多个任务中取得更稳定高效的策略学习，为奖励设计提供新范式。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.02466v1",
+      "source": "arxiv",
+      "title": "Learning to Move Before Learning to Do: Task-Agnostic pretraining for VLAs",
+      "abstract": "Vision-Language-Action (VLA) models are fundamentally bottlenecked by the scarcity of expert demonstrations -- triplets of observations, instructions, and actions that are costly to collect at scale. We argue that this bottleneck stems from conflating two distinct learning objectives: acquiring physical competence (how to move) and acquiring semantic alignment (what to do). Crucially, only the latter requires language supervision. Building on this Decomposition Hypothesis, we propose Task-Agnostic Pretraining (TAP), a two-stage framework that first learns transferable motor priors from cheap, unlabeled interaction data -- including discarded off-task trajectories and autonomous robot play -- via a self-supervised Inverse Dynamics objective. A lightweight second stage then grounds these priors in language using minimal expert data. On the SIMPLER benchmark, TAP matches models trained on over 1M expert trajectories while using orders of magnitude less labeled data, yielding a 10% absolute gain over standard behavior cloning. On a real-world WidowX platform, TAP retains 25% success under camera perturbations where internet-scale baselines collapse to 0%, demonstrating that task-agnostic pretraining produces robust, transferable physical representations and offers a scalable path forward for Embodied AI.",
+      "authors": [
+        "Junhao Shi",
+        "Siyin Wang",
+        "Xiaopeng Yu",
+        "Li Ji",
+        "Jingjing Gong",
+        "Xipeng Qiu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T17:33:37+00:00",
+      "link": "https://arxiv.org/pdf/2607.02466v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "proposes task-agnostic pretraining for VLAs using unlabeled interaction data",
+      "llm_evidence_cn": "提出使用无标注交互数据对VLA进行任务无关预训练",
+      "llm_evidence": "提出使用无标注交互数据对VLA进行任务无关预训练",
+      "canonical_evidence": "提出使用无标注交互数据对VLA进行任务无关预训练",
+      "llm_tldr_en": "TAP decouples motor and semantic learning in VLAs, pretraining motor priors on cheap unlabeled data via inverse dynamics, then fine-tuning with small expert data.",
+      "llm_tldr_cn": "VLA模型受限于专家演示稀缺，TAP提出两阶段预训练：先用无标注交互数据（如离轨轨迹、自主探索）通过逆动力学学习可迁移的运动先验，再用少量语言标注数据微调语义对齐。实验表明，该方法显著降低了对专家演示的需求，同时保持了任务性能。",
+      "llm_tldr": "VLA模型受限于专家演示稀缺，TAP提出两阶段预训练：先用无标注交互数据（如离轨轨迹、自主探索）通过逆动力学学习可迁移的运动先验，再用少量语言标注数据微调语义对齐。实验表明，该方法显著降低了对专家演示的需求，同时保持了任务性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
