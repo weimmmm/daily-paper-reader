@@ -1,0 +1,354 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-05T20:03:27.264578+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2607.01586v1",
+      "source": "arxiv",
+      "title": "VLAFlow: A Unified Training Framework for Vision-Language-Action Models via Co-training and Future Latent Alignment",
+      "abstract": "Vision-language-action models (VLAs) have recently advanced robotic manipulation, yet the effects of different robot-data pre-training paradigms remain difficult to compare because existing models often differ in architecture, data, action space, and evaluation protocol. We present VLAFlow (Vision-Language-Action Flow), a unified flow-matching framework for controlled comparison of VLA training objectives. Using a heterogeneous robot corpus, OXEMix, containing approximately 5,000 hours of data from DROID, OpenX-Embodiment, OpenX-Augmented, and RoboCOIN, we evaluate four paradigms under the same pi0-style architecture, shared VLM backbone, action expert, and 14-dimensional action space: action-only modeling (MindPI), language-supervised co-training (MindLPI), future latent alignment (MindWPI), and their combination (MindLWPI). Experiments on LIBERO, LIBERO-Plus, and SimplerEnv show that action-only pre-training is sensitive to heterogeneous data. In contrast, language supervision helps preserve vision-language generalization, while future latent alignment improves state-transition and action-outcome modeling. By combining both signals, MindLWPI achieves the most stable overall transfer performance across benchmarks. These results suggest a meta-action space view: language and future latent representations provide complementary intermediate constraints that make heterogeneous action supervision smoother and more transferable.",
+      "authors": [
+        "Guoyang Xia",
+        "Fengfa Li",
+        "Hongjin Ji",
+        "Lei Ren",
+        "Fangxiang Feng",
+        "Kun Zhan",
+        "Yan Xie"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-07-02T01:38:16+00:00",
+      "link": "https://arxiv.org/pdf/2607.01586v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "unified training for vision-language-action models in robotics",
+      "llm_evidence_cn": "机器人视觉-语言-动作模型的统一训练",
+      "llm_evidence": "机器人视觉-语言-动作模型的统一训练",
+      "canonical_evidence": "机器人视觉-语言-动作模型的统一训练",
+      "llm_tldr_en": "VLAFlow provides a unified flow-matching framework to compare VLA training paradigms on a large heterogeneous robot dataset.",
+      "llm_tldr_cn": "视觉-语言-动作模型在机器人操控中取得进展，但不同预训练范式难以比较。VLAFlow提出统一流匹配框架，在相同架构和动作空间下对比动作建模、联合预训练等范式，利用5000小时机器人数据揭示各范式特点，为机器人策略学习提供了基准和洞见。",
+      "llm_tldr": "视觉-语言-动作模型在机器人操控中取得进展，但不同预训练范式难以比较。VLAFlow提出统一流匹配框架，在相同架构和动作空间下对比动作建模、联合预训练等范式，利用5000小时机器人数据揭示各范式特点，为机器人策略学习提供了基准和洞见。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.30988v2",
+      "source": "arxiv",
+      "title": "Multisensory Continual Learning: Adapting Pretrained Visuomotor Policies to Force",
+      "abstract": "Robot manipulation often relies on sensory feedback beyond vision, particularly in contact-rich settings where force, tactile, or audio signals reveal interaction states that are not directly observable from images. However, these modalities are often hardware- and task-specific, and large-scale multisensory robot datasets remain scarce. As a result, it is impractical to pretrain policies with every sensor they may encounter. We study multisensory continual learning: adapting a pretrained robot policy to new tasks with newly introduced modalities while preserving performance under the original sensor suite. We propose MuSe, which incorporates limited multisensory data into pretrained vision-only policies through multi-stage fusion, multisensory future prediction, and experience replay over pretraining data. We instantiate MuSe by augmenting a pretrained vision-only policy with force-torque sensing and evaluate it on real-world manipulation tasks. Our experiments show that MuSe performs strongly on contact-rich finetuning tasks while preserving, and in some cases improving, performance on the original pretraining tasks. These results suggest that a modest multisensory dataset can improve general robot capabilities beyond the finetuning distribution. Project website: https://jadenvc.github.io/multisensory-continual-learning/",
+      "authors": [
+        "Jaden Clark",
+        "Changhao Wang",
+        "Yihuai Gao",
+        "Seongheon Hong",
+        "Hojung Choi",
+        "Mark Cutkosky",
+        "Yifan Hou",
+        "Shuran Song"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-29T23:58:07+00:00",
+      "link": "https://arxiv.org/pdf/2606.30988v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "adapting visuomotor policies for robots with force sensing",
+      "llm_evidence_cn": "将视觉运动策略适应到力传感的机器人",
+      "llm_evidence": "将视觉运动策略适应到力传感的机器人",
+      "canonical_evidence": "将视觉运动策略适应到力传感的机器人",
+      "llm_tldr_en": "MuSe adapts pretrained vision-only robot policies to force sensing via multi-stage fusion, improving manipulation in contact-rich tasks.",
+      "llm_tldr_cn": "机器人操作需要多感官反馈，但大规模多感官数据集缺乏。MuSe提出多阶段融合策略，将有限的多感官数据注入预训练视觉策略，在不丢失原有性能的前提下适应新模态，在接触丰富的操作任务中显著提升了鲁棒性和成功率，推动了机器人多感官学习的发展。",
+      "llm_tldr": "机器人操作需要多感官反馈，但大规模多感官数据集缺乏。MuSe提出多阶段融合策略，将有限的多感官数据注入预训练视觉策略，在不丢失原有性能的前提下适应新模态，在接触丰富的操作任务中显著提升了鲁棒性和成功率，推动了机器人多感官学习的发展。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30101v1",
+      "source": "arxiv",
+      "title": "SIR: Structured Image Representations for Explainable Robot Learning",
+      "abstract": "Existing robot policies based on learned visual embeddings lack explicit structure and are sensitive to visual distractions. Thus, the representations that drive their behaviour are often opaque, making their decision-making process difficult to interpret. To address this, we introduce Structured Image Representations (SIR), a method that leverages Scene Graphs (SGs) as an intermediate representation for robot policy learning. Our approach first constructs a fully connected graph, using image-derived features as initial node representations. Then, a module learns to sparsify this graph end-to-end, creating a task-relevant sub-graph that is passed to the action generation model. This process makes our model intrinsically explainable. Evaluations on RoboCasa show that our sparse graph policies outperform image-based baselines on average with 19.5% vs 14.81% success rate. Most importantly, we show that the learned sparse graphs are a powerful tool for model analysis. By analysing when the model's sub-graph deviates from human expectation, such as by including distractor nodes or omitting key objects, we successfully uncover dataset biases, including spurious correlations and positional biases. https://github.com/intuitive-robots/SIR_Model",
+      "authors": [
+        "Paul Mattes",
+        "Jan Schwab",
+        "Jens Bosch",
+        "Nils Blank",
+        "Maximilian Xiling Li",
+        "Minh-Trung Tang",
+        "Moritz Haberland",
+        "Rudolf Lioutikov"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-29T10:37:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.30101v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "end-to-end scene graph sparsification for robot policy learning",
+      "llm_evidence_cn": "端到端图稀疏化用于机器人策略学习，提供可解释表示",
+      "llm_evidence": "端到端图稀疏化用于机器人策略学习，提供可解释表示",
+      "canonical_evidence": "端到端图稀疏化用于机器人策略学习，提供可解释表示",
+      "llm_tldr_en": "SIR uses scene graphs as intermediate representations for robot policy learning, learning to sparsify the graph end-to-end for explainability.",
+      "llm_tldr_cn": "现有机器人策略依赖不透明的视觉嵌入，易受干扰且难以解释。本文提出结构化图像表示（SIR），利用场景图作为中间表示，通过端到端学习稀疏化图结构，生成任务相关子图用于动作生成。该方法提升了模型可解释性，在RoboCa等任务上验证。",
+      "llm_tldr": "现有机器人策略依赖不透明的视觉嵌入，易受干扰且难以解释。本文提出结构化图像表示（SIR），利用场景图作为中间表示，通过端到端学习稀疏化图结构，生成任务相关子图用于动作生成。该方法提升了模型可解释性，在RoboCa等任务上验证。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00272v1",
+      "source": "arxiv",
+      "title": "ASPIRE: Agentic /Skills Discovery for Robotics",
+      "abstract": "Traditional robot programming is challenging: it requires orchestrating multimodal perception, managing physical contact dynamics, and handling diverse configurations and execution failures. We introduce ASPIRE (Agentic Skill Programming through Iterative Robot Exploration), a continual learning system that autonomously writes and refines robot control programs in a code-as-policy paradigm while compounding experience into a reusable skill library. ASPIRE discovers skills that persist across tasks, simulation and real-world settings, and embodiments. It operates in an open-ended loop with three components: (1) a closed-loop robot execution engine that exposes fine-grained multimodal traces, enabling autonomous failure diagnosis, repair synthesis, and validation; (2) a continually expanding skill library that distills validated fixes into reusable, transferable knowledge; and (3) evolutionary search that generates diverse task sequences and control programs to explore beyond single-trajectory refinement. ASPIRE surpasses prior methods by up to 77% on LIBERO-Pro manipulation under perturbation, 72% on Robosuite bimanual handover, and 32% on BEHAVIOR-1K long-horizon household tasks. Its accumulated library also enables zero-shot generalization to unseen long-horizon tasks: on LIBERO-Pro Long, ASPIRE achieves 31% success versus 4% for prior methods despite their use of test-time reasoning and retries. Finally, simulation-discovered skills provide initial evidence of sim-to-real transfer, substantially reducing real-robot programming effort across different embodiments and robot APIs.",
+      "authors": [
+        "Runyu Lu",
+        "Yubo Wu",
+        "Ethan Kou",
+        "Letian Fu",
+        "Wenli Xiao",
+        "Ajay Mandlekar",
+        "Yinzhen Xu",
+        "Guanya Shi",
+        "Ken Goldberg",
+        "Ang Chen",
+        "Mosharaf Chowdhury",
+        "Yuke Zhu",
+        "Linxi \"Jim\" Fan",
+        "Guanzhi Wang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-06-30T23:38:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.00272v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "autonomous skill discovery for robots",
+      "llm_evidence_cn": "面向机器人的自主技能发现",
+      "llm_evidence": "面向机器人的自主技能发现",
+      "canonical_evidence": "面向机器人的自主技能发现",
+      "llm_tldr_en": "ASPIRE autonomously writes and refines robot control programs as code policies, building a reusable skill library across tasks and embodiments.",
+      "llm_tldr_cn": "传统机器人编程面临复杂性和失败修复挑战。ASPIRE提出自主持续学习系统，以代码作为策略，通过闭环执行引擎和多模态追踪自动诊断、修复失败并发现可复用技能，在多种任务和平台上验证了技能的可迁移性，极大地提升了机器人编程的自动化水平。",
+      "llm_tldr": "传统机器人编程面临复杂性和失败修复挑战。ASPIRE提出自主持续学习系统，以代码作为策略，通过闭环执行引擎和多模态追踪自动诊断、修复失败并发现可复用技能，在多种任务和平台上验证了技能的可迁移性，极大地提升了机器人编程的自动化水平。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30698v1",
+      "source": "arxiv",
+      "title": "Vision-Language Procedural Reasoning for Context-Aware Reward Modeling of Robotic Endovascular Guidewire Navigation",
+      "abstract": "Robotic-assisted endovascular interventions demand accurate, stable, and context-aware guidewire navigation in complex and patient-specific vascular anatomies. Despite recent advances in robotic precision and learning-based control, existing autonomous navigation methods remain limited by their reliance on static reward functions and the lack of explicit procedural reasoning regarding anatomical context and task progression. To address these challenges, this paper proposes a vision-language procedural reasoning (VL-PR) framework for autonomous guidewire navigation. The framework integrates a multimodal large language model (MLLM) as a procedural reasoning module that interprets real-time visual observations to infer high-level navigation contexts. Instead of generating low-level control commands, the inferred procedural insights enable context-aware reward adaptation by dynamically adjusting the importance of reward components across different navigation phases. This approach allows a single policy to resolve competing objectives and handle complex transitions while preserving a consistent global task goal. Experiments on a physical robotic platform across diverse vascular scenarios demonstrate enhanced task reliability and streamlined navigational efficiency, highlighting the advantages over static-reward methods and offering a scalable solution for complex and multi-task robotic endovascular procedures.",
+      "authors": [
+        "Wentong Tian",
+        "Jiyuan Zhao",
+        "Tianliang Yao",
+        "Yuxiang Fan",
+        "Zhengyu Shi",
+        "Dong Liu",
+        "Peng Qi"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-29T07:35:20+00:00",
+      "link": "https://arxiv.org/pdf/2606.30698v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "vision-language procedural reasoning for robot navigation",
+      "llm_evidence_cn": "视觉语言程序推理用于机器人导航",
+      "llm_evidence": "视觉语言程序推理用于机器人导航",
+      "canonical_evidence": "视觉语言程序推理用于机器人导航",
+      "llm_tldr_en": "Proposes a vision-language procedural reasoning framework for context-aware reward modeling in robotic guidewire navigation, integrating MLLM for real-time visual interpretation.",
+      "llm_tldr_cn": "针对机器人导丝导航中静态奖励函数缺乏解剖情境推理的问题，提出视觉语言程序推理（VL-PR）框架，利用多模态大模型作为程序推理模块实时解读视觉观察并建模上下文感知奖励，实现更准确稳定的自主导航。实验表明该方法在复杂血管解剖环境中的有效性。",
+      "llm_tldr": "针对机器人导丝导航中静态奖励函数缺乏解剖情境推理的问题，提出视觉语言程序推理（VL-PR）框架，利用多模态大模型作为程序推理模块实时解读视觉观察并建模上下文感知奖励，实现更准确稳定的自主导航。实验表明该方法在复杂血管解剖环境中的有效性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.01410v1",
+      "source": "arxiv",
+      "title": "BIFROST: Bridging Invariant Feature Representation for Observation-space Sim2Real Transfer",
+      "abstract": "Sim2real transfer for robot policy learning suffers due to mismatch between simulation and reality. Existing methods typically address each gap in isolation through separate adaptation modules, which are composed or layered when both gaps coexist. Yet the basis for attempting sim2real in the first place is that there is shared structure between a task in simulation and reality, where equivalent actions from equivalent configurations produce equivalent long term outcomes regardless of domain specific differences in rendering or physics. In this paper, we study whether we can identify and exploit this shared structure from raw observations to train a policy that enables zero shot transfer. We introduce BIFROST, which learns a shared history encoder on paired cross-domain data via cross-domain bisimulation objective: observation-action sequences leading to equivalent long-term behavior are mapped to nearby latent states, regardless of domain. Policies trained on these latent states in simulation transfer zero-shot to reality. We provide empirical evidence on sim2sim visual navigation and sim2real contact rich manipulation task and visual servoing task that BIFROST achieves effective transfer where domain adaptation and co-training baselines fail under both visual and dynamics domain gaps.",
+      "authors": [
+        "Yunfu Deng",
+        "Josiah P. Hanna"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-07-01T19:15:17+00:00",
+      "link": "https://arxiv.org/pdf/2607.01410v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "sim2real for robot policy learning with shared representation",
+      "llm_evidence_cn": "利用共享表示进行机器人策略学习的sim2real",
+      "llm_evidence": "利用共享表示进行机器人策略学习的sim2real",
+      "canonical_evidence": "利用共享表示进行机器人策略学习的sim2real",
+      "llm_tldr_en": "BIFROST learns a shared invariant feature representation from observations to enable zero-shot sim2real transfer for robot policies.",
+      "llm_tldr_cn": "本文针对机器人策略学习中仿真与现实的差异问题，提出BIFROST方法，从原始观测中学习任务共有的不变特征表示，实现零样本sim2real迁移，无需单独适配各领域差异，在多种机器人任务上验证了有效性。",
+      "llm_tldr": "本文针对机器人策略学习中仿真与现实的差异问题，提出BIFROST方法，从原始观测中学习任务共有的不变特征表示，实现零样本sim2real迁移，无需单独适配各领域差异，在多种机器人任务上验证了有效性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.31645v1",
+      "source": "arxiv",
+      "title": "Technical Report of RoboSpatial Challenge at CVPR 2026: Selective Reasoning Activation and Reference-Frame Disambiguation for Embodied Spatial Reasoning",
+      "abstract": "Vision-language models achieve strong general perception but often struggle with the spatial reasoning required for embodied tasks. We present RoboSpatialBrain, our submission to the RoboSpatial Challenge at the Embodied Reasoning in Action Workshop, CVPR 2026, built on RoboBrain2.5-8B-NV. RoboSpatialBrain combines two training-free, inference-time mechanisms: a forced <think> prefix activation strategy paired with a task-specific post-prompt that elicits deliberate reasoning on context and compatibility tasks, and an explicit reference-frame redirection pipeline that resolves camera-centric and object-centric ambiguity for context tasks. We additionally explore fine-tuning RoboBrain2.5 on compatibility data and present a detailed analysis of its interaction with prompting. RoboSpatialBrain achieved first place in the RoboSpatial Challenge, with an overall success rate of 80.9\\% on RoboSpatial-Home. Code is available at https://github.com/YuxiangXie2003/RoboSpatialBrain.",
+      "authors": [
+        "Yuxiang Xie",
+        "Qi Lv",
+        "Jianming Xing",
+        "Zijian Hong",
+        "Xiang Deng",
+        "Weili Guan",
+        "Liqiang Nie"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-30T13:25:59+00:00",
+      "link": "https://arxiv.org/pdf/2606.31645v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "spatial reasoning for embodied tasks",
+      "llm_evidence_cn": "具身任务的空间推理",
+      "llm_evidence": "具身任务的空间推理",
+      "canonical_evidence": "具身任务的空间推理",
+      "llm_tldr_en": "Proposes RoboSpatialBrain for embodied spatial reasoning using selective reasoning activation and reference-frame disambiguation on VLM.",
+      "llm_tldr_cn": "本文针对视觉语言模型在具身任务中空间推理不足的问题，提出RoboSpatialBrain方法，通过强制思考前缀激活和参考帧重定向管道，在免训练推理阶段提升空间推理能力，在CVPR 2026 RoboSpatial挑战中取得良好效果。",
+      "llm_tldr": "本文针对视觉语言模型在具身任务中空间推理不足的问题，提出RoboSpatialBrain方法，通过强制思考前缀激活和参考帧重定向管道，在免训练推理阶段提升空间推理能力，在CVPR 2026 RoboSpatial挑战中取得良好效果。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.02195v1",
+      "source": "arxiv",
+      "title": "Bridge-WA: Predicting Where and How the World Changes for Robotic Action",
+      "abstract": "General-purpose vision-language-action models benefit from large vision-language priors, but effective manipulation also requires anticipating action-relevant scene changes. Existing world-action models often rely on large generative world models or dense future rollouts, which are expensive and spend capacity on visual details weakly coupled to control. We present Bridge-WA, a lightweight world-action framework that distills a frozen future-change teacher into three compact priors: future tokens for intended outcomes, change maps for intervention support, and motion-flow maps for local transition direction. A WorldBridge conditions the action transformer on these priors through multi-source attention memories and spatial-temporal biases, while the teacher model is removed at inference. Across VLABench, RoboTwin2.0, LIBERO-Plus and real-robot evaluations, Bridge-WA improves task success, progress, and robustness, with particularly clear gains under out-of-distribution visual shifts. By focusing action generation on where and how the scene will change, Bridge-WA suppresses nuisance appearance factors such as background, lighting, and distractors, leading to better generalization without deployment-time dense future-image generation. Code and visualizations are available at: https://hcplab-sysu.github.io/BRIDGE-WA .",
+      "authors": [
+        "Yongjie Bai",
+        "Hanting Wang",
+        "Mingtong Dai",
+        "Qijun Zhong",
+        "Yang Liu",
+        "Liang Lin"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-02T14:03:44+00:00",
+      "link": "https://arxiv.org/pdf/2607.02195v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "lightweight world-action framework for robotic action predicting future scene changes",
+      "llm_evidence_cn": "轻量级世界动作框架，预测场景变化以支持机器人动作",
+      "llm_evidence": "轻量级世界动作框架，预测场景变化以支持机器人动作",
+      "canonical_evidence": "轻量级世界动作框架，预测场景变化以支持机器人动作",
+      "llm_tldr_en": "Proposes Bridge-WA, a lightweight framework that distills future-change knowledge into compact priors for robot action generation, avoiding heavy generative models.",
+      "llm_tldr_cn": "现有世界动作模型依赖大规模生成模型或密集未来 rollout，计算昂贵。本文提出Bridge-WA轻量级框架，将冻结的未来变化教师模型蒸馏为未来令牌、变化图和运动流图三个紧凑先验，通过多源注意力引导动作变换器。在机器人操作任务中，该方法以更少计算量达到与完全生成模型相当的表现。",
+      "llm_tldr": "现有世界动作模型依赖大规模生成模型或密集未来 rollout，计算昂贵。本文提出Bridge-WA轻量级框架，将冻结的未来变化教师模型蒸馏为未来令牌、变化图和运动流图三个紧凑先验，通过多源注意力引导动作变换器。在机器人操作任务中，该方法以更少计算量达到与完全生成模型相当的表现。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
