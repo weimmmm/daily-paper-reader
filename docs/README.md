@@ -6,46 +6,44 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-05
-- 运行时间：2026-07-05 20:08:27 UTC
+- 最新运行日期：2026-07-06
+- 运行时间：2026-07-06 21:35:13 UTC
 - 运行状态：成功
 - 本次总论文数：8
-- 精读区：1
-- 速读区：7
+- 精读区：3
+- 速读区：5
 
 ### 今日简报（AI）
-今日聚焦VLA统一训练框架，并覆盖多感官持续学习、机器人技能发现及Sim2Real迁移等方向。  
-最值得关注精读论文《VLAFlow》提出的共训练与未来潜在对齐方法，以及速读中《BIFROST》的不变特征桥接迁移策略。  
-建议优先精读VLAFlow以掌握视觉-语言-动作模型的最新范式，再结合BIFROST等思路优化实际部署中的跨域泛化。
-- 详情：[/202607/05/README](/202607/05/README)
+今日精读聚焦视觉-语言模型强化学习的忠实性改进与人形机器人策略塑性增强，速读涵盖动作推理与人体示教学习等方向。最值得关注《Be Faithful When Response》提出的VLM忠实回答方法与《FastDSAC》中通过约束探索提升人形机器人策略塑性。建议优先精读这两篇，深入理解多模态模型可靠性训练和机器人运动策略优化的前沿思路。
+- 详情：[/202607/06/README](/202607/06/README)
 
 ### 精读区论文标签
-1. [VLAFlow: A Unified Training Framework for Vision-Language-Action Models via Co-training and Future Latent Alignment](/202607/05/2607.01586v1-vlaflow-a-unified-training-framework-for-vision-language-action-models-via-co-training-and-future-latent-alignment)  
+1. [Be Faithful When Response: Returning Fluent and Grounded Answers for Vision-Language Models Reinforcement Learning](/202607/06/2606.29984v1-be-faithful-when-response-returning-fluent-and-grounded-answers-for-vision-language-models-reinforcement-learning)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：强化学习用于视觉语言模型，关注视觉接地和忠实性
+2. [FastDSAC: Enhancing Policy Plasticity via Constrained Exploration for Scalable Humanoid Locomotion](/202607/06/2606.31691v1-fastdsac-enhancing-policy-plasticity-via-constrained-exploration-for-scalable-humanoid-locomotion)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：机器人视觉-语言-动作模型的统一训练
+   evidence：面向人形机器人运动的强化学习（可视为导航）
+3. [Multi-scale Mixture of World Models for Embodied Agents in Evolving Environments](/202607/06/2607.00457v1-multi-scale-mixture-of-world-models-for-embodied-agents-in-evolving-environments)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：面向具身代理的多尺度世界模型混合
 
 ### 速读区论文标签
-1. [Multisensory Continual Learning: Adapting Pretrained Visuomotor Policies to Force](/202607/05/2606.30988v2-multisensory-continual-learning-adapting-pretrained-visuomotor-policies-to-force)  
+1. [VLA-Corrector: Lightweight Detect-and-Correct Inference for Adaptive Action Horizon](/202607/06/2607.01804v1-vla-corrector-lightweight-detect-and-correct-inference-for-adaptive-action-horizon)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：将视觉运动策略适应到力传感的机器人
-2. [ASPIRE: Agentic /Skills Discovery for Robotics](/202607/05/2607.00272v1-aspire-agentic-skills-discovery-for-robotics)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：面向机器人的自主技能发现
-3. [BIFROST: Bridging Invariant Feature Representation for Observation-space Sim2Real Transfer](/202607/05/2607.01410v1-bifrost-bridging-invariant-feature-representation-for-observation-space-sim2real-transfer)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：利用共享表示进行机器人策略学习的sim2real
-4. [SIR: Structured Image Representations for Explainable Robot Learning](/202607/05/2606.30101v1-sir-structured-image-representations-for-explainable-robot-learning)  
+   evidence：端到端VLA策略的校正推理
+2. [WARP: Whole-Body Retargeting for Learning from Offline Human Demonstrations](/202607/06/2606.29940v1-warp-whole-body-retargeting-for-learning-from-offline-human-demonstrations)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：端到端图稀疏化用于机器人策略学习，提供可解释表示
-5. [Vision-Language Procedural Reasoning for Context-Aware Reward Modeling of Robotic Endovascular Guidewire Navigation](/202607/05/2606.30698v1-vision-language-procedural-reasoning-for-context-aware-reward-modeling-of-robotic-endovascular-guidewire-navigation)  
+   evidence：全身人-机器人重定位用于移动操纵
+3. [Human-as-Humanoid: Enabling Zero-Shot Humanoid Learning from Ego-Exo Human Videos with Human-Aligned Embodiments](/202607/06/2606.32009v1-human-as-humanoid-enabling-zero-shot-humanoid-learning-from-ego-exo-human-videos-with-human-aligned-embodiments)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：视觉语言程序推理用于机器人导航
-6. [Technical Report of RoboSpatial Challenge at CVPR 2026: Selective Reasoning Activation and Reference-Frame Disambiguation for Embodied Spatial Reasoning](/202607/05/2606.31645v1-technical-report-of-robospatial-challenge-at-cvpr-2026-selective-reasoning-activation-and-reference-frame-disambiguation-for-embodied-spatial-reasoning)  
+   evidence：从人类到人形机器人的监督框架用于VLA训练
+4. [ABot-M0.5: Unified Mobility-and-Manipulation World Action Model](/202607/06/2607.00678v1-abot-m05-unified-mobility-and-manipulation-world-action-model)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：具身任务的空间推理
-7. [Bridge-WA: Predicting Where and How the World Changes for Robotic Action](/202607/05/2607.02195v1-bridge-wa-predicting-where-and-how-the-world-changes-for-robotic-action)  
+   evidence：具身移动操作世界动作模型
+5. [Neuro-Symbolic Safety Guidance for Vision-Language-Action Models via Constrained Flow Matching](/202607/06/2607.01378v1-neuro-symbolic-safety-guidance-for-vision-language-action-models-via-constrained-flow-matching)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：轻量级世界动作框架，预测场景变化以支持机器人动作
+   evidence：VLA模型在机器人操作中的安全引导
 
 
 <div class="dpr-home-promo-card">

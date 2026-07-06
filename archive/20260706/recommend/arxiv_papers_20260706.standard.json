@@ -1,0 +1,372 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-06T21:30:09.805427+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 5,
+    "quick_skim_target": 11,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2606.29984v1",
+      "source": "arxiv",
+      "title": "Be Faithful When Response: Returning Fluent and Grounded Answers for Vision-Language Models Reinforcement Learning",
+      "abstract": "Reinforcement Learning (RL) is an important paradigm for improving the reasoning capabilities of Vision-Language Models (VLMs). However, directly applying RL to rollout multimodal reasoning can lead to instability, due to the exploitation of language priors, the neglect of visual evidence, and the generation of reasoning traces that are fluent yet not visually grounded. The question arises: Can initially steer the policy toward visually faithful reasoning regime before applying reinforcement learning? To this end, we propose a Faithful Warm-Start (FWS) strategy that first curates samples with explicit vision-language causal relationships from six general VQA benchmarks to construct the FaithfulQA dataset, where each of the image-question pairs gains a certain degree of visual observations, question requirements, commonsense knowledge, domain knowledge, and the final answer. Subsequently, a VLM-based judge is employed to further purify the dataset, ensuring strong causal consistency and visual faithfulness. This warm-start stage equips the model with the capability to understand causally grounded vision-language patterns before subsequent RL optimization under sparse answer-level rewards. Experimental results show that such faithful supervision improves answer accuracy, stabilizes RL training, and reduces visually unsupported reasoning.",
+      "authors": [
+        "Peng",
+        "Lee",
+        "Yin Zhang",
+        "Yanglin Zhang",
+        "Haonan Wu",
+        "Zishan Liu",
+        "Ruoxi Zang",
+        "Xin Zhu",
+        "Jiayin Zheng",
+        "Jian Yao",
+        "Zefeng Ji",
+        "Fei Ma"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-29T08:58:33+00:00",
+      "link": "https://arxiv.org/pdf/2606.29984v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "reinforcement learning for vision-language models, visual grounding",
+      "llm_evidence_cn": "强化学习用于视觉语言模型，关注视觉接地和忠实性",
+      "llm_evidence": "强化学习用于视觉语言模型，关注视觉接地和忠实性",
+      "canonical_evidence": "强化学习用于视觉语言模型，关注视觉接地和忠实性",
+      "llm_tldr_en": "Proposes Faithful Warm-Start (FWS) strategy for RL fine-tuning of VLMs, curating a FaithfulQA dataset with explicit vision-language causal relations to ensure answers are visually grounded before applying reinforcement learning.",
+      "llm_tldr_cn": "直接应用强化学习微调视觉语言模型（VLM）会导致模型过度依赖语言先验而忽视视觉证据，生成流畅但不接地气的回答。本文提出忠实冷启动（FWS）策略，先构建包含明确视觉-语言因果关系的FaithfulQA数据集，用其初始化模型使其趋向视觉忠实的推理模式，再施加RL微调。实验表明FWS有效提升了VLM回答的视觉接地性。该方法为RL在VLM中的稳定应用提供了新思路。",
+      "llm_tldr": "直接应用强化学习微调视觉语言模型（VLM）会导致模型过度依赖语言先验而忽视视觉证据，生成流畅但不接地气的回答。本文提出忠实冷启动（FWS）策略，先构建包含明确视觉-语言因果关系的FaithfulQA数据集，用其初始化模型使其趋向视觉忠实的推理模式，再施加RL微调。实验表明FWS有效提升了VLM回答的视觉接地性。该方法为RL在VLM中的稳定应用提供了新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.31691v1",
+      "source": "arxiv",
+      "title": "FastDSAC: Enhancing Policy Plasticity via Constrained Exploration for Scalable Humanoid Locomotion",
+      "abstract": "Scalable reinforcement learning has popularized high-throughput sampling architectures, which significantly compresses the training time for off-policy methods in robotic locomotion. However, the rapid increase of data volume and update frequency undermines the stability of value-based methods and diminishes the plasticity of policy networks. To address these challenges, this work presents FastDSAC, a fast and high-performance variant of the Distributional Actor-Critic algorithm designed for parallel sampling scenarios. Specifically, we introduce a truncated Gaussian distribution to approximate the learned policy, which effectively excludes out-of-distribution actions that strain target value estimation while keeping necessary stochasticity for exploration. The proposed action constraint functions as an implicit regularization, which counteracts the plasticity loss typically caused by aggressive gradient updates. This preservation of network adaptability enhances sample efficiency, particularly in scenarios with a high update-to-data ratio, and accelerates the early training process. In contrast to prior fast reinforcement learning approaches that rely on discrete value distributions, our method utilizes a continuous Gaussian representation equipped with adaptive variance regulation, which improves value estimation accuracy by sampling confident and informative transitions. Extensive experiments on MuJoCo Playground and HumanoidBench demonstrate that FastDSAC not only stabilizes the overall training process but also achieves superior asymptotic performance and faster convergence compared to state-of-the-art baselines.",
+      "authors": [
+        "Guanchen Lu",
+        "Yajuan Dun",
+        "Yi Zhou",
+        "Letian Tao",
+        "Jingliang Duan",
+        "Jie Li",
+        "Guofa Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-30T14:04:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.31691v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "reinforcement learning for humanoid locomotion (navigation)",
+      "llm_evidence_cn": "面向人形机器人运动的强化学习（可视为导航）",
+      "llm_evidence": "面向人形机器人运动的强化学习（可视为导航）",
+      "canonical_evidence": "面向人形机器人运动的强化学习（可视为导航）",
+      "llm_tldr_en": "FastDSAC enhances policy plasticity via constrained exploration for scalable humanoid locomotion RL, improving training stability and performance.",
+      "llm_tldr_cn": "大规模强化学习采样架构加速训练但损害策略网络可塑性。本文提出FastDSAC，一种分布式演员评论家算法变体，通过截断高斯分布约束探索，排除异常动作稳定目标值估计，同时保持必要探索。在人形机器人运动基准上，FastDSAC训练更快、性能更优，为具身机器人导航奠定基础。",
+      "llm_tldr": "大规模强化学习采样架构加速训练但损害策略网络可塑性。本文提出FastDSAC，一种分布式演员评论家算法变体，通过截断高斯分布约束探索，排除异常动作稳定目标值估计，同时保持必要探索。在人形机器人运动基准上，FastDSAC训练更快、性能更优，为具身机器人导航奠定基础。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.00457v1",
+      "source": "arxiv",
+      "title": "Multi-scale Mixture of World Models for Embodied Agents in Evolving Environments",
+      "abstract": "Embodied agents operating in the real world require multi-scale reasoning and knowledge adaptation as conditions change. We identify two challenges in applying Mixture of Experts (MoE) to this setting: routing lacks an explicit notion of scale, preventing targeted updates at specific scales, and a uniform update policy cannot accommodate the different rates at which knowledge at each scale becomes outdated. We present MuSix, a framework that addresses both challenges through scale-aware world model mixture and evolution. A two-stage routing mechanism grounds scale selection in experiential distance, a measure of situational novelty inspired by Construal Level Theory: a meta-router first maps this quantity to a weight over continuous scale space, then per-scale base routers select world models within the identified scale. For adaptation, scale-dependent forgetting rates allow low-scale knowledge to refresh rapidly while high-scale abstractions persist, and gated inter-scale transfer maintains coherence across the hierarchy. Experiments on EmbodiedBench and HAZARD show that MuSix improves over state-of-the-art baselines on multi-scale reasoning and dynamic adaptation.",
+      "authors": [
+        "Jinwoo Jang",
+        "Daniel J. Rho",
+        "Sihyung Yoon",
+        "Hyunsuk Cho",
+        "Honguk Woo"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-01T05:23:56+00:00",
+      "link": "https://arxiv.org/pdf/2607.00457v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "multi-scale world model mixture for embodied agents",
+      "llm_evidence_cn": "面向具身代理的多尺度世界模型混合",
+      "llm_evidence": "面向具身代理的多尺度世界模型混合",
+      "canonical_evidence": "面向具身代理的多尺度世界模型混合",
+      "llm_tldr_en": "Proposes MuSix, a framework for embodied agents that uses scale-aware mixture of world models to handle multi-scale reasoning and knowledge adaptation in evolving environments.",
+      "llm_tldr_cn": "针对具身代理在动态环境中需要多尺度推理和知识适应的问题，提出MuSix框架，通过尺度感知的世界模型混合和演化，基于经验距离选择合适尺度，实现在变化环境中的持续学习。在多个具身任务上展示了优于统一模型的效果和适应性。",
+      "llm_tldr": "针对具身代理在动态环境中需要多尺度推理和知识适应的问题，提出MuSix框架，通过尺度感知的世界模型混合和演化，基于经验距离选择合适尺度，实现在变化环境中的持续学习。在多个具身任务上展示了优于统一模型的效果和适应性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.01804v1",
+      "source": "arxiv",
+      "title": "VLA-Corrector: Lightweight Detect-and-Correct Inference for Adaptive Action Horizon",
+      "abstract": "Vision-Language-Action (VLA) foundation models have recently achieved strong progress in embodied intelligence. To reduce policy-call frequency while preserving temporal coherence, most generative policies adopt an action chunk mechanism, executing multiple future actions in an open-loop manner under a fixed action horizon. However, this \"predict-then-blindly-execute\" paradigm sacrifices closed-loop reactivity: in contact-rich physical interactions, even small local perturbations can rapidly amplify within the open-loop blind spot, leading to compounding errors and ultimately task failure. To address this limitation, we propose VLA-Corrector, a lightweight corrective inference framework for action-chunked VLA policies. Without modifying the backbone policy weights, VLA-Corrector introduces a lightweight Latent-space Vision Monitor (LVM) that continuously compares predicted and actual visual feature evolution, enabling online detection of visual dynamics deviations. Once persistent deviation is detected, the system triggers a truncation event, discards the remaining stale actions, and invokes corrective replanning via Online Gradient Guidance (OGG). The detect-and-correct mechanism of VLA-Corrector naturally induces an event-triggered adaptive action horizon: it preserves long-horizon execution when the current chunk remains reliable, and invokes short-horizon corrective replanning when execution begins to drift. In doing so, VLA-Corrector mitigates the trade-off imposed by static horizons between execution robustness and policy-call frequency. It can be integrated into different VLA models without further retraining the VLA backbone, interrupting compounding errors while preserving much of the efficiency benefit of action chunking and substantially improving robustness in long-horizon, contact-rich robotic manipulation tasks.",
+      "authors": [
+        "Yi Pan",
+        "Miao Pan",
+        "Qi Lu",
+        "Jiaming Huang",
+        "Man Zhang",
+        "Siteng Huang",
+        "Xin Li",
+        "Jie Zhang",
+        "Yongliang Shen",
+        "Xuhong Zhang",
+        "Wenqi Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-02T07:18:53+00:00",
+      "link": "https://arxiv.org/pdf/2607.01804v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "end-to-end VLA policies with corrective inference",
+      "llm_evidence_cn": "端到端VLA策略的校正推理",
+      "llm_evidence": "端到端VLA策略的校正推理",
+      "canonical_evidence": "端到端VLA策略的校正推理",
+      "llm_tldr_en": "VLA-Corrector provides lightweight corrective inference for action-chunked VLA policies, detecting and fixing errors in the open-loop blind spot without modifying the original model, improving robustness in contact-rich tasks.",
+      "llm_tldr_cn": "现有视觉-语言-动作(VLA)模型采用动作分块机制来降低策略调用频率，但开环执行在接触操作中容易累积误差。VLA-Corrector设计了一种轻量级检测与校正框架，能在不改变原策略的前提下识别并修正开环盲区中的错误动作。实验显示该方法有效减少了误差传播，显著提升了多类机器人操作任务的成功率，为VLA模型在实际部署中提供了低成本的安全增强手段。",
+      "llm_tldr": "现有视觉-语言-动作(VLA)模型采用动作分块机制来降低策略调用频率，但开环执行在接触操作中容易累积误差。VLA-Corrector设计了一种轻量级检测与校正框架，能在不改变原策略的前提下识别并修正开环盲区中的错误动作。实验显示该方法有效减少了误差传播，显著提升了多类机器人操作任务的成功率，为VLA模型在实际部署中提供了低成本的安全增强手段。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29940v1",
+      "source": "arxiv",
+      "title": "WARP: Whole-Body Retargeting for Learning from Offline Human Demonstrations",
+      "abstract": "Direct transfer from human demonstration to learnable robot action is a crucial step towards scalable whole-body mobile manipulation. While human data scales better than mobile teleoperation, it requires overcoming significant embodiment gaps. Existing retargeting methods yield imprecise or inconsistent solutions, causing action multi-modality that prevents supervised policies from reliably converging. We present Whole-body-Aware Retargeting from human Pose (WARP), an offline pipeline that explicitly models embodiment differences to extract precise, unique whole-body actions. WARP leverages a closed-form Shoulder-Elbow-Wrist (SEW) geometric solver for exact end-effector tracking while preserving whole-body structural intent. Paired with lazy mobile-base control, it extracts accurate, consistent robot trajectories. Evaluations show WARP provides highly reliable data for open-loop real-world replay. To our knowledge, WARP is the first framework to achieve zero-shot whole-body mobile manipulation directly from offline human demonstrations, eliminating the need for human-in-the-loop teleoperation action data. More details on https://warp-retarget.github.io/",
+      "authors": [
+        "Zhenyang Chen",
+        "Chuizheng Kong",
+        "Chuye Zhang",
+        "Yuanshao Yang",
+        "Lawrence Y. Zhu",
+        "Shreyas Kousik",
+        "Danfei Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-29T08:17:31+00:00",
+      "link": "https://arxiv.org/pdf/2606.29940v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "whole-body human-to-robot retargeting for mobile manipulation",
+      "llm_evidence_cn": "全身人-机器人重定位用于移动操纵",
+      "llm_evidence": "全身人-机器人重定位用于移动操纵",
+      "canonical_evidence": "全身人-机器人重定位用于移动操纵",
+      "llm_tldr_en": "Presents WARP, an offline pipeline that retargets human poses to robot whole-body actions using a closed-form SEW geometric solver for precise end-effector tracking while preserving body structural intent.",
+      "llm_tldr_cn": "从人类演示直接迁移到机器人动作面临很大的形态差异，现有重定位方法精度不足导致动作多模态，抑制了监督学习的收敛。本文提出WARP，一种离线处理流水线，通过闭式肩-肘-腕（SEW）几何求解器精确跟踪末端执行器，同时保持全身结构意图，从而提取精确、唯一的全身动作序列。实验表明WARP生成的动作使策略训练更稳定，性能优于现有重定位方法。该工作为利用海量人类数据训练全身移动操作机器人提供了关键技术。",
+      "llm_tldr": "从人类演示直接迁移到机器人动作面临很大的形态差异，现有重定位方法精度不足导致动作多模态，抑制了监督学习的收敛。本文提出WARP，一种离线处理流水线，通过闭式肩-肘-腕（SEW）几何求解器精确跟踪末端执行器，同时保持全身结构意图，从而提取精确、唯一的全身动作序列。实验表明WARP生成的动作使策略训练更稳定，性能优于现有重定位方法。该工作为利用海量人类数据训练全身移动操作机器人提供了关键技术。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.32009v1",
+      "source": "arxiv",
+      "title": "Human-as-Humanoid: Enabling Zero-Shot Humanoid Learning from Ego-Exo Human Videos with Human-Aligned Embodiments",
+      "abstract": "Vision-language-action (VLA) models across robot embodiments require high-quality observation--action supervision to learn deployable action distributions, yet scaling such robot data remains difficult, especially for high-DoF humanoids. Teleoperation provides controller-aligned supervision, while human egocentric videos capture diverse bimanual manipulation but do not directly provide executable robot actions. We introduce Human-as-Humanoid, a human-to-humanoid supervision framework that enables near-real-time human-centric action generation, making human demonstrations usable for high-DoF humanoid VLA training by jointly aligning the robot embodiment, the sensing setup, and the action-label interface. Built on PrimeU, a human-aligned 60-DoF upper-body humanoid, Human-as-Humanoid uses synchronized ego-exo videos to pair deployment-aligned egocentric observations with exocentric motion recovery, retargets the recovered human motion through staged Inverse Kinematics (IK) into controller-aligned 60-DoF action chunks, and trains the VLA model with Forward Kinematics (FK)-aware supervision to preserve wrist and fingertip task-space geometry. This converts large-scale human demonstrations from visual observations into executable observation--action supervision for the target humanoid. Experiments validate the conversion chain at the motion-recovery, robot-action-space, and real-robot deployment levels. Human-as-Humanoid yields a 4.8--7.2x raw demonstration-throughput gain over humanoid teleoperation in our data-collection analysis, and on several downstream tasks, policies post-trained only with the converted human labels generalize to real-robot deployment without target-task robot demonstrations. The official project website is available at https://zgc-embodyai.github.io/Human-as-Humanoid.",
+      "authors": [
+        "Xiaopeng Lin",
+        "Ruoqi Yang",
+        "Shijie Lian",
+        "Zhaolong Shen",
+        "Bin Yu",
+        "Changti Wu",
+        "Haibao Liu",
+        "Yuxiang Zhang",
+        "Hong Li",
+        "Qiyuan Su",
+        "Haochen Liu",
+        "Xuguo He",
+        "Yukun Shi",
+        "Cong Huang",
+        "Zhirui Zhang",
+        "Bojun Cheng",
+        "Kai Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-30T17:44:16+00:00",
+      "link": "https://arxiv.org/pdf/2606.32009v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "human-to-humanoid supervision framework for VLA training",
+      "llm_evidence_cn": "从人类到人形机器人的监督框架用于VLA训练",
+      "llm_evidence": "从人类到人形机器人的监督框架用于VLA训练",
+      "canonical_evidence": "从人类到人形机器人的监督框架用于VLA训练",
+      "llm_tldr_en": "Human-as-Humanoid enables zero-shot humanoid learning by aligning embodiment, sensing, and action interfaces to leverage human videos for high-DoF VLA model training.",
+      "llm_tldr_cn": "针对高自由度人形机器人数据难以获取的问题，本文提出Human-as-Humanoid框架，通过联合对齐机器人本体、传感设置和动作标签接口，将人类视频转化为可用的动作监督，实现零样本人形机器人学习。该方法扩展了VLA模型的训练数据源，促进了跨本体迁移。",
+      "llm_tldr": "针对高自由度人形机器人数据难以获取的问题，本文提出Human-as-Humanoid框架，通过联合对齐机器人本体、传感设置和动作标签接口，将人类视频转化为可用的动作监督，实现零样本人形机器人学习。该方法扩展了VLA模型的训练数据源，促进了跨本体迁移。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00678v1",
+      "source": "arxiv",
+      "title": "ABot-M0.5: Unified Mobility-and-Manipulation World Action Model",
+      "abstract": "Mobile manipulation is a key capability for general-purpose robots, yet remains challenging for current embodied learning methods. VLA policies are typically reactive and lack explicit world modeling, while existing World Action Models (WAMs) are still poorly aligned with the structure of mobile manipulation: they operate on coarse video chunks, model entangled navigation-manipulation actions, and train inverse dynamics under supervision that does not match autoregressive inference. As a result, they often miss fine-grained contact dynamics, suffer from action-distribution conflicts, and accumulate errors over long-horizon rollouts. We propose ABot-M0.5, a new WAM built on the insight that mobile manipulation requires alignment at three levels: temporal granularity, action space, and train-test consistency. To align temporal granularity, we introduce intermediate latent actions that capture local visual state transitions and serve as an bridging action space between video latents and embodiment-specific controls. To align action space, we design a dual-level Mixture-of-Transformers architecture that disentangles both modality representations and heterogeneous action subspaces such as base movement and arm manipulation. To align inference conditions, we propose the dream-forcing training strategy that progressively trains inverse dynamics on model-predicted videos, improving train-test alignment and robustness during autoregressive prediction. Experiments on challenging mobile and fine-grained manipulation benchmarks demonstrate that ABot-M0.5 achieves state-of-the-art performance in both long-horizon task success and finegrained control accuracy. These results highlight the critical importance of granularity-aligned, action-disentangled, and inference-consistent world-action modeling.",
+      "authors": [
+        "Ronghan Chen",
+        "Yandan Yang",
+        "Zuojin Tang",
+        "Dongjie Huo",
+        "Tong Lin",
+        "Haoning Wu",
+        "Haoyun Liu",
+        "Yuzhi Chen",
+        "Lulu Zheng",
+        "Botai Yuan",
+        "Tianlun Li",
+        "Mingxin Wang",
+        "Dekang Qi",
+        "Bin Hu",
+        "Wei Mei",
+        "Yuze Xuan",
+        "Haolong Yang",
+        "Yanqing Zhu",
+        "Mu Xu",
+        "Zhiheng Ma",
+        "Xinyuan Chang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-07-01T09:21:20+00:00",
+      "link": "https://arxiv.org/pdf/2607.00678v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "embodied mobile manipulation world action model",
+      "llm_evidence_cn": "具身移动操作世界动作模型",
+      "llm_evidence": "具身移动操作世界动作模型",
+      "canonical_evidence": "具身移动操作世界动作模型",
+      "llm_tldr_en": "ABot-M0.5 proposes a unified world action model for mobile manipulation, aligning temporal, action, and outcome levels to improve long-horizon rollout accuracy.",
+      "llm_tldr_cn": "针对当前移动操作中世界动作模型在细粒度接触动态和长时程 rollout 上的不足，ABot-M0.5 提出了一个三层次对齐的统一世界动作模型。该方法通过解耦导航与操作动作并采用自回归逆动态训练，有效减少了动作分布冲突和累积误差。实验表明其在多种移动操作任务上显著优于现有 WAM，为具身机器人学习提供了更稳定的世界模型基础。",
+      "llm_tldr": "针对当前移动操作中世界动作模型在细粒度接触动态和长时程 rollout 上的不足，ABot-M0.5 提出了一个三层次对齐的统一世界动作模型。该方法通过解耦导航与操作动作并采用自回归逆动态训练，有效减少了动作分布冲突和累积误差。实验表明其在多种移动操作任务上显著优于现有 WAM，为具身机器人学习提供了更稳定的世界模型基础。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.01378v1",
+      "source": "arxiv",
+      "title": "Neuro-Symbolic Safety Guidance for Vision-Language-Action Models via Constrained Flow Matching",
+      "abstract": "Vision-Language-Action (VLA) models have demonstrated promising generalization capabilities across robotic manipulation tasks, yet their real-world deployment remains limited by the lack of effective safety measures. Specifically, existing safety measures only prevent collisions caused by the robot's next action. In this paper, we propose a neuro-symbolic safety guidance mechanism for flow matching based VLAs that enables predictive collision avoidance. Flow matching based VLAs determine the next actions by predicting a trajectory (a sequence of actions) through an iterative neural flow matching process. Our method formulates safety enforcement as a minimum-norm constrained optimization problem that corrects safety violations during the denoising process of noisy intermediate trajectory predictions. By analyzing predicted trajectories and applying corrections during iterative denoising, our approach anticipates collisions before they become unavoidable. This interleaving of symbolic constraint satisfaction with neural trajectory generation enables predictive collision avoidance rather than reactive intervention. On the SafeLIBERO benchmark, our method achieves 82.8% collision avoidance and 81.6% task success, a 6.3% and 19.8% improvement respectively over single-step methods, with the largest gains on long-horizon tasks where compounding distribution shift is most pronounced. Video demonstrations of our approach are included on our project page at https://willenglish.tech/SafetyGuidedFlowMatching/.",
+      "authors": [
+        "William English",
+        "Hao Zheng",
+        "Rickard Ewetz"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "eess.SY"
+      ],
+      "published": "2026-07-01T18:41:33+00:00",
+      "link": "https://arxiv.org/pdf/2607.01378v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "safety guidance for VLA models in robotic manipulation",
+      "llm_evidence_cn": "VLA模型在机器人操作中的安全引导",
+      "llm_evidence": "VLA模型在机器人操作中的安全引导",
+      "canonical_evidence": "VLA模型在机器人操作中的安全引导",
+      "llm_tldr_en": "A neuro-symbolic safety guidance mechanism for flow matching based VLAs that corrects action trajectories during inference to avoid collisions, formulated as constrained optimization.",
+      "llm_tldr_cn": "视觉-语言-动作(VLA)模型在机器人操作中展现出强泛化能力，但缺乏预测性安全措施。本文提出将安全约束建模为最小范数优化问题，并在神经流匹配过程中实时修正动作轨迹，实现前瞻性的碰撞避免。不同于仅防止下一步碰撞的传统方法，该方法在预测整个轨迹时嵌入安全引导。实验表明该机制在不显著牺牲任务成功率的前提下大幅提高了操作安全性，为VLA模型的实际安全部署提供了有效保障。",
+      "llm_tldr": "视觉-语言-动作(VLA)模型在机器人操作中展现出强泛化能力，但缺乏预测性安全措施。本文提出将安全约束建模为最小范数优化问题，并在神经流匹配过程中实时修正动作轨迹，实现前瞻性的碰撞避免。不同于仅防止下一步碰撞的传统方法，该方法在预测整个轨迹时嵌入安全引导。实验表明该机制在不显著牺牲任务成功率的前提下大幅提高了操作安全性，为VLA模型的实际安全部署提供了有效保障。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
