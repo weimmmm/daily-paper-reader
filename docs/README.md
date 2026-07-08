@@ -6,71 +6,73 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-07
-- 运行时间：2026-07-07 21:59:23 UTC
+- 最新运行日期：2026-07-08
+- 运行时间：2026-07-08 21:47:44 UTC
 - 运行状态：成功
 - 本次总论文数：17
 - 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日精读聚焦异构多机器人编队控制与视觉语义导航两大前沿。最值得关注：分层物理信息强化学习破解机器人协同精度；视觉语义分割赋予导航策略“红绿灯”式理解。建议普通读者重点关注具身基础模型与长时视听导航基准的突破。
-- 详情：[/202607/07/README](/202607/07/README)
+今日推荐17篇论文，精读6篇，其中两篇获9.0高分，聚焦移动操控世界模型与闭环自动驾驶。  
+最值得关注两个方向：统一移动-操控的世界行动模型（ABot-M0.5）和大规模闭环强化学习端到端自动驾驶（CLEAR）。  
+建议优先精读这两篇9.0论文，它们代表了机器人操控与自动驾驶领域的最新范式突破。
+- 详情：[/202607/08/README](/202607/08/README)
 
 ### 精读区论文标签
-1. [High-Precision Formation Control for Heterogeneous Multi-Robot Systems via Hierarchical Hybrid Physics-Informed Deep Reinforcement Learning](/202607/07/2607.03512v1-high-precision-formation-control-for-heterogeneous-multi-robot-systems-via-hierarchical-hybrid-physics-informed-deep-reinforcement-learning)  
+1. [ABot-M0.5: Unified Mobility-and-Manipulation World Action Model](/202607/08/2607.00678v2-abot-m05-unified-mobility-and-manipulation-world-action-model)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：深度强化学习用于多机器人编队控制和导航
-2. [Green for Go, Red for No: Visual Grounding via Semantic Segmentation for VLA Navigation Policies](/202607/07/2607.05122v1-green-for-go-red-for-no-visual-grounding-via-semantic-segmentation-for-vla-navigation-policies)  
+   evidence：用于移动操作的世界动作模型，融合导航与操作
+2. [CLEAR: Closed-Loop Reinforcement Learning at Scale for End-to-End Autonomous Driving](/202607/08/2607.02841v1-clear-closed-loop-reinforcement-learning-at-scale-for-end-to-end-autonomous-driving)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：用于VLA导航策略的视觉基底
-3. [GigaWorld-1: A Roadmap to Build World Models for Robot Policy Evaluation](/202607/07/2607.02642v1-gigaworld-1-a-roadmap-to-build-world-models-for-robot-policy-evaluation)  
+   evidence：带闭环强化学习的端到端自动驾驶
+3. [Cross-Embodiment Robot Manipulation via a Unified Hand Action Space](/202607/08/2607.03570v1-cross-embodiment-robot-manipulation-via-a-unified-hand-action-space)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：跨具身机器人操作结合强化学习
+4. [EAGOR: Embodied Reasoning in Omni-direction](/202607/08/2607.06165v1-eagor-embodied-reasoning-in-omni-direction)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：利用全景相机进行具身导航推理
+5. [Embodied Human-Robot Interaction via Acoustics: A MARL Approach with AcoustoBots for Spatial Data Physicalization](/202607/08/2607.06563v1-embodied-human-robot-interaction-via-acoustics-a-marl-approach-with-acoustobots-for-spatial-data-physicalization)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：基于多智能体强化学习的具身机器人导航（声泳）
+6. [HiMe: Hierarchical Embodied Memory for Long-Horizon Vision-Language-Action Control](/202607/08/2607.03449v1-hime-hierarchical-embodied-memory-for-long-horizon-vision-language-action-control)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：具身机器人策略评估
-4. [Exp2VLA: Enabling Vision-Language-Action for Drone Navigation from Expert Demonstrations](/202607/07/2607.03146v1-exp2vla-enabling-vision-language-action-for-drone-navigation-from-expert-demonstrations)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：用于无人机导航的VLA模型，专家演示包括强化学习
-5. [OmniTacTune: Policy-Agnostic Real-World RL for Tactile Residual Adaptation of Visual Policies](/202607/07/2607.03723v1-omnitactune-policy-agnostic-real-world-rl-for-tactile-residual-adaptation-of-visual-policies)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：真实世界强化学习用于触觉适应视觉策略
-6. [From Region Arrival to Instance-Level Grounding in Vision-and-Language Navigation](/202607/07/2607.03792v1-from-region-arrival-to-instance-level-grounding-in-vision-and-language-navigation)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：视觉语言导航中的实例级定位精化
+   evidence：层次化具身记忆用于视觉语言动作控制
 
 ### 速读区论文标签
-1. [LH-AVLN: A Benchmark for Long-Horizon Audio-Visual-Language Navigation](/202607/07/2607.03920v1-lh-avln-a-benchmark-for-long-horizon-audio-visual-language-navigation)  
+1. [XS-VLA: Coupling Coarse-grained Spatial Distillation with Latent Flow Matching for Lightweight Robotic Control](/202607/08/2607.04171v1-xs-vla-coupling-coarse-grained-spatial-distillation-with-latent-flow-matching-for-lightweight-robotic-control)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：长视距视听语言导航基准
-2. [HALO-WA: Hybrid-Attention Latent-Guided Online Reinforcement Learning for World-Action Models](/202607/07/2607.04265v1-halo-wa-hybrid-attention-latent-guided-online-reinforcement-learning-for-world-action-models)  
+   evidence：轻量级视觉-语言-动作模型用于机器人控制，结合空间知识蒸馏
+2. [Image2Sim: Scaling Embodied Navigation via Generative Neural Simulator](/202607/08/2607.05765v1-image2sim-scaling-embodied-navigation-via-generative-neural-simulator)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：在线强化学习用于世界-动作模型的机器人操作
-3. [ACE-Brain-0.5: A Unified Embodied Foundational Model for Physical Agentic AI](/202607/07/2607.04426v1-ace-brain-05-a-unified-embodied-foundational-model-for-physical-agentic-ai)  
+   evidence：用于具身导航的生成式神经仿真器
+3. [Optimal Transport Q-Learning for Flow Policy Steering and Acceleration](/202607/08/2607.06262v1-optimal-transport-q-learning-for-flow-policy-steering-and-acceleration)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向物理具身智能的统一基础模型
-4. [Guided Action Flow: Q-Guided Inference for Flow-Matching Vision-Language-Action Policies](/202607/07/2607.02092v2-guided-action-flow-q-guided-inference-for-flow-matching-vision-language-action-policies)  
+   evidence：面向流策略的强化学习后训练
+4. [RynnWorld-4D: 4D Embodied World Models for Robotic Manipulation](/202607/08/2607.06559v1-rynnworld-4d-4d-embodied-world-models-for-robotic-manipulation)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：用于机器人操作的4D具身世界模型
+5. [Embodied Operators and Benchmarking: Toward Reusable and Deployable Embodied Intelligence Systems](/202607/08/2607.03283v1-embodied-operators-and-benchmarking-toward-reusable-and-deployable-embodied-intelligence-systems)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：VLA机器人策略的引导推理
-5. [CoRE-VLA: Towards Scalable and Robust Vision-Language-Action Modeling via Conditional Routing of Experts](/202607/07/2607.03693v1-core-vla-towards-scalable-and-robust-vision-language-action-modeling-via-conditional-routing-of-experts)  
+   evidence：具身算子用于可复用的具身智能系统
+6. [Worldscape-MoE: A Unified Mixture-of-Experts World Model for Scalable Heterogeneous Action Control](/202607/08/2607.03964v1-worldscape-moe-a-unified-mixture-of-experts-world-model-for-scalable-heterogeneous-action-control)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：通过条件专家路由实现可扩展鲁棒的VLA模型
-6. [CritiqueDriveVLM: From Verifier-Guided Reinforcement Learning to Latent Thought Distillation for Autonomous Driving](/202607/07/2607.04179v1-critiquedrivevlm-from-verifier-guided-reinforcement-learning-to-latent-thought-distillation-for-autonomous-driving)  
+   evidence：用于具身智能的世界模型
+7. [Mask-based Predictive Representations for Reinforcement Learning](/202607/08/2607.04153v1-mask-based-predictive-representations-for-reinforcement-learning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端强化学习在自动驾驶中的应用
-7. [PRISM: Personalized Robotic Dataset Generation via Image-based Scene and Motion Synthesis](/202607/07/2607.04880v1-prism-personalized-robotic-dataset-generation-via-image-based-scene-and-motion-synthesis)  
+   evidence：基于掩码预测的自监督辅助任务用于视觉强化学习
+8. [RoboVista: Evaluating Vision Language Models for Diverse Robot Applications](/202607/08/2607.04610v1-robovista-evaluating-vision-language-models-for-diverse-robot-applications)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：用于个性化机器人数据集生成的端到端流水线
-8. [OpenSPM: An Environment-Transferable Robotic Key Spatial Pose Memory and Closed-Loop High-Frequency Flow-Matching Action Generation Model](/202607/07/2606.29936v2-openspm-an-environment-transferable-robotic-key-spatial-pose-memory-and-closed-loop-high-frequency-flow-matching-action-generation-model)  
+   evidence：评估VLM用于多样化机器人应用
+9. [Spatial Attention: Adapting Execution Horizons for Diffusion Policies via Observation Sensitivity](/202607/08/2607.04739v1-spatial-attention-adapting-execution-horizons-for-diffusion-policies-via-observation-sensitivity)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：扩散策略的执行周期自适应
+10. [Diffusion-Guided Uncertainty-Aware Delayed Policy Optimization](/202607/08/2607.05064v1-diffusion-guided-uncertainty-aware-delayed-policy-optimization)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：使用扩散模型的延迟策略优化
+11. [Learning to Throw Objects Safely in Multi-Obstacle Environments](/202607/08/2607.06388v1-learning-to-throw-objects-safely-in-multi-obstacle-environments)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：具有空间记忆和流匹配的端到端VLA启发的框架
-9. [LeVLJEPA: End-to-End Vision-Language Pretraining Without Negatives](/202607/07/2607.00784v1-levljepa-end-to-end-vision-language-pretraining-without-negatives)  
-   标签：评分：6.0/10、query:embodied-rl
-   evidence：端到端视觉语言预训练
-10. [EVA-Client: A Unified Data Collection, Inference, and Deployment Framework for Embodied Policies on Real Robots](/202607/07/2607.02646v1-eva-client-a-unified-data-collection-inference-and-deployment-framework-for-embodied-policies-on-real-robots)  
-   标签：评分：6.0/10、query:embodied-rl
-   evidence：真实机器人具身策略框架
-11. [CRRL: A Causality-Based Reinforcement Learning Framework for Autonomous System Recovery](/202607/07/2607.03177v1-crrl-a-causality-based-reinforcement-learning-framework-for-autonomous-system-recovery)  
-   标签：评分：6.0/10、query:embodied-rl
-   evidence：基于因果的强化学习用于自主系统恢复
+   evidence：强化学习用于杂乱环境中的机器人投掷
 
 
 <div class="dpr-home-promo-card">
