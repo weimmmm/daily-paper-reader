@@ -6,73 +6,56 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-08
-- 运行时间：2026-07-08 21:47:44 UTC
+- 最新运行日期：2026-07-09
+- 运行时间：2026-07-09 21:48:47 UTC
 - 运行状态：成功
-- 本次总论文数：17
-- 精读区：6
+- 本次总论文数：12
+- 精读区：1
 - 速读区：11
 
 ### 今日简报（AI）
-今日推荐17篇论文，精读6篇，其中两篇获9.0高分，聚焦移动操控世界模型与闭环自动驾驶。  
-最值得关注两个方向：统一移动-操控的世界行动模型（ABot-M0.5）和大规模闭环强化学习端到端自动驾驶（CLEAR）。  
-建议优先精读这两篇9.0论文，它们代表了机器人操控与自动驾驶领域的最新范式突破。
-- 详情：[/202607/08/README](/202607/08/README)
+今日精读《GemNav》探讨多模态大模型在机器人视觉导航中的应用，速读关注视觉语言动作规划与灵巧操作。最值得看的是GemNav的离散令牌导航范式，以及AnchorVLA连接离散决策与连续轨迹的方法。建议关注多模态大模型落地机器人任务的效率与泛化性。
+- 详情：[/202607/09/README](/202607/09/README)
 
 ### 精读区论文标签
-1. [ABot-M0.5: Unified Mobility-and-Manipulation World Action Model](/202607/08/2607.00678v2-abot-m05-unified-mobility-and-manipulation-world-action-model)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：用于移动操作的世界动作模型，融合导航与操作
-2. [CLEAR: Closed-Loop Reinforcement Learning at Scale for End-to-End Autonomous Driving](/202607/08/2607.02841v1-clear-closed-loop-reinforcement-learning-at-scale-for-end-to-end-autonomous-driving)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：带闭环强化学习的端到端自动驾驶
-3. [Cross-Embodiment Robot Manipulation via a Unified Hand Action Space](/202607/08/2607.03570v1-cross-embodiment-robot-manipulation-via-a-unified-hand-action-space)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：跨具身机器人操作结合强化学习
-4. [EAGOR: Embodied Reasoning in Omni-direction](/202607/08/2607.06165v1-eagor-embodied-reasoning-in-omni-direction)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：利用全景相机进行具身导航推理
-5. [Embodied Human-Robot Interaction via Acoustics: A MARL Approach with AcoustoBots for Spatial Data Physicalization](/202607/08/2607.06563v1-embodied-human-robot-interaction-via-acoustics-a-marl-approach-with-acoustobots-for-spatial-data-physicalization)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：基于多智能体强化学习的具身机器人导航（声泳）
-6. [HiMe: Hierarchical Embodied Memory for Long-Horizon Vision-Language-Action Control](/202607/08/2607.03449v1-hime-hierarchical-embodied-memory-for-long-horizon-vision-language-action-control)  
+1. [GemNav: Discrete-Token Visual Robot Navigation using a Multimodal Large Language Model](/202607/09/2607.06882v1-gemnav-discrete-token-visual-robot-navigation-using-a-multimodal-large-language-model)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：层次化具身记忆用于视觉语言动作控制
+   evidence：视觉机器人导航，使用多模态大语言模型，未明确使用强化学习
 
 ### 速读区论文标签
-1. [XS-VLA: Coupling Coarse-grained Spatial Distillation with Latent Flow Matching for Lightweight Robotic Control](/202607/08/2607.04171v1-xs-vla-coupling-coarse-grained-spatial-distillation-with-latent-flow-matching-for-lightweight-robotic-control)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：轻量级视觉-语言-动作模型用于机器人控制，结合空间知识蒸馏
-2. [Image2Sim: Scaling Embodied Navigation via Generative Neural Simulator](/202607/08/2607.05765v1-image2sim-scaling-embodied-navigation-via-generative-neural-simulator)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：用于具身导航的生成式神经仿真器
-3. [Optimal Transport Q-Learning for Flow Policy Steering and Acceleration](/202607/08/2607.06262v1-optimal-transport-q-learning-for-flow-policy-steering-and-acceleration)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：面向流策略的强化学习后训练
-4. [RynnWorld-4D: 4D Embodied World Models for Robotic Manipulation](/202607/08/2607.06559v1-rynnworld-4d-4d-embodied-world-models-for-robotic-manipulation)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：用于机器人操作的4D具身世界模型
-5. [Embodied Operators and Benchmarking: Toward Reusable and Deployable Embodied Intelligence Systems](/202607/08/2607.03283v1-embodied-operators-and-benchmarking-toward-reusable-and-deployable-embodied-intelligence-systems)  
+1. [AnchorVLA: Bridging Discrete Decisions and Continuous Trajectories for Vision-Language-Action Planning](/202607/09/2607.03182v1-anchorvla-bridging-discrete-decisions-and-continuous-trajectories-for-vision-language-action-planning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：具身算子用于可复用的具身智能系统
-6. [Worldscape-MoE: A Unified Mixture-of-Experts World Model for Scalable Heterogeneous Action Control](/202607/08/2607.03964v1-worldscape-moe-a-unified-mixture-of-experts-world-model-for-scalable-heterogeneous-action-control)  
+   evidence：面向自动驾驶导航的视觉-语言-动作规划
+2. [SEAM: Smooth Execution of Action-Chunked Motion for Vision-Language-Action Policies](/202607/09/2607.04609v1-seam-smooth-execution-of-action-chunked-motion-for-vision-language-action-policies)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：用于具身智能的世界模型
-7. [Mask-based Predictive Representations for Reinforcement Learning](/202607/08/2607.04153v1-mask-based-predictive-representations-for-reinforcement-learning)  
+   evidence：针对VLA端到端策略的平滑方法
+3. [LAMP: Latent Motion Prior-Guided Real-World Learning for Dexterous Hand Manipulation](/202607/09/2607.06323v1-lamp-latent-motion-prior-guided-real-world-learning-for-dexterous-hand-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：基于掩码预测的自监督辅助任务用于视觉强化学习
-8. [RoboVista: Evaluating Vision Language Models for Diverse Robot Applications](/202607/08/2607.04610v1-robovista-evaluating-vision-language-models-for-diverse-robot-applications)  
+   evidence：结合模仿学习和强化学习用于灵巧手操作
+4. [Training-Free Acceleration for Vision-Language-Action Models with Action Caching and Refinement](/202607/09/2607.06370v1-training-free-acceleration-for-vision-language-action-models-with-action-caching-and-refinement)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：评估VLM用于多样化机器人应用
-9. [Spatial Attention: Adapting Execution Horizons for Diffusion Policies via Observation Sensitivity](/202607/08/2607.04739v1-spatial-attention-adapting-execution-horizons-for-diffusion-policies-via-observation-sensitivity)  
+   evidence：VLA端到端模型的推理加速
+5. [SIEVE: Structure-Aware Data Selection for Imitation Learning with VLA Models](/202607/09/2607.06442v1-sieve-structure-aware-data-selection-for-imitation-learning-with-vla-models)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：扩散策略的执行周期自适应
-10. [Diffusion-Guided Uncertainty-Aware Delayed Policy Optimization](/202607/08/2607.05064v1-diffusion-guided-uncertainty-aware-delayed-policy-optimization)  
+   evidence：具身机器人VLA模型数据选择
+6. [Safe Reinforcement Learning using Ideas from Model Predictive Control](/202607/09/2607.07252v1-safe-reinforcement-learning-using-ideas-from-model-predictive-control)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：使用扩散模型的延迟策略优化
-11. [Learning to Throw Objects Safely in Multi-Obstacle Environments](/202607/08/2607.06388v1-learning-to-throw-objects-safely-in-multi-obstacle-environments)  
+   evidence：将安全强化学习与模型预测控制结合
+7. [EmbodiedGen V2: An Agentic, Simulation-Ready 3D World Engine for Embodied AI](/202607/09/2607.07459v1-embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai)  
+   标签：评分：7.0/10、query:embodied-rl
+   evidence：用于具身AI的生成式3D世界引擎，支持导航
+8. [Learning the Supports for Categorical Critic in Reinforcement Learning](/202607/09/2607.01880v2-learning-the-supports-for-categorical-critic-in-reinforcement-learning)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：强化学习用于杂乱环境中的机器人投掷
+   evidence：分布强化学习方法改进
+9. [CAC-VLA: Context-Gated Action Conditioning for Vision-Language-Action Models](/202607/09/2607.04816v1-cac-vla-context-gated-action-conditioning-for-vision-language-action-models)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：上下文门控动作条件化用于机器人操作
+10. [Mathematical methods of reinforcement learning](/202607/09/2607.06935v1-mathematical-methods-of-reinforcement-learning)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：强化学习数学基础
+11. [HumAIN: Human-Aware Implicit Social Robot Navigation](/202607/09/2607.07357v1-humain-human-aware-implicit-social-robot-navigation)  
+   标签：评分：6.0/10、query:embodied-rl
+   evidence：社会机器人导航，使用知识蒸馏融合隐含社会线索
 
 
 <div class="dpr-home-promo-card">
