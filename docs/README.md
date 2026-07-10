@@ -6,56 +6,67 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-09
-- 运行时间：2026-07-09 21:48:47 UTC
+- 最新运行日期：2026-07-10
+- 运行时间：2026-07-10 21:33:56 UTC
 - 运行状态：成功
-- 本次总论文数：12
-- 精读区：1
-- 速读区：11
+- 本次总论文数：15
+- 精读区：6
+- 速读区：9
 
 ### 今日简报（AI）
-今日精读《GemNav》探讨多模态大模型在机器人视觉导航中的应用，速读关注视觉语言动作规划与灵巧操作。最值得看的是GemNav的离散令牌导航范式，以及AnchorVLA连接离散决策与连续轨迹的方法。建议关注多模态大模型落地机器人任务的效率与泛化性。
-- 详情：[/202607/09/README](/202607/09/README)
+1) 今日聚焦长程具身智能体进展，精选两篇高分研究：分别提出双向对齐的操作框架和快慢双系统空中导航模型。  
+2) 最值得关注的是《Cortex》的双向对齐框架在长程操作中的鲁棒性，以及《FSD-VLN》的快慢双系统设计有效降低导航决策延迟。  
+3) 普通读者可从速读《CompactionRL》了解上下文压缩对长程任务的加速效果，《WAM-TTT》则展示通过观察人类演示实时调整模型的新思路。
+- 详情：[/202607/10/README](/202607/10/README)
 
 ### 精读区论文标签
-1. [GemNav: Discrete-Token Visual Robot Navigation using a Multimodal Large Language Model](/202607/09/2607.06882v1-gemnav-discrete-token-visual-robot-navigation-using-a-multimodal-large-language-model)  
+1. [Cortex: A Bidirectionally Aligned Embodied Agent Framework for Long-horizon Manipulation](/202607/10/2607.05377v1-cortex-a-bidirectionally-aligned-embodied-agent-framework-for-long-horizon-manipulation)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：具身智能体框架，对齐高层VLM与低层VLA
+2. [FSD-VLN: Fast-Slow Dual-System Modeling for Aerial Long-Horizon Vision-Language Navigation](/202607/10/2607.08359v1-fsd-vln-fast-slow-dual-system-modeling-for-aerial-long-horizon-vision-language-navigation)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：面向无人机的视觉-语言导航
+3. [Learning the Supports for Categorical Critic in Reinforcement Learning](/202607/10/2607.01880v1-learning-the-supports-for-categorical-critic-in-reinforcement-learning)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：视觉机器人导航，使用多模态大语言模型，未明确使用强化学习
+   evidence：强化学习方法
+4. [Incentivizing Vision Language Models to Search for Long Video Question Answering](/202607/10/2607.02959v1-incentivizing-vision-language-models-to-search-for-long-video-question-answering)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：强化学习后训练
+5. [XS-VLA: Coupling Coarse-grained Spatial Distillation with Latent Flow Matching for Lightweight Robotic Control](/202607/10/2607.04171v1-xs-vla-coupling-coarse-grained-spatial-distillation-with-latent-flow-matching-for-lightweight-robotic-control)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：轻量级视觉-语言-动作模型用于端到端机器人控制
+6. [LEEVLA: Seeing What Matters in Latent Environment Evolution for Vision-Language-Action](/202607/10/2607.08182v1-leevla-seeing-what-matters-in-latent-environment-evolution-for-vision-language-action)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：面向机器人的视觉-语言-动作端到端模型
 
 ### 速读区论文标签
-1. [AnchorVLA: Bridging Discrete Decisions and Continuous Trajectories for Vision-Language-Action Planning](/202607/09/2607.03182v1-anchorvla-bridging-discrete-decisions-and-continuous-trajectories-for-vision-language-action-planning)  
+1. [CompactionRL: Reinforcement Learning with Context Compaction for Long-Horizon Agents](/202607/10/2607.05378v1-compactionrl-reinforcement-learning-with-context-compaction-for-long-horizon-agents)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：面向自动驾驶导航的视觉-语言-动作规划
-2. [SEAM: Smooth Execution of Action-Chunked Motion for Vision-Language-Action Policies](/202607/09/2607.04609v1-seam-smooth-execution-of-action-chunked-motion-for-vision-language-action-policies)  
+   evidence：针对长时域LLM智能体的上下文压缩强化学习策略
+2. [WAM-TTT: Steering World-Action Models by Watching Human Play at Test Time](/202607/10/2607.06988v1-wam-ttt-steering-world-action-models-by-watching-human-play-at-test-time)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：针对VLA端到端策略的平滑方法
-3. [LAMP: Latent Motion Prior-Guided Real-World Learning for Dexterous Hand Manipulation](/202607/09/2607.06323v1-lamp-latent-motion-prior-guided-real-world-learning-for-dexterous-hand-manipulation)  
+   evidence：通过人类视频引导机器人基础模型
+3. [Dual Latent Memory in Vision-Language-Action Models for Robotic Manipulation](/202607/10/2607.07608v1-dual-latent-memory-in-vision-language-action-models-for-robotic-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：结合模仿学习和强化学习用于灵巧手操作
-4. [Training-Free Acceleration for Vision-Language-Action Models with Action Caching and Refinement](/202607/09/2607.06370v1-training-free-acceleration-for-vision-language-action-models-with-action-caching-and-refinement)  
+   evidence：带潜在记忆的端到端VLA模型
+4. [Harness VLA: Steering Frozen VLAs into Reliable Manipulation Primitives via Memory-Guided Agents](/202607/10/2607.08448v1-harness-vla-steering-frozen-vlas-into-reliable-manipulation-primitives-via-memory-guided-agents)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：VLA端到端模型的推理加速
-5. [SIEVE: Structure-Aware Data Selection for Imitation Learning with VLA Models](/202607/09/2607.06442v1-sieve-structure-aware-data-selection-for-imitation-learning-with-vla-models)  
+   evidence：冻结VLA模型结合记忆引导代理进行操控
+5. [Early to Share, Late to Save: Synchronisation-Driven Communication Gating in Bandwidth-Constrained Cooperative VLN](/202607/10/2607.08504v1-early-to-share-late-to-save-synchronisation-driven-communication-gating-in-bandwidth-constrained-cooperative-vln)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：具身机器人VLA模型数据选择
-6. [Safe Reinforcement Learning using Ideas from Model Predictive Control](/202607/09/2607.07252v1-safe-reinforcement-learning-using-ideas-from-model-predictive-control)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：将安全强化学习与模型预测控制结合
-7. [EmbodiedGen V2: An Agentic, Simulation-Ready 3D World Engine for Embodied AI](/202607/09/2607.07459v1-embodiedgen-v2-an-agentic-simulation-ready-3d-world-engine-for-embodied-ai)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：用于具身AI的生成式3D世界引擎，支持导航
-8. [Learning the Supports for Categorical Critic in Reinforcement Learning](/202607/09/2607.01880v2-learning-the-supports-for-categorical-critic-in-reinforcement-learning)  
+   evidence：协作视觉语言导航
+6. [RoboTALES: Learning Reasoning-Guided Robot Policies via Task-Aligned Simulated Futures](/202607/10/2607.06018v1-robotales-learning-reasoning-guided-robot-policies-via-task-aligned-simulated-futures)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：分布强化学习方法改进
-9. [CAC-VLA: Context-Gated Action Conditioning for Vision-Language-Action Models](/202607/09/2607.04816v1-cac-vla-context-gated-action-conditioning-for-vision-language-action-models)  
+   evidence：基于任务对齐模拟未来的推理引导机器人策略
+7. [APIVOT: Adaptive Planning with Interleaved Vision-Language Thoughts](/202607/10/2607.08024v1-apivot-adaptive-planning-with-interleaved-vision-language-thoughts)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：上下文门控动作条件化用于机器人操作
-10. [Mathematical methods of reinforcement learning](/202607/09/2607.06935v1-mathematical-methods-of-reinforcement-learning)  
+   evidence：基于VLM的机器人规划，长程导航
+8. [SkillPlug: Unsupervised Skill Mining for Few-Shot Adaptation in Robotic Manipulation](/202607/10/2607.08354v1-skillplug-unsupervised-skill-mining-for-few-shot-adaptation-in-robotic-manipulation)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：强化学习数学基础
-11. [HumAIN: Human-Aware Implicit Social Robot Navigation](/202607/09/2607.07357v1-humain-human-aware-implicit-social-robot-navigation)  
+   evidence：端到端视觉运动策略结合技能库
+9. [Multi-Modal, Multi-Environment Machine Teaching for Robust Reward Learning](/202607/10/2607.08647v1-multi-modal-multi-environment-machine-teaching-for-robust-reward-learning)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：社会机器人导航，使用知识蒸馏融合隐含社会线索
+   evidence：逆强化学习用于奖励鲁棒性
 
 
 <div class="dpr-home-promo-card">
