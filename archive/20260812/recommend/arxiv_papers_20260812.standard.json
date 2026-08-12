@@ -1,0 +1,1131 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-12T21:14:05.787356+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 35,
+    "deep_cap": 6,
+    "deep_selected": 16,
+    "quick_candidates": 50,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2608.07267v1",
+      "source": "arxiv",
+      "title": "WNM-3D: A World Navigation Model with 3D Scene Conditioning for Closed-Loop VLN",
+      "abstract": "Recent vision-language navigation (VLN) systems increasingly adapt pretrained vision-language models (VLMs) into vision-language-action (VLA) policies that map egocentric observations and language instructions directly to navigation actions. Although semantically capable, such action-centric training does not explicitly model how the agent's visual observations should evolve under its predicted motion. Generative world-action models (WAMs) jointly predict future observations and actions, yet existing WAMs for continuous VLN do not condition joint future-view and action generation on geometry-aware representations inferred from the observed history. We present WNM-3D, a generative World Navigation Model with 3D scene conditioning for continuous VLN. To consolidate past observations into persistent scene context, a frozen feed-forward geometry encoder extracts geometry-aware representations from the monocular egocentric RGB history, and a trainable 3D Scene-to-Token Adapter converts them into a fixed-length prefix in the token space of the world-action Diffusion Transformer. Through block-causal attention, this prefix conditions every future video-action block, providing a shared geometric context for both future-view and action generation. We train WNM-3D through supervised world-action fine-tuning on A*-generated demonstrations, DAgger-style adaptation on policy-visited states, and DanceGRPO-based closed-loop policy optimization. Experiments on GN-Bench show that WNM-3D outperforms strong VLM-based navigation policies and its 2D-conditioned counterpart in closed-loop navigation. On a fixed near-goal evaluation set, WNM-3D also achieves higher flow-action consistency and lower visual-motion error.",
+      "authors": [
+        "Yuehao Huang",
+        "Yunzi Wu",
+        "Xiaotao Zhang",
+        "Xinhai Li",
+        "Jiankun Dong",
+        "Jiajun Lv",
+        "Chi Zhang",
+        "Chenjia Bai",
+        "Yong Liu",
+        "Xuelong Li"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-08-07T14:29:00+00:00",
+      "link": "https://arxiv.org/pdf/2608.07267v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Closed-loop vision-language navigation with world navigation model",
+      "llm_evidence_cn": "世界导航模型用于闭环视觉语言导航",
+      "llm_evidence": "世界导航模型用于闭环视觉语言导航",
+      "canonical_evidence": "世界导航模型用于闭环视觉语言导航",
+      "llm_tldr_en": "WNM-3D presents a generative world navigation model with 3D scene conditioning for continuous VLN, jointly predicting future views and actions, improving navigation robustness and action grounding.",
+      "llm_tldr_cn": "现有时VLA策略虽能映射导航动作，但未显式建模视觉观测如何随动作演化。本文提出WNM-3D，一个3D场景条件下的生成式世界导航模型，联合预测未来视角与动作，利用历史观测推断几何感知表示。实验表明其在连续VLN中导航更准确、闭环执行更鲁棒，推进了生成式世界模型在视觉语言导航中的应用。",
+      "llm_tldr": "现有时VLA策略虽能映射导航动作，但未显式建模视觉观测如何随动作演化。本文提出WNM-3D，一个3D场景条件下的生成式世界导航模型，联合预测未来视角与动作，利用历史观测推断几何感知表示。实验表明其在连续VLN中导航更准确、闭环执行更鲁棒，推进了生成式世界模型在视觉语言导航中的应用。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.03143v1",
+      "source": "arxiv",
+      "title": "From Routes to Steps: Separating Semantic Progress from Local Execution in Vision-and-Language Navigation",
+      "abstract": "Vision-and-Language Navigation (VLN) requires an agent to follow a route-level instruction by executing its constituent steps from egocentric visual observations. Existing VLM-based navigators typically supervise both capabilities through next-action prediction alone, making progress-tracking errors difficult to distinguish from execution errors. When an agent deviates from the route, a corrective action label may recover the next movement but does not indicate whether the agent selected the wrong sub-instruction or failed to execute the correct one. Consequently, the agent may continue making decisions from an erroneous progress state. To resolve this ambiguity, we propose \\textbf{Route2Step}, a framework that decouples semantic progress tracking from action generation through an explicit step-level interface. The Instruction Analysis Module ($\\mathcal{M}_{\\mathrm{IA}}$) predicts this state from the global instruction and visual history. Conditioned on the predicted state and recent observations, the Action Generation Module ($\\mathcal{M}_{\\mathrm{AG}}$) generates local action chunks. To supervise the progress state without manual temporal labels, E-SPA, a step-alignment procedure, associates sub-instructions with their corresponding portions of route-level demonstrations. These alignments enable state supervision for incorrect progress estimates, while direct action supervision is reserved for rollout groups that repeatedly fail under the correct active sub-instruction. On R2R-CE, Route2Step improves SR from 48.1\\% to 55.3\\% and SPL from 43.3\\% to 48.2\\%, using 190K state-level corrective samples while requiring only 11.5K directly action-supervised states. Experiments in real-world indoor and outdoor environments further demonstrate the practical applicability of Route2Step. The project page is: https://sisyphus-hxy.github.io/Route2Step/.",
+      "authors": [
+        "Xiangyun Huang",
+        "Xiangchen Wang",
+        "Runfeng Lin",
+        "Yihao Xu",
+        "Kangyu Huang",
+        "Jiang Hengchen",
+        "Xiwang Dong",
+        "Lin Jiarong"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-08-04T05:14:45+00:00",
+      "link": "https://arxiv.org/pdf/2608.03143v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "decoupling semantic progress tracking from local execution in Vision-and-Language Navigation",
+      "llm_evidence_cn": "在视觉-语言导航中解耦语义进度跟踪与局部执行",
+      "llm_evidence": "在视觉-语言导航中解耦语义进度跟踪与局部执行",
+      "canonical_evidence": "在视觉-语言导航中解耦语义进度跟踪与局部执行",
+      "llm_tldr_en": "Route2Step decouples semantic progress tracking from local step execution in VLN by separating route-level vs step-level supervision, helping agents avoid persistent errors when the wrong sub-instruction is selected.",
+      "llm_tldr_cn": "视觉-语言导航（VLN）要求智能体按路线级指令逐步执行，但现有VLM导航器仅用下一动作预测监督，无法区分语义进度错误与执行错误，导致选错子指令后持续在错误状态决策。Route2Step提出将语义进度与局部执行解耦的框架，分别建模路线级与步骤级监督信号，使智能体在路线偏离时能识别并校正进度状态。该方法缓解了误差累积问题。为VLN中的结构化监督提供了新思路。",
+      "llm_tldr": "视觉-语言导航（VLN）要求智能体按路线级指令逐步执行，但现有VLM导航器仅用下一动作预测监督，无法区分语义进度错误与执行错误，导致选错子指令后持续在错误状态决策。Route2Step提出将语义进度与局部执行解耦的框架，分别建模路线级与步骤级监督信号，使智能体在路线偏离时能识别并校正进度状态。该方法缓解了误差累积问题。为VLN中的结构化监督提供了新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.03701v1",
+      "source": "arxiv",
+      "title": "LiLa-WAM: Lightweight Latent Reasoning World-Action Model for Robotic Manipulation",
+      "abstract": "World-action modeling has emerged as a promising paradigm for robotic control, as it empowers models to go beyond reacting to observations and anticipate how a scene will evolve. However, existing WAMs often incur substantial computational overhead. Pixel-space methods often allocate substantial capacity to visual details that may not be directly relevant to control, while some latent-space methods require multi-stage training to construct the reasoning space. The resulting training cost can make such methods difficult to train under modest computational budgets. In this work, we propose LiLa-WAM, a lightweight world-action model that reasons about the future in a compact latent space and can be trained end-to-end on a single 24GB GPU. Its core design is a compact latent reasoning space jointly shaped by future-state prediction and action generation, which keeps the model lightweight while remaining well aligned with control. For task specification, we further propose the Visual Transition Token(VTT), a language-free task representation that encodes each task as a direction in visual feature space. Experiments on RoboTwin~2.0, LIBERO, and real-robot tasks demonstrate LiLa-WAM's effectiveness, achieving 90.48\\% success across 50 RoboTwin tasks with single-GPU training.",
+      "authors": [
+        "Fan Yang",
+        "Yuting Su",
+        "Xiaobo Wang",
+        "Yuncheng You",
+        "Fugui Fan",
+        "Yuting Wu",
+        "Minghui Wu",
+        "Chenxu Zhao",
+        "JiaHong Ning",
+        "Peiguang Jing"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-04T14:06:15+00:00",
+      "link": "https://arxiv.org/pdf/2608.03701v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "end-to-end training of robotic world-action model",
+      "llm_evidence_cn": "机器人世界-动作模型端到端训练",
+      "llm_evidence": "机器人世界-动作模型端到端训练",
+      "canonical_evidence": "机器人世界-动作模型端到端训练",
+      "llm_tldr_en": "Proposes LiLa-WAM, a lightweight world-action model for robotic manipulation that reasons in a compact latent space and trains end-to-end on a single 24GB GPU.",
+      "llm_tldr_cn": "世界-动作模型能够预测场景演化并辅助机器人控制，但现有方法计算开销大或需要多阶段训练。LiLa-WAM在紧凑潜在空间中进行未来推理，并支持端到端训练，单张24GB GPU即可完成训练。该模型兼顾了轻量性与控制性能，为资源受限条件下的机器人操作学习提供了可行的世界模型方案。",
+      "llm_tldr": "世界-动作模型能够预测场景演化并辅助机器人控制，但现有方法计算开销大或需要多阶段训练。LiLa-WAM在紧凑潜在空间中进行未来推理，并支持端到端训练，单张24GB GPU即可完成训练。该模型兼顾了轻量性与控制性能，为资源受限条件下的机器人操作学习提供了可行的世界模型方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.04905v1",
+      "source": "arxiv",
+      "title": "PRIMAL3: Pathfinding via Reinforcement and Imitation Multi-Agent Learning - Leveraging LaCAM3",
+      "abstract": "We present PRIMAL3, an ultra-large-scale learning-based framework for multi-agent pathfinding (MAPF) that integrates reinforcement learning, topology-aware communication, LaCAM3-guided training, and PIBT-based action refinement. PRIMAL3 targets failures at topologically critical states, where agents must coordinate decisively around bottlenecks, dead ends, and persistent conflicts. Each agent is represented using features derived from cut vertices, dead-end regions, shortest-path distances, and blocking estimates. Two complementary graphs capture agent interactions: a same-direction following graph propagates multihop context along compatible paths, while a different-direction conflict graph differentiates agents competing for shared space through masked attention and relative features. During training, we propose to let policy entropy identify uncertain agents, for which LaCAM3 provides confidence-triggered action interventions and label-smoothed imitation targets. During execution, a priority-aware PIBT module refines the proposed joint actions using persistent, learned, and distance-aware priorities together with policy-aware fallback preferences while maintaining collision-free execution. The resulting framework combines learned exploration with structured expert guidance without requiring LaCAM3 at inference. Experiments demonstrate that PRIMAL3 substantially outperforms state-of-the-art learning-based baselines and scales to ultra-large instances with up to city-level 100,000 agents. Real-world experiments further demonstrate the feasibility of deploying PRIMAL3 on physical robotic systems and ablation studies validate the individual contributions the components we proposed. Project page: https://marmotlab.github.io/PRIMAL3/",
+      "authors": [
+        "Chengyang He",
+        "Tanishq Duhan",
+        "Gadiel Sznaier Camps",
+        "Fangyuan Wang",
+        "Yuhong Cao",
+        "Jiankai Sun",
+        "Ge Sun",
+        "Mac Schwager",
+        "Guillaume Sartoretti"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-05T14:33:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.04905v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "reinforcement learning for multi-agent pathfinding",
+      "llm_evidence_cn": "强化学习用于多智能体路径规划",
+      "llm_evidence": "强化学习用于多智能体路径规划",
+      "canonical_evidence": "强化学习用于多智能体路径规划",
+      "llm_tldr_en": "Presents PRIMAL3, an ultra-large-scale RL and imitation learning framework for multi-agent pathfinding, using topology-aware graphs, LaCAM3-guided training, and PIBT refinement to handle critical coordination states.",
+      "llm_tldr_cn": "大规模多智能体路径规划中，拓扑关键状态（瓶颈、死胡同、持续冲突）需要智能体协调决策。PRIMAL3整合强化学习、拓扑感知通信、LaCAM3引导训练和PIBT动作精炼，用割点、死区等特征表示每个智能体并构建同向跟随图与异向冲突图。在超大规模场景下验证了该框架能有效解决拥堵和冲突，为多智能体路径规划提供学习与经典方法融合的方案。",
+      "llm_tldr": "大规模多智能体路径规划中，拓扑关键状态（瓶颈、死胡同、持续冲突）需要智能体协调决策。PRIMAL3整合强化学习、拓扑感知通信、LaCAM3引导训练和PIBT动作精炼，用割点、死区等特征表示每个智能体并构建同向跟随图与异向冲突图。在超大规模场景下验证了该框架能有效解决拥堵和冲突，为多智能体路径规划提供学习与经典方法融合的方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.05078v1",
+      "source": "arxiv",
+      "title": "SpikingNav: Robust Embodied Navigation with Spiking Neural Policies",
+      "abstract": "Embodied navigation requires an agent to make sequential decisions from egocentric observations in a physical environment. Existing Artificial Neural Network (ANN)-based navigation models have achieved strong performance, yet they often rely on dense computation and may degrade under visual corruptions. Spiking neural networks (SNNs) provide event-driven computation and intrinsic temporal dynamics, which are promising for compact and robust navigation on resource-constrained platforms. However, whether spike-based sensing and policy dynamics can improve robustness in visually rich embodied navigation remains an open problem. This paper proposes SpikingNav, a spiking framework for robust indoor embodied navigation. It contains a Spiking Sensing Encoder (SSE) and a Spiking Policy Network (SPN). The SSE extracts task-conditioned visual features with a spike-based backbone. The SPN maintains a recurrent policy state through membrane integration, thresholding, and spike-triggered reset. In this way, SpikingNav exploits the dynamic properties and spike activations of SNNs to improve navigation performance and robustness. We evaluate SpikingNav on PointNav and ObjectNav under clean observations and visual corruptions. SpikingNav achieves competitive clean performance and stronger robustness with fewer parameters and lower per-step computation than a matched ANN baseline. For instance, SpikingNav improves ObjectNav success from 31.05% to 34.12%, and raises the average success under visual corruptions from 8.45% to 13.71%, demonstrating the benefits of spike-based sensing and policy dynamics. We further validate the deployability of our spike-based sensing method on the Thruster-V2 neuromorphic chip. This physical hardware validation shows that SpikingNav can be instantiated on a real neuromorphic substrate for cyber-physical systems.",
+      "authors": [
+        "Jiahong Zhang",
+        "Sijun Shen",
+        "Dehua Wu",
+        "Yifan Lin",
+        "Xuechen Xia",
+        "Xu Chu",
+        "Youhui Zhang",
+        "GuoqiLi"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-05T17:21:09+00:00",
+      "link": "https://arxiv.org/pdf/2608.05078v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "robust embodied navigation with spiking neural policies",
+      "llm_evidence_cn": "基于脉冲神经策略的鲁棒具身导航",
+      "llm_evidence": "基于脉冲神经策略的鲁棒具身导航",
+      "canonical_evidence": "基于脉冲神经策略的鲁棒具身导航",
+      "llm_tldr_en": "Proposes SpikingNav, a spiking neural framework for robust indoor embodied navigation, using a spiking sensing encoder and event-driven policy to improve robustness under visual corruptions.",
+      "llm_tldr_cn": "具身导航要求智能体从自我中心观察中连续决策，但传统人工神经网络计算密集且在视觉损坏下性能下降。SpikingNav提出脉冲神经网络导航框架，包含脉冲感知编码器和事件驱动策略，利用SNN的时序动态实现紧凑鲁棒的室内导航。实验显示该方法在视觉污染场景下比ANN模型更鲁棒，并适合资源受限平台。",
+      "llm_tldr": "具身导航要求智能体从自我中心观察中连续决策，但传统人工神经网络计算密集且在视觉损坏下性能下降。SpikingNav提出脉冲神经网络导航框架，包含脉冲感知编码器和事件驱动策略，利用SNN的时序动态实现紧凑鲁棒的室内导航。实验显示该方法在视觉污染场景下比ANN模型更鲁棒，并适合资源受限平台。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.05588v1",
+      "source": "arxiv",
+      "title": "Search-Aided Joint Agent-Environment Reinforcement Learning for Robust Lifelong Multi-Agent Path Finding with Rotations",
+      "abstract": "Lifelong Multi-Agent Path Finding (LMAPF) requires repeatedly planning collision-free paths for agents that continuously receive new goals upon reaching their current ones. While many learning-based planners have been proposed for LMAPF, most rely on oversimplified kinematic assumptions that may overlook motion constraints critical to real-world performance. In this work, we study a more realistic LMAPF model derived from many real-world automated warehouse systems, termed LMAPF-R2, which incorporates robust safety constraints and in-place rotation constraints. These constraints substantially increase coordination difficulty, particularly in highly constrained spaces. To address these challenges, we propose Search-Aided Joint Reinforcement Learning (SJRL). We first augment neural policies with Causal PIBT, a single-step search-based planner that resolves agents' collisions and propagates their intentions. We then introduce a unified RL formulation that jointly optimizes agent and environment policies, where the environment policy learns graph edge costs to provide global movement guidance via backward Dijkstra search. Experiments demonstrate that SJRL achieves significant improvements over the strong search-based planner, Causal-PIBT, across multiple high-density maps. We further validate SJRL in a challenging mixed-reality warehouse environment with 8 physical robots and 248 virtual robots.",
+      "authors": [
+        "He Jiang",
+        "Jingtian Yan",
+        "Yulun Zhang",
+        "Yimin Tang",
+        "Tanishq Duhan",
+        "Rishi Veerapaneni",
+        "Guillaume Sartoretti",
+        "Jiaoyang Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-08-06T04:17:38+00:00",
+      "link": "https://arxiv.org/pdf/2608.05588v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Search-aided joint agent-environment reinforcement learning for lifelong multi-agent path finding",
+      "llm_evidence_cn": "面向终身多智能体路径规划的搜索辅助联合智能体-环境强化学习",
+      "llm_evidence": "面向终身多智能体路径规划的搜索辅助联合智能体-环境强化学习",
+      "canonical_evidence": "面向终身多智能体路径规划的搜索辅助联合智能体-环境强化学习",
+      "llm_tldr_en": "Proposes a realistic LMAPF-R2 model with safety and rotation constraints, and a search-aided joint agent-environment reinforcement learning method to improve robust lifelong multi-agent path finding.",
+      "llm_tldr_cn": "针对现有终身多智能体路径规划因运动学假设过于简化而忽视真实约束的问题，提出LMAPF-R2模型，引入鲁棒安全约束与原地旋转约束；并设计搜索辅助的联合智能体-环境强化学习算法，提升高受限空间的协调效率与路径规划鲁棒性。",
+      "llm_tldr": "针对现有终身多智能体路径规划因运动学假设过于简化而忽视真实约束的问题，提出LMAPF-R2模型，引入鲁棒安全约束与原地旋转约束；并设计搜索辅助的联合智能体-环境强化学习算法，提升高受限空间的协调效率与路径规划鲁棒性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning for embodied robot navigation",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.06688v1",
+      "source": "arxiv",
+      "title": "CrossTracer: Cross-Embodiment Navigation via VLA Model Reasoning and Trace Residuals Adapting",
+      "abstract": "Vision-language-action (VLA) models provide strong semantic priors for robot navigation, but they often ignore embodiment-specific mobility constraints. A path that is semantically plausible for one robot may be physically infeasible for another. We propose CrossTracer, a hierarchical framework for cross-embodiment navigation through adaptive trace residuals. CrossTracer represents navigation plans as normalized image-plane waypoints, forming a unified pixel-space interface between semantic reasoning and physical grounding. First, Vision-Language Trace Proposer (VL-Tracer) adapts a pretrained VLA model to predict an initial navigation trace from egocentric observations and flexible goal specifications. Second, CE-Adapter refines this trace by predicting embodiment-conditioned residual corrections from visual traversability cues, robot identity, and the initial trace. To train the refinement module without costly manual annotation, Cross-Embodiment RRT* (CE-RRT*) converts panoptic segmentation into robot-conditioned traversability cost maps and generates cost-minimizing pixel-space traces. We evaluate CrossTracer on the NaviTrace benchmark, which tests whether a model can generate embodiment-consistent navigation traces from egocentric observations, language instructions, and robot embodiment types. CrossTracer achieves a total score of 45.68, outperforming the strongest evaluated general-purpose baseline, Gemini-2.5-Pro, by 10.01 points, corresponding to a 28.1% relative improvement. Real-world deployment on wheeled and legged robots further shows improved navigation success and execution efficiency.",
+      "authors": [
+        "Yao Wang",
+        "Siyuan Wang",
+        "Zhirui Sun",
+        "Wenzheng Chi",
+        "Liang Lin",
+        "Jiankun Wang",
+        "Wenjun Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-07T01:24:53+00:00",
+      "link": "https://arxiv.org/pdf/2608.06688v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "cross-embodiment robot navigation using VLA reasoning and trace residuals",
+      "llm_evidence_cn": "基于VLA推理与轨迹残差的自适应跨具身机器人导航",
+      "llm_evidence": "基于VLA推理与轨迹残差的自适应跨具身机器人导航",
+      "canonical_evidence": "基于VLA推理与轨迹残差的自适应跨具身机器人导航",
+      "llm_tldr_en": "CrossTracer builds a hierarchical framework that adapts VLA models for cross-embodiment navigation, representing plans as image-plane waypoints and refining them with CE-Adapter to satisfy embodiment-specific mobility constraints.",
+      "llm_tldr_cn": "VLA模型为机器人导航提供强语义先验，但常忽略具体机器人的运动约束，导致同一路径对不同机器人不可行。CrossTracer提出层次化跨具身导航框架，用归一化图像平面路点统一语义推理与物理落地，先让VL-Tracer基于预训练VLA预测初始导航轨迹，再由CE-Adapter适配残差以考虑移动性约束。该方法能够结合语义推理与具身约束生成更可行的导航规划。为VLA模型在真实多机器人导航中的应用提供了新思路。",
+      "llm_tldr": "VLA模型为机器人导航提供强语义先验，但常忽略具体机器人的运动约束，导致同一路径对不同机器人不可行。CrossTracer提出层次化跨具身导航框架，用归一化图像平面路点统一语义推理与物理落地，先让VL-Tracer基于预训练VLA预测初始导航轨迹，再由CE-Adapter适配残差以考虑移动性约束。该方法能够结合语义推理与具身约束生成更可行的导航规划。为VLA模型在真实多机器人导航中的应用提供了新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.06833v2",
+      "source": "arxiv",
+      "title": "Unordered Landmark Visual Navigation",
+      "abstract": "Image-goal navigation is a fundamental capability for embodied AI, yet its practical deployment is strained by strong prior assumptions. Existing methods predominantly rely on temporally ordered video streams or auxiliary sensors (e.g., depth, LiDAR) to maintain spatial consistency. These sequential and multimodal dependencies severely restrict scalability, especially when deploying robots using crowd-sourced or pre-recorded unordered image collections. When temporal priors are removed, current methods struggle with severe perceptual aliasing, noisy associations, and catastrophic mapping failures. To address this underexplored challenge, we propose Unordered Landmark Visual Navigation (ULVN), a unified RGB-only framework free from temporal and odometric priors. ULVN systematically mitigates error accumulation by integrating mapping, localization, and planning. Specifically, it constructs a robust 2D topological map directly from unstructured images via calibrated geometric verification and maximum spanning forest refinement. For closed-loop execution, ULVN abandons sequential heuristics, utilizing a graph-based belief propagation filter with entropy-adaptive fusion for global localization and dynamic subgoal planning. Extensive experiments in simulation and real-world deployments demonstrate that ULVN significantly outperforms state-of-the-art methods.",
+      "authors": [
+        "Hao Ren",
+        "Junzhe Zhu",
+        "Yihan Li",
+        "Zetong Bi",
+        "Le Zheng",
+        "Zhi Li",
+        "Yiqing Yuan",
+        "Zhaoliang Wan",
+        "Dizhe Zhang",
+        "Lu Qi",
+        "Hui Cheng"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-07T05:45:06+00:00",
+      "link": "https://arxiv.org/pdf/2608.06833v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "image-goal navigation for embodied AI without temporal priors",
+      "llm_evidence_cn": "无时序先验的具身AI图像目标导航",
+      "llm_evidence": "无时序先验的具身AI图像目标导航",
+      "canonical_evidence": "无时序先验的具身AI图像目标导航",
+      "llm_tldr_en": "Presents ULVN, a unified RGB-only framework for image-goal navigation without temporal or odometric priors, solving perceptual aliasing and mapping failures from unordered image collections.",
+      "llm_tldr_cn": "图像目标导航是具身AI的基础能力，但现有方法依赖时序视频或深度、激光等额外传感器。该工作提出无序地标视觉导航（ULVN），仅使用RGB且不依赖时序与里程计先验，应对无序图像集中的感知混叠和映射失败。通过系统性的地标关联与统一框架，在去序场景下实现稳定导航，提升了具身导航的可扩展性和实用性。",
+      "llm_tldr": "图像目标导航是具身AI的基础能力，但现有方法依赖时序视频或深度、激光等额外传感器。该工作提出无序地标视觉导航（ULVN），仅使用RGB且不依赖时序与里程计先验，应对无序图像集中的感知混叠和映射失败。通过系统性的地标关联与统一框架，在去序场景下实现稳定导航，提升了具身导航的可扩展性和实用性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.07079v1",
+      "source": "arxiv",
+      "title": "LifelongCrossNav: Persistent 3D Semantic Memory for Cross-Floor Multi-Object Navigation",
+      "abstract": "Object-goal navigation has made substantial progress in semantic perception and exploration, yet persistent memory for multi-object navigation and cross-floor navigation are still commonly addressed separately. We present LifelongCrossNav, a framework for sequential multi-object ObjectNav in unknown multi-floor indoor environments. Within each episode, the agent receives an ordered sequence of object-goal queries while continuously maintaining a shared sparse 3D semantic voxel memory. This memory incrementally accumulates geometric structure, traversability states, and vision-language features, allowing subsequent object-goal queries to retrieve previously acquired scene information without rebuilding the map. To support persistent search across floors, LifelongCrossNav combines support-aware 3D traversability mapping, stair-specific perception, and direction-aware stair traversal. A unified navigation policy coordinates same-floor frontier exploration, live and historical point-of-interest retrieval, stair navigation, and target-object search and approach. We further introduce HM3D-MFMON, a benchmark for sequential Multi-Floor Multi-Object Navigation built on HM3D scenes, including a dedicated subset in which completing the full sequence of object-goal subtasks requires at least one floor transition. Experimental results show that LifelongCrossNav consistently outperforms a representative planar persistent semantic-map baseline on HM3D-MFMON, demonstrating that persistent 3D semantic memory and cross-floor traversability modeling effectively support sequential multi-object navigation in multi-floor environments. Project page: https://flageval-baai.github.io/LifelongCrossNavPage.",
+      "authors": [
+        "Zehui Li",
+        "Zihao Sun",
+        "Jiawei Xu",
+        "Zheqi He",
+        "Xiaoqiang Zhang",
+        "Jing-Shu Zheng",
+        "Lu Liu",
+        "Dahui Gao",
+        "Xiuwan Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-07T10:31:20+00:00",
+      "link": "https://arxiv.org/pdf/2608.07079v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "persistent 3D semantic memory for object navigation",
+      "llm_evidence_cn": "跨楼层多物体导航的持久语义记忆",
+      "llm_evidence": "跨楼层多物体导航的持久语义记忆",
+      "canonical_evidence": "跨楼层多物体导航的持久语义记忆",
+      "llm_tldr_en": "Presents LifelongCrossNav, a framework for sequential multi-object ObjectNav in unknown multi-floor environments using persistent sparse 3D semantic voxel memory that accumulates geometric, traversability, and vision-language features.",
+      "llm_tldr_cn": "物体目标导航在语义感知和探索方面已有进展，但多物体导航的持久记忆与跨楼层导航常被分开处理。本文提出LifelongCrossNav，在未知多楼层环境中按序完成多个物体目标导航，维护共享的稀疏3D语义体素记忆，持续累积几何结构、可通行状态和视觉-语言特征。这使得后续目标可直接复用先前场景信息而无需重建地图，显著提升跨楼层多物体导航的效率和扩展性。",
+      "llm_tldr": "物体目标导航在语义感知和探索方面已有进展，但多物体导航的持久记忆与跨楼层导航常被分开处理。本文提出LifelongCrossNav，在未知多楼层环境中按序完成多个物体目标导航，维护共享的稀疏3D语义体素记忆，持续累积几何结构、可通行状态和视觉-语言特征。这使得后续目标可直接复用先前场景信息而无需重建地图，显著提升跨楼层多物体导航的效率和扩展性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.07751v1",
+      "source": "arxiv",
+      "title": "CoCoNav: Conformal Control for Safe Robot Navigation in Crowds",
+      "abstract": "Safe and efficient robot navigation in crowds requires anticipating pedestrian motion despite uncertain and potentially shifting prediction errors. Existing reactive methods can produce oscillatory behavior, while predictive planners often treat forecasts as exact or rely on restrictive error models. Incorporating conservative uncertainty sets as hard constraints can also render model predictive control (MPC) infeasible. We propose \\textit{CoCoNav}, a crowd-navigation framework that combines online conformal calibration with runtime-certified planning. A horizon-specific conformal proportional--integral controller adapts trajectory-error bounds to regulate long-run empirical coverage, enabling the framework to respond to changing prediction errors. A \\textit{relax-then-verify} planner preserves solver feasibility by generating nominal trajectories with soft-constrained MPC and separately certifying them, together with contingency maneuvers, against the calibrated bounds before execution. Simulations and quadruped experiments show that CoCoNav achieves a favorable balance among collision avoidance, task success, and navigation efficiency relative to the evaluated baselines.",
+      "authors": [
+        "Cheng Guo",
+        "Mingzhe Ni",
+        "Zheng Liang",
+        "Yihu Ling",
+        "Yuan Hu",
+        "Michele Caprio",
+        "Daniele Pucci",
+        "Wei Pan"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-08-07T20:34:52+00:00",
+      "link": "https://arxiv.org/pdf/2608.07751v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Safe robot navigation in crowds using conformal control and runtime-certified planning",
+      "llm_evidence_cn": "结合保形控制与运行时认证规划的拥挤环境安全机器人导航",
+      "llm_evidence": "结合保形控制与运行时认证规划的拥挤环境安全机器人导航",
+      "canonical_evidence": "结合保形控制与运行时认证规划的拥挤环境安全机器人导航",
+      "llm_tldr_en": "CoCoNav combines online conformal calibration with runtime-certified MPC for safe crowd navigation, adapting trajectory-error bounds to changing prediction errors without making MPC infeasible.",
+      "llm_tldr_cn": "现有反应式避障易产生振荡，预测性规划又常将预测当作精确或依赖严格误差模型。本文提出CoCoNav框架，结合在线保形校准与运行时认证的模型预测控制，通过视界特定的保形比例-积分控制器动态调整轨迹误差界，在保证安全性的同时规避MPC不可行问题，实现了对动态人群环境的鲁棒导航。",
+      "llm_tldr": "现有反应式避障易产生振荡，预测性规划又常将预测当作精确或依赖严格误差模型。本文提出CoCoNav框架，结合在线保形校准与运行时认证的模型预测控制，通过视界特定的保形比例-积分控制器动态调整轨迹误差界，在保证安全性的同时规避MPC不可行问题，实现了对动态人群环境的鲁棒导航。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.08523v1",
+      "source": "arxiv",
+      "title": "Discovering Diverse Planning Policies for Multimodal Embodied Agents with Quality-Diversity Optimization",
+      "abstract": "Multimodal embodied agents are increasingly required to solve long-horizon tasks by integrating visual observations, textual goals, and interaction history into closed-loop decision making. However, state-of-the-art large-model-based planners often rely on a single dominant planning style during execution. Once this execution mode becomes ineffective, the agent may remain stalled for many steps, repeatedly interacting with the environment without making meaningful progress. We address this limitation by proposing a Quality-Diversity (QD) framework for discovering diverse planning policies for multimodal embodied agents. The proposed method treats planning-policy templates as evolvable individuals and organizes them into a behavior-indexed archive rather than collapsing search to a single prompt style. In the offline stage, rollout trajectories are summarized into structured success and failure experiences, which guide policy variation through recombination and experience-guided mutation. The resulting policies are mapped into a behavior space defined by interaction intensity and goal-directedness, and the highest-quality policy in each niche is retained in the archive. In the online stage, the agent executes one policy at a time while monitoring task progress. When persistent stall is detected, the system rolls back to the latest checkpoint and switches to a behaviorally distinct archive policy to resume execution. Experiments on the ThreeDWorld transport benchmark show that the proposed framework improves both task success and interaction efficiency over representative baseline planners. These results suggest that discovering diverse policy repertoires is an effective way to support adaptive multimodal planning and online failure recovery.",
+      "authors": [
+        "Pengfei Xu",
+        "Yong Liu",
+        "Xiaoya Nan",
+        "Qiang Yang",
+        "Peilan Xu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-09T06:41:53+00:00",
+      "link": "https://arxiv.org/pdf/2608.08523v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "multimodal embodied agents planning policy diversity",
+      "llm_evidence_cn": "多模态具身智能体规划策略多样性",
+      "llm_evidence": "多模态具身智能体规划策略多样性",
+      "canonical_evidence": "多模态具身智能体规划策略多样性",
+      "llm_tldr_en": "Proposes a Quality-Diversity framework to discover diverse planning policies for multimodal embodied agents, avoiding stalls from single dominant planning styles in long-horizon tasks.",
+      "llm_tldr_cn": "多模态具身智能体在长时程任务中常因单一主导规划风格失效而陷入停滞。为此提出基于质量-多样性的规划策略发现框架，将规划策略模板作为可进化个体并组织成多样化集合，使智能体在一种模式失效时可切换到其他策略。实验显示该方法能提升长时程任务的完成率与鲁棒性，为具身规划提供多样性保障。",
+      "llm_tldr": "多模态具身智能体在长时程任务中常因单一主导规划风格失效而陷入停滞。为此提出基于质量-多样性的规划策略发现框架，将规划策略模板作为可进化个体并组织成多样化集合，使智能体在一种模式失效时可切换到其他策略。实验显示该方法能提升长时程任务的完成率与鲁棒性，为具身规划提供多样性保障。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.09196v1",
+      "source": "arxiv",
+      "title": "SAIN: Structure-Aware Interactive Navigation with Active Dialogue Grounding for Mobile Robot",
+      "abstract": "Most existing vision-language navigation tasks assume that instructions are complete and unambiguous. However, real-world robots often encounter natural human instructions that are ambiguous, underspecified, or incomplete, requiring them to resolve such uncertainties through active questioning. Interactive Instance Goal Navigation (IIGN) requires an embodied agent to find the specific instance under an ambiguous category-level instruction through active dialogue. However, existing dialogue-enabled methods often consume oracle answers as transient textual context for immediate decisions, rather than persistent spatial or object-centric structured state. We present SAIN, a zero-shot framework that turns active dialogue into persistent navigation state. Instead of consuming oracle answers as one-step text hints, SAIN compiles them into target evidence, route-level corridor memory, and object-candidate labels. These states are stored in structured value, room, graph, and object memories, then consumed by a unified policy for frontier ranking and final target approach. On the VL-LN IIGN benchmark, SAIN improves SR from 20.2 to 25.4 and SPL from 13.07 to 14.17 over the strongest reported dialogue-enabled baseline, while requiring no task-specific policy training. The results support dialogue-to-state conversion as an effective zero-shot mechanism for long-horizon interactive instance navigation. Project website: https://zorattc.github.io/SAIN/",
+      "authors": [
+        "Yuhao Cao",
+        "Xiao Liu",
+        "Yang Xie",
+        "Lu Liu",
+        "Haoyao Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-10T07:08:44+00:00",
+      "link": "https://arxiv.org/pdf/2608.09196v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Structure-aware interactive vision-language navigation with active dialogue grounding for mobile robots",
+      "llm_evidence_cn": "面向移动机器人的结构感知交互式视觉语言导航与主动对话接地",
+      "llm_evidence": "面向移动机器人的结构感知交互式视觉语言导航与主动对话接地",
+      "canonical_evidence": "面向移动机器人的结构感知交互式视觉语言导航与主动对话接地",
+      "llm_tldr_en": "SAIN is a zero-shot framework for Interactive Instance Goal Navigation that turns active dialogue into persistent structure-aware object-centric state, enabling robots to resolve ambiguous instructions through grounded questioning.",
+      "llm_tldr_cn": "现有视觉-语言导航假设指令完整清晰，而真实世界指令常含歧义。SAIN针对交互式实例目标导航，将主动对话产生的答案转化为持久的结构化对象级空间状态，而非瞬时文本，从而在零样本条件下利用对话接地机制解决歧义并完成实例定位，提升移动机器人在不确定指令下的导航能力。",
+      "llm_tldr": "现有视觉-语言导航假设指令完整清晰，而真实世界指令常含歧义。SAIN针对交互式实例目标导航，将主动对话产生的答案转化为持久的结构化对象级空间状态，而非瞬时文本，从而在零样本条件下利用对话接地机制解决歧义并完成实例定位，提升移动机器人在不确定指令下的导航能力。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.09467v1",
+      "source": "arxiv",
+      "title": "RecoverFly: A Failure-Aware Reinforcement Learning Post-Training Framework for Aerial Vision-Language Navigation",
+      "abstract": "Unmanned aerial vehicle vision-language navigation (UAV-VLN) requires agents to translate visual observations and language instructions into reliable flight actions in complex environments. Although recent end-to-end UAV vision-language-action (UAV-VLA) policies reduce reliance on separately designed perception, planning, and control modules, their behavior-cloning objectives provide limited corrective supervision for interactive closed-loop execution. Reinforcement learning (RL) offers a promising solution, while its effectiveness is constrained by inefficient use of samples, long-tailed scene distributions, and policy distribution shift during optimization. To this end, we propose RecoverFly, a failure-aware RL post-training framework for end-to-end UAV-VLA policies. Specifically, RecoverFly adapts token-level RL for stable optimization of grammar-constrained autoregressive UAV actions, revisits unresolved failure cases to strengthen corrective learning and sample utilization, and combines a two-stage long-tail scene curriculum with reference-policy regularization to improve scene adaptation while preserving acquired capabilities. Experiments on the TravelUAV benchmark demonstrate that RecoverFly achieves the best performance on the seen, unseen-map, and unseen-object splits. Moreover, compared to the AerialVLA initialization, RecoverFly improves success rate by 3.12 to 8.37 percentage points under a total rollout budget of about 30\\% of the training-set size, validating its effectiveness, robustness, and generalization capabilities.",
+      "authors": [
+        "Boxiong Wang",
+        "Hui Kang",
+        "Geng Sun",
+        "Jiahui Li",
+        "Chao Yu",
+        "Daxin Tian"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-10T11:37:46+00:00",
+      "link": "https://arxiv.org/pdf/2608.09467v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Reinforcement learning post-training for aerial vision-language navigation",
+      "llm_evidence_cn": "针对空中视觉语言导航的强化学习后训练",
+      "llm_evidence": "针对空中视觉语言导航的强化学习后训练",
+      "canonical_evidence": "针对空中视觉语言导航的强化学习后训练",
+      "llm_tldr_en": "RecoverFly is a failure-aware RL post-training framework for aerial VLN, addressing inefficient sample use and policy shift in end-to-end UAV vision-language-action policies. It improves closed-loop navigation success in complex scenes.",
+      "llm_tldr_cn": "无人机视觉语言导航要求智能体将视觉观察与语言指令映射为可靠飞行动作，现有端到端无人机视觉语言动作策略因行为克隆目标缺乏闭环交互的校正监督。本文提出RecoverFly，一种故障感知的强化学习后训练框架，通过显式处理失败样本、长尾场景和策略分布偏移来提高样本效率。实验证明该方法在复杂环境中的导航成功率显著优于行为克隆基线，缓解了RL优化不稳定的问题，为空中VLN的实际部署提供了更稳健的解决方案。",
+      "llm_tldr": "无人机视觉语言导航要求智能体将视觉观察与语言指令映射为可靠飞行动作，现有端到端无人机视觉语言动作策略因行为克隆目标缺乏闭环交互的校正监督。本文提出RecoverFly，一种故障感知的强化学习后训练框架，通过显式处理失败样本、长尾场景和策略分布偏移来提高样本效率。实验证明该方法在复杂环境中的导航成功率显著优于行为克隆基线，缓解了RL优化不稳定的问题，为空中VLN的实际部署提供了更稳健的解决方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation with reinforcement learning",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.09564v1",
+      "source": "arxiv",
+      "title": "From Semantic Grounding to Decision Optimization: A Unified Framework for Long-Horizon UAV Vision-Language Navigation",
+      "abstract": "UAV vision-language navigation (UAV-VLN) focuses on enabling an aerial agent to follow natural-language instructions in open 3D environments from egocentric visual observations. Current approaches suffer from three coupled issues: weak grounding of instruction-relevant landmarks in visual observations, insufficient exploitation of long-horizon history, and unstable decisions under local traps or repeated exploration. To address these issues, we propose a unified semantic-to-decision framework. First, we present an instruction-grounded semantic enhancement module that injects object-level semantics and relative spatial cues into the current observation state. Subsequently, we develop a relevance-aware dynamic temporal aggregation strategy that reweights the full history buffer while converting a few high-relevance frames into structured landmark prompts for the decoder. Finally, we devise a topology-aware decision method that combines local-optimum cognition with group-relative policy optimization under progress, goal, semantic, and path-compliance rewards. Experiments on the widely used AerialVLN and OpenFly benchmarks clearly demonstrate that our method achieves state-of-the-art performance.",
+      "authors": [
+        "Zeyuan Ma",
+        "Jiaxin Chen",
+        "Di Huang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-10T12:59:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.09564v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "UAV vision-language navigation with unified semantic-to-decision framework",
+      "llm_evidence_cn": "无人机视觉-语言导航的统一语义-决策框架",
+      "llm_evidence": "无人机视觉-语言导航的统一语义-决策框架",
+      "canonical_evidence": "无人机视觉-语言导航的统一语义-决策框架",
+      "llm_tldr_en": "Addresses UAV vision-language navigation by unifying semantic grounding and decision optimization, enhancing instruction-relevant landmarks, long-horizon history exploitation, and stability under local traps.",
+      "llm_tldr_cn": "论文针对无人机视觉-语言导航中指令相关地标锚定弱、长时程历史利用不足以及局部陷阱导致决策不稳的问题，提出一个从语义锚定到决策优化的统一框架。该方法通过指令语义增强模块注入对象级语义与相对空间线索，并结合相关性感知的动态优化，提升导航指令跟随的鲁棒性。实验表明该框架能更有效地支持开放三维环境中的长时程无人机导航任务。",
+      "llm_tldr": "论文针对无人机视觉-语言导航中指令相关地标锚定弱、长时程历史利用不足以及局部陷阱导致决策不稳的问题，提出一个从语义锚定到决策优化的统一框架。该方法通过指令语义增强模块注入对象级语义与相对空间线索，并结合相关性感知的动态优化，提升导航指令跟随的鲁棒性。实验表明该框架能更有效地支持开放三维环境中的长时程无人机导航任务。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "vision language navigation",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.09762v1",
+      "source": "arxiv",
+      "title": "Efficient Real-World Online Reinforcement Learning for Robot Manipulation via Centralized Training and Critic Decomposition",
+      "abstract": "Real-world online reinforcement learning (RL) provides a promising approach for training robotic manipulation policies directly in the physical world, avoiding the sim-to-real gap and enabling continuous policy refinement through human-in-the-loop interaction. Recent methods have demonstrated sample-efficient learning through human intervention but remain limited to small randomization ranges and encounter challenges with the non-stationarity induced by concurrently training multiple agents. To address these limitations, we introduce a unified framework that combines centralized training with decentralized execution (CTDE) and a Hybrid Reward Architecture (HRA). This enables multiple actors to share a centralized multi-head critic. The critic is decomposed into task and grasp heads, corresponding to the sparse task reward and a potential-based grasping reward, respectively. We accordingly reformulate the critic and actor objectives to exploit the decomposed Q-values while explicitly accounting for the categorical action distribution of the discrete gripper policy. Experimental results demonstrate that the proposed framework substantially improves both sample efficiency and policy performance. We validate our approach on two robotic arms and a simulated humanoid robot across tennis ball and banana pick-and-place, pot reset, and simulated block relocation tasks under dimension-wise domain randomization, approximately 5-25x larger than those considered in prior work. Compared with a state-of-the-art baseline, our method improves the success rate from 60% to 80% on tennis ball pick-and-place, from 60% to 90% on banana pick-and-place, and from 25% to 95% on simulated block relocation, while also successfully accomplishing a task where the baseline consistently fails. Videos and more details are available at our project website: https://hil-harc.github.io/.",
+      "authors": [
+        "Changhao Li",
+        "Yifang Zhang",
+        "Heng Zhang",
+        "Davide Torielli",
+        "Damiano Gasperini",
+        "Arturo Laurenzi",
+        "Luca Muratore",
+        "Arash Ajoudani",
+        "Nikos Tsagarakis"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-10T15:54:25+00:00",
+      "link": "https://arxiv.org/pdf/2608.09762v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "real-world online RL for robot manipulation",
+      "llm_evidence_cn": "面向机器人操作的真实世界在线强化学习",
+      "llm_evidence": "面向机器人操作的真实世界在线强化学习",
+      "canonical_evidence": "面向机器人操作的真实世界在线强化学习",
+      "llm_tldr_en": "Introduces a unified framework combining centralized training with decentralized execution and hybrid reward architecture for real-world online RL, enabling sample-efficient robot manipulation policy learning with multiple actors.",
+      "llm_tldr_cn": "真实世界在线强化学习能直接训练机器人操作策略并避免仿真到现实的差距，但现有方法仅适用于小范围随机化且多智能体并行训练会带来非平稳性问题。本文提出结合集中训练-分散执行（CTDE）与混合奖励架构（HRA）的统一框架，支持多个actor共享经验并稳定训练。该方法在真实机器人上展现出更高的样本效率和持续改进能力，为实际部署提供了实用方案。",
+      "llm_tldr": "真实世界在线强化学习能直接训练机器人操作策略并避免仿真到现实的差距，但现有方法仅适用于小范围随机化且多智能体并行训练会带来非平稳性问题。本文提出结合集中训练-分散执行（CTDE）与混合奖励架构（HRA）的统一框架，支持多个actor共享经验并稳定训练。该方法在真实机器人上展现出更高的样本效率和持续改进能力，为实际部署提供了实用方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.09816v2",
+      "source": "arxiv",
+      "title": "Hierarchical Fast-Slow ReAct Agent for Zero-Shot Object-Goal Navigation",
+      "abstract": "Zero-shot object-goal navigation (ZSON) requires a robot to find a named object category in a building it has never entered. The prevailing approach scores frontiers with a vision-language value map: every decision is another argmax over the map as it currently stands, and the evidence behind that score is discarded the moment it is taken. Systems that place a large vision-language model inside the perception-action loop typically query it on a fixed schedule from the current view alone; a room the robot walked through minutes earlier is never reconsidered, and a failed call has no defined fallback. We turn what the robot has already seen into the object of deliberation. Our hierarchical fast-slow agent leaves the value-map controller running at every step and writes a coordinate-anchored memory as it moves: a semantic grid of room types and confirmed object instances, together with a bounded store of pose-tagged keyframes. A VLM screens each candidate detection before it is written. A deliberative layer reads this memory in a bounded reason-retrieve-act loop. It wakes on structural events the reactive layer computes, reasons first over text, and recalls a first-person view only for candidates that text alone cannot separate. Per-invocation and per-run caps bound its calls, a call-free first tier resolves the most frequent stall, and any failure returns control to the reactive controller. Our system reaches 68.75% SR on HM3D v1 val and 47.29% on MP3D val, the highest success rate among the zero-shot methods compared here. Choosing among far frontiers by argmax instead of deliberating costs 3.40 SR points in a paired comparison over all 2000 HM3D episodes (95% CI [1.70, 5.05]); deliberating over every frontier does not recover them.",
+      "authors": [
+        "Zhaochen Lan",
+        "Zhi Yang",
+        "Yuxiang Fu",
+        "Mengxiang Lin"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-10T16:34:26+00:00",
+      "link": "https://arxiv.org/pdf/2608.09816v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "zero-shot object-goal navigation in unseen buildings",
+      "llm_evidence_cn": "未见过建筑中的零样本目标物体导航",
+      "llm_evidence": "未见过建筑中的零样本目标物体导航",
+      "canonical_evidence": "未见过建筑中的零样本目标物体导航",
+      "llm_tldr_en": "Introduces a hierarchical fast-slow ReAct agent for zero-shot object-goal navigation, reusing evidence from previously seen scenes and providing fallback when VLM calls fail.",
+      "llm_tldr_cn": "零样本目标物体导航要求机器人在未见过的建筑中找到目标类别。现有基于视觉-语言价值图的方法每次决策都直接取最大值且丢弃证据，无法回看之前的环境信息。该文提出层次化快慢ReAct智能体，让价值图控制器持续运行，并对已见场景进行延迟重估，同时在视觉语言模型调用失败时定义回退策略。实验表明该方法显著提升零样本目标导航的成功率与鲁棒性。",
+      "llm_tldr": "零样本目标物体导航要求机器人在未见过的建筑中找到目标类别。现有基于视觉-语言价值图的方法每次决策都直接取最大值且丢弃证据，无法回看之前的环境信息。该文提出层次化快慢ReAct智能体，让价值图控制器持续运行，并对已见场景进行延迟重估，同时在视觉语言模型调用失败时定义回退策略。实验表明该方法显著提升零样本目标导航的成功率与鲁棒性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.03227v1",
+      "source": "arxiv",
+      "title": "PFM-HR: Pose Flow Matching for Humanoid Robots",
+      "abstract": "Motion priors improve reinforcement learning for physics-based humanoid tracking, but temporal priors require ordered motion clips, while pose priors provide limited guidance for policy-induced pose transitions. We present Pose Flow Matching for Humanoid Robots (PFM-HR), a reusable flow matching prior trained directly on large scale unordered pose data. PFM-HR introduces the Pose Geometry Score (PGS), which quantifies how joint coordinate changes during rollouts align with the local geometry of pose variation captured by the prior. Using PGS to modulate the tracking reward guides policy exploration toward structured pose changes while keeping the prior frozen across tracking tasks. Experiments demonstrate that PFM-HR improves both single motion and general motion tracking, especially for highly dynamic motions.",
+      "authors": [
+        "Yukang Gao",
+        "Yi Gu",
+        "Yangchen Zhou",
+        "Xingyu Chen",
+        "Zhaorui Wang",
+        "Fanghai Zhang",
+        "Hanyang Cao",
+        "Zhengyang Shen",
+        "Ji Ma",
+        "Runhan Zhang",
+        "Lei Han",
+        "Renjing Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-04T06:58:54+00:00",
+      "link": "https://arxiv.org/pdf/2608.03227v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Motion prior that improves reinforcement learning for physics-based humanoid tracking",
+      "llm_evidence_cn": "面向人形机器人跟踪的强化学习，提出可复用流匹配先验",
+      "llm_evidence": "面向人形机器人跟踪的强化学习，提出可复用流匹配先验",
+      "canonical_evidence": "面向人形机器人跟踪的强化学习，提出可复用流匹配先验",
+      "llm_tldr_en": "PFM-HR trains a reusable flow-matching pose prior on large-scale unordered pose data and uses a Pose Geometry Score to modulate tracking rewards, improving RL-based humanoid motion tracking.",
+      "llm_tldr_cn": "针对人形机器人物理跟踪中强化学习缺乏有效动作先验的问题，提出PFM-HR，在大规模无序位姿数据上训练可复用的流匹配先验，并设计Pose Geometry Score量化策略rollout与先验几何的契合度以调节跟踪奖励，引导探索走向结构化位姿变化，在多个跟踪任务上显著提升单动作与一般动作跟踪性能，为机器人运动先验提供新范式。",
+      "llm_tldr": "针对人形机器人物理跟踪中强化学习缺乏有效动作先验的问题，提出PFM-HR，在大规模无序位姿数据上训练可复用的流匹配先验，并设计Pose Geometry Score量化策略rollout与先验几何的契合度以调节跟踪奖励，引导探索走向结构化位姿变化，在多个跟踪任务上显著提升单动作与一般动作跟踪性能，为机器人运动先验提供新范式。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.03052v1",
+      "source": "arxiv",
+      "title": "How Should Vision-Language-Action Models Use Proprioceptive State?",
+      "abstract": "Recent Vision-Language-Action (VLA) models almost universally take robot proprioceptive state as input, yet wire it in incompatible ways -- serialized into text prompts, projected into the vision-language prefix, or fed directly to the action expert -- and almost always as a single current frame. Three questions remain open: (1) whether, and on which tasks, current state actually improves closed-loop control; (2) how much state history helps, and whether its benefit reflects genuine temporal variation rather than added conditioning capacity; and (3) where state should enter the model -- the vision-language backbone or the action-generation module. We answer these questions through controlled experiments on a flow-matching VLA, fixing the backbone, training data, action representation, and evaluation protocol throughout. We implement five representative interfaces -- discrete state prompt, VLM prefix, action prefix, state expert, and feature modulation -- under matched implementation details, and evaluate them on 45 atomic tasks spanning three task families plus 20 composite tasks; we then sweep the state-history length from 1 to 96 frames to examine how historical state information affects model performance. The experiments yield systematic answers to all three questions, distilled into testable design principles for state-aware VLAs.",
+      "authors": [
+        "Yiren Zhao",
+        "Ziyang Chen",
+        "Ziyang Rao",
+        "Pengteng Li",
+        "He Zhang",
+        "Weiyu Guo",
+        "Yandong Guo",
+        "Rushi Dai"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-04T03:05:47+00:00",
+      "link": "https://arxiv.org/pdf/2608.03052v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "VLA models in robotic control, proprioceptive state design",
+      "llm_evidence_cn": "机器人控制中的VLA模型及本体感知状态设计",
+      "llm_evidence": "机器人控制中的VLA模型及本体感知状态设计",
+      "canonical_evidence": "机器人控制中的VLA模型及本体感知状态设计",
+      "llm_tldr_en": "Investigates how VLA models should incorporate robot proprioceptive state, comparing input serialization, projection, and action-expert pathways through controlled experiments on a flow-matching VLA.",
+      "llm_tldr_cn": "视觉-语言-动作（VLA）模型在机器人控制中几乎普遍使用本体感知状态，但接入方式多样且缺乏系统比较。本文在固定的flow-matching VLA上开展受控实验，回答当前状态是否提升闭环控制、状态历史作用有多大、以及状态应注入视觉语言主干还是动作生成模块等问题。结果表明合理的本体感知输入设计对闭环控制性能有显著影响。工作为VLA模型的输入结构设计提供了实证指导，有助于端到端机器人控制系统的构建。",
+      "llm_tldr": "视觉-语言-动作（VLA）模型在机器人控制中几乎普遍使用本体感知状态，但接入方式多样且缺乏系统比较。本文在固定的flow-matching VLA上开展受控实验，回答当前状态是否提升闭环控制、状态历史作用有多大、以及状态应注入视觉语言主干还是动作生成模块等问题。结果表明合理的本体感知输入设计对闭环控制性能有显著影响。工作为VLA模型的输入结构设计提供了实证指导，有助于端到端机器人控制系统的构建。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.02958v1",
+      "source": "arxiv",
+      "title": "ValueFormer: A Causal Transformer Value Function with Stage-Aware Labels for Semi-Autonomous Vision-Language-Action Policies",
+      "abstract": "Vision-Language-Action (VLA) policies trained by behavior cloning fail silently: from the action stream alone, a collapsing rollout looks much like one making clean progress, because imitation supplies no notion of progress. Reinforcement learning would supply one, but it is impractical here, where real-robot experience is costly and deformable food resists simulation. The cheap alternative, a terminal success / failure bit, is learnable in principle yet far too sparse to say when a rollout went wrong. We argue that the per-frame label, not the architecture, is the hard part: to be useful it must be dense, continuous, and correctly shaped. We present ValueFormer, a compact policy-agnostic causal transformer over a frozen DINOv3 backbone that emits two per-frame signals in one forward pass: a smooth Monte Carlo value, V_mc, for advantage estimation and a sharp binary value for online mistake detection, targets that pull in opposite directions by design. Failed episodes are labeled with a stage-aware, success-then-decay return that preserves the success curve before the failure stage, and detection is supervised from mistake intervals rather than a single failure time, so mistakes the policy recovers from also carry signal. On a real-robot bimanual sandwich-assembly task 1,427 episodes), a critic-derived per-frame training weight lifts task completion from 70% to 85% (within noise at n=20), and a batched bf16 encoder cuts the live serving cost 3~5 times so the critic runs at 2 Hz alongside the policy on a single GPU.",
+      "authors": [
+        "Inkyu Sa",
+        "Konstantin Stulov",
+        "Rajat Bhageria"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-03T23:46:39+00:00",
+      "link": "https://arxiv.org/pdf/2608.02958v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Addresses RL-style value learning for vision-language-action policies in robotics",
+      "llm_evidence_cn": "面向机器人视觉-语言-动作策略的价值函数学习，探讨RL信号与BC训练的互补",
+      "llm_evidence": "面向机器人视觉-语言-动作策略的价值函数学习，探讨RL信号与BC训练的互补",
+      "canonical_evidence": "面向机器人视觉-语言-动作策略的价值函数学习，探讨RL信号与BC训练的互补",
+      "llm_tldr_en": "ValueFormer introduces a compact causal transformer value function with stage-aware labels to provide dense continuous progress signals for semi-autonomous VLA policies, tackling the sparse reward problem in robot learning.",
+      "llm_tldr_cn": "针对行为克隆训练的视觉-语言-动作策略因缺乏进度感知而会静默失败的问题，提出ValueFormer紧凑因果Transformer价值函数，利用阶段感知标签生成密集连续的逐帧进度信号，在真实机器人经验昂贵且难以仿真的场景中为半自主VLA策略提供可学习的成功/失败评估，改善了策略的收敛行为与可解释性。",
+      "llm_tldr": "针对行为克隆训练的视觉-语言-动作策略因缺乏进度感知而会静默失败的问题，提出ValueFormer紧凑因果Transformer价值函数，利用阶段感知标签生成密集连续的逐帧进度信号，在真实机器人经验昂贵且难以仿真的场景中为半自主VLA策略提供可学习的成功/失败评估，改善了策略的收敛行为与可解释性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end to end reinforcement learning in robotics",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.03244v1",
+      "source": "arxiv",
+      "title": "UniNav: A Unified World-Action Diffusion Model for Visual Navigation",
+      "abstract": "Image-goal visual navigation is a fundamental capability for embodied agents. Existing navigation policies efficiently predict waypoint trajectories but lack visual foresight, while navigation world models can anticipate future observations but often require costly planning rollouts. We present UniNav, a unified world-action model that generates future visual observations and continuous waypoint trajectories through a single diffusion process. Given history frames and a goal image, UniNav jointly denoises visual and waypoint tokens within a single transformer, unifying future prediction and action generation in a shared framework. To improve spatial grounding, we incorporate geometry-aware camera tokens. We also train on both trajectory-labeled navigation data and video-only data, enabling the model to benefit from diverse videos without waypoint annotations. Based on this unified framework, we introduce two variants: UniNav-Full jointly predicts interpretable future observations and their corresponding trajectories, while UniNav-Fast removes future-image tokens at inference for efficient trajectory prediction. Experiments on navigation benchmarks show that UniNav outperforms the strongest baseline in ATE across all datasets. With one-step inference, UniNav-Fast achieves a latency of 0.1s without a substantial accuracy drop. Code will be released.",
+      "authors": [
+        "Changqing Zhou",
+        "Yueru Luo",
+        "Zeyu Jiang",
+        "Changhao Chen"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-04T07:15:45+00:00",
+      "link": "https://arxiv.org/pdf/2608.03244v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "A unified world-action diffusion model for image-goal visual navigation with embodied agents",
+      "llm_evidence_cn": "面向具身智能体的图像目标视觉导航，提出统一的动作-世界扩散模型",
+      "llm_evidence": "面向具身智能体的图像目标视觉导航，提出统一的动作-世界扩散模型",
+      "canonical_evidence": "面向具身智能体的图像目标视觉导航，提出统一的动作-世界扩散模型",
+      "llm_tldr_en": "UniNav jointly generates future observations and waypoint trajectories in a single diffusion transformer with geometry-aware camera tokens, unifying world models and action generation for image-goal visual navigation.",
+      "llm_tldr_cn": "针对图像目标视觉导航中策略缺乏视觉预见、世界模型规划开销大的问题，提出UniNav统一世界-动作扩散模型，在单个Transformer中联合去噪未来视觉观测与连续路点轨迹，结合几何感知相机令牌增强空间接地，并在轨迹标注数据上训练，实现高效且具前瞻性的导航决策，为具身导航提供了统一生成框架。",
+      "llm_tldr": "针对图像目标视觉导航中策略缺乏视觉预见、世界模型规划开销大的问题，提出UniNav统一世界-动作扩散模型，在单个Transformer中联合去噪未来视觉观测与连续路点轨迹，结合几何感知相机令牌增强空间接地，并在轨迹标注数据上训练，实现高效且具前瞻性的导航决策，为具身导航提供了统一生成框架。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.03231v1",
+      "source": "arxiv",
+      "title": "Structure-Aware Robust Fine-Tuning: Defending Vision-Language-Action Robots Against Physical Attention Hijacking",
+      "abstract": "Vision-Language-Action (VLA) policies promise general robotic manipulation, but their robustness against physical-world attacks remains fragile. In particular, we show that physically realizable adversarial patches can reliably induce failures by triggering a mechanism we call policy-critical action-to-vision attention hijacking, where action-conditioned attention is diverted from task-relevant regions to a localized patch. To demonstrate the threat, we propose Attention-Guided Semantic Disruption (AGSD), an Expectation-over-Transformation (EOT) optimized printable patch that jointly (i) concentrates action-to-vision attention on the patch and (ii) disrupts vision-language semantic alignment, yielding strong cross-task and cross-architecture transfer. To mitigate such attacks, we introduce Structure-Aware Robust Fine-Tuning (SARF), a zero-inference-overhead defense that fine-tunes only the visual encoder using feature anchoring, policy-critical attention correction, and language-guided geometric consistency restricted to semantically relevant regions. On LIBERO, SARF reduces OpenVLA's failure rate under AGSD from 100% to 14.2%-56.8% (28.6% average) across suites while preserving clean performance, and on a real PiPER manipulator it improves average success under AGSD from 23.0% to 65.0%. These results highlight mechanism-level robustness as a practical path to securing VLA robots against physical attention hijacking.",
+      "authors": [
+        "Jinquan Zhang",
+        "Dongfu Yin",
+        "Run Yang",
+        "Yufeng Yan",
+        "Zhen Tian",
+        "F. Richard Yu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-04T07:03:05+00:00",
+      "link": "https://arxiv.org/pdf/2608.03231v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Vision-language-action policies, end-to-end mapping, embodied manipulation",
+      "llm_evidence_cn": "视觉-语言-动作策略，端到端映射，具身操作",
+      "llm_evidence": "视觉-语言-动作策略，端到端映射，具身操作",
+      "canonical_evidence": "视觉-语言-动作策略，端到端映射，具身操作",
+      "llm_tldr_en": "Proposes structure-aware robust fine-tuning for VLA robots against physical adversarial patches, demonstrating attention hijacking and semantic disruption with AGSD, improving robustness of embodied manipulation.",
+      "llm_tldr_cn": "针对视觉-语言-动作（VLA）策略在物理对抗补丁下的脆弱性，本文提出结构感知的鲁棒微调方法，并设计了注意力引导的语义破坏（AGSD）攻击来揭示策略关键的注意力劫持机制。实验表明该方法能有效防御这类物理攻击，提升具身机器人操作在真实世界中的安全性，为端到端具身策略的可靠性提供了新思路。",
+      "llm_tldr": "针对视觉-语言-动作（VLA）策略在物理对抗补丁下的脆弱性，本文提出结构感知的鲁棒微调方法，并设计了注意力引导的语义破坏（AGSD）攻击来揭示策略关键的注意力劫持机制。实验表明该方法能有效防御这类物理攻击，提升具身机器人操作在真实世界中的安全性，为端到端具身策略的可靠性提供了新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.03875v1",
+      "source": "arxiv",
+      "title": "Enhancing VLM Reward Models Through Structure-Aware Fine-Tuning",
+      "abstract": "Designing effective reward functions remains a major bottleneck in Reinforcement Learning (RL). Recent work uses large foundation Vision-Language Models (VLMs) as reward models, computing text-observation similarity to bypass manual reward engineering. Although promising, these rewards are often noisy and unreliable, limiting their direct utility during deployment. We present Structure-Aware Fine-Tuning (SAFT), a simple, self-supervised method that refines these imperfect reward signals online without access to ground-truth supervision. SAFT leverages intrinsic structural priors to regularize the VLM's latent space via LoRA adapters. We rigorously evaluate SAFT across a spectrum of base model capabilities to demonstrate its versatility. Our results show that SAFT consistently denoises the reward landscape, yielding faster policy convergence and substantially improved alignment (EPIC distance) relative to the underlying base model, suggesting that failures can often be attributed to structural brittleness rather than semantic misunderstanding. By replacing extensive human preference annotation with structural inductive biases inherent to the task, SAFT offers a scalable path for stabilizing text-conditioned RL and underscores the broader value of incorporating task structure as a general inductive bias.",
+      "authors": [
+        "Pyrros Koussios",
+        "Chenhao Li",
+        "Xin Chen",
+        "Andreas Krause"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-04T16:15:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.03875v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL reward model enhancement with VLMs",
+      "llm_evidence_cn": "基于结构感知微调提升VLM奖励模型",
+      "llm_evidence": "基于结构感知微调提升VLM奖励模型",
+      "canonical_evidence": "基于结构感知微调提升VLM奖励模型",
+      "llm_tldr_en": "Presents Structure-Aware Fine-Tuning (SAFT), a self-supervised method to refine noisy VLM-based RL reward models online via LoRA adapters and structural priors, improving reward reliability and RL performance.",
+      "llm_tldr_cn": "奖励工程设计是强化学习的主要瓶颈，现有研究用VLM计算文本-观测相似度作为奖励，但这类奖励往往噪声大且不可靠。本文提出结构感知微调（SAFT），无需真值监督，利用内在结构先验通过LoRA适配器在线修正VLM奖励空间。在多种基础模型上验证了其通用性，有效提高奖励可靠性及下游强化学习性能。",
+      "llm_tldr": "奖励工程设计是强化学习的主要瓶颈，现有研究用VLM计算文本-观测相似度作为奖励，但这类奖励往往噪声大且不可靠。本文提出结构感知微调（SAFT），无需真值监督，利用内在结构先验通过LoRA适配器在线修正VLM奖励空间。在多种基础模型上验证了其通用性，有效提高奖励可靠性及下游强化学习性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.03727v1",
+      "source": "arxiv",
+      "title": "Track4Action: Distilling World-Centric 3D Tracker into Vision-Language-Action Policies",
+      "abstract": "Action labels tell a vision-language-action (VLA) policy which robot commands to imitate, but not how those commands change the 3D world. The aligned demonstration clip contains this missing supervision because its $K$ frame transitions record the geometry, motion, visibility, and camera change produced during the corresponding $K$ actions. We introduce Track4Action, a framework that distills this realized transition from a frozen world-centric 3D tracker into a current-observation VLA policy. During training, Track4World encodes the clip $V_{t:t+K}$ into a pooled tracker feature. Learnable track queries infer this feature from current VLA hidden states, match it in a shared space, and condition a flow-matching action head through a feature-wise gate. The tracker feature only defines the alignment target, so neither the clip nor the tracker is used at deployment. Track4Action reaches 82.3% on zero-shot LIBERO-Plus, improving the alignment-free variant by 7.6 points and LaMP by 3.0 points. It obtains 80.44% and 81.48% on the clean and randomized RoboTwin 2.0 splits, and 67.5% average success across four physical bimanual tasks, 25.0 points above the alignment-free variant. The gains across simulation and physical tasks support action-aligned 3D tracker features as privileged supervision for tracker-free VLA deployment. Our project page is available at https://wing0night.github.io/track4action-project-page.",
+      "authors": [
+        "Chenyi Wang",
+        "Xinkai Wang",
+        "Bokai Lin",
+        "Jialin Tian",
+        "Fucheng Zhang",
+        "Cewu Lu",
+        "Lixin Yang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-04T14:25:13+00:00",
+      "link": "https://arxiv.org/pdf/2608.03727v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Distills a world-centric 3D tracker into current-observation vision-language-action policies for end-to-end robot control",
+      "llm_evidence_cn": "将世界中心3D跟踪器蒸馏到当前观测的视觉-语言-动作策略中实现端到端机器人控制",
+      "llm_evidence": "将世界中心3D跟踪器蒸馏到当前观测的视觉-语言-动作策略中实现端到端机器人控制",
+      "canonical_evidence": "将世界中心3D跟踪器蒸馏到当前观测的视觉-语言-动作策略中实现端到端机器人控制",
+      "llm_tldr_en": "Track4Action distills realized 3D world transitions from a frozen tracker into a VLA policy, providing missing supervision about how actions change the 3D world and improving end-to-end robot command learning.",
+      "llm_tldr_cn": "动作标签只告诉策略模仿哪条指令，却未说明动作如何改变3D世界。本文提出Track4Action，在训练时将冻结的世界中心3D跟踪器对演示片段的编码作为辅助监督，通过可学习的查询从当前观测中推断该特征，并注入流匹配动作头，使VLA策略获得状态转移信息，从而提升操控学习质量。",
+      "llm_tldr": "动作标签只告诉策略模仿哪条指令，却未说明动作如何改变3D世界。本文提出Track4Action，在训练时将冻结的世界中心3D跟踪器对演示片段的编码作为辅助监督，通过可学习的查询从当前观测中推断该特征，并注入流匹配动作头，使VLA策略获得状态转移信息，从而提升操控学习质量。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.03483v1",
+      "source": "arxiv",
+      "title": "Continue or Replan? Bernoulli-Continuation Policy Learning for Adaptive Horizon Execution",
+      "abstract": "Existing chunk-based Vision-Language-Action (VLA) models execute a fixed number of actions (i.e., execution horizon) before replanning, turning replanning into a task-agnostic periodic schedule that is independent of task progress. As a result, when no replanning boundary falls before a critical manipulation stage, it is executed from a stale chunk rather than a freshly replanned one. To address this limitation, we propose Bernoulli-Continuation Policy (BCP), a lightweight, plug-and-play framework for adaptive horizon execution that keeps the base VLA frozen. Given a fixed-length action chunk, its continuation head decomposes execution-horizon selection into a sequence of continue-or-replan decisions, which imposes an ordinal, prefix-sharing inductive bias over candidate horizons rather than treating them as independent classes. Since the optimal horizon for each chunk is not observable, we train this head with reinforcement learning from trajectory-level outcomes and introduce a Replanning-Efficiency Reward that jointly rewards task success and efficient VLA usage, discouraging the policy from collapsing to unnecessarily short horizons. On RoboTwin 2.0 with LingBot-VLA as the base policy, BCP improves the average success rate by +11.08% on 13 low-success tasks and from 89.88% to 93.94% (+4.06%) across all 50 tasks. Although trained only under the Clean setting, BCP generalizes to the Randomized setting, raising the average success rate by +4.06%. It also transfers to a different base policy $π_{0.5}$, achieving a better result on LIBERO (+1.7%) and, notably, on the harder LIBERO-PRO (+6.8%). On a real robot, BCP lifts success from 74% to 92% and from 44% to 84% on two manipulation tasks. Meanwhile, its negligible overhead, combined with higher success, makes BCP's overall runtime even lower than the fixed-horizon baselines.",
+      "authors": [
+        "Weichen Xu",
+        "Zhenhua Liu",
+        "Lin Luo",
+        "Yaobo Liang",
+        "Chengtang Yao",
+        "Qingyu Mei",
+        "Jian Cao",
+        "Xixin Cao",
+        "Xing Zhang",
+        "Jiaolong Yang",
+        "Baining Guo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-04T11:21:08+00:00",
+      "link": "https://arxiv.org/pdf/2608.03483v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Adaptive horizon execution for vision-language-action models via Bernoulli-continuation policy learning",
+      "llm_evidence_cn": "通过伯努利-继续策略学习实现视觉-语言-动作模型的自适应执行视界",
+      "llm_evidence": "通过伯努利-继续策略学习实现视觉-语言-动作模型的自适应执行视界",
+      "canonical_evidence": "通过伯努利-继续策略学习实现视觉-语言-动作模型的自适应执行视界",
+      "llm_tldr_en": "BCP replaces fixed replanning schedules in chunk-based VLA models with a learnable continue-or-replan decision, enabling adaptive execution horizons that respond to task progress and avoid stale-chunk failures.",
+      "llm_tldr_cn": "基于块的VLA模型按固定周期重规划，与任务进度无关，可能导致关键操控阶段使用陈旧块。本文提出伯努利-继续策略BCP，在保持基础VLA冻结的情况下，用轻量级继续头将执行视界选择分解为序列化的继续或重规划决策，实现按任务进度自适应调整重规划时机，提高操控成功率。",
+      "llm_tldr": "基于块的VLA模型按固定周期重规划，与任务进度无关，可能导致关键操控阶段使用陈旧块。本文提出伯努利-继续策略BCP，在保持基础VLA冻结的情况下，用轻量级继续头将执行视界选择分解为序列化的继续或重规划决策，实现按任务进度自适应调整重规划时机，提高操控成功率。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.05738v1",
+      "source": "arxiv",
+      "title": "In-Context VLA: Endowing Vision-Language-Action Models with Language via In-Context Post-Training and Agentic Tool Use",
+      "abstract": "Vision-Language-Action (VLA) models have become the dominant recipe for generalist manipulation, yet they are almost universally trained by behavior cloning: a policy imitates expert action chunks conditioned on a static image and a fixed instruction. A natural remedy is to inject explicit reasoning through textual chain-of-thought (CoT). We show, both empirically and analytically, that free-form textual CoT degrades low-level control: the reasoning it produces is ungrounded, its latency breaks closed-loop timing, and, crucially, the reasoning and action tokens are optimized against conflicting objectives so that the policy learns to narrate rather than to act. We argue that what a VLA needs is not the ability to generate language, but the ability to consume grounded language. To this end we introduce \\textbf{\\ourmethod{}}, a framework that endows a VLA with language competence through (i) in-context post-training, in which perceptual evidence is injected as structured context and the model is supervised only on actions, and (ii) an agentic tool-use interface, in which the policy queries open-vocabulary detectors, monocular depth, and a vision--language model to actively acquire task-relevant information. Rather than emitting a single templated caption, our data engine produces diverse, paraphrased, and evidence-conditioned spatial descriptions, so that the policy learns to interpret language it has never seen verbatim. Across the RoboCasa-GR1, SimplerEnv, and LIBERO simulation benchmarks, together with 8 real-world robot manipulation tasks, our method consistently achieves SOTA results in both performance and efficiency when compared with CoT-based approaches under matched configurations.",
+      "authors": [
+        "Jiarui Yang",
+        "Wen Huang",
+        "Jiale Zhang",
+        "Maowei Hu",
+        "Hang Guo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-06T08:21:02+00:00",
+      "link": "https://arxiv.org/pdf/2608.05738v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "VLA models, behavior cloning, end-to-end action generation",
+      "llm_evidence_cn": "视觉语言动作模型，行为克隆，端到端动作生成",
+      "llm_evidence": "视觉语言动作模型，行为克隆，端到端动作生成",
+      "canonical_evidence": "视觉语言动作模型，行为克隆，端到端动作生成",
+      "llm_tldr_en": "Shows free-form textual chain-of-thought hurts low-level control in VLA policies, and proposes in-context post-training and agentic tool use to inject grounded language without degrading action.",
+      "llm_tldr_cn": "视觉语言动作（VLA）模型通常用行为克隆训练，但加入自由文本思维链会降低底层控制性能。作者通过实验与分析指出推理与动作目标冲突，并提出上下文后训练与智能体工具使用，使语言与动作更好协同。该工作为具身智能体的语言注入提供了新思路。",
+      "llm_tldr": "视觉语言动作（VLA）模型通常用行为克隆训练，但加入自由文本思维链会降低底层控制性能。作者通过实验与分析指出推理与动作目标冲突，并提出上下文后训练与智能体工具使用，使语言与动作更好协同。该工作为具身智能体的语言注入提供了新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.03753v1",
+      "source": "arxiv",
+      "title": "GORDON: Graph-based Object-centric Rewards for Decomposition of Long-Horizon Manipulation",
+      "abstract": "Learning long-horizon manipulation skills with reinforcement learning remains challenging due to the complexity of reward design, the limited guidance of sparse rewards, and the high cost of manual subtask annotation. Visual demonstrations can provide supervision for reward learning, but rewards learned from raw pixels can be brittle and sensitive to visual variation, background appearance, and robot motion. In this work, we propose GORDON, a graph-based object-centric reward learning framework that learns dense rewards from action-free video demonstrations. Each visual scene is represented as a graph of detected objects and spatial relations, and a graph neural network is trained in a self-supervised manner to embed these graphs into a task-aligned latent space. To align the representation with semantic task progress, we introduce an activity-aware weighted pooling mechanism that emphasizes task-relevant objects while masking robot-dominated motion. The dense reward is then computed as distances in the learned latent space of the current state to demonstrated goal configurations, providing a measure of task progress. In long-horizon tasks, the temporal profile of this reward reveals stage-wise object-state transitions, enabling automatic subtask discovery without manual segmentation. The discovered segments are then used to train subtask-specific rewards and specialized policies that are composed sequentially. Experiments on seven manipulation tasks on MAGICAL and ManiSkill3 benchmarks show that our object-centric reward improves reinforcement learning in short-horizon settings and enables successful policy learning in complex long-horizon tasks through automatic decomposition, achieving an average success rate of 74.4% across the long-horizon tasks (on average approximately +35 p.p. vs. best learned baseline and approximately +25 p.p. vs. oracle).",
+      "authors": [
+        "Andrea Protopapa",
+        "Davide Buoso",
+        "Francesca Pistilli",
+        "Georgia Chalvatzaki",
+        "Giuseppe Averta"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-04T14:43:41+00:00",
+      "link": "https://arxiv.org/pdf/2608.03753v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "reinforcement learning, long-horizon manipulation, reward learning from demonstrations",
+      "llm_evidence_cn": "强化学习，长程操作，从演示学习奖励",
+      "llm_evidence": "强化学习，长程操作，从演示学习奖励",
+      "canonical_evidence": "强化学习，长程操作，从演示学习奖励",
+      "llm_tldr_en": "Introduces GORDON, a graph-based object-centric reward learning framework that learns dense rewards from action-free videos to enable long-horizon RL manipulation without manual subtask annotation.",
+      "llm_tldr_cn": "用强化学习学习长程操作需要设计奖励与子任务标注，成本高且稀疏奖励难训练。作者提出基于图的对象中心奖励学习框架GORDON，从无动作视频中自监督学习稠密奖励，用图表示场景对象与空间关系。该方法降低了奖励设计难度，提升长程操作任务的RL训练效率。",
+      "llm_tldr": "用强化学习学习长程操作需要设计奖励与子任务标注，成本高且稀疏奖励难训练。作者提出基于图的对象中心奖励学习框架GORDON，从无动作视频中自监督学习稠密奖励，用图表示场景对象与空间关系。该方法降低了奖励设计难度，提升长程操作任务的RL训练效率。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.03872v1",
+      "source": "arxiv",
+      "title": "EvoHIL: Self-Evolving Reward and Flow-Matched Policy Optimization for Robust Human-in-the-Loop Reinforcement Learning",
+      "abstract": "Human-in-the-loop reinforcement learning (HIL-RL) enables robots to learn contact-rich manipulation from limited real-world interaction, but deployment exposes three coupled limitations: static visual reward models fail under scene changes; independently sampled actions cause temporally inconsistent motion; and vision-based policies remain sensitive to appearance shifts. We present EvoHIL, a unified framework that adapts the reward model, action generator, and visual do main within a staged human-in-the-loop learning process. First, self-evolving reward (SER) adapts the success classifier from human-confirmed positives and provisional weak negatives. Second, Action Flow Stabilization (AFS) generates temporally coherent action chunks through flow matching, grounding policy updates in executed action prefixes and demonstrated behavior. Third, retention-aware offline fine-tuning replays relit interaction data while anchoring the AFS actor-critic to prior behavior, adapting the visual domain without additional robot interaction. Across six manipulation tasks on Franka FR3 and SO-101 arms under a controlled lighting shift, EvoHIL improves task success, agreement with human-confirmation labels, motion smoothness, and completion time relative to human-in-the-loop and imitation baselines.Project page: https://anonymous4366.github.io/EvoHIL/",
+      "authors": [
+        "Shuoqin Zhang",
+        "Tongtong Cheng",
+        "Xiru Gao",
+        "Jinzhuo Peng",
+        "Bin Zheng",
+        "Jiahao Tu",
+        "Ke Wang",
+        "Jia Pan",
+        "Zhe Hu",
+        "Kai Liu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-04T16:12:05+00:00",
+      "link": "https://arxiv.org/pdf/2608.03872v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "unified human-in-the-loop RL framework for robots adapting reward, action, and visual domains",
+      "llm_evidence_cn": "统一的机器人在回路强化学习框架，自适应奖励、动作与视觉域",
+      "llm_evidence": "统一的机器人在回路强化学习框架，自适应奖励、动作与视觉域",
+      "canonical_evidence": "统一的机器人在回路强化学习框架，自适应奖励、动作与视觉域",
+      "llm_tldr_en": "EvoHIL adapts reward model, action generator, and visual domain in a staged human-in-the-loop RL process, with self-evolving rewards and flow-matched policy optimization for robust robot learning.",
+      "llm_tldr_cn": "人在回路强化学习让机器人从有限真实交互中学习接触丰富的操控，但静态视觉奖励模型难以应对场景变化、独立采样动作导致时间不一致、视觉策略对表观变化敏感。EvoHIL提出统一框架，在分阶段的人机交互学习过程中自适应奖励模型、动作生成器和视觉域：利用确认正样本更新成功分类器，用动作流稳定生成时间一致动作，并增强视觉域鲁棒性。该方法缓解了真实部署中的三大耦合限制。为鲁棒机器人操控学习提供了可用的HIL-RL方案。",
+      "llm_tldr": "人在回路强化学习让机器人从有限真实交互中学习接触丰富的操控，但静态视觉奖励模型难以应对场景变化、独立采样动作导致时间不一致、视觉策略对表观变化敏感。EvoHIL提出统一框架，在分阶段的人机交互学习过程中自适应奖励模型、动作生成器和视觉域：利用确认正样本更新成功分类器，用动作流稳定生成时间一致动作，并增强视觉域鲁棒性。该方法缓解了真实部署中的三大耦合限制。为鲁棒机器人操控学习提供了可用的HIL-RL方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
