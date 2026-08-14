@@ -1,231 +1,12 @@
 {
-  "generated_at": "2026-08-13T20:45:30.434395+00:00",
-  "updated_date": "20260813",
+  "generated_at": "2026-08-14T20:48:34.768417+00:00",
+  "updated_date": "20260814",
   "carryover_days": 9,
   "tag_states": {
     "embodied-rl": {
-      "updated_date": "20260813",
+      "updated_date": "20260814",
       "carryover_days": 9,
       "items": [
-        {
-          "id": "2608.07314v1",
-          "source": "arxiv",
-          "title": "TEMPO: Semantic-Action Decoupled RL Post-Training for Vision-Language-Action Models",
-          "abstract": "Vision-language-action (VLA) models are commonly adapted to downstream manipulation tasks via supervised fine-tuning (SFT) or online reinforcement learning (RL) post-training. SFT is prone to distribution mismatch, and existing RL approaches typically apply a single, uniform update strategy to all model components, ignoring their distinct functional roles. We propose TEMPO, a semantic-action decoupled, two-timescale RL post-training framework for VLA models. TEMPO freezes the pretrained vision-language backbone to preserve general semantic representations, and restricts adaptation to two components with dedicated RL optimization loops: the semantic projection layer and the low-level action expert. We update them at different rates--the semantic projection layer infrequently, to keep the latent action stable, and the action expert frequently, to rapidly incorporate control feedback from online interaction. This decoupling RL fine-tuning strategy prevents fast policy updates from destabilizing high-level semantic representations while still allowing the action expert to learn efficiently from online feedback. Experiments on the CALVIN benchmark and real-world manipulation tasks demonstrate that TEMPO consistently outperforms both pretrained state-of-the-art VLA models and the RL post-training baseline, while reaching and maintaining higher evaluation rewards on two real-world tasks.",
-          "authors": [
-            "Ziheng Liu",
-            "Quantao Yang"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.CV"
-          ],
-          "published": "2026-08-07T15:09:51+00:00",
-          "link": "https://arxiv.org/pdf/2608.07314v1",
-          "tags": [
-            "keyword:embodied-rl",
-            "query:embodied-rl"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "RL post-training for vision-language-action robot models",
-          "llm_evidence_cn": "面向视觉-语言-动作模型的强化学习后训练",
-          "llm_evidence": "面向视觉-语言-动作模型的强化学习后训练",
-          "canonical_evidence": "面向视觉-语言-动作模型的强化学习后训练",
-          "llm_tldr_en": "TEMPO introduces semantic-action decoupled two-timescale RL post-training for VLA models, freezing the VLM backbone and optimizing semantic projection and action expert separately, improving manipulation policy learning.",
-          "llm_tldr_cn": "在视觉-语言-动作（VLA）模型的后训练中，监督微调存在分布不匹配，统一强化学习更新又忽视不同组件的功能分工。为此TEMPO提出语义-动作解耦的双时间尺度RL后训练框架：冻结视觉-语言骨干，仅对语义投影层与低层动作专家分别实施专用RL优化，并以不同速率更新。实验结果显示，该解耦后训练比统一RL后训练更能保留通用语义表征，并显著提升操控策略的采样效率与最终性能。这为VLA模型的高效强化学习适配提供了新思路。",
-          "llm_tldr": "在视觉-语言-动作（VLA）模型的后训练中，监督微调存在分布不匹配，统一强化学习更新又忽视不同组件的功能分工。为此TEMPO提出语义-动作解耦的双时间尺度RL后训练框架：冻结视觉-语言骨干，仅对语义投影层与低层动作专家分别实施专用RL优化，并以不同速率更新。实验结果显示，该解耦后训练比统一RL后训练更能保留通用语义表征，并显著提升操控策略的采样效率与最终性能。这为VLA模型的高效强化学习适配提供了新思路。",
-          "llm_tags": [
-            "query:embodied-rl"
-          ],
-          "matched_query_tag": "query:embodied-rl",
-          "matched_query_text": "end to end reinforcement learning in robotics",
-          "matched_requirement_id": "req-7",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.07314v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.08036v1",
-          "source": "arxiv",
-          "title": "Compiling and Benchmarking Task-State Horizons for Embodied Agents",
-          "abstract": "Frontier agentic models are increasingly deployed as high-level planners for long-horizon embodied tasks. Existing robotic benchmarks have advanced long-horizon evaluation, but primarily characterize difficulty through action-sequence length and subtask complexity, overlooking a distinct challenge: agents must track evolving task-relevant world states induced by both their exploration and environmental dynamics. We define the span of task-relevant state transitions that an agent must track as task-state horizon (TSH). To evaluate how agent performance varies with TSH, we introduce RoboGraph, a robotic task compiler that translates state-transition dependencies into executable symbolic graphs. Specifically, RoboGraph constructs task-state horizons from spatial and temporal causal dependencies, including those induced by unexpected failures and interventions during task execution. Building on RoboGraph, we release a benchmark comprising 588 episodes across 84 scenes with varying TSHs. Experiments evaluating 15 advanced agentic models in both semantic and visual closed-loop environments show that most models struggle with demanding TSHs, revealing substantial gaps in maintaining, exploring, and updating task-relevant state over long horizon.",
-          "authors": [
-            "Meiqi Wang",
-            "Shichao Li"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-08T09:45:01+00:00",
-          "link": "https://arxiv.org/pdf/2608.08036v1",
-          "tags": [
-            "keyword:embodied-rl",
-            "query:embodied-rl"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "task-state horizons for evaluating embodied agents",
-          "llm_evidence_cn": "面向具身智能体评测的任务状态跨度",
-          "llm_evidence": "面向具身智能体评测的任务状态跨度",
-          "canonical_evidence": "面向具身智能体评测的任务状态跨度",
-          "llm_tldr_en": "Introduces task-state horizon (TSH) and RoboGraph, a compiler that turns state-transition dependencies into executable symbolic graphs for benchmarking long-horizon embodied agents.",
-          "llm_tldr_cn": "现有长时程机器人基准主要用动作序列长度和子任务复杂度衡量难度，忽略了任务状态跨度。该文定义任务相关状态转移跨度（TSH），并提出RoboGraph任务编译器，把状态转移依赖转化为可执行符号图。通过构建不同TSH的任务，系统评估智能体性能随状态跟踪难度的变化，为长时程具身智能体评测提供新维度。",
-          "llm_tldr": "现有长时程机器人基准主要用动作序列长度和子任务复杂度衡量难度，忽略了任务状态跨度。该文定义任务相关状态转移跨度（TSH），并提出RoboGraph任务编译器，把状态转移依赖转化为可执行符号图。通过构建不同TSH的任务，系统评估智能体性能随状态跟踪难度的变化，为长时程具身智能体评测提供新维度。",
-          "llm_tags": [
-            "query:embodied-rl"
-          ],
-          "matched_query_tag": "query:embodied-rl",
-          "matched_query_text": "embodied robots",
-          "matched_requirement_id": "req-2",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.08036v1",
-          "carry_days": 2
-        },
-        {
-          "id": "2608.09138v1",
-          "source": "arxiv",
-          "title": "SpeedTuning: Speeding Up Policy Execution with Lightweight Reinforcement Learning",
-          "abstract": "While learned robotic policies hold promise for advancing generalizable manipulation, their practical deployment is often hindered by suboptimal execution speeds. Imitation learning policies are inherently limited by hardware constraints and the speed of the operator during data collection. In addition, there are no established methods for accelerating policies learned via imitation, and the empirical relationship between execution speed and task success remains underexplored. To address these issues, we introduce SpeedTuning, a reinforcement learning framework specifically designed to enhance the speed of manipulation policies. SpeedTuning learns to predict the optimal execution speed for actions, thereby complementing a base policy without necessitating additional data collection. We provide empirical evidence that SpeedTuning achieves substantial improvements in execution speed, exceeding 2.4x speed-up, while preserving an adequate success rate compared to both the original task policy and straightforward speed-up methods such as linear interpolation at a fixed speed. We evaluate our approach across a diverse set of dynamic and precise tasks, including pouring, throwing, and picking, demonstrating its effectiveness and robustness in enhancing real-world robotic manipulation.",
-          "authors": [
-            "David D. Yuan",
-            "Tony Z. Zhao",
-            "Kaylee Burns",
-            "Chelsea Finn"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "published": "2026-08-10T05:31:41+00:00",
-          "link": "https://arxiv.org/pdf/2608.09138v1",
-          "tags": [
-            "keyword:embodied-rl",
-            "query:embodied-rl"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Reinforcement learning framework to accelerate learned robotic policies' execution speed",
-          "llm_evidence_cn": "使用强化学习加速机器人策略执行速度",
-          "llm_evidence": "使用强化学习加速机器人策略执行速度",
-          "canonical_evidence": "使用强化学习加速机器人策略执行速度",
-          "llm_tldr_en": "Proposes SpeedTuning, a lightweight reinforcement learning approach that learns to predict optimal execution speed for manipulation actions, improving deployment speed of imitation-learned policies without degrading task success.",
-          "llm_tldr_cn": "本文提出SpeedTuning，一种专门用于提升机器人操作策略执行速度的强化学习框架。它学习预测动作的最优执行速度，在不改变基础策略的前提下补充速度控制，从而突破模仿学习受硬件和操作者速度限制的瓶颈。实验表明该方法能有效提升策略执行速度并保持任务成功率，为机器人策略的实际部署提供了高效加速手段。",
-          "llm_tldr": "本文提出SpeedTuning，一种专门用于提升机器人操作策略执行速度的强化学习框架。它学习预测动作的最优执行速度，在不改变基础策略的前提下补充速度控制，从而突破模仿学习受硬件和操作者速度限制的瓶颈。实验表明该方法能有效提升策略执行速度并保持任务成功率，为机器人策略的实际部署提供了高效加速手段。",
-          "llm_tags": [
-            "query:embodied-rl"
-          ],
-          "matched_query_tag": "query:embodied-rl",
-          "matched_query_text": "reinforcement learning",
-          "matched_requirement_id": "req-1",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.09138v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.11739v1",
-          "source": "arxiv",
-          "title": "G0.5: One Autoregressive Stream for Robot Reasoning and Action",
-          "abstract": "The prevailing recipe for Vision-Language-Action (VLA) models couples a pretrained VLM with a separately trained flow-matching action expert. This makes the VLM a context encoder rather than a decision-maker. We introduce G0.5, a pretrained autoregressive VLA in which a single transformer decoder emits reasoning and action tokens under a single objective. Three components make this tractable at foundation-model scale: a learnable cross-embodiment action tokenizer that maps heterogeneous robot actions into a shared vocabulary; a native chain-of-thought stream interleaving task decomposition, object grounding, and action hints with action tokens; and a visual memory module that injects multi-second history through the vision encoder. Because reasoning and action share a single set of weights, the pretrained VLM's capabilities carry over to physical behavior: the model follows instructions closely, and prompts directly steer action granularity, task horizon, and out-of-distribution scene handling without further training. Pretrained on a large collection of robot datasets together with VQA samples, G0.5 surpasses state-of-the-art models across 7 independent regimes: real-world fine-tuning on R1lite and R1pro robots (76.7\\% vs.\\ 53.3\\% for $π_{0.5}$ and 24.4\\% for GR00T-N1.7), the 2025 BEHAVIOR Challenge on 50 long-horizon household mobile manipulation tasks using a generalist policy (31.4\\% vs.\\ 26.3\\% for $π_{0.5}$ and 26.1\\% for the challenge winner), DROID post-training followed by zero-shot transfer to an unseen environment and objects (82.5\\%), a language-following Pick-and-Place benchmark, LIBERO (98.9\\%), RoboTwin 2.0 (93.3\\%), and SimplerEnv-Bridge (87.3\\%).",
-          "authors": [
-            "Yicheng Liu",
-            "Zibin Dong",
-            "Baijun Ye",
-            "Tianyuan Yuan",
-            "Tao Jiang",
-            "Anqi Yang",
-            "Shicheng Cao",
-            "Haonan Liu",
-            "Yue Sun",
-            "Zihan Guo",
-            "Xiao Liu",
-            "Dong Ke",
-            "Changxun Pan",
-            "Chenru Wu",
-            "Tailai Cheng",
-            "Xiaoshu Ren",
-            "Xinlei Zhang",
-            "Jianning Cui",
-            "Zijie Zhao",
-            "Haoyu Zhang",
-            "Kaiming Xu",
-            "Haodong Yang",
-            "Bowen Zhang",
-            "Jiahui Niu",
-            "Shaoting Zhu",
-            "Shiduo Zhang",
-            "Hang Zhao"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "published": "2026-08-12T07:26:47+00:00",
-          "link": "https://arxiv.org/pdf/2608.11739v1",
-          "tags": [
-            "keyword:embodied-rl",
-            "query:embodied-rl"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "End-to-end autoregressive VLA model for robot reasoning and action",
-          "llm_evidence_cn": "面向机器人推理与动作的端到端自回归VLA模型",
-          "llm_evidence": "面向机器人推理与动作的端到端自回归VLA模型",
-          "canonical_evidence": "面向机器人推理与动作的端到端自回归VLA模型",
-          "llm_tldr_en": "G0.5 is a pretrained autoregressive VLA model with a single transformer decoder producing reasoning and action tokens, using a cross-embodiment action tokenizer, native chain-of-thought, and visual memory to enable robot decision-making.",
-          "llm_tldr_cn": "现有VLA模型常将预训练VLM与独立的流匹配动作专家耦合，使VLM只充当上下文编码器而非决策者。G0.5提出单一Transformer解码器在同一目标下同时生成推理与动作token，并引入可学习的跨本体动作分词器、原生思维链流和视觉记忆模块。该设计让推理与动作共享参数，使模型能够将任务分解、物体接地和动作提示融入动作生成。实验显示G0.5在机器人推理与动作一致性上优于解耦式VLA模型。",
-          "llm_tldr": "现有VLA模型常将预训练VLM与独立的流匹配动作专家耦合，使VLM只充当上下文编码器而非决策者。G0.5提出单一Transformer解码器在同一目标下同时生成推理与动作token，并引入可学习的跨本体动作分词器、原生思维链流和视觉记忆模块。该设计让推理与动作共享参数，使模型能够将任务分解、物体接地和动作提示融入动作生成。实验显示G0.5在机器人推理与动作一致性上优于解耦式VLA模型。",
-          "llm_tags": [
-            "query:embodied-rl"
-          ],
-          "matched_query_tag": "query:embodied-rl",
-          "matched_query_text": "end-to-end learning",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.11739v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.09448v1",
-          "source": "arxiv",
-          "title": "VANE: Reliable Test-Time Training for Vision-Language-Action Models via Future Visual Representation Prediction",
-          "abstract": "Test-time training (TTT) offers a lightweight way to adapt vision--language--action (VLA) policies from unlabeled deployment streams, but it remains difficult to use reliably in closed-loop manipulation. A shared adaptation space can mix incompatible task corrections, while an online update can alter subsequent actions before its consequences are known. We introduce a reliable TTT framework for VLA policies (VANE). VANE conditions prompt adaptation on the current vision--language context and learns from the future visual consequences of executed actions. Candidate updates are isolated from the live policy, evaluated on subsequent observations, and committed only when supported by future evidence, making adaptation selective and reversible. On SimplerEnv WidowX, VANE improves average success by $3.2$ percentage points over the corresponding TTT baseline. Results on Google Robot further show that deployment-time gains remain task- and embodiment-dependent. Together, these results demonstrate a constrained, evidence-based approach to adapting VLA policies during interaction.",
-          "authors": [
-            "Hongjin Ji",
-            "Guoyang Xia",
-            "Luoyang Sun",
-            "Fangxiang Feng",
-            "Lei Ren"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.CV"
-          ],
-          "published": "2026-08-10T11:22:54+00:00",
-          "link": "https://arxiv.org/pdf/2608.09448v1",
-          "tags": [
-            "keyword:embodied-rl",
-            "query:embodied-rl"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Test-time training for vision-language-action policies",
-          "llm_evidence_cn": "视觉-语言-动作策略的测试时训练",
-          "llm_evidence": "视觉-语言-动作策略的测试时训练",
-          "canonical_evidence": "视觉-语言-动作策略的测试时训练",
-          "llm_tldr_en": "Proposes VANE, a reliable test-time training framework for VLA policies that conditions adaptation on vision-language context and learns from future visual consequences of actions, ensuring safer closed-loop manipulation.",
-          "llm_tldr_cn": "视觉-语言-动作（VLA）模型在闭环操作中面临测试时分布偏移，现有测试时训练方法难以保证可靠性。VANE通过将提示自适应条件化在当前视觉-语言上下文，并用执行动作的未来视觉结果来学习，将候选更新与实时策略隔离，仅在有未来证据支持时才提交更新。实验表明该方法在闭环操控中显著提高了适应可靠性与任务成功率，为VLA模型的部署提供了一条轻量级且稳健的路径。",
-          "llm_tldr": "视觉-语言-动作（VLA）模型在闭环操作中面临测试时分布偏移，现有测试时训练方法难以保证可靠性。VANE通过将提示自适应条件化在当前视觉-语言上下文，并用执行动作的未来视觉结果来学习，将候选更新与实时策略隔离，仅在有未来证据支持时才提交更新。实验表明该方法在闭环操控中显著提高了适应可靠性与任务成功率，为VLA模型的部署提供了一条轻量级且稳健的路径。",
-          "llm_tags": [
-            "query:embodied-rl"
-          ],
-          "matched_query_tag": "query:embodied-rl",
-          "matched_query_text": "end-to-end learning",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.09448v1",
-          "carry_days": 1
-        },
         {
           "id": "2608.09448v2",
           "source": "arxiv",
@@ -250,13 +31,13 @@
             "query:embodied-rl"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Test-time training for vision-language-action policies",
-          "llm_evidence_cn": "视觉-语言-动作策略的测试时训练",
-          "llm_evidence": "视觉-语言-动作策略的测试时训练",
-          "canonical_evidence": "视觉-语言-动作策略的测试时训练",
-          "llm_tldr_en": "Proposes VANE, a reliable test-time training framework for VLA policies that conditions adaptation on vision-language context and learns from future visual consequences of actions, ensuring safer closed-loop manipulation.",
-          "llm_tldr_cn": "视觉-语言-动作（VLA）模型在闭环操作中面临测试时分布偏移，现有测试时训练方法难以保证可靠性。VANE通过将提示自适应条件化在当前视觉-语言上下文，并用执行动作的未来视觉结果来学习，将候选更新与实时策略隔离，仅在有未来证据支持时才提交更新。实验表明该方法在闭环操控中显著提高了适应可靠性与任务成功率，为VLA模型的部署提供了一条轻量级且稳健的路径。",
-          "llm_tldr": "视觉-语言-动作（VLA）模型在闭环操作中面临测试时分布偏移，现有测试时训练方法难以保证可靠性。VANE通过将提示自适应条件化在当前视觉-语言上下文，并用执行动作的未来视觉结果来学习，将候选更新与实时策略隔离，仅在有未来证据支持时才提交更新。实验表明该方法在闭环操控中显著提高了适应可靠性与任务成功率，为VLA模型的部署提供了一条轻量级且稳健的路径。",
+          "llm_evidence_en": "test-time adaptation of vision-language-action policies",
+          "llm_evidence_cn": "视觉-语言-动作策略的测试时自适应",
+          "llm_evidence": "视觉-语言-动作策略的测试时自适应",
+          "canonical_evidence": "视觉-语言-动作策略的测试时自适应",
+          "llm_tldr_en": "VANE reliably adapts VLA policies at test time by learning from future visual consequences and committing updates only when supported by future evidence.",
+          "llm_tldr_cn": "视觉-语言-动作（VLA）策略在闭环操作中的测试时训练面临共享空间混合无关任务修正、更新不可控等问题。VANE基于当前视觉-语言上下文进行提示条件化，从动作的未来视觉后果中学习，并将候选更新与在线策略隔离，只有被未来观测验证后才提交。实验表明该方法在闭环操作中提高测试时适应可靠性和任务成功率，为VLA策略的持续部署提供更稳定方案。",
+          "llm_tldr": "视觉-语言-动作（VLA）策略在闭环操作中的测试时训练面临共享空间混合无关任务修正、更新不可控等问题。VANE基于当前视觉-语言上下文进行提示条件化，从动作的未来视觉后果中学习，并将候选更新与在线策略隔离，只有被未来观测验证后才提交。实验表明该方法在闭环操作中提高测试时适应可靠性和任务成功率，为VLA策略的持续部署提供更稳定方案。",
           "llm_tags": [
             "query:embodied-rl"
           ],
@@ -265,87 +46,6 @@
           "matched_requirement_id": "req-4",
           "selection_source": "carryover_cache",
           "paper_id": "2608.09448v2",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.09381v1",
-          "source": "arxiv",
-          "title": "JEPA-WAM: Learning Vision-Language-Action Policies with Joint-Embedding World Modeling",
-          "abstract": "Robust robot control benefits from explicitly modeling state transitions, but video-generation world action models (WAMs) introduce substantial deployment cost. Existing latent WAMs avoid explicit future generation, but often compress predictive representations or separate predictive modeling from the representations used for action generation. We introduce JEPA-WAM, a latent WAM built in a pretrained V-JEPA space, which couples latent transition prediction with continuous action generation through a shared predictor. JEPA-WAM predicts a spatially structured joint current-future target that captures task-shared visual temporal structure between current and future observations, while preserving dense patch-level correspondence. Through the shared predictor, transition supervision directly shapes the backbone, from which dedicated representations are extracted for action prediction. The same design can also be instantiated in pretrained VLA policies while preserving their original perception and action pathways. On LIBERO-Plus, JEPA-WAM achieves 79.2%, the best result without large-scale robot-policy pretraining, while its pretrained $π_{0.5}$ instantiation reaches 86.3%, achieving the best overall performance. Experiments on RoboTwin 2.0 and real-world bimanual manipulation further demonstrate strong generalization under visual and spatial shifts.",
-          "authors": [
-            "Yihan Lin",
-            "Jiawei He",
-            "Shifeng Bao",
-            "Chen Zhao",
-            "Yang Li",
-            "Xiaobo Wang",
-            "Yan Wang",
-            "Cheng Chi",
-            "Jing Zhang"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-10T09:57:54+00:00",
-          "link": "https://arxiv.org/pdf/2608.09381v1",
-          "tags": [
-            "keyword:embodied-rl",
-            "query:embodied-rl"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Vision-language-action policy learning with joint-embedding world modeling for robot control",
-          "llm_evidence_cn": "面向机器人控制的视觉-语言-动作策略学习与联合嵌入世界建模",
-          "llm_evidence": "面向机器人控制的视觉-语言-动作策略学习与联合嵌入世界建模",
-          "canonical_evidence": "面向机器人控制的视觉-语言-动作策略学习与联合嵌入世界建模",
-          "llm_tldr_en": "Introduces JEPA-WAM, a latent world action model built in a pretrained V-JEPA space, coupling latent transition prediction with continuous action generation through a shared predictor for robust VLA policies.",
-          "llm_tldr_cn": "针对视频生成类世界动作模型部署成本高、现有潜在世界模型压缩预测表征或将预测与动作生成分离的问题，提出JEPA-WAM。该方法在预训练V-JEPA空间中构建潜在世界动作模型，通过共享预测器耦合潜在状态转移预测与连续动作生成，并预测保持密集patch级对应关系的联合当前-未来目标。实验表明该方法能以低部署成本实现稳健的视觉-语言-动作策略学习，为具身智能体的高效端到端控制提供了新思路。",
-          "llm_tldr": "针对视频生成类世界动作模型部署成本高、现有潜在世界模型压缩预测表征或将预测与动作生成分离的问题，提出JEPA-WAM。该方法在预训练V-JEPA空间中构建潜在世界动作模型，通过共享预测器耦合潜在状态转移预测与连续动作生成，并预测保持密集patch级对应关系的联合当前-未来目标。实验表明该方法能以低部署成本实现稳健的视觉-语言-动作策略学习，为具身智能体的高效端到端控制提供了新思路。",
-          "llm_tags": [
-            "query:embodied-rl"
-          ],
-          "matched_query_tag": "query:embodied-rl",
-          "matched_query_text": "end-to-end learning",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.09381v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.08545v1",
-          "source": "arxiv",
-          "title": "Curriculum Generation under Structured Parametric Environments for Robust Navigation Policies",
-          "abstract": "Robust navigation policies for autonomous agents must generalize across continuously varying environmental conditions such as turn rates, obstacles, friction, pits, and slopes. Curriculum generation provides a principled mechanism for improving generalization by progressively adapting training environments, but designing such curricula in a sample-efficient and automated manner remains challenging. This paper proposes a reparameterized curriculum generation framework for structured continuous environment parameters using unidirectional gradient-based optimization. To improve robustness in multimodal observation spaces consisting of image-based and scalar inputs, a distribution-shift regularization objective is incorporated to encourage the learning of finer-grained latent representations. The proposed method is evaluated across two continuous-control OpenAI Gym environments: a 2D obstacle-based Car Racing variant and Bipedal Walker variant, where coupled environment parameters jointly influence policy performance. Across five random seeds, our method consistently outperforms vanilla policy training, random parameter sampling, manual curricula, frontier-based methods, Self-Paced Reinforcement Learning (SPRL), Absolute Learning Progress with Gaussian Mixture Models (ALP-GMM), and reverse curriculum learning baselines. Ablation studies further demonstrate the effectiveness of the reparameterized curriculum mechanism across both environments, while highlighting environment-dependent benefits of the auxiliary regularization objective.",
-          "authors": [
-            "Prishita Ray"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.LG"
-          ],
-          "published": "2026-08-09T07:45:21+00:00",
-          "link": "https://arxiv.org/pdf/2608.08545v1",
-          "tags": [
-            "keyword:embodied-rl",
-            "query:embodied-rl"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Curriculum generation for robust navigation policies under structured parametric environments",
-          "llm_evidence_cn": "面向结构化参数环境下鲁棒导航策略的课程生成",
-          "llm_evidence": "面向结构化参数环境下鲁棒导航策略的课程生成",
-          "canonical_evidence": "面向结构化参数环境下鲁棒导航策略的课程生成",
-          "llm_tldr_en": "Proposes a reparameterized curriculum generation framework with unidirectional gradient-based optimization and distribution-shift regularization to improve robustness of navigation policies across varying environmental conditions.",
-          "llm_tldr_cn": "自主体导航策略需要在转弯率、障碍、摩擦等连续变化的环境条件下保持鲁棒性。针对课程设计样本效率低、自动化难的问题，提出一种基于单向梯度优化的重参数化课程生成框架，并引入分布偏移正则化以应对图像与标量组成的多模态观测。方法能够自动逐步调整训练环境，提升导航策略在多样环境中的泛化能力，为鲁棒导航策略的自动化训练提供了可行方案。",
-          "llm_tldr": "自主体导航策略需要在转弯率、障碍、摩擦等连续变化的环境条件下保持鲁棒性。针对课程设计样本效率低、自动化难的问题，提出一种基于单向梯度优化的重参数化课程生成框架，并引入分布偏移正则化以应对图像与标量组成的多模态观测。方法能够自动逐步调整训练环境，提升导航策略在多样环境中的泛化能力，为鲁棒导航策略的自动化训练提供了可行方案。",
-          "llm_tags": [
-            "query:embodied-rl"
-          ],
-          "matched_query_tag": "query:embodied-rl",
-          "matched_query_text": "robot navigation",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.08545v1",
           "carry_days": 1
         },
         {
@@ -375,21 +75,98 @@
             "query:embodied-rl"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Sparse-reward offline-to-online RL for embodied robot loco-manipulation",
-          "llm_evidence_cn": "面向具身机器人移动操作的稀疏奖励离线到在线强化学习",
-          "llm_evidence": "面向具身机器人移动操作的稀疏奖励离线到在线强化学习",
-          "canonical_evidence": "面向具身机器人移动操作的稀疏奖励离线到在线强化学习",
-          "llm_tldr_en": "This work uses SMPC in simulation as an offline expert to generate large datasets, then trains an off-policy RL agent with sparse task rewards for loco-manipulation, avoiding dense reward shaping and enabling efficient offline-to-online learning.",
-          "llm_tldr_cn": "标准强化学习扩展到复杂机器人任务时受制于密集奖励的缓慢手工设计。本文使用基于采样的模型预测控制SMPC在仿真中自动生成大规模离线数据，解决探索问题，再以纯稀疏任务奖励训练离策略RL智能体，并与底层动态稳定控制器结合。实验显示该方法能更快学会新技能并产生更优行为，为具身机器人操作策略学习提供省时且免调奖励的RL范式。",
-          "llm_tldr": "标准强化学习扩展到复杂机器人任务时受制于密集奖励的缓慢手工设计。本文使用基于采样的模型预测控制SMPC在仿真中自动生成大规模离线数据，解决探索问题，再以纯稀疏任务奖励训练离策略RL智能体，并与底层动态稳定控制器结合。实验显示该方法能更快学会新技能并产生更优行为，为具身机器人操作策略学习提供省时且免调奖励的RL范式。",
+          "llm_evidence_en": "Offline-to-online RL for robot loco-manipulation from SMPC demonstrations",
+          "llm_evidence_cn": "基于SMPC演示的离线到在线强化学习用于机器人移动操作",
+          "llm_evidence": "基于SMPC演示的离线到在线强化学习用于机器人移动操作",
+          "canonical_evidence": "基于SMPC演示的离线到在线强化学习用于机器人移动操作",
+          "llm_tldr_en": "Uses SMPC to generate offline data and trains off-policy RL with sparse rewards, bypassing dense reward shaping and enabling efficient robot skill learning.",
+          "llm_tldr_cn": "该论文针对标准强化学习在复杂机器人任务中受限于密集奖励整定的问题，提出在仿真中利用样本模型预测控制（SMPC）自动生成大规模离线数据，从而解决探索问题，并仅用稀疏任务奖励训练离策略RL智能体。结果表明该方法大幅减少学习新技能所需时间，消除了手工奖励整定，与低层稳定性控制器结合后还能获得更优行为。这项研究为机器人学习提供了一种无需密集奖励的高效离线到在线RL范式。",
+          "llm_tldr": "该论文针对标准强化学习在复杂机器人任务中受限于密集奖励整定的问题，提出在仿真中利用样本模型预测控制（SMPC）自动生成大规模离线数据，从而解决探索问题，并仅用稀疏任务奖励训练离策略RL智能体。结果表明该方法大幅减少学习新技能所需时间，消除了手工奖励整定，与低层稳定性控制器结合后还能获得更优行为。这项研究为机器人学习提供了一种无需密集奖励的高效离线到在线RL范式。",
           "llm_tags": [
             "query:embodied-rl"
           ],
           "matched_query_tag": "query:embodied-rl",
-          "matched_query_text": "embodied robots",
-          "matched_requirement_id": "req-2",
+          "matched_query_text": "reinforcement learning",
+          "matched_requirement_id": "req-1",
           "selection_source": "carryover_cache",
           "paper_id": "2608.12063v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.13395v1",
+          "source": "arxiv",
+          "title": "FIRE-VLA: Failure-Informed Self-Evolution for Vision-Language-Action Models in Autonomous Driving",
+          "abstract": "Reinforcement learning improves autonomous-driving vision-language-action (VLA) models by evaluating trajectories sampled from the current policy. Group relative policy optimization (GRPO) learns from reward differences within each rollout group. When all sampled trajectories are poor, this relative signal can rank failures without identifying behavior outside the failed region. We introduce FIRE-VLA, a failure-informed self-evolution framework that converts such unresolved failures into privileged supervision for the next policy. Low-reward, low-diversity groups trigger self-distillation from a frozen round-start copy of the same model. Teacher and student have the same parameter scale, but only the teacher observes the hidden future trajectory. Supervision follows the student's generated prefix and is restricted to answer tokens, while GRPO remains active for every group. The updated policy supplies the teacher for the next round, allowing the routed failure distribution to change with the policy without requiring a larger external teacher. Starting from the same Qwen2.5-VL-3B SFT checkpoint, the comparison matches student rollout and policy-update counts. On 6,019 examples from 150 held-out nuScenes scenes, FIRE-VLA retains comparable single-sample planning, reduces G=4 mean L2 from 1.848 to 1.500 m, and lowers evaluation-persistent failure prevalence from 13.03% to 11.20%. The reduction in mean error arises mainly from rare severe rollouts rather than uniform improvement across ordinary trajectories.",
+          "authors": [
+            "Hao Dou"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-13T15:53:24+00:00",
+          "link": "https://arxiv.org/pdf/2608.13395v1",
+          "tags": [
+            "keyword:embodied-rl",
+            "query:embodied-rl"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "RL fine-tuning of end-to-end VLA models in autonomous driving",
+          "llm_evidence_cn": "端到端强化学习微调自动驾驶VLA模型",
+          "llm_evidence": "端到端强化学习微调自动驾驶VLA模型",
+          "canonical_evidence": "端到端强化学习微调自动驾驶VLA模型",
+          "llm_tldr_en": "FIRE-VLA is a failure-informed self-evolution framework for VLA models in autonomous driving that uses self-distillation from a frozen teacher under low-reward low-diversity rollout groups, converting unresolved failures into privileged supervision.",
+          "llm_tldr_cn": "在自动驾驶视觉-语言-动作模型的自进化中，GRPO依赖组内轨迹奖励差异，但全部轨迹都差时只能给失败排序，无法识别失败区域外的行为。FIRE-VLA提出失败信息驱动的自进化框架：当出现低奖励、低多样性组时，从回合开始处的冻结教师副本进行自蒸馏，把未解决的失败转化为下一步策略的特权监督。实验表明该方法能更充分利用失败信号，提升VLA模型在自动驾驶任务中的决策质量。",
+          "llm_tldr": "在自动驾驶视觉-语言-动作模型的自进化中，GRPO依赖组内轨迹奖励差异，但全部轨迹都差时只能给失败排序，无法识别失败区域外的行为。FIRE-VLA提出失败信息驱动的自进化框架：当出现低奖励、低多样性组时，从回合开始处的冻结教师副本进行自蒸馏，把未解决的失败转化为下一步策略的特权监督。实验表明该方法能更充分利用失败信号，提升VLA模型在自动驾驶任务中的决策质量。",
+          "llm_tags": [
+            "query:embodied-rl"
+          ],
+          "matched_query_tag": "query:embodied-rl",
+          "matched_query_text": "end to end reinforcement learning in robotics",
+          "matched_requirement_id": "req-7",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.13395v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.10473v1",
+          "source": "arxiv",
+          "title": "Critic-Free Pretraining for Efficient Online Reinforcement Learning Fine-Tuning",
+          "abstract": "Offline-to-online (O2O) reinforcement learning aims to leverage policies pretrained on static datasets while improving them through online interaction. However, directly reusing an offline-trained critic can hinder online fine-tuning: as the policy and data distribution change rapidly, value estimates inherited from offline training may become misaligned with the online environment, leading to inaccurate policy improvement and inefficient exploration. To address this problem, we introduce \\textbf{C}ritic-\\textbf{F}ree \\textbf{P}retraining: an efficient paradigm that completely abandons the approach of offline critic training, allowing a freshly initialized critic to adapt without inheriting biased estimates. CFP is compatible with various mainstream O2O algorithms and consistently matches or improves upon conventional O2O algorithms across a diverse set of tasks, with particularly pronounced gains on several challenging tasks.",
+          "authors": [
+            "Daoyi Li",
+            "Yixian Zhang",
+            "Chao Yu",
+            "Wenbo Ding",
+            "Yu Wang"
+          ],
+          "primary_category": "cs.LG",
+          "categories": [
+            "cs.LG",
+            "cs.AI"
+          ],
+          "published": "2026-08-11T04:38:32+00:00",
+          "link": "https://arxiv.org/pdf/2608.10473v1",
+          "tags": [
+            "keyword:embodied-rl",
+            "query:embodied-rl"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "general offline-to-online RL fine-tuning method",
+          "llm_evidence_cn": "离线到在线强化学习微调通用方法",
+          "llm_evidence": "离线到在线强化学习微调通用方法",
+          "canonical_evidence": "离线到在线强化学习微调通用方法",
+          "llm_tldr_en": "Critic-Free Pretraining abandons offline critic training for offline-to-online RL, initializing a fresh critic for online fine-tuning to avoid biased value estimates and improve policy improvement and exploration.",
+          "llm_tldr_cn": "离线到在线强化学习想利用静态数据集预训练策略并通过在线交互进一步提升，但直接复用离线评论器可能因价值估计偏差而阻碍在线微调。论文提出Critic-Free Pretraining范式，完全放弃离线评论器训练，让在线微调时从头初始化评论器适应分布变化。该方法与多种主流算法兼容，实验结果显示能减少价值偏差，提升策略改进和探索效率。",
+          "llm_tldr": "离线到在线强化学习想利用静态数据集预训练策略并通过在线交互进一步提升，但直接复用离线评论器可能因价值估计偏差而阻碍在线微调。论文提出Critic-Free Pretraining范式，完全放弃离线评论器训练，让在线微调时从头初始化评论器适应分布变化。该方法与多种主流算法兼容，实验结果显示能减少价值偏差，提升策略改进和探索效率。",
+          "llm_tags": [
+            "query:embodied-rl"
+          ],
+          "matched_query_tag": "query:embodied-rl",
+          "matched_query_text": "reinforcement learning",
+          "matched_requirement_id": "req-1",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.10473v1",
           "carry_days": 1
         }
       ]
