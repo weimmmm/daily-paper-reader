@@ -6,71 +6,73 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-14
-- 运行时间：2026-08-14 20:57:33 UTC
+- 最新运行日期：2026-08-15
+- 运行时间：2026-08-15 19:54:40 UTC
 - 运行状态：成功
 - 本次总论文数：17
 - 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日17篇扫描，精读6篇，核心
-- 详情：[/202608/14/README](/202608/14/README)
+今日共读17篇论文，精读6篇、速读11篇，聚焦具身智能与机器人导航规划。  
+最值得关注：GraphThink用图增强LLM提升长时程任务规划，HumanoidVLN则为人形机器人视觉语言导航提供新基准。  
+下一步可留意世界模型与技能自进化方向，结合图推理或能增强复杂任务的泛化表现。
+- 详情：[/202608/15/README](/202608/15/README)
 
 ### 精读区论文标签
-1. [TEMPO: Semantic-Action Decoupled RL Post-Training for Vision-Language-Action Models](/202608/14/2608.07314v1-tempo-semantic-action-decoupled-rl-post-training-for-vision-language-action-models)  
+1. [GraphThink: Graph-Enhanced LLM Thinking for Long-Horizon Embodied Task Planning](/202608/15/2608.07905v1-graphthink-graph-enhanced-llm-thinking-for-long-horizon-embodied-task-planning)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：面向VLA模型的解耦强化学习后训练
-2. [TrustRoboReward: Preference-Ordered Isotonic Score Editing for Multi-Paradigm Robot Reward Models](/202608/14/2608.08491v1-trustroboreward-preference-ordered-isotonic-score-editing-for-multi-paradigm-robot-reward-models)  
+   evidence：基于GRPO强化学习的LLM具身任务规划
+2. [HumanoidVLN: A Physics-Grounded Simulator and Benchmark for Vision-Language Navigation Across Diverse Humanoid Embodiments](/202608/15/2608.12860v1-humanoidvln-a-physics-grounded-simulator-and-benchmark-for-vision-language-navigation-across-diverse-humanoid-embodiments)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：具身AI中强化学习的奖励模型
-3. [Curriculum Generation under Structured Parametric Environments for Robust Navigation Policies](/202608/14/2608.08545v1-curriculum-generation-under-structured-parametric-environments-for-robust-navigation-policies)  
+   evidence：面向多种人形机器人的物理仿真VLN模拟器与基准
+3. [Temporal GRPO: Beyond Trajectory-Level Credit in Vision-Language-Action Reinforcement Learning](/202608/15/2608.13026v1-temporal-grpo-beyond-trajectory-level-credit-in-vision-language-action-reinforcement-learning)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：基于课程生成的导航策略训练
-4. [AirForesight: Current-to-Future Spatial Map Imagination with Cross-Space Planning Consistency for UAV-VLN](/202608/14/2608.12835v1-airforesight-current-to-future-spatial-map-imagination-with-cross-space-planning-consistency-for-uav-vln)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：无人机视觉语言导航与空间地图想象
-5. [HumanoidVLN: A Physics-Grounded Simulator and Benchmark for Vision-Language Navigation Across Diverse Humanoid Embodiments](/202608/14/2608.12860v1-humanoidvln-a-physics-grounded-simulator-and-benchmark-for-vision-language-navigation-across-diverse-humanoid-embodiments)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：面向多形态人形机器人的物理仿真VLN基准与强化学习控制栈
-6. [Towards Socially Compliant Navigation in Deep Reinforcement Learning via Proxemics-Based Reward Modeling](/202608/14/2608.12917v1-towards-socially-compliant-navigation-in-deep-reinforcement-learning-via-proxemics-based-reward-modeling)  
-   标签：评分：9.0/10、query:embodied-rl
-   evidence：基于近体学奖励的深度强化学习社交机器人导航
+   evidence：面向视觉-语言-动作机器人的端到端强化学习
+4. [GWM-VLA: Geometry-Aware Latent World Modeling for Vision-Language-Action Learning](/202608/15/2608.07619v1-gwm-vla-geometry-aware-latent-world-modeling-for-vision-language-action-learning)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：面向VLA的端到端几何感知潜在世界建模
+5. [A Unified Framework for Dynamic Reward Shaping in Reinforcement Learning](/202608/15/2608.08158v1-a-unified-framework-for-dynamic-reward-shaping-in-reinforcement-learning)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：强化学习奖励塑形理论
+6. [Critic-Free Pretraining for Efficient Online Reinforcement Learning Fine-Tuning](/202608/15/2608.10473v1-critic-free-pretraining-for-efficient-online-reinforcement-learning-fine-tuning)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：离线到在线强化学习微调通用方法
 
 ### 速读区论文标签
-1. [Observation-Grounded Self-Predictive Reinforcement Learning for Visual Continuous Control](/202608/14/2608.05989v1-observation-grounded-self-predictive-reinforcement-learning-for-visual-continuous-control)  
+1. [World Tokens: Enhancing Embodied Policies with Training-Time World Modeling](/202608/15/2608.09730v1-world-tokens-enhancing-embodied-policies-with-training-time-world-modeling)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：基于像素的强化学习用于视觉连续控制
-2. [V-Simba: Unleashing the Architectural Potential of RL in Visual Continuous Control](/202608/14/2608.07870v1-v-simba-unleashing-the-architectural-potential-of-rl-in-visual-continuous-control)  
+   evidence：具身策略结合训练期世界建模，用于端到端控制
+2. [RynnValue: Scaling Robotic Value Foundation Models with Temporal Distance](/202608/15/2608.09853v1-rynnvalue-scaling-robotic-value-foundation-models-with-temporal-distance)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向视觉连续控制的强化学习架构
-3. [Learning from Environmental Feedback: Credit Assignment across Multiple Timescales for Agentic Reinforcement Learning](/202608/14/2608.08255v1-learning-from-environmental-feedback-credit-assignment-across-multiple-timescales-for-agentic-reinforcement-learning)  
+   evidence：以时间距离为监督扩展机器人价值基础模型
+3. [Self-Evolving Embodied Agents via Skill-Harness Evolution](/202608/15/2608.11350v1-self-evolving-embodied-agents-via-skill-harness-evolution)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：针对智能体强化学习的多时间尺度信用分配
-4. [JEPA-WAM: Learning Vision-Language-Action Policies with Joint-Embedding World Modeling](/202608/14/2608.09381v1-jepa-wam-learning-vision-language-action-policies-with-joint-embedding-world-modeling)  
+   evidence：具身智能体的自适应
+4. [Adaptation of Generalist Robot Policies with Minimal Data](/202608/15/2608.11363v1-adaptation-of-generalist-robot-policies-with-minimal-data)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向机器人控制的VLA策略与世界模型学习
-5. [DyPES-VLA: Learning Shared Dynamics Priors and Embodiment-Specific Control for Cross-Embodiment Manipulation](/202608/14/2608.06374v1-dypes-vla-learning-shared-dynamics-priors-and-embodiment-specific-control-for-cross-embodiment-manipulation)  
+   evidence：通过稀疏奖励在线学习实现机器人策略最少数据适配
+5. [Action- and Language-Conditioned Video Assessment for Embodied Control](/202608/15/2608.08273v1-action--and-language-conditioned-video-assessment-for-embodied-control)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：跨具身视觉-语言-动作模型用于机器人操作
-6. [$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation](/202608/14/2608.06375v2--0-a-latent-predictive-world-action-model-for-concurrent-humanoid-loco-manipulation)  
+   evidence：面向具身智能体轨迹评估的动作与语言条件化视频评估
+6. [Skills in Weights, Memory in Code: Hybrid Learning for Memory-Dependent Robot Manipulation](/202608/15/2608.09410v1-skills-in-weights-memory-in-code-hybrid-learning-for-memory-dependent-robot-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：人形移动-操作全身潜在世界动作模型
-7. [Cross-View Action Consistency for Camera-Robust Vision-Language-Action Policies](/202608/14/2608.06965v1-cross-view-action-consistency-for-camera-robust-vision-language-action-policies)  
+   evidence：面向记忆依赖的机器人操作的混合VLA学习方法
+7. [VANE: Reliable Test-Time Training for Vision-Language-Action Models via Future Visual Representation Prediction](/202608/15/2608.09448v2-vane-reliable-test-time-training-for-vision-language-action-models-via-future-visual-representation-prediction)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：通过跨视角动作一致性提升VLA策略的相机鲁棒性
-8. [SpeedTuning: Speeding Up Policy Execution with Lightweight Reinforcement Learning](/202608/14/2608.09138v1-speedtuning-speeding-up-policy-execution-with-lightweight-reinforcement-learning)  
+   evidence：面向VLA策略的测试时训练，端到端操作
+8. [SLIM-0.5B: Learning Action-Grounded Predictive Latents for Robot Manipulation](/202608/15/2608.09771v1-slim-05b-learning-action-grounded-predictive-latents-for-robot-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：用轻量强化学习加速机器人策略执行
-9. [iARCS: Iterative Agentic RL for Controllable 3D Scene Generation](/202608/14/2608.06161v1-iarcs-iterative-agentic-rl-for-controllable-3d-scene-generation)  
+   evidence：面向机器人操作的端到端视觉-语言-动作策略，学习动作关联的紧致预测潜在表征
+9. [Capek 0.5: An Execution-Centric Vision-Language Model for Embodied Intelligence](/202608/15/2608.06756v1-capek-05-an-execution-centric-vision-language-model-for-embodied-intelligence)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：面向具身AI可控三维场景生成的强化学习框架
-10. [GeniWorld: A Generalizable Interactive World Model for Robotic Manipulation via Visual Actions](/202608/14/2608.06332v1-geniworld-a-generalizable-interactive-world-model-for-robotic-manipulation-via-visual-actions)  
+   evidence：面向机器人执行的具身视觉语言模型
+10. [AutoIntervene: Calibrated Intervention for Action-Chunking Imitation Learning Policies](/202608/15/2608.07065v1-autointervene-calibrated-intervention-for-action-chunking-imitation-learning-policies)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：面向机器人操作的可泛化交互世界模型
-11. [AtlasVLA: Persistent World-Ego State Modeling for Vision-Language-Action Models](/202608/14/2608.06729v1-atlasvla-persistent-world-ego-state-modeling-for-vision-language-action-models)  
+   evidence：动作分块视觉运动策略
+11. [Lingjing: A Simulation Testbed for Multi-Agent Embodied Tasks in Open-Ended Cities](/202608/15/2608.08045v1-lingjing-a-simulation-testbed-for-multi-agent-embodied-tasks-in-open-ended-cities)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：具身VLA模型的持久世界-自我状态建模
+   evidence：面向多智能体具身任务（含机器人）的仿真测试平台
 
 
 <div class="dpr-home-promo-card">
