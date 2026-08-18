@@ -6,73 +6,71 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-17
-- 运行时间：2026-08-17 20:41:08 UTC
+- 最新运行日期：2026-08-18
+- 运行时间：2026-08-18 20:45:27 UTC
 - 运行状态：成功
 - 本次总论文数：17
 - 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-1. 今日17篇论文中，精读聚焦开放词汇导航与VLA模型，速读覆盖火星探索路径规划、记忆演化与世界模型。
-2. 最值得看《OpenBelief-Nav》的证据保留记忆机制，它让语言导航在开放词汇下更可靠；同时《Lost in Reconstruction》提醒动作-语言对齐仍是VLA模型的关键瓶颈。
-3. 可优先精读这两篇高分工作；速读中的火星探索规划方法也适合机器人路径规划爱好者参考。
-- 详情：[/202608/17/README](/202608/17/README)
+今日精读6篇、速读11篇，共17篇论文，聚焦具身智能与基础模型前沿。最值得关注两篇9分工作：GigaBrain-0.7提出三系统架构提升涌现能力，HAF实现人形全身操作的分层动作流与谱潜RL。建议普通读者顺着“VLA泛化+触觉/轨迹对齐”方向跟进近期热点。
+- 详情：[/202608/18/README](/202608/18/README)
 
 ### 精读区论文标签
-1. [OpenBelief-Nav: Evidence-Preserving Object Memory for Open-Vocabulary Language-Guided Navigation](/202608/17/2608.13923v1-openbelief-nav-evidence-preserving-object-memory-for-open-vocabulary-language-guided-navigation)  
+1. [GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture](/202608/18/2608.15875v1-gigabrain-07-scaling-embodied-foundation-models-to-emergent-capabilities-with-a-three-system-architecture)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：语言引导导航与开放词汇物体记忆
-2. [Lost in Reconstruction: Aligning Action Representations with Language in Vision-Language-Action Models](/202608/17/2608.10484v1-lost-in-reconstruction-aligning-action-representations-with-language-in-vision-language-action-models)  
+   evidence：面向多种机器人形态的具身基础模型
+2. [HAF: Adapting Generalist VLAs to Humanoid Whole-Body Loco-manipulation via Hierarchical Action Flow and Spectral Latent RL](/202608/18/2608.16837v1-haf-adapting-generalist-vlas-to-humanoid-whole-body-loco-manipulation-via-hierarchical-action-flow-and-spectral-latent-rl)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：使用谱隐空间强化学习将通才VLA策略适配到人形机器人全身移动操作
+3. [AdvDex: Learning Dexterous Manipulation from Human Demonstrations via Joint-Aligned Actions and Adversarial Learning](/202608/18/2608.14028v1-advdex-learning-dexterous-manipulation-from-human-demonstrations-via-joint-aligned-actions-and-adversarial-learning)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向视觉-语言-动作模型的语义对齐动作分词器
-3. [Neural Introspection Gating for Adaptive KV-Cache Reuse in Vision-Language-Action Models](/202608/17/2608.10824v1-neural-introspection-gating-for-adaptive-kv-cache-reuse-in-vision-language-action-models)  
+   evidence：从人类与机器人演示学习灵巧操作的统一视觉-语言-动作框架
+4. [PACE: Phase-Progress-Aware Credit for Long-Horizon Embodied Manipulation](/202608/18/2608.15026v1-pace-phase-progress-aware-credit-for-long-horizon-embodied-manipulation)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向视觉-语言-动作端到端控制的KV缓存高效重用
-4. [Efficient Hypergradient Descent for Inverse Reinforcement Learning](/202608/17/2608.11052v1-efficient-hypergradient-descent-for-inverse-reinforcement-learning)  
+   evidence：面向VLA后训练的信用分配，属于具身操纵中的强化学习
+5. [Max-Q Selective Imitation for Human-in-the-Loop Online Robot Learning](/202608/18/2608.15088v1-max-q-selective-imitation-for-human-in-the-loop-online-robot-learning)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：提出高效的逆强化学习超梯度下降算法
-5. [BICPO-VLA: Behavior-Identified Continuation Preference Optimization for Smooth Asynchronous Vision-Language-Action Control](/202608/17/2608.13924v1-bicpo-vla-behavior-identified-continuation-preference-optimization-for-smooth-asynchronous-vision-language-action-control)  
+   evidence：真实机器人上的人在回路在线强化学习
+6. [StructRL: Structured Action-Space Exploration for Flow-Based VLAs](/202608/18/2608.15139v1-structrl-structured-action-space-exploration-for-flow-based-vlas)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向平滑异步VLA控制的行为识别偏好优化
-6. [PILOT: Privileged Imitation Learning for End-to-End Motion Planning of Autonomous UAVs under Partial Observability](/202608/17/2608.14082v1-pilot-privileged-imitation-learning-for-end-to-end-motion-planning-of-autonomous-uavs-under-partial-observability)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：基于视觉的端到端无人机自主导航运动规划
+   evidence：面向流式VLA模型的在线强化学习框架，应用于机器人操作
 
 ### 速读区论文标签
-1. [Expected Free Energy-based Informative Path Planning for Robotic Mars Exploration](/202608/17/2608.14466v1-expected-free-energy-based-informative-path-planning-for-robotic-mars-exploration)  
+1. [VTInstructor: Visual Trajectory Prompting for Navigation Instruction Generation in Continuous Environments](/202608/18/2608.15284v1-vtinstructor-visual-trajectory-prompting-for-navigation-instruction-generation-in-continuous-environments)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向火星探测自主机器人勘探的预算信息路径规划。
-2. [OnEvoMemory: Evolving Memory through Online Robot Rollouts for Pretrained Robot Policies](/202608/17/2608.08749v1-onevomemory-evolving-memory-through-online-robot-rollouts-for-pretrained-robot-policies)  
+   evidence：面向连续环境的从自我中心视频生成导航指令的首个VLN框架。
+2. [Temporal Logic Guided Universal Task Representations for Reinforcement Learning](/202608/18/2608.15509v1-temporal-logic-guided-universal-task-representations-for-reinforcement-learning)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：面向强化学习的通用任务表示框架
+3. [ViTaR: Visuo-Tactile Residual Adaptation for Foundation VLA Manipulation](/202608/18/2608.15816v1-vitar-visuo-tactile-residual-adaptation-for-foundation-vla-manipulation)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：用于机器人操作的VLA模型，带触觉自适应
+4. [Unified Condition-Action Modeling for Accurate One-Step Action Generation](/202608/18/2608.16153v1-unified-condition-action-modeling-for-accurate-one-step-action-generation)  
+   标签：评分：8.0/10、query:embodied-rl
+   evidence：统一条件-动作建模实现端到端单步机器人动作生成
+5. [Attention from Action, for Action: Emergent Visual Bottlenecks for Policy Learning](/202608/18/2608.13422v1-attention-from-action-for-action-emergent-visual-bottlenecks-for-policy-learning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：面向预训练机器人策略的在线轨迹记忆演化，解决长程操作任务
-3. [HarnessWAM: Bridging Prediction and Deliberation in World Action Models](/202608/17/2608.09516v1-harnesswam-bridging-prediction-and-deliberation-in-world-action-models)  
+   evidence：基于动作衍生视觉瓶颈的视运动策略学习，适用于具身机器人
+6. [FLEET: Token-Based Feature Extraction for Event Camera-based Reinforcement Learning](/202608/18/2608.16523v1-fleet-token-based-feature-extraction-for-event-camera-based-reinforcement-learning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：在世界动作模型中桥接预测与深思用于具身控制
-4. [Chain of Spatial Thoughts: Modality-Agnostic Spatial Grounding for Vision Language Models](/202608/17/2608.10278v1-chain-of-spatial-thoughts-modality-agnostic-spatial-grounding-for-vision-language-models)  
+   evidence：面向事件相机强化学习的特征提取方法，支持基于强化学习的控制策略
+7. [Zetta $ζ$: An Efficient Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence](/202608/18/2608.16590v1-zetta--an-efficient-closed-loop-embodied-harness-for-self-evolving-physical-intelligence)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：为VLM提供空间接地标记，支撑具身导航
-5. [StageWAM: Joint-Embedding Stage Prediction for World-Action Models in Robot Manipulation](/202608/17/2608.10780v3-stagewam-joint-embedding-stage-prediction-for-world-action-models-in-robot-manipulation)  
+   evidence：面向具身智能体的闭环训练框架，针对端到端策略的局限
+8. [Q-based Variational Inverse Reinforcement Learning](/202608/18/2608.16888v1-q-based-variational-inverse-reinforcement-learning)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端通用机器人策略，融合多模态观测和语言指令并预测任务阶段未来
-6. [Decoding Task Progress from VLA Representations](/202608/17/2608.13474v1-decoding-task-progress-from-vla-representations)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：通过线性探针解释视觉-语言-动作机器人策略
-7. [Evolve Vision-Language-Action Model into an Agent with On-the-fly Tool-use](/202608/17/2608.14047v1-evolve-vision-language-action-model-into-an-agent-with-on-the-fly-tool-use)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：端到端VLA模型结合工具使用提升机器人通用性
-8. [AgilePE: Autonomous UAV Pursuit-Evasion via Self-Play Reinforcement Learning](/202608/17/2608.14135v1-agilepe-autonomous-uav-pursuit-evasion-via-self-play-reinforcement-learning)  
-   标签：评分：7.0/10、query:embodied-rl
-   evidence：无人机追逃的端到端强化学习
-9. [SG-WAM: Text-Grounded and Spatial-aware Semantic Guidance for World-Action Models](/202608/17/2608.08839v1-sg-wam-text-grounded-and-spatial-aware-semantic-guidance-for-world-action-models)  
+   evidence：变分贝叶斯逆强化学习，从专家示范中恢复奖励函数。
+9. [PBD-AG: Persistent Baseline-Delta Active Graphs with Uncertainty-Aware Inspection for Long-Horizon Service Robots](/202608/18/2608.10449v2-pbd-ag-persistent-baseline-delta-active-graphs-with-uncertainty-aware-inspection-for-long-horizon-service-robots)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：利用视觉语言模型为机器人操作的世界-动作模型提供语义引导
-10. [PBD-AG: Persistent Baseline-Delta Active Graphs with Uncertainty-Aware Inspection for Long-Horizon Service Robots](/202608/17/2608.10449v1-pbd-ag-persistent-baseline-delta-active-graphs-with-uncertainty-aware-inspection-for-long-horizon-service-robots)  
+   evidence：面向长期服务机器人的持久世界建模与自主探索导航
+10. [Deliberate Practice: Learning Robot Skills under a Budget](/202608/18/2608.13415v1-deliberate-practice-learning-robot-skills-under-a-budget)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：面向长程服务机器人的持久世界模型，将稳定结构与动态物体事件解耦并支持自主构建与修订
-11. [Dynamic Context Adapters: Efficiently Infusing History into Vision-and-Language Models](/202608/17/2608.10525v1-dynamic-context-adapters-efficiently-infusing-history-into-vision-and-language-models)  
+   evidence：预算约束下的机器人技能主动学习，面向顺序任务最大化期望累计回报
+11. [AlloEgo-VLM: Disambiguating Allocentric and Egocentric Reference Frames in Vision-Language Models](/202608/18/2608.15605v1-alloego-vlm-disambiguating-allocentric-and-egocentric-reference-frames-in-vision-language-models)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：为序列决策中的VLM高效注入历史上下文，适用于视觉语言导航
+   evidence：面向具身AI的VLM空间参考系消歧，改善语言引导的空间语义理解
 
 
 <div class="dpr-home-promo-card">
