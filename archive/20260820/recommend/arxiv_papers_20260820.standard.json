@@ -1,0 +1,719 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-20T20:48:51.078974+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 12,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2608.18470v1",
+      "source": "arxiv",
+      "title": "DevGRU: Depth-guided Visual Navigation using a Collision-aware Recurrent Model",
+      "abstract": "Existing visual navigation models often aim to develop foundation models that can generalize robot navigation across diverse platforms. However, many of these models are prone to collisions when deployed in complex indoor environments, particularly in structured layouts and narrow passages. To address this problem, we propose a depth image- and point-goal-conditioned navigation system, DevGRU. The proposed system employs an action predictor (AP) that generates collision-aware future trajectories, enabling effective avoidance of immediate obstacles. In conjunction with a collision predictor, the AP further compensates for errors accumulated in the goal pose estimation and proactively mitigates future deviations. To evaluate our method, we conducted experiments across nine different scenes and three state-of-the-art approaches - ViNT, NoMaD, and NavDP - as well as four additional variants of ViNT and NoMaD. In terms of navigation performance, DevGRU significantly outperforms ViNT and NoMaD by a large margin. In addition, the proposed model has a relatively small number of trainable parameters, resulting in the fastest inference time among the baselines, particularly outperforming NavDP by 7x in model size and 17x in inference time.",
+      "authors": [
+        "Kyung Min Han",
+        "Eunsom Kim",
+        "Young J. Kim"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-19T02:55:49+00:00",
+      "link": "https://arxiv.org/pdf/2608.18470v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "depth-guided visual navigation system with collision avoidance",
+      "llm_evidence_cn": "深度引导的视觉导航系统，具备碰撞避免能力",
+      "llm_evidence": "深度引导的视觉导航系统，具备碰撞避免能力",
+      "canonical_evidence": "深度引导的视觉导航系统，具备碰撞避免能力",
+      "llm_tldr_en": "DevGRU is a depth-image and point-goal conditioned visual navigation system with an action predictor that generates collision-aware future trajectories and a collision predictor that corrects goal pose errors, improving indoor navigation safety.",
+      "llm_tldr_cn": "现有视觉导航模型在复杂室内环境中容易被碰撞，特别是在结构化布局和狭窄通道中。本文提出DevGRU，基于深度图像和点目标条件，采用动作预测器生成碰撞感知的未来轨迹，并结合碰撞预测器修正目标位姿累积误差。实验表明该方法能有效避免障碍，提升复杂室内导航的鲁棒性，为跨平台视觉导航提供了碰撞感知的循环模型方案。",
+      "llm_tldr": "现有视觉导航模型在复杂室内环境中容易被碰撞，特别是在结构化布局和狭窄通道中。本文提出DevGRU，基于深度图像和点目标条件，采用动作预测器生成碰撞感知的未来轨迹，并结合碰撞预测器修正目标位姿累积误差。实验表明该方法能有效避免障碍，提升复杂室内导航的鲁棒性，为跨平台视觉导航提供了碰撞感知的循环模型方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.19182v1",
+      "source": "arxiv",
+      "title": "ADEPT: Accelerating Dexterity via Pre-Training and Post-Training using Reinforcement Learning",
+      "abstract": "We introduce Accelerating Dexterity via Pre-Training (ADEPT), a large-scale reinforcement learning (RL) framework for learning sim-to-real transferable dexterity across high degree-of-freedom (DoF) robot embodiments that can solve long-horizon tasks directly from raw visuo-tactile perception. ADEPT pretrains a dexterous policy on a generic object reposing task, then post-trains downstream policies with this pretrained behavior as a prior. ADEPT enables learning new behaviors that are otherwise difficult to discover from scratch on multi-fingered robots and avoids learning the same set of skills over again for every new downstream task. The pretrained policy zero-shots the reposing phase of downstream tasks, but naïve RL fine-tuning rapidly degrades this capability during transfer. We address this with a stable post-training recipe combining behavior-cloning distillation, critic warm-up, and conservative on-policy updates. To safely exploit the full kinematic dexterity, we introduce a joint-space Geometric Fabric that mediates between the RL policy and the robot. We distill post-trained teachers into perceptive students that zero-shot sim-to-real transfer on two embodiments: a 23 DoF Kuka-Allegro with two RGB cameras, and a 29 DoF Flexiv-Sharpa with two RGB cameras and five vision-based tactile sensors, and can solve long-horizon tasks from challenging initial states with dexterity at human-level speed.",
+      "authors": [
+        "Jayjun Lee",
+        "Jessica Yin",
+        "Asif Rana",
+        "Nicholas Blauch",
+        "Sam Mady",
+        "Mohak Bhardwaj",
+        "Nima Fazeli",
+        "Nathan Ratliff",
+        "Karl Van Wyk",
+        "Ankur Handa"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-19T17:55:06+00:00",
+      "link": "https://arxiv.org/pdf/2608.19182v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "End-to-end reinforcement learning for sim-to-real dexterity on high-DoF robots",
+      "llm_evidence_cn": "高自由度机器人上用于仿真到真实灵巧操作的端到端强化学习",
+      "llm_evidence": "高自由度机器人上用于仿真到真实灵巧操作的端到端强化学习",
+      "canonical_evidence": "高自由度机器人上用于仿真到真实灵巧操作的端到端强化学习",
+      "llm_tldr_en": "ADEPT is a large-scale RL framework that pretrains dexterous policies on generic object reposing and post-trains from raw visuo-tactile perception, enabling sim-to-real transfer across high-DoF robot embodiments for long-horizon manipulation.",
+      "llm_tldr_cn": "多指机械手的高自由度技能很难从零学习，且每个下游任务往往需要重复学习相同技能。提出ADEPT，一个大规模强化学习框架，先在通用物体重摆任务上预训练灵巧策略，再以其为初始化对下游策略进行后训练。该框架可直接从原始视触觉感知学习长时程任务，并支持跨具身体的仿真到真实迁移。预训练策略可零样本完成下游任务的重摆阶段，后训练则让新行为更容易被学会。这项工作推动了端到端强化学习在具身操作中的应用，但未涉及导航或视觉语言导航。",
+      "llm_tldr": "多指机械手的高自由度技能很难从零学习，且每个下游任务往往需要重复学习相同技能。提出ADEPT，一个大规模强化学习框架，先在通用物体重摆任务上预训练灵巧策略，再以其为初始化对下游策略进行后训练。该框架可直接从原始视触觉感知学习长时程任务，并支持跨具身体的仿真到真实迁移。预训练策略可零样本完成下游任务的重摆阶段，后训练则让新行为更容易被学会。这项工作推动了端到端强化学习在具身操作中的应用，但未涉及导航或视觉语言导航。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end to end reinforcement learning in robotics",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.14822v1",
+      "source": "arxiv",
+      "title": "Imagining Recovery: Inference-Time Counterfactual Realignment for Vision-Language-Action Models",
+      "abstract": "Vision-language-action (VLA) models have improved the flexibility and generality of robotic manipulation, yet they remain fragile to online disruptions, such as changes in task goal, scene configuration, or robot state. Existing recovery methods often require failure data, policy retraining, or external corrective agents, introducing additional data requirements and execution risks. We propose Counterfactual Realignment (CoRe), a training-free framework that recovers a frozen VLA at inference time without failure data. Upon detecting a deviation, CoRe imagines how the policy would continue toward the current goal from a recent viable state, using synthesized observations in place of physical execution, and then minimally realigns the robot and scene to rejoin this imagined continuation before returning control to the policy. Recovery is therefore planned without physical trial-and-error, preserves completed task progress, and handles both mid-episode instruction changes and physical perturbations in a unified manner. Extensive experiments across multiple simulators, VLA backbones, and real-world settings show that CoRe improves success rates by up to 85.0 percentage points to near-nominal levels while reducing physical restorations by 42.2%, without policy fine-tuning or failure-specific recovery training.",
+      "authors": [
+        "Yanyan Zhang",
+        "Disheng Liu",
+        "Kai Ye",
+        "Chaoda Song",
+        "Xinpeng Li",
+        "Mohsen Hariri",
+        "Vikash Singh",
+        "Yu Yin",
+        "Vipin Chaudhary"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-14T18:49:46+00:00",
+      "link": "https://arxiv.org/pdf/2608.14822v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "inference-time recovery for frozen VLA robot policies",
+      "llm_evidence_cn": "面向机器人VLA策略的推理时恢复方法",
+      "llm_evidence": "面向机器人VLA策略的推理时恢复方法",
+      "canonical_evidence": "面向机器人VLA策略的推理时恢复方法",
+      "llm_tldr_en": "CoRe is a training-free framework that recovers a frozen VLA robot policy at inference time by imagining counterfactual policy continuations from a recent viable state, eliminating the need for failure data and retraining.",
+      "llm_tldr_cn": "机器人VLA模型在在线干扰下容易失效，现有恢复方法常需失败数据或重新训练。本文提出CoRe，一种免训练的推理时框架，通过想象从最近可行状态到当前目标的策略延展，合成观测并以最小干预重新对齐策略。该方法无需失败数据即可恢复冻结的VLA策略，降低了数据需求与执行风险，提升了机器人应对动态变化的鲁棒性。",
+      "llm_tldr": "机器人VLA模型在在线干扰下容易失效，现有恢复方法常需失败数据或重新训练。本文提出CoRe，一种免训练的推理时框架，通过想象从最近可行状态到当前目标的策略延展，合成观测并以最小干预重新对齐策略。该方法无需失败数据即可恢复冻结的VLA策略，降低了数据需求与执行风险，提升了机器人应对动态变化的鲁棒性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.16195v1",
+      "source": "arxiv",
+      "title": "RoboStriker: Latent-Space Strategic Games for Autonomous Humanoid Boxing",
+      "abstract": "Achieving human-level competitive intelligence and physical agility in humanoid robots remains a profound challenge, particularly in contact-rich and highly dynamic tasks such as boxing. While Multi-Agent Reinforcement Learning offers a principled framework for strategic interaction, its direct application to unstructured raw motor spaces inevitably leads to joint-level physical collapse, preventing the emergence of any viable combat tactics. To resolve this fundamental conflict between strategic exploration and physical feasibility, we formulate the humanoid combat task as a novel two-player latent-space zero-sum Markov game. Under standard regularity and approximate best-response assumptions, we show that the latent formulation induces an equivalent game over the decoder-reachable action manifold, providing an approximate-Nash interpretation of the resulting self-play dynamics. To instantiate this theoretical formulation, we propose RoboStriker, a hierarchical framework that decouples high-level reasoning from low-level execution. It first distills the tracking expertise of predefined boxing motions into a topologically bounded latent manifold. This structured latent foundation subsequently drives multi-agent co-evolution via Latent-Space Neural Fictitious Self-Play. Extensive experimental results demonstrate that gaming within this structured latent space substantially outperforms direct exploration. By constraining strategic exploration through a pretrained motion decoder, RoboStriker substantially reduces the catastrophic balance failures observed in raw action-space methods and achieves superior tactical performance in both competitive win rates and striking efficiency. Finally, we successfully deploy and validate our learned combat policies on real-world humanoid robots. Our code and video and supplementary materials are available at RoboStriker.",
+      "authors": [
+        "Kangning Yin",
+        "Kaige Liu",
+        "Zhe Cao",
+        "Wentao Dong",
+        "Weishuai Zeng",
+        "Tianyi Zhang",
+        "Qiang Zhang",
+        "Jingbo Wang",
+        "Jiangmiao Pang",
+        "Yang Li",
+        "Ming Zhou",
+        "Weinan Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-17T07:19:09+00:00",
+      "link": "https://arxiv.org/pdf/2608.16195v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "multi-agent RL for humanoid robot boxing",
+      "llm_evidence_cn": "用于人形机器人拳击的多智能体强化学习",
+      "llm_evidence": "用于人形机器人拳击的多智能体强化学习",
+      "canonical_evidence": "用于人形机器人拳击的多智能体强化学习",
+      "llm_tldr_en": "RoboStriker formulates autonomous humanoid boxing as a two-player latent-space zero-sum Markov game, allowing multi-agent reinforcement learning to avoid physical collapse while enabling strategic exploration and feasible combat tactics.",
+      "llm_tldr_cn": "人形机器人接触丰富动态任务（如拳击）难以直接应用多智能体强化学习，原始运动空间会导致关节级物理崩溃。本文提出RoboStriker，将人形对战建模为两玩家隐空间零和马尔可夫博弈，在隐空间中探索策略并保证物理可行性。理论分析与实验表明该隐式表述能够催生可行的战斗战术，兼顾策略探索与物理安全，为机器人竞技任务提供新范式。",
+      "llm_tldr": "人形机器人接触丰富动态任务（如拳击）难以直接应用多智能体强化学习，原始运动空间会导致关节级物理崩溃。本文提出RoboStriker，将人形对战建模为两玩家隐空间零和马尔可夫博弈，在隐空间中探索策略并保证物理可行性。理论分析与实验表明该隐式表述能够催生可行的战斗战术，兼顾策略探索与物理安全，为机器人竞技任务提供新范式。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.17453v1",
+      "source": "arxiv",
+      "title": "EATR-Stereo: Embodiment-Aware Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control",
+      "abstract": "Long-horizon humanoid vision--language--action (VLA) control with head-mounted stereo cameras requires visual interfaces that can exploit complementary views while maintaining compatibility with pretrained representations. Existing interfaces often discard complementary stereo evidence or fuse additional observations without preserving the native primary-view pathway and adapting auxiliary information to robot embodiment. We present EATR-Stereo, an embodiment-aware token-routing framework that retains primary-view tokens and constructs primary-aligned Cross-View Auxiliary Tokens (CVATs) by querying the synchronized auxiliary-view token sequence. A body-segmented proprioceptive encoder further conditions token-wise auxiliary usage on robot configuration history, enabling selective incorporation of stereo evidence during action generation. The routed auxiliary stream augments the language and primary-visual context of a pretrained VLA while keeping its vision--language model frozen. On a 33-DoF physical humanoid with a 37-D proprioceptive state, we evaluate nine configurations in over-100-s search--approach--grasp--place--return tasks. EATR-Stereo achieves 60.0% full-task success, 100.0% grasp success, and 80.0% stage success. Under severe asymmetric occlusion, it improves recovery to 80% compared with 30% for CVAT alone. Ablation studies further show the importance of preserving primary tokens and combining cross-view auxiliary features with structured proprioceptive routing. These results demonstrate that selectively routed paired stereo evidence improves spatial grounding for reliable long-horizon humanoid VLA control.",
+      "authors": [
+        "Songwei Wu",
+        "Rui Zhao",
+        "Fan Yang",
+        "Zhongqiang Nie",
+        "Zhiduo Jiang",
+        "Wandong Sun",
+        "Yuwei Li",
+        "Yang Liu",
+        "Hong Liu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-18T07:32:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.17453v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Embodiment-aware stereo routing for humanoid VLA control",
+      "llm_evidence_cn": "面向人形VLA控制的位姿感知立体路由",
+      "llm_evidence": "面向人形VLA控制的位姿感知立体路由",
+      "canonical_evidence": "面向人形VLA控制的位姿感知立体路由",
+      "llm_tldr_en": "EATR-Stereo is an embodiment-aware token-routing framework for humanoid VLA control with head-mounted stereo cameras, retaining primary-view tokens and constructing primary-aligned cross-view auxiliary tokens for long-horizon manipulation.",
+      "llm_tldr_cn": "长程人形视觉语言动作控制中，头戴式立体相机需要既利用互补视图又保持与预训练表征的兼容性。现有接口要么丢弃立体信息，要么融合额外观测但破坏原生主视图路径。为此提出EATR-Stereo，一种位姿感知令牌路由框架，保留主视图令牌，并通过查询同步的辅助视图令牌序列构建主视图对齐的跨视角辅助令牌(CVATs)，同时用身体分段的位姿编码器对令牌施加条件。该方法在保持预训练兼容性的同时增强了立体证据利用，提升了人形VLA控制的长程表现。这为具身机器人立体视觉与VLA的融合提供了新方案。",
+      "llm_tldr": "长程人形视觉语言动作控制中，头戴式立体相机需要既利用互补视图又保持与预训练表征的兼容性。现有接口要么丢弃立体信息，要么融合额外观测但破坏原生主视图路径。为此提出EATR-Stereo，一种位姿感知令牌路由框架，保留主视图令牌，并通过查询同步的辅助视图令牌序列构建主视图对齐的跨视角辅助令牌(CVATs)，同时用身体分段的位姿编码器对令牌施加条件。该方法在保持预训练兼容性的同时增强了立体证据利用，提升了人形VLA控制的长程表现。这为具身机器人立体视觉与VLA的融合提供了新方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.17453v2",
+      "source": "arxiv",
+      "title": "EATR-Stereo: Embodiment-Aware Token Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control",
+      "abstract": "Long-horizon humanoid vision--language--action (VLA) control with head-mounted stereo cameras requires visual interfaces that can exploit complementary views while maintaining compatibility with pretrained representations. Existing interfaces often discard complementary stereo evidence or fuse additional observations without preserving the native primary-view pathway and adapting auxiliary information to robot embodiment. We present EATR-Stereo, an embodiment-aware token-routing framework that retains primary-view tokens and constructs primary-aligned Cross-View Auxiliary Tokens (CVATs) by querying the synchronized auxiliary-view token sequence. A body-segmented proprioceptive encoder further conditions token-wise auxiliary usage on robot configuration history, enabling selective incorporation of stereo evidence during action generation. The routed auxiliary stream augments the language and primary-visual context of a pretrained VLA while keeping its vision--language model frozen. On a 33-DoF physical humanoid with a 37-D proprioceptive state, we evaluate nine configurations in over-100-s search--approach--grasp--place--return tasks. EATR-Stereo achieves 60.0% full-task success, 100.0% grasp success, and 80.0% stage success. Under severe asymmetric occlusion, it improves recovery to 80% compared with 30% for CVAT alone. Ablation studies further show the importance of preserving primary tokens and combining cross-view auxiliary features with structured proprioceptive routing. These results demonstrate that selectively routed paired stereo evidence improves spatial grounding for reliable long-horizon humanoid VLA control.",
+      "authors": [
+        "Songwei Wu",
+        "Rui Zhao",
+        "Fan Yang",
+        "Zhongqiang Nie",
+        "Zhiduo Jiang",
+        "Wandong Sun",
+        "Yuwei Li",
+        "Jian Hu",
+        "Yang Liu",
+        "Hong Liu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-18T07:32:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.17453v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "embodiment-aware VLA control for humanoid robots",
+      "llm_evidence_cn": "面向人形机器人的具身感知VLA控制",
+      "llm_evidence": "面向人形机器人的具身感知VLA控制",
+      "canonical_evidence": "面向人形机器人的具身感知VLA控制",
+      "llm_tldr_en": "EATR-Stereo is an embodiment-aware token-routing framework for humanoid VLA control that preserves primary-view tokens, constructs primary-aligned cross-view auxiliary tokens, and conditions on body-segmented proprioception for long-horizon tasks.",
+      "llm_tldr_cn": "长程人形VLA控制需要高效利用头戴双目相机信息，但现有接口常丢弃互补视觉证据或破坏预训练表示。本文提出EATR-Stereo，通过保留主视图令牌并生成主视图对齐的跨视图辅助令牌，结合身体分割的本体感受编码，实现具身感知令牌路由。该方法在保持预训练兼容性的同时增强多视图和本体信息的融合，提升人形VLA控制性能。",
+      "llm_tldr": "长程人形VLA控制需要高效利用头戴双目相机信息，但现有接口常丢弃互补视觉证据或破坏预训练表示。本文提出EATR-Stereo，通过保留主视图令牌并生成主视图对齐的跨视图辅助令牌，结合身体分割的本体感受编码，实现具身感知令牌路由。该方法在保持预训练兼容性的同时增强多视图和本体信息的融合，提升人形VLA控制性能。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.17584v1",
+      "source": "arxiv",
+      "title": "HODAgent: Towards On-Demand, Responsive Humanoids for Physical World Human Interaction",
+      "abstract": "We propose HODAgent, a System-2 embodied agent for humanoid robots in service settings, addressing situated intent, responsive execution, task revision, and outcome verification. Its semi-duplex architecture integrates an Env-Interactor, Planner, Executor, and hierarchical Memory to maintain coherent interaction, planning, and task state during service episodes. This allows handling new requests during motion, retaining progress, revising actions, and grounding closure in execution outcomes. A shared interface connects simulation and physical robots (Unitree G1), isolating platform-specific control. In an interactive simulation with 164 cases, HODAgent achieves 84.8% and 91.5% Joint Success under two VLM backbones, outperforming baselines by 9.8 and 18.9 points. On physical robots, pass rates are 92% (atomic), 72% (composite), and 63.3% (complete tasks). On multiple embodied benchmarks, it improves over baselines by 0.7-9.0 points. Results show a unified System-2 agent enables adaptive humanoid service across simulation and reality.",
+      "authors": [
+        "Wang Warren Chen",
+        "Jiahao Zhang",
+        "Zhenjiang Li",
+        "Mingxu Wang",
+        "Lei Yi",
+        "Yuchen Kang",
+        "Shuo Sun",
+        "Ziping Chen",
+        "Jie Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-18T09:49:16+00:00",
+      "link": "https://arxiv.org/pdf/2608.17584v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Embodied humanoid robot system for service interaction",
+      "llm_evidence_cn": "面向服务交互的具身人形机器人系统",
+      "llm_evidence": "面向服务交互的具身人形机器人系统",
+      "canonical_evidence": "面向服务交互的具身人形机器人系统",
+      "llm_tldr_en": "HODAgent is a System-2 embodied agent for humanoid service robots, featuring a semi-duplex architecture for planning, execution, and memory to handle on-demand human interaction tasks.",
+      "llm_tldr_cn": "本文提出HODAgent，一个面向服务场景人形机器人的系统2级具身智能体，采用半双工架构整合环境交互器、规划器、执行器和分层记忆，以支持在运动过程中处理新请求、保留进度、修订动作并依据执行结果验证任务完成。在包含164个场景的交互式仿真中，HODAgent在两种VLM主干下分别取得84.8%和91.5%的联合成功率，优于基线。该方法实现了仿真与物理机器人(Unitree G1)的统一接口，为人形机器人在真实服务场景中的按需人机交互提供了可行方案。",
+      "llm_tldr": "本文提出HODAgent，一个面向服务场景人形机器人的系统2级具身智能体，采用半双工架构整合环境交互器、规划器、执行器和分层记忆，以支持在运动过程中处理新请求、保留进度、修订动作并依据执行结果验证任务完成。在包含164个场景的交互式仿真中，HODAgent在两种VLM主干下分别取得84.8%和91.5%的联合成功率，优于基线。该方法实现了仿真与物理机器人(Unitree G1)的统一接口，为人形机器人在真实服务场景中的按需人机交互提供了可行方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.15269v1",
+      "source": "arxiv",
+      "title": "Remember Smarter: Visual History Compressor and Hyperbolic Experience Space for Robotic Memory",
+      "abstract": "Long-horizon robot policies require compact access to recent observations and   reusable experience without expanding the vision-language-action (VLA)   context. We introduce Remember Smarter (RS), a plug-and-play module with   complementary visual-history and hyperbolic experience-memory branches. Its   visual branch compresses multi-view patch histories using bidirectional   spatial Mamba and causal temporal Mamba, then exposes the resulting memory to   action-facing hidden states through residual cross-attention while leaving the   VLM visual-token stream unchanged. Its experience branch stores successful   final-layer VLM states in a Poincare VAE space, organizes them hierarchically,   and asynchronously converts retrieved experience into geodesic prompt tokens   without blocking action inference. When adapted to pi0, RS increases total   success on LIBERO-Plus from 53.6% to 70.6% and   achieves substantial   performance gains in real-robot experiments designed to evaluate memory   retention and experience utilization.",
+      "authors": [
+        "Dai Zhou",
+        "Jiexi Yan",
+        "Tong Li",
+        "Yuxuan Wang",
+        "Cheng Deng"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-15T15:13:33+00:00",
+      "link": "https://arxiv.org/pdf/2608.15269v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "robotic memory module for long-horizon VLA policies",
+      "llm_evidence_cn": "面向长程VLA机器人策略的记忆模块",
+      "llm_evidence": "面向长程VLA机器人策略的记忆模块",
+      "canonical_evidence": "面向长程VLA机器人策略的记忆模块",
+      "llm_tldr_en": "Remember Smarter is a plug-and-play robotic memory module with Mamba-based visual history compression and a hyperbolic experience space, providing compact long-horizon memory for VLA policies without expanding context.",
+      "llm_tldr_cn": "长程机器人策略需要紧凑访问近期观测与可复用经验，但直接扩展VLA上下文代价高昂。本文提出Remember Smarter，即插即用模块，融合视觉历史压缩分支与双曲经验记忆分支，用双向空间与因果时间Mamba压缩多视角观测，并将成功经验存储于Poincare VAE空间。该模块在保持VLM视觉令牌流不变的同时，通过残差交叉注意力暴露记忆，提升了长程任务的记忆利用率与策略表现。",
+      "llm_tldr": "长程机器人策略需要紧凑访问近期观测与可复用经验，但直接扩展VLA上下文代价高昂。本文提出Remember Smarter，即插即用模块，融合视觉历史压缩分支与双曲经验记忆分支，用双向空间与因果时间Mamba压缩多视角观测，并将成功经验存储于Poincare VAE空间。该模块在保持VLM视觉令牌流不变的同时，通过残差交叉注意力暴露记忆，提升了长程任务的记忆利用率与策略表现。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.13362v1",
+      "source": "arxiv",
+      "title": "NestDex: Nested Policy Learning with Copilot Assisted Teleoperation for Dexterous Manipulation",
+      "abstract": "Dexterous manipulation promises substantially richer robot interaction with the physical world, but learning these behaviours remains constrained by the difficulty of collecting consistent, complete-task demonstrations. Unlike parallel-jaw manipulation, dexterous tasks require the operator to coordinate arm motion with precise, contact-rich finger behaviour throughout the task. We introduce NestDex, a nested policy-learning framework that reduces this burden by using learned hand skills to assist demonstration collection. The operator controls the arm and regulates the active hand skill through a single-DoF clutch, rather than directly specifying the full finger trajectory. The inner hand policy adapts its motion from the latest proprioceptive history, while a vision-language selector activates the appropriate skill for each task stage. The resulting demonstrations train a separate outer visuomotor policy that controls both the arm and hand without the inner policies at deployment. A hand-action variational autoencoder provides compact hand-action targets while retaining arm commands in joint space. Across real-world dexterous manipulation experiments, NestDex improves demonstration reliability and efficiency, and the resulting empirical evaluations support effective autonomous policy learning. Video Demo are available at project website https://aus.bot/research/nestdex.",
+      "authors": [
+        "James Zhao",
+        "Jinhe Tang",
+        "Mingyuan Ba",
+        "Weiming Zhi"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-13T15:25:39+00:00",
+      "link": "https://arxiv.org/pdf/2608.13362v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Dexterous manipulation, nested policy learning for embodied robots",
+      "llm_evidence_cn": "灵巧操作，面向具身机器人的嵌套策略学习",
+      "llm_evidence": "灵巧操作，面向具身机器人的嵌套策略学习",
+      "canonical_evidence": "灵巧操作，面向具身机器人的嵌套策略学习",
+      "llm_tldr_en": "NestDex presents a nested policy-learning framework that uses learned hand skills and a single-DoF clutch for teleoperation, reducing demonstration collection burden and improving consistency for dexterous manipulation.",
+      "llm_tldr_cn": "本文针对灵巧操作演示收集困难的问题，提出嵌套策略学习框架NestDex。该框架利用已学习的手部技能辅助遥操作，操作者仅需控制手臂和通过单自由度离合器选择活跃技能，而无需直接指定完整手指轨迹。内层手部策略会根据最新反馈调整动作，从而降低操作员负担并提高演示的一致性。实验表明NestDex能更高效地收集完整任务演示，支持后续灵巧操作策略学习。",
+      "llm_tldr": "本文针对灵巧操作演示收集困难的问题，提出嵌套策略学习框架NestDex。该框架利用已学习的手部技能辅助遥操作，操作者仅需控制手臂和通过单自由度离合器选择活跃技能，而无需直接指定完整手指轨迹。内层手部策略会根据最新反馈调整动作，从而降低操作员负担并提高演示的一致性。实验表明NestDex能更高效地收集完整任务演示，支持后续灵巧操作策略学习。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.16153v2",
+      "source": "arxiv",
+      "title": "Unified Condition-Action Modeling for Accurate One-Step Action Generation",
+      "abstract": "Robot manipulation requires policies that are both accurate and efficient, as robot control must respond to changing observations under tight latency constraints. Recent diffusion and flow policies are promising, but they often treat conditions as auxiliary signals rather than jointly evolving them with action trajectories. We find that this limitation can be effectively mitigated by a \\textbf{simple yet effective unified condition-action modeling design} that represents conditions and actions in a shared token space, allowing a compact model to achieve high performance while improving both inference speed and accuracy. Therefore, we propose UCA-Flow, a unified condition-action modeling framework for accurate one-step action generation. Our method unifies observation conditions, timestep conditions, interval conditions, and action tokens into a single sequence, and processes them with a Unified Condition-Action Transformer for joint condition-action representation learning. As a result, condition representations are dynamically reconstructed according to the current generation stage, highlighting information most relevant for action refinement. Furthermore, we introduce an improved dual-pass supervision scheme over $u$ and $v$ for stronger optimization of unified condition-action modeling. UCA-Flow improves the average success rate by 9.3 percentage points over the strongest baseline, while achieving $45.6\\times$ and $33.4\\times$ speedups over DP3 and Simple DP3, and remaining $4.3\\times$ and $2.3\\times$ faster than one-step FlowPolicy and MP1, respectively.",
+      "authors": [
+        "Xinyu Zhou",
+        "Zikun Cai",
+        "Kuangji Zuo",
+        "Gen Li",
+        "Boyu Ma",
+        "Yanshuo Lu",
+        "Yutong Song",
+        "Mingqi Yuan",
+        "Jiayu Chen",
+        "Jianfei Yang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-17T06:14:16+00:00",
+      "link": "https://arxiv.org/pdf/2608.16153v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "unified condition-action modeling for one-step action generation in robot manipulation",
+      "llm_evidence_cn": "面向机器人操作的单步动作生成的统一条件-动作建模，体现端到端动作学习",
+      "llm_evidence": "面向机器人操作的单步动作生成的统一条件-动作建模，体现端到端动作学习",
+      "canonical_evidence": "面向机器人操作的单步动作生成的统一条件-动作建模，体现端到端动作学习",
+      "llm_tldr_en": "Proposes UCA-Flow, a unified condition-action modeling framework representing conditions and actions in a shared token space for accurate one-step action generation, improving both speed and accuracy in robot manipulation.",
+      "llm_tldr_cn": "针对机器人操作中扩散/流策略将条件视为辅助信号、未与动作轨迹协同演化的问题，本文提出UCA-Flow，将条件与动作表示在同一token空间统一建模，用紧凑模型实现高精度单步动作生成。在提升推理速度的同时提高了精度，为端到端机器人动作学习提供了简单而有效的范式，并在多个操作任务上验证了其优势。",
+      "llm_tldr": "针对机器人操作中扩散/流策略将条件视为辅助信号、未与动作轨迹协同演化的问题，本文提出UCA-Flow，将条件与动作表示在同一token空间统一建模，用紧凑模型实现高精度单步动作生成。在提升推理速度的同时提高了精度，为端到端机器人动作学习提供了简单而有效的范式，并在多个操作任务上验证了其优势。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.16590v1",
+      "source": "arxiv",
+      "title": "Zetta $ζ$: An Efficient Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence",
+      "abstract": "Embodied agents are increasingly used to close the gap left by end-to-end policy models. Yet the agentic path has not realized closed-loop learning in physical execution: existing harnesses remain largely open-loop, following fixed skills during rollout and reflecting only after an episode completes. Such post-hoc reflection cannot govern execution as it unfolds, because physical interaction requires decisions to track rapidly changing robot-environment states at a frequency beyond today's large agentic models. We present Zetta, a closed-loop embodied harness that evolves code-based runtime critics and recovery skills online while keeping the base policy frozen. Through three timescale-separated loops, Zetta provides action-frequency governance, rollout-level critic-recovery proposal, and validation-gated skill updates. Together with Z-Infra, a rollout infrastructure decoupling agent logic from heterogeneous execution resources, Zetta achieves state-of-the-art success on LIBERO-Pro and RoboCasa under our current rollout budget, reaching 90.8% and 93.6%, with an 11.1x inference speedup; success continues to scale with self-exploration experience; learned skills transfer zero-shot, and clear robotic \"Aha Moments\" emerge. These results show that closed-loop harness self-evolution opens a scaling path for reliable physical intelligence.",
+      "authors": [
+        "Xin Ding",
+        "Liang Mi",
+        "Mingzhe Huang",
+        "Zixuan Wang",
+        "Chao Zhang",
+        "Zixu Hao",
+        "Fu Chen",
+        "Xiangyu Li",
+        "Yikai Zheng",
+        "Yaoyu Guo",
+        "Weijun Wang",
+        "Kun Li",
+        "Hao Wu",
+        "Yunxin Liu",
+        "Ting Cao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-17T13:49:43+00:00",
+      "link": "https://arxiv.org/pdf/2608.16590v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Closed-loop embodied harness with online critics and skill evolution for physical intelligence",
+      "llm_evidence_cn": "用于物理智能的闭环具身框架，在线进化批评者与技能",
+      "llm_evidence": "用于物理智能的闭环具身框架，在线进化批评者与技能",
+      "canonical_evidence": "用于物理智能的闭环具身框架，在线进化批评者与技能",
+      "llm_tldr_en": "Zetta is a closed-loop embodied harness that evolves code-based runtime critics and recovery skills online while keeping the base policy frozen, enabling action-frequency decisions during physical execution and addressing the open-loop limitation of agentic embodied learning.",
+      "llm_tldr_cn": "现有具身智能体在物理执行中大多保持开环，按固定技能运行并在回合结束后才反思，无法实时应对状态变化。提出Zetta，一个闭环具身训练框架，在冻结基础策略的情况下在线演化基于代码的运行期批评者和恢复技能。通过三个时间尺度分离的循环，Zetta提供高频动作决策，使具身策略在物理交互中实现自我进化。该方法弥补端到端策略模型留下的闭环学习缺口，但并未聚焦导航或视觉语言导航任务。",
+      "llm_tldr": "现有具身智能体在物理执行中大多保持开环，按固定技能运行并在回合结束后才反思，无法实时应对状态变化。提出Zetta，一个闭环具身训练框架，在冻结基础策略的情况下在线演化基于代码的运行期批评者和恢复技能。通过三个时间尺度分离的循环，Zetta提供高频动作决策，使具身策略在物理交互中实现自我进化。该方法弥补端到端策略模型留下的闭环学习缺口，但并未聚焦导航或视觉语言导航任务。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.17484v1",
+      "source": "arxiv",
+      "title": "Reuse Before You Retrieve: Diagnosing Headroom and Complementarity for Test-Time Augmentation of Embodied Multimodal Policies",
+      "abstract": "Frozen vision-language-action (VLA) policies are increasingly improved at test time by sampling additional policy behaviors or introducing external demonstrations. Yet there is little guidance for deciding which intervention a deployed policy actually needs. Additional sampling is useful only when better behavior already exists within the policy's stochastic rollouts and can be identified, whereas retrieval is most useful when the relevant action prior is not reliably represented by the policy. We study this decision through two measurable factors, recoverable headroom and retrieval complementarity, which characterize how much useful behavior is already available to recover and whether an external action prior fills a measurable gap. We evaluate an episode-level retry selector under retryable or parallel execution, together with retrieval across multiple frozen VLA policies and environments. The selector consistently recovers substantial latent capability across all tested VLA backbones on LIBERO, with gains of up to 21.0 success-rate points that closely track recoverable headroom. It also transfers to a different robot and simulator and remains effective under degraded observations, while experiments with autoregressive OpenVLA illustrate the distinction between available headroom and the ability to rank candidate rollouts. Retrieval behaves differently, improving the policy with the largest measured action-prior gap and providing further gains when combined with selection. Together, these results provide an empirical basis for characterizing test-time augmentation opportunities by separating capability that can be recovered from the frozen policy from behavioral priors that may need to be introduced externally.",
+      "authors": [
+        "Yuhwan Jeong",
+        "Kuk-Jin Yoon"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-18T08:11:31+00:00",
+      "link": "https://arxiv.org/pdf/2608.17484v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Embodied multimodal policies and VLA models, test-time augmentation",
+      "llm_evidence_cn": "具身多模态策略与VLA模型，测试时增强",
+      "llm_evidence": "具身多模态策略与VLA模型，测试时增强",
+      "canonical_evidence": "具身多模态策略与VLA模型，测试时增强",
+      "llm_tldr_en": "This paper introduces recoverable headroom and retrieval complementarity to diagnose whether an embodied VLA policy benefits more from additional stochastic sampling or external demonstration retrieval at test time, enabling targeted augmentation.",
+      "llm_tldr_cn": "本文针对冻结束的视觉-语言-动作策略在测试时如何选择额外采样或检索外部演示的问题，提出可回收余量与检索互补性两个测量因素。它们分别刻画策略自身随机 rollout 中可恢复的更好行为，以及外部动作先验对策略的补充程度。通过量化这两个因素，可以判断部署策略真正需要哪种干预，从而避免盲目增强。研究为具身多模态策略的测试时增强提供了系统诊断依据。",
+      "llm_tldr": "本文针对冻结束的视觉-语言-动作策略在测试时如何选择额外采样或检索外部演示的问题，提出可回收余量与检索互补性两个测量因素。它们分别刻画策略自身随机 rollout 中可恢复的更好行为，以及外部动作先验对策略的补充程度。通过量化这两个因素，可以判断部署策略真正需要哪种干预，从而避免盲目增强。研究为具身多模态策略的测试时增强提供了系统诊断依据。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.16794v1",
+      "source": "arxiv",
+      "title": "Neurosymbolic Embodied Agents",
+      "abstract": "Language and vision-language models generate plausible embodied plans but do not guarantee executability, as their outputs can violate environment dynamics or act on incorrectly grounded entities. We present a neurosymbolic agent that factors long-horizon household tasks into task-directed visual exploration and constrained symbolic planning. In the first phase, a vision-language model and exploration harness acquire goal-relevant predicates and instance bindings from egocentric observations and grounded interactions, producing a symbolic initial state. In the second, a PDDL transition model restricts decoding to tokens that extend applicable actions. Monte Carlo tree search then evaluates executable continuations using a domain-independent planning heuristic. The resulting plans are executable by construction under the transition model, with transfer to the environment conditioned on correct visual grounding. On VirtualHome and ALFWorld, open 4B-27B models exceed 90% success in both environments, and our smallest agent substantially outperforms a 27B direct visual policy in each. Constraints and search prove complementary rather than interchangeable: in ALFWorld either alone solves under a third of tasks, whereas their combination solves over 95%. The method also uses several times fewer generated tokens than extended thinking and far fewer model-visible images than direct interaction, and residual failures localize to state acquisition rather than plan generation without any specialized training.",
+      "authors": [
+        "Mohammad Albinhassan",
+        "Yuming Feng",
+        "Alessandra Russo",
+        "Pranava Madhyastha"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-17T16:50:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.16794v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "embodied agents, egocentric visual exploration, symbolic planning",
+      "llm_evidence_cn": "具身智能体、自我中心视觉探索、符号规划",
+      "llm_evidence": "具身智能体、自我中心视觉探索、符号规划",
+      "canonical_evidence": "具身智能体、自我中心视觉探索、符号规划",
+      "llm_tldr_en": "This paper presents a neurosymbolic embodied agent that decomposes long-horizon household tasks into visual exploration and constrained symbolic planning, using PDDL and MCTS to ensure executable plans.",
+      "llm_tldr_cn": "针对具身智能体长时程任务中语言模型计划不可执行的问题，本文提出神经符号具身智能体，将任务分解为有向视觉探索和受限符号规划：视觉语言模型从自我中心观察中提取谓词与实例绑定，PDDL转移模型限制解码，蒙特卡洛树搜索保证计划可执行。实验表明该框架能产生可执行计划，并支撑长时程具身推理，为神经符号方法在具身智能中的应用提供了新思路。",
+      "llm_tldr": "针对具身智能体长时程任务中语言模型计划不可执行的问题，本文提出神经符号具身智能体，将任务分解为有向视觉探索和受限符号规划：视觉语言模型从自我中心观察中提取谓词与实例绑定，PDDL转移模型限制解码，蒙特卡洛树搜索保证计划可执行。实验表明该框架能产生可执行计划，并支撑长时程具身推理，为神经符号方法在具身智能中的应用提供了新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.17717v1",
+      "source": "arxiv",
+      "title": "CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation",
+      "abstract": "A robot asked to \"place the cup near the red plate or the blue plate\" may reach the centroid between them and appear geometrically successful, while satisfying neither disjunct of the instruction. This silent semantic failure exposes a structural limitation of language-conditioned robot policies: representations that collapse a disjunctive instruction into a single connected set cannot preserve all feasible modes, and planners that commit to one action degrade under run-time mode uncertainty. We address this limitation with CompCPZ, a sound algebraic layer that language-conditioned learning systems wrap to recover multi-modal disjunctive representation, recursively composing per-primitive constrained polynomial zonotope enclosures along the language parse tree with distribution-free conformal coverage and sub-millisecond runtime. On a closed-loop ManiSkill3 tabletop-manipulation benchmark, CompCPZ outperforms convex set baselines, multi-peak decoders, and a zero-shot vision-language-action model (1,900/1,918 paired wins, p << 10^(-30)); the same compiler also transfers without retuning to planar real-robot trials on a Unitree Go2 quadruped under motion capture. These results suggest that compositional language grounding should be evaluated not only by reaching a decoded target, but by whether the represented feasibility set preserves the connected-component structure of the user's intent.",
+      "authors": [
+        "Zhen Zhang",
+        "Ahmad Hafez",
+        "Peng Xie",
+        "Yanliang Huang",
+        "Wenyuan Wu",
+        "Amr Alanwar"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-18T12:42:26+00:00",
+      "link": "https://arxiv.org/pdf/2608.17717v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "preserves multi-modal disjunctive intent in language-guided robot manipulation",
+      "llm_evidence_cn": "在语言引导的机器人操作中保留多模态析取意图",
+      "llm_evidence": "在语言引导的机器人操作中保留多模态析取意图",
+      "canonical_evidence": "在语言引导的机器人操作中保留多模态析取意图",
+      "llm_tldr_en": "CompCPZ adds a sound algebraic layer to language-conditioned policies, recursively composing constrained polynomial zonotopes to preserve disjunctive instruction modes.",
+      "llm_tldr_cn": "当机器人被要求把杯子放到红盘子附近或蓝盘子附近时，普通策略可能走到两者中间而满足不了任一意图。本文指出这是语言条件策略的结构性缺陷，并提出CompCPZ，一种声音代数层，它递归组合每个动作原语的约束多项式包络，按语言结构恢复多模态析取表示。这样能够在不崩塌任务模式的前提下保留所有可行模式，提高语言引导操作在模式不确定性下的正确性。该工作为语言条件具身策略提供了可组合的意图保持机制。",
+      "llm_tldr": "当机器人被要求把杯子放到红盘子附近或蓝盘子附近时，普通策略可能走到两者中间而满足不了任一意图。本文指出这是语言条件策略的结构性缺陷，并提出CompCPZ，一种声音代数层，它递归组合每个动作原语的约束多项式包络，按语言结构恢复多模态析取表示。这样能够在不崩塌任务模式的前提下保留所有可行模式，提高语言引导操作在模式不确定性下的正确性。该工作为语言条件具身策略提供了可组合的意图保持机制。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.17129v1",
+      "source": "arxiv",
+      "title": "PROBE: Manipulation-Grounded Visual Question Answering with VLM Agents",
+      "abstract": "Vision-language Models (VLMs) excel at 2D grounding, spatial reasoning and agentic tool-based planning in static scenes. However, consider asking a home robot \"Is my medication still in the cabinet?\" The answer may be physically hidden behind a row of containers that must first be moved aside. Answering such questions in real-world cluttered environments requires reasoning in dynamic scenes: distractors must be manipulated to reveal occluded objects, and each action changes the scene the model must reason over. We formalize this setting as Manipulation-Grounded Visual Question Answering (MG-VQA) and introduce PROBE, a framework for benchmarking and finetuning VLM agents on such tasks. We first develop PROBE-Sim, a high-fidelity tabletop simulator with everyday objects and a robot manipulator equipped with grasping and pushing tools. PROBE-Sim is used to create PROBE-Bench: an evaluation suite of 150 tasks across 6 question types on cluttered tabletop scenes, where a VLM perceives, picks up or pushes objects before answering. We observe consistent trend across all frontier VLMs: agentic tool-based methods outperform their perception-only baselines (8.0% on average) across all task types. We further design PROBE-Agent, a finetuning recipe to distill successful trajectories from a powerful teacher foundation model to a smaller open-weight model using a mixed data recipe that encourages manipulation-efficient question answering. PROBE Agent finetuned models outperform their off-the-shelf agent baseline (11.5% on average) and demonstrate positive transfer to unseen objects and a held-out task. We validate sim-to-real transfer by deploying PROBE-Agent finetuned policies in real-world tabletop environments.",
+      "authors": [
+        "Vineet Bhat",
+        "Siyi Chen",
+        "Alex Zook",
+        "Xuning Yang",
+        "Stan Birchfield",
+        "Valts Blukis",
+        "Jonathan Tremblay"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-08-17T21:03:31+00:00",
+      "link": "https://arxiv.org/pdf/2608.17129v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "manipulation-grounded VQA with VLM agents for home robots",
+      "llm_evidence_cn": "基于操作的家用机器人VLM问答框架",
+      "llm_evidence": "基于操作的家用机器人VLM问答框架",
+      "canonical_evidence": "基于操作的家用机器人VLM问答框架",
+      "llm_tldr_en": "PROBE formalizes Manipulation-Grounded Visual Question Answering for home robots and introduces a high-fidelity tabletop simulator plus a finetuning framework to train VLM agents that manipulate distractors and answer questions in dynamic scenes.",
+      "llm_tldr_cn": "回答家用机器人场景中的物理遮挡问题需要推理动态场景并操作干扰物。本文形式化操作接地视觉问答（MG-VQA），并引入PROBE框架，包含高保真桌面仿真器PROBE-Sim，用于基准测试和微调VLM智能体。该工作将静态场景VQA扩展到需要因果操作的动态场景，为具身VQA研究提供新基准与方法。",
+      "llm_tldr": "回答家用机器人场景中的物理遮挡问题需要推理动态场景并操作干扰物。本文形式化操作接地视觉问答（MG-VQA），并引入PROBE框架，包含高保真桌面仿真器PROBE-Sim，用于基准测试和微调VLM智能体。该工作将静态场景VQA扩展到需要因果操作的动态场景，为具身VQA研究提供新基准与方法。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.17320v1",
+      "source": "arxiv",
+      "title": "Robust Brachiation on a Life-Sized Dual-Arm Robot Using Waypoint-Guided Reinforcement Learning",
+      "abstract": "Brachiation is a form of locomotion in which primates move primarily using their arms, enabling traversal in environments without footholds. However, this motion requires highly coordinated whole-body movement and precise timing control for bar grasping and release. As a result, achieving robust behavior on life-sized robotic platforms remains challenging. In this study, we present a reinforcement learning-based method to realize brachiation on a life-sized dual-arm robot. The core of the proposed approach is Waypoint-Guided Reinforcement Learning (WGRL), a learning framework for inducing non-linear and complex motions. For high-difficulty tasks where imitation learning data are unavailable, WGRL guides behavior acquisition by sparsely specifying waypoints for the end-effector trajectory, while whole-body motion is generated through reinforcement learning. In addition, by integrating the waypoint-following guidance with rewards based on task success and mechanical energy, and training in an environment designed for Sim-to-Real transfer, the proposed method achieves both forward progression and motion stability. The acquired behavior is evaluated through Sim-to-Sim experiments under monkey-bar environments with geometric variations and hardware experiments, confirming robust brachiation including failure recovery behavior. This study provides effective learning design guidelines for realizing arm-based locomotion on life-sized robotic hardware and expanding the traversable workspace of robots.",
+      "authors": [
+        "Ayumu Iwata",
+        "Kento Kawaharazuka",
+        "Keita Yoneda",
+        "Takahiro Hattori",
+        "Kei Okada"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-18T03:24:50+00:00",
+      "link": "https://arxiv.org/pdf/2608.17320v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "reinforcement learning for robot locomotion, embodied robots",
+      "llm_evidence_cn": "强化学习，机器人运动，具身机器人",
+      "llm_evidence": "强化学习，机器人运动，具身机器人",
+      "canonical_evidence": "强化学习，机器人运动，具身机器人",
+      "llm_tldr_en": "Waypoint-Guided Reinforcement Learning (WGRL) enables robust brachiation on a life-sized dual-arm robot by guiding nonlinear motions with waypoints in the absence of imitation data.",
+      "llm_tldr_cn": "摆荡运动需要高度协调的全身运动与精确的抓放时机，在真人大小的双臂机器人上实现稳健行为仍很困难。本文提出路标引导强化学习（WGRL），在没有模仿学习数据的高难度任务中，通过路标引导行为的获取，使机器人能够学习复杂的非线性摆荡运动。在物理平台上验证了该方法的鲁棒性，展示了双臂机器人利用手臂进行无脚支撑环境下运动的可行性。",
+      "llm_tldr": "摆荡运动需要高度协调的全身运动与精确的抓放时机，在真人大小的双臂机器人上实现稳健行为仍很困难。本文提出路标引导强化学习（WGRL），在没有模仿学习数据的高难度任务中，通过路标引导行为的获取，使机器人能够学习复杂的非线性摆荡运动。在物理平台上验证了该方法的鲁棒性，展示了双臂机器人利用手臂进行无脚支撑环境下运动的可行性。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.17600v1",
+      "source": "arxiv",
+      "title": "LIBERO-VIFO: Benchmarking the Capability and Safety of Visual Cue Following in Vision-Language-Action Models",
+      "abstract": "Visual cues are increasingly adopted to guide robot learning, but whether Vision-Language-Action (VLA) models can reliably follow authorized cues while disregarding unauthorized ones remains unclear. Existing work covers only a narrow range of cue forms and focuses on final task success, providing only a coarse assessment of cue-following capability. Treating all visual cues as authorized also leaves safety risks of unauthorized following unexplored. To address these gaps, we introduce LIBERO-VIFO, a benchmark to evaluate both the capability and safety of visual cue following in VLA models. LIBERO-VIFO defines eight visual cue families spanning diverse forms. A total of four protocols in two parts are defined: Part I tests cue understanding and authorized following, while Part II evaluates unauthorized visual cue following under language-cue conflict and empty language conditions. Evaluating seven VLA models reveals that although visual cue understanding does not reliably translate into execution, current VLAs are able to execute cue-indicated tasks without language instruction, exposing an emerging risk of unauthorized visual cue following. Extended experiments on scene-instantiated cues, safety-critical settings, and real-robot deployment corroborate these findings. LIBERO-VIFO brings both the capability and safety of visual cue following into systematic evaluation, establishing visual-centric safety as a new perspective for the VLA community.",
+      "authors": [
+        "Zhengyan Qian",
+        "Rui Yan",
+        "Alex Jinpeng Wang",
+        "Jinhui Tang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-18T10:07:17+00:00",
+      "link": "https://arxiv.org/pdf/2608.17600v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "VLA models for visual cue following, benchmark for embodied robot learning",
+      "llm_evidence_cn": "VLA模型视觉线索跟随，具身机器人学习基准",
+      "llm_evidence": "VLA模型视觉线索跟随，具身机器人学习基准",
+      "canonical_evidence": "VLA模型视觉线索跟随，具身机器人学习基准",
+      "llm_tldr_en": "LIBERO-VIFO is a benchmark for visual cue following in VLA models, defining eight cue families and two-part protocols to evaluate both capability and safety of following authorized cues while rejecting unauthorized ones.",
+      "llm_tldr_cn": "本文针对VLA模型视觉线索跟随能力与安全性缺乏系统评测的问题，提出LIBERO-VIFO基准。基准定义了八种视觉线索族，覆盖多种线索形式，并包含能力协议和安全协议，用于评估模型是否遵循授权线索、拒斥未授权线索。实验表明该基准能精细揭示VLA模型在线索跟随上的不足与安全隐患，为机器人视觉引导学习的安全部署提供评测标准。",
+      "llm_tldr": "本文针对VLA模型视觉线索跟随能力与安全性缺乏系统评测的问题，提出LIBERO-VIFO基准。基准定义了八种视觉线索族，覆盖多种线索形式，并包含能力协议和安全协议，用于评估模型是否遵循授权线索、拒斥未授权线索。实验表明该基准能精细揭示VLA模型在线索跟随上的不足与安全隐患，为机器人视觉引导学习的安全部署提供评测标准。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-19T20:48:57.556146+00:00",
-  "updated_date": "20260819",
+  "generated_at": "2026-08-20T20:48:51.080413+00:00",
+  "updated_date": "20260820",
   "carryover_days": 9,
   "tag_states": {
     "embodied-rl": {
-      "updated_date": "20260819",
+      "updated_date": "20260820",
       "carryover_days": 9,
       "items": []
     }
