@@ -6,73 +6,62 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-20
-- 运行时间：2026-08-20 20:59:10 UTC
+- 最新运行日期：2026-08-21
+- 运行时间：2026-08-21 20:05:29 UTC
 - 运行状态：成功
-- 本次总论文数：17
+- 本次总论文数：14
 - 精读区：6
-- 速读区：11
+- 速读区：8
 
 ### 今日简报（AI）
-今日精读17篇，重点聚焦视觉导航与灵巧操作，另有速读覆盖人机交互、记忆压缩及动作生成。  
-最值得关注两篇9分工作：DevGRU以碰撞感知循环模型提升深度视觉导航，ADEPT通过预训练+后训练加速强化学习灵巧操作。  
-下一步可优先体验这两类技术的开源实现，并留意仿真到真机迁移的实用经验。
-- 详情：[/202608/20/README](/202608/20/README)
+今日精读14篇论文，聚焦强化学习与具身智能，其中两篇获9.0高分。最值得关注的是Pareto条件强化学习的反事实解释，以及人形机器人视觉-语言-动作控制的立体证据路由方法。建议优先精读这两篇高分工作，速读可关注离线强化学习与动态场景视觉语言预训练方向。
+- 详情：[/202608/21/README](/202608/21/README)
 
 ### 精读区论文标签
-1. [DevGRU: Depth-guided Visual Navigation using a Collision-aware Recurrent Model](/202608/20/2608.18470v1-devgru-depth-guided-visual-navigation-using-a-collision-aware-recurrent-model)  
+1. [Command-Space Counterfactual Explanations for Pareto-Conditioned Reinforcement Learning](/202608/21/2608.14963v1-command-space-counterfactual-explanations-for-pareto-conditioned-reinforcement-learning)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：深度引导的视觉导航系统，具备碰撞避免能力
-2. [ADEPT: Accelerating Dexterity via Pre-Training and Post-Training using Reinforcement Learning](/202608/20/2608.19182v1-adept-accelerating-dexterity-via-pre-training-and-post-training-using-reinforcement-learning)  
+   evidence：多目标策略的强化学习方法
+2. [EATR-Stereo: Embodiment-Aware Token Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control](/202608/21/2608.17453v3-eatr-stereo-embodiment-aware-token-routing-of-paired-stereo-evidence-for-humanoid-vision-language-action-control)  
    标签：评分：9.0/10、query:embodied-rl
-   evidence：高自由度机器人上用于仿真到真实灵巧操作的端到端强化学习
-3. [Imagining Recovery: Inference-Time Counterfactual Realignment for Vision-Language-Action Models](/202608/20/2608.14822v1-imagining-recovery-inference-time-counterfactual-realignment-for-vision-language-action-models)  
+   evidence：具身感知令牌路由用于人形VLA控制
+3. [HODAgent: Towards On-Demand, Responsive Humanoids for Physical World Human Interaction](/202608/21/2608.17584v2-hodagent-towards-on-demand-responsive-humanoids-for-physical-world-human-interaction)  
+   标签：评分：9.0/10、query:embodied-rl
+   evidence：面向服务场景的具身人形智能体
+4. [Learning the Right Abstraction: Neural Reduced Dynamics for Complex Robot Control](/202608/21/2608.19375v1-learning-the-right-abstraction-neural-reduced-dynamics-for-complex-robot-control)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向机器人VLA策略的推理时恢复方法
-4. [RoboStriker: Latent-Space Strategic Games for Autonomous Humanoid Boxing](/202608/20/2608.16195v1-robostriker-latent-space-strategic-games-for-autonomous-humanoid-boxing)  
+   evidence：神经降维动力学用于强化学习中的高效机器人控制
+5. [EXIMO: VLM Guided Exploration of VLA Policies](/202608/21/2608.19891v1-eximo-vlm-guided-exploration-of-vla-policies)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：用于人形机器人拳击的多智能体强化学习
-5. [EATR-Stereo: Embodiment-Aware Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control](/202608/20/2608.17453v1-eatr-stereo-embodiment-aware-routing-of-paired-stereo-evidence-for-humanoid-vision-language-action-control)  
+   evidence：用强化学习微调VLA策略用于具身机器人操作
+6. [Learning Highly Dynamic Skills Transition for Quadruped Jumping Through Constrained Space](/202608/21/2608.19977v1-learning-highly-dynamic-skills-transition-for-quadruped-jumping-through-constrained-space)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向人形VLA控制的位姿感知立体路由
-6. [EATR-Stereo: Embodiment-Aware Token Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control](/202608/20/2608.17453v2-eatr-stereo-embodiment-aware-token-routing-of-paired-stereo-evidence-for-humanoid-vision-language-action-control)  
-   标签：评分：8.0/10、query:embodied-rl
-   evidence：面向人形机器人的具身感知VLA控制
+   evidence：层级强化学习驱动四足机器人穿越窄门；具身导航+视觉反馈
 
 ### 速读区论文标签
-1. [HODAgent: Towards On-Demand, Responsive Humanoids for Physical World Human Interaction](/202608/20/2608.17584v1-hodagent-towards-on-demand-responsive-humanoids-for-physical-world-human-interaction)  
+1. [RoMAN-Flow: Taming Autoregressive Normalizing Flows for Offline Reinforcement Learning in Robotic Manipulation](/202608/21/2608.20208v1-roman-flow-taming-autoregressive-normalizing-flows-for-offline-reinforcement-learning-in-robotic-manipulation)  
    标签：评分：8.0/10、query:embodied-rl
-   evidence：面向服务交互的具身人形机器人系统
-2. [Remember Smarter: Visual History Compressor and Hyperbolic Experience Space for Robotic Memory](/202608/20/2608.15269v1-remember-smarter-visual-history-compressor-and-hyperbolic-experience-space-for-robotic-memory)  
+   evidence：面向机器人操作的离线强化学习框架
+2. [GaussMemory: Task-Driven 3D Gaussian Scene Memory for Long-Horizon Robotic Manipulation](/202608/21/2608.14986v1-gaussmemory-task-driven-3d-gaussian-scene-memory-for-long-horizon-robotic-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：面向长程VLA机器人策略的记忆模块
-3. [Unified Condition-Action Modeling for Accurate One-Step Action Generation](/202608/20/2608.16153v2-unified-condition-action-modeling-for-accurate-one-step-action-generation)  
+   evidence：端到端任务驱动的3D记忆用于操作
+3. [CL4D: Contrastive Language-4D Pretraining for Vision-Language Reasoning in Dynamic Scenes](/202608/21/2608.18734v1-cl4d-contrastive-language-4d-pretraining-for-vision-language-reasoning-in-dynamic-scenes)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：面向机器人操作的单步动作生成的统一条件-动作建模，体现端到端动作学习
-4. [Reuse Before You Retrieve: Diagnosing Headroom and Complementarity for Test-Time Augmentation of Embodied Multimodal Policies](/202608/20/2608.17484v1-reuse-before-you-retrieve-diagnosing-headroom-and-complementarity-for-test-time-augmentation-of-embodied-multimodal-policies)  
+   evidence：面向动态场景的视觉-语言预训练，赋能具身推理
+4. [MILD: Tractable Terrain Modeling for Learning Improved Bipedal Locomotion on Deformable Surfaces](/202608/21/2608.19955v1-mild-tractable-terrain-modeling-for-learning-improved-bipedal-locomotion-on-deformable-surfaces)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：具身多模态策略与VLA模型，测试时增强
-5. [CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation](/202608/20/2608.17717v1-compcpz-preserving-multi-modal-intent-in-language-guided-robot-manipulation)  
+   evidence：基于深度强化学习的可变形地形双足运动控制
+5. [DECOWAM: Decoupled Whole-Body World-Action Model for Legged Mobile Manipulation](/202608/21/2608.20114v1-decowam-decoupled-whole-body-world-action-model-for-legged-mobile-manipulation)  
    标签：评分：7.0/10、query:embodied-rl
-   evidence：在语言引导的机器人操作中保留多模态析取意图
-6. [NestDex: Nested Policy Learning with Copilot Assisted Teleoperation for Dexterous Manipulation](/202608/20/2608.13362v1-nestdex-nested-policy-learning-with-copilot-assisted-teleoperation-for-dexterous-manipulation)  
+   evidence：用于腿式移动操作的端到端世界-动作模型
+6. [Dream2Reward: Transition-Alignment Reward Models from Positive Demonstrations for Robotic Manipulation](/202608/21/2608.18787v1-dream2reward-transition-alignment-reward-models-from-positive-demonstrations-for-robotic-manipulation)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：灵巧操作，面向具身机器人的嵌套策略学习
-7. [Zetta $ζ$: An Efficient Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence](/202608/20/2608.16590v1-zetta--an-efficient-closed-loop-embodied-harness-for-self-evolving-physical-intelligence)  
+   evidence：从演示中学习机器人操作的奖励模型
+7. [World-Model-Grounded LLM Planning for AUV and ASV Navigation Near Offshore Wind Farms](/202608/21/2608.19661v1-world-model-grounded-llm-planning-for-auv-and-asv-navigation-near-offshore-wind-farms)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：用于物理智能的闭环具身框架，在线进化批评者与技能
-8. [Neurosymbolic Embodied Agents](/202608/20/2608.16794v1-neurosymbolic-embodied-agents)  
+   evidence：基于世界模型的LLM规划用于AUV与ASV导航
+8. [Planning-Oriented End-to-End Autonomous Driving: Architectures, Evaluation, and Emerging Paradigms](/202608/21/2608.20111v1-planning-oriented-end-to-end-autonomous-driving-architectures-evaluation-and-emerging-paradigms)  
    标签：评分：6.0/10、query:embodied-rl
-   evidence：具身智能体、自我中心视觉探索、符号规划
-9. [PROBE: Manipulation-Grounded Visual Question Answering with VLM Agents](/202608/20/2608.17129v1-probe-manipulation-grounded-visual-question-answering-with-vlm-agents)  
-   标签：评分：6.0/10、query:embodied-rl
-   evidence：基于操作的家用机器人VLM问答框架
-10. [Robust Brachiation on a Life-Sized Dual-Arm Robot Using Waypoint-Guided Reinforcement Learning](/202608/20/2608.17320v1-robust-brachiation-on-a-life-sized-dual-arm-robot-using-waypoint-guided-reinforcement-learning)  
-   标签：评分：6.0/10、query:embodied-rl
-   evidence：强化学习，机器人运动，具身机器人
-11. [LIBERO-VIFO: Benchmarking the Capability and Safety of Visual Cue Following in Vision-Language-Action Models](/202608/20/2608.17600v1-libero-vifo-benchmarking-the-capability-and-safety-of-visual-cue-following-in-vision-language-action-models)  
-   标签：评分：6.0/10、query:embodied-rl
-   evidence：VLA模型视觉线索跟随，具身机器人学习基准
+   evidence：面向规划的端到端自动驾驶系统综述
 
 
 <div class="dpr-home-promo-card">
