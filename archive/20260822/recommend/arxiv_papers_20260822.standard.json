@@ -1,0 +1,298 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-08-22T20:17:50.613652+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2608.17027v1",
+      "source": "arxiv",
+      "title": "FetchMan: Learning Visual Humanoid Loco-Manipulation Policies from Simulated Experiences",
+      "abstract": "Visual loco-manipulation policies that can generalize to novel scenes and objects have long been a goal of robotics research. However, today's data-hungry algorithms make collecting sufficient demonstrations a struggle for tabletop manipulation, and even more so for humanoids that must also walk and balance. Learning from simulated data and transferring that behavior to the real world, as is commonly done in locomotion, sidesteps this struggle, so we replicate that recipe for loco-manipulation. In doing so, we find that cloning synthetic demonstrations results in a low performance ceiling no matter the amount of training data. Reinforcement learning breaks through it, and refining the cloned policy with Flow-GRPO on a single sparse reward yields performance that synthetic behavior cloning cannot match. Together, these stages form our end-to-end sim-to-real pipeline spanning more than 150,000 scenes, which we use to train FetchMan. We evaluate it on FetchMan-Bench, a simulation benchmark we release, and deploy it zero-shot on a real Unitree G1, where our single-object reach-and-pick policy walks to and grasps a target across unseen scenes at 73.3% success. Finally, we extend this recipe to multi-object training, a first step toward loco-manipulation generalist policies at this data scale.",
+      "authors": [
+        "Omar Rayyan",
+        "Zhi Li",
+        "Max Argus",
+        "Yuxin Jiang",
+        "Chang Yu",
+        "Chenfanfu Jiang",
+        "Yuchen Cui"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-17T18:24:41+00:00",
+      "link": "https://arxiv.org/pdf/2608.17027v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Reinforcement learning for visual humanoid loco-manipulation",
+      "llm_evidence_cn": "基于强化学习的视觉人形移动操作",
+      "llm_evidence": "基于强化学习的视觉人形移动操作",
+      "canonical_evidence": "基于强化学习的视觉人形移动操作",
+      "llm_tldr_en": "FetchMan learns visual humanoid loco-manipulation policies from simulated experiences, showing that cloning synthetic demonstrations plateaus while refining the cloned policy with Flow-GRPO reinforcement learning breaks through.",
+      "llm_tldr_cn": "人形机器人需要同时行走、平衡和操作，数据获取比桌面操作更困难。FetchMan采用从模拟数据学习再迁移到真实的范式，先用合成演示克隆策略，但发现克隆存在性能上限，于是用Flow-GRPO在单一稀疏奖励上对克隆策略进行强化学习精修，突破克隆上限。该方法展示了强化学习对视觉人形移动操作策略的关键作用。",
+      "llm_tldr": "人形机器人需要同时行走、平衡和操作，数据获取比桌面操作更困难。FetchMan采用从模拟数据学习再迁移到真实的范式，先用合成演示克隆策略，但发现克隆存在性能上限，于是用Flow-GRPO在单一稀疏奖励上对克隆策略进行强化学习精修，突破克隆上限。该方法展示了强化学习对视觉人形移动操作策略的关键作用。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.16794v2",
+      "source": "arxiv",
+      "title": "Neurosymbolic Embodied Agents",
+      "abstract": "Language and vision-language models generate plausible embodied plans but do not guarantee executability, as their outputs can violate environment dynamics or act on incorrectly grounded entities. We present a neurosymbolic agent that factors long-horizon household tasks into task-directed visual exploration and constrained symbolic planning. In the first phase, a vision-language model and exploration harness acquire goal-relevant predicates and instance bindings from egocentric observations and grounded interactions, producing a symbolic initial state. In the second, a PDDL transition model restricts decoding to tokens that extend applicable actions. Monte Carlo tree search then evaluates executable continuations using a domain-independent planning heuristic. The resulting plans are executable by construction under the transition model, with transfer to the environment conditioned on correct visual grounding. On VirtualHome and ALFWorld, open 4B-27B models exceed 90% success in both environments, and our smallest agent substantially outperforms a 27B direct visual policy in each. Constraints and search prove complementary rather than interchangeable: in ALFWorld either alone solves under a third of tasks, whereas their combination solves over 95%. The method also uses several times fewer generated tokens than extended thinking and far fewer model-visible images than direct interaction, and residual failures localize to state acquisition rather than plan generation without any specialized training.",
+      "authors": [
+        "Mohammad Albinhassan",
+        "Yuming Feng",
+        "Alessandra Russo",
+        "Pranava Madhyastha"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-17T16:50:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.16794v2",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "neurosymbolic agent for long-horizon embodied tasks using vision-language and symbolic planning; embodied robots",
+      "llm_evidence_cn": "面向长时程具身任务的神经符号智能体，结合视觉语言与符号规划",
+      "llm_evidence": "面向长时程具身任务的神经符号智能体，结合视觉语言与符号规划",
+      "canonical_evidence": "面向长时程具身任务的神经符号智能体，结合视觉语言与符号规划",
+      "llm_tldr_en": "A neurosymbolic agent factors long-horizon household tasks into visual exploration and constrained symbolic planning, using VLM and MCTS to produce executable plans.",
+      "llm_tldr_cn": "语言和视觉语言模型能生成看似合理的具身计划，但可能违反环境动态或错误接地实体。论文提出神经符号具身智能体，将长时程家务任务分解为任务导向的视觉探索与约束符号规划：先用VLM和探索框架获取目标谓词与实例绑定，再用PDDL转移模型限制解码，并通过蒙特卡洛树搜索评估可执行续段。实验表明生成的计划可执行性强，能够应对复杂家庭环境。该工作为具身智能体的可靠规划提供了神经符号结合的新思路。",
+      "llm_tldr": "语言和视觉语言模型能生成看似合理的具身计划，但可能违反环境动态或错误接地实体。论文提出神经符号具身智能体，将长时程家务任务分解为任务导向的视觉探索与约束符号规划：先用VLM和探索框架获取目标谓词与实例绑定，再用PDDL转移模型限制解码，并通过蒙特卡洛树搜索评估可执行续段。实验表明生成的计划可执行性强，能够应对复杂家庭环境。该工作为具身智能体的可靠规划提供了神经符号结合的新思路。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.16889v1",
+      "source": "arxiv",
+      "title": "Don't Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask Exploration and Transition-aware Memory",
+      "abstract": "Long-horizon robot manipulation chains many contact-rich skills into one multi-stage task. Vision-language-action (VLA) models increasingly master the individual skills, yet the chain still fails: errors compound beyond the policy's ability to correct, and one subtask silently constrains the next. A promising recipe freezes the VLA and puts an LLM agent in charge: it plans in language, moves in free space with analytic primitives, invokes the VLA only for contact-rich segments, and writes adaptation into language memory. Applied to long horizons, it breaks twice. (1) Competence comes from whole-task exploration at test time, whose cost is multiplicative in stages: if one stage needs T episodes, a K-stage task needs about T^K, and a failure does not reveal which stage caused it. (2) It has no representation of transitions: the VLA primitive carries an exit but no entry condition, so a subtask can succeed in a form its successor cannot use. We present BATON. Against (1), BATON makes the subtask the unit of exploration: each is explored in the cheap short-horizon regime and its solution stored in memory; a long-horizon trajectory is then composed from these solutions rather than discovered whole. Cost becomes additive (T*K) and every failure is attributed to a single stage. Against (2), BATON equips exploration with a transition-aware memory. Within a subtask, a verifier agent governs the invocation transition: the VLA is called only after the wrist view confirms the scene is ready. Across subtasks, a handoff transition restores an entry state disturbed by the predecessor's residue, and a lookahead transition selects the strategy whose outcome the successor can inherit. No parameters are updated. On the long-horizon benchmark RoboMemArena, BATON improves task success by 11.6% and cumulative success by 14.9% over the SoTA.",
+      "authors": [
+        "Bingxin Xu",
+        "Yuzhang Shang",
+        "Emilio Ferrara"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-08-17T17:59:57+00:00",
+      "link": "https://arxiv.org/pdf/2608.16889v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "long-horizon robot manipulation with VLA and LLM agent; embodied robotic learning",
+      "llm_evidence_cn": "面向长时程机器人操作，结合VLA模型与LLM智能体",
+      "llm_evidence": "面向长时程机器人操作，结合VLA模型与LLM智能体",
+      "canonical_evidence": "面向长时程机器人操作，结合VLA模型与LLM智能体",
+      "llm_tldr_en": "BATON addresses long-horizon robot manipulation by freezing a VLA policy and using an LLM agent with subtask exploration and transition-aware memory to reduce compounding errors.",
+      "llm_tldr_cn": "长时程机器人操作需要将多个接触式技能串联，但误差随阶段累积，单个子任务会悄悄限制下一个子任务。一种有前景的做法是冻结VLA策略，由LLM智能体负责语言规划、分析原语移动和接触式片段调用，并将适应经验写入语言记忆。论文指出该方法在长时程上会因整任务探索成本呈阶段数乘法增长而失效，并提出子任务级探索和迁移感知记忆来应对。实验表明新机制能减少误差累积，提升长时程操作成功率。该研究为复杂机器人操作提供了可扩展的智能体方案。",
+      "llm_tldr": "长时程机器人操作需要将多个接触式技能串联，但误差随阶段累积，单个子任务会悄悄限制下一个子任务。一种有前景的做法是冻结VLA策略，由LLM智能体负责语言规划、分析原语移动和接触式片段调用，并将适应经验写入语言记忆。论文指出该方法在长时程上会因整任务探索成本呈阶段数乘法增长而失效，并提出子任务级探索和迁移感知记忆来应对。实验表明新机制能减少误差累积，提升长时程操作成功率。该研究为复杂机器人操作提供了可扩展的智能体方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.18077v1",
+      "source": "arxiv",
+      "title": "Hydra-0: Action Flow for Generalist World Modeling and Control",
+      "abstract": "We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion. This shared visual interface enables generalist world modeling and control by learning action consequences across embodiments, tasks, environments, and video-generation backbones. Our best configuration achieves 90.4% lower robot-motion error and 60.2% lower object-motion error than our action-conditioned baseline, while supporting zero-shot composition and data-efficient adaptation. On the RoboLab benchmark, Hydra-0 achieves a Pearson correlation of r=0.96 between replayed and reference success rates. Finally, we uncover an emergent inverse mode of this interface: a world action model that predicts compatible robot motion from desired object flow transferred from a human demonstration. A trained action head maps the resulting latent features to executable actions without requiring task-specific expert robot demonstrations. Together, these results demonstrate the potential of action flow as a shared control interface connecting heterogeneous training data, open-loop policy evaluation, and robot control.",
+      "authors": [
+        "Hongyu Li",
+        "Bowen Wen",
+        "Xinghao Zhu",
+        "Yixuan Wang",
+        "Yilun Du",
+        "Yunzhu Li",
+        "George Konidaris",
+        "Stan Birchfield",
+        "Soha Pouya",
+        "Chenran Li",
+        "Yan Chang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-18T17:59:30+00:00",
+      "link": "https://arxiv.org/pdf/2608.18077v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "generalist world model and control across embodiments via action flow as pixel motion",
+      "llm_evidence_cn": "将动作流表示为像素运动，实现跨具身通用世界模型与控制",
+      "llm_evidence": "将动作流表示为像素运动，实现跨具身通用世界模型与控制",
+      "canonical_evidence": "将动作流表示为像素运动，实现跨具身通用世界模型与控制",
+      "llm_tldr_en": "Presents a generalist world model conditioned on action flow, representing robot actions as pixel motion; lower robot-motion error by 90.4% and supports zero-shot composition.",
+      "llm_tldr_cn": "该文提出Hydra-0，一种以动作流为条件、将机器人动作表示为像素运动的通用世界模型。通过这一共享视觉接口，可以跨具身、任务、环境及视频生成骨干学习动作后果，实现通用控制。最佳配置相比动作条件基线降低90.4%的机器人运动误差和60.2%的物体运动误差，支持零样本组合和数据高效适应。在RoboLab基准上，重放成功率与参考成功率相关性达0.96，并发现可预测所需机器人运动的逆模式。",
+      "llm_tldr": "该文提出Hydra-0，一种以动作流为条件、将机器人动作表示为像素运动的通用世界模型。通过这一共享视觉接口，可以跨具身、任务、环境及视频生成骨干学习动作后果，实现通用控制。最佳配置相比动作条件基线降低90.4%的机器人运动误差和60.2%的物体运动误差，支持零样本组合和数据高效适应。在RoboLab基准上，重放成功率与参考成功率相关性达0.96，并发现可预测所需机器人运动的逆模式。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "embodied robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.18410v1",
+      "source": "arxiv",
+      "title": "Role-Conditioned Sub-Token Routing for Efficient Vision-Language-Action Policies",
+      "abstract": "Vision-Language-Action (VLA) models process long multimodal token sequences, making inference expensive in both memory and computation. Existing efficiency methods mainly reduce visual tokens, but aggressive token pruning becomes fragile because removing a token discards its entire representation. Sub-token compression provides a complementary alternative by retaining more tokens while reducing their value width. However, directly applying sub-token compression to VLA policies is less effective because information important for perception, language understanding, and control is distributed differently across the multimodal representation.   We introduce Role-Conditioned Sub-Token Routing (RoleSub), which learns how to compress the value representations of retained tokens. After visual token reduction, RoleSub partitions each retained value representation into groups in an orthogonal space and uses a lightweight router to determine which groups should be preserved. The routing decision is conditioned on the token representation, a learned latent role representation, and language context. The same mechanism can also be applied to language values, allowing visual and language representations to be compressed without removing additional tokens.   We evaluate RoleSub on OpenVLA-OFT-7B across the four LIBERO suites. At matched visual-KV budgets, RoleSub outperforms a trained token-only control in 33 of 36 settings, with the largest gains under aggressive compression. Combining visual and language compression reduces total KV to 9.2--11.3% of the original while retaining strong control performance on most tasks. These results show that reducing the representation within retained tokens provides an effective complement to token pruning for aggressive VLA compression.",
+      "authors": [
+        "Wei Jiang",
+        "Wei Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-19T00:38:23+00:00",
+      "link": "https://arxiv.org/pdf/2608.18410v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Efficient sub-token compression for end-to-end VLA policies",
+      "llm_evidence_cn": "面向端到端VLA策略的高效子令牌压缩",
+      "llm_evidence": "面向端到端VLA策略的高效子令牌压缩",
+      "canonical_evidence": "面向端到端VLA策略的高效子令牌压缩",
+      "llm_tldr_en": "Proposes role-conditioned sub-token routing to compress multimodal representations in VLA policies, reducing inference cost while retaining information for perception, language, and control.",
+      "llm_tldr_cn": "针对VLA模型因长多模态令牌序列导致的推理开销问题，论文提出角色条件化子令牌路由(RoleSub)。该方法不再完全删除视觉令牌，而是根据感知、语言与控制信息的角色差异，学习对子令牌的值表示进行压缩，从而在保留更多令牌的同时降低计算代价。实验显示RoleSub能在保持策略性能的情况下实现较高压缩率，为端到端机器人策略的高效部署提供了新方案。",
+      "llm_tldr": "针对VLA模型因长多模态令牌序列导致的推理开销问题，论文提出角色条件化子令牌路由(RoleSub)。该方法不再完全删除视觉令牌，而是根据感知、语言与控制信息的角色差异，学习对子令牌的值表示进行压缩，从而在保留更多令牌的同时降低计算代价。实验显示RoleSub能在保持策略性能的情况下实现较高压缩率，为端到端机器人策略的高效部署提供了新方案。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.18672v1",
+      "source": "arxiv",
+      "title": "Orienteering Problem with Uncertain Time-Varying Rewards: Framework and Benchmark for Everyday Service Robotics",
+      "abstract": "We present the orienteering problem with uncertain time-varying rewards (OP-UTVR), a novel variant of the orienteering problem (OP). While most existing OP formulations assume rewards to be known in advance, practical applications involve uncertain and time-varying rewards, as with shifting customer demand for delivery agents. OP-UTVR relaxes this assumption by allowing agents to estimate reward dynamics from observations and forecast future rewards. This enables informed routing decisions despite stochastic reward changes and inevitable prediction errors. We address this problem using three planners that differ in planning horizon and online adaptivity, and derive theoretical bounds on their performance under reward stochasticity. We further introduce a mobile service robot benchmark for OP-UTVR, where a robot navigates among pedestrians in indoor environments. Experiments reveal trade-offs between planning horizon and adaptivity, and demonstrate the effectiveness of long-horizon planning with online adaptation.",
+      "authors": [
+        "Masafumi Endo",
+        "Kohei Honda",
+        "Yuu Jinnai",
+        "Ryo Yonetani"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-19T08:24:40+00:00",
+      "link": "https://arxiv.org/pdf/2608.18672v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "orienteering route planning for everyday service robots",
+      "llm_evidence_cn": "面向日常服务机器人的路径规划定向运动问题",
+      "llm_evidence": "面向日常服务机器人的路径规划定向运动问题",
+      "canonical_evidence": "面向日常服务机器人的路径规划定向运动问题",
+      "llm_tldr_en": "Presents OP-UTVR, an orienteering variant with uncertain time-varying rewards for service robots, plus three planners with different adaptivity and theoretical performance bounds, supporting delivery routing decisions.",
+      "llm_tldr_cn": "现有定向运动问题假设奖励已知，无法适用于服务机器人面临的不确定且时变奖励场景。为此提出OP-UTVR问题，让智能体从观测中估计奖励动态并预测未来，并设计三种规划周期与在线适应性不同的规划器来做出路由决策。文章还推导了性能理论界限并构建基准，为日常服务机器人在不确定环境中的路径规划提供了新框架。",
+      "llm_tldr": "现有定向运动问题假设奖励已知，无法适用于服务机器人面临的不确定且时变奖励场景。为此提出OP-UTVR问题，让智能体从观测中估计奖励动态并预测未来，并设计三种规划周期与在线适应性不同的规划器来做出路由决策。文章还推导了性能理论界限并构建基准，为日常服务机器人在不确定环境中的路径规划提供了新框架。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "robot navigation",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.19490v1",
+      "source": "arxiv",
+      "title": "Fine-Tuning VLAs with Self-Demonstrated Generative Control for Multi-Task Manipulation",
+      "abstract": "State-of-the-art vision-language-action (VLA) models such as $π_{0.5}$ exhibit strong semantic understanding, instruction following and task behavior. However, when deployed on new robots, even minor mismatches in hardware configuration relative to pretraining can cause severe performance drops. Finetuning the VLA on in-domain expert data from the new embodiment improves performance on the expert task but leads to a loss in its original instruction following and behavioral priors. In this paper, we propose a self-supervised method that generates online interaction rollouts from the zero-shot VLA as additional training data for finetuning. Our experiments show this finetuning scheme yields strong multi-task policies that, on the target robot, (1) inherit prior tasks distilled from the zero-shot model, (2) enable generalist instruction following, while (3) learning new skills from expert data with improved sample efficiency. We demonstrate the success of our approach across test sets probing generalization on a real ALOHA robot and a new simulation benchmark in RoboTwin. Video results are available at https://self-supervised-control.pages.dev/",
+      "authors": [
+        "Prachi Garg",
+        "Steve Xing",
+        "Prahit Yaugand",
+        "Saurabh Gupta",
+        "Derek Hoiem"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-19T23:02:07+00:00",
+      "link": "https://arxiv.org/pdf/2608.19490v1",
+      "tags": [
+        "keyword:embodied-rl",
+        "query:embodied-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "End-to-end VLA policy finetuning for embodied robots",
+      "llm_evidence_cn": "面向具身机器人的端到端VLA策略微调",
+      "llm_evidence": "面向具身机器人的端到端VLA策略微调",
+      "canonical_evidence": "面向具身机器人的端到端VLA策略微调",
+      "llm_tldr_en": "Proposes self-demonstrated generative control to fine-tune VLA models on target robots, preserving original instruction priors while achieving strong multi-task manipulation performance.",
+      "llm_tldr_cn": "针对预训练VLA模型应用到新机器人时性能下降、且专家数据微调会遗忘原任务的问题，论文提出利用零样本VLA在线交互生成数据来微调的自监督方案。该方法让模型在自我演示中补充领域数据，从而在目标机器人上取得强多任务策略，同时保留原有的指令跟随与行为先验。实验验证了该微调方案的有效性，为VLA模型快速部署新实体提供了低成本途径。",
+      "llm_tldr": "针对预训练VLA模型应用到新机器人时性能下降、且专家数据微调会遗忘原任务的问题，论文提出利用零样本VLA在线交互生成数据来微调的自监督方案。该方法让模型在自我演示中补充领域数据，从而在目标机器人上取得强多任务策略，同时保留原有的指令跟随与行为先验。实验验证了该微调方案的有效性，为VLA模型快速部署新实体提供了低成本途径。",
+      "llm_tags": [
+        "query:embodied-rl"
+      ],
+      "matched_query_tag": "query:embodied-rl",
+      "matched_query_text": "end-to-end learning",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
